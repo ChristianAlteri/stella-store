@@ -1,7 +1,9 @@
 import type { Metadata } from 'next'
 import { Arimo } from 'next/font/google'
 import './globals.css'
-import Footer from '@/components/Footer/footer'
+
+import Footer from '@/components/Footer/Footer'
+import Navbar from '@/components/NavBar/NavBar'
 
 const font = Arimo({
   weight: '400',
@@ -22,6 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={font.className}>
+        <Navbar />
         {children}
         <Footer />
       </body>
