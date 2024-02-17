@@ -16,7 +16,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         aria-label="Search"
           type={type}
           className={cn(
-            "flex items-center justify-center text-center h-7 w-1/6 border-b bg-background px-2 py-2 text-sm  file:bg-transparent file:text-sm file:font-sm placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50",
+            "flex justify-start text-start h-7 border-b bg-background  text-sm  file:bg-transparent file:text-sm file:font-sm placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50",
             className
           )}
           ref={ref}

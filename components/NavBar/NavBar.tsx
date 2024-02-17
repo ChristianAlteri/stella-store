@@ -36,24 +36,24 @@ const Navbar = async () => {
         <FirstNavBarContainer
         >
             <div className="flex w-1/3">
-
-            {/* Logo */}
-            <Link href="/" className="flex justify-start gap-4 lg:ml-0 ">
-                <p className="font-semibold text-xl">LOGO</p>
-                </Link>
-                {/* Mens/Womens */}
-                <div className="flex justify-between p-3 lg:ml-0 gap-x-2" style={{ width: '100px' }}>
-                    <Link href="/womens" className=" lg:ml-0 gap-x-2">
+                {/* Mens/Womens/search */}
+                <div className="flex  gap-3" >
+                    <Link href="/womens" className=" ">
                         <p className="hover:underline text-stone-700 hover:text-stone-900 hover:cursor-pointer">womens</p>
                     </Link>
-                    <Link href="/mens" className=" lg:ml-0 gap-x-2">
+                    <Link href="/mens" className=" ">
                         <p className="hover:underline text-stone-700 hover:text-stone-900 hover:cursor-pointer">mens</p>
                     </Link>
 
+                {/* Search Bar */}
+            <Input className="bg-secondary" placeholder='Search store' />
                 </div>
             </div>
-            {/* Search Bar */}
-            <Input className="bg-secondary" placeholder='Search store' />
+            {/* Logo */}
+            <Link href="/" className="flex justify-start gap-4 lg:ml-0 ">
+                <p className="font-semibold text-xl">LOGO</p>
+            </Link>
+            
                 {/* Cart */}
                 <div className="flex flex-row p-4 gap-4 w-1/3 justify-end">
                     
