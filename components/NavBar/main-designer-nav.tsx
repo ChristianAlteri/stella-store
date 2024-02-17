@@ -28,7 +28,7 @@ const DesignerNav: React.FC<DesignerProps> = ({ data }) => {
             <Link href={`/designer/${route.id}`}>
               <p
                 className={cn(
-                  "text-sm font-medium transition-colors hover:text-stone-900",
+                  "text-sm font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer",
                   pathname === `/designer/${route.id}` ? "text-stone" : "text-stone-500"
                 )}
               >

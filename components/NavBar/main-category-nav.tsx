@@ -28,7 +28,7 @@ const CategoryNav: React.FC<CategoryProps> = ({ data }) => {
             <Link href={`/category/${route.id}`}>
               <p
                 className={cn(
-                  "text-sm font-medium transition-colors hover:text-stone-900",
+                  "text-sm font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer",
                   pathname === `/category/${route.id}` ? "text-stone" : "text-stone-500"
                 )}
               >

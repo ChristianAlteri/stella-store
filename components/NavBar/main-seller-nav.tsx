@@ -16,7 +16,7 @@ const SellerNav: React.FC<SellerProps> = ({ data }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleToggle = () => setIsOpen(!isOpen);
-  console.log("data", data);
+  // console.log("data", data);
 
   return (
     <Menu>
@@ -29,7 +29,7 @@ const SellerNav: React.FC<SellerProps> = ({ data }) => {
             <Link href={`/seller/${route.id}`}>
               <p
                 className={cn(
-                  "text-sm font-medium transition-colors hover:text-stone-900",
+                  "text-sm font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer",
                   pathname === `/seller/${route.id}` ? "text-stone" : "text-stone-500"
                 )}
               >

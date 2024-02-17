@@ -1,11 +1,19 @@
+import axios from 'axios';
 import { Category } from "@/types";
 
 const URL=`${process.env.NEXT_PUBLIC_API_URL}/categories`;
 
 const getCategories = async (): Promise<Category[]> => {
-  const res = await fetch(URL);
+  try {
+    const response = await axios.get(URL);
+    // console.log("response from get-categories", response.data);
 
-  return res.json();
+    return response.data;
+  } catch (error) {
+
+    console.error("Error fetching categories:", error);
+    throw error;
+  }
 };
 
 export default getCategories;
