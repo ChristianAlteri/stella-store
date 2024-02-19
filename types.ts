@@ -22,3 +22,15 @@ export interface Seller {
     instagramHandle: string;
     billboard: string;
 }
+
+export interface Billboard {
+    id: string;
+    label: string;
+    imageUrl: string;
+
+}
+
+export interface Store {
+    id: string;
+    name: string;
+}

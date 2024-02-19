@@ -6,7 +6,7 @@ interface HomeContainerProps {
     children
   }) => {
     return ( 
-      <div className="">
+        <div className="flex flex-col items-center w-full">
         {children}
       </div>
      );

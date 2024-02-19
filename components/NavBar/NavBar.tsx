@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import Container from "../ui/Container";
 
 // import { Input } from '@chakra-ui/react'
@@ -46,12 +47,19 @@ const Navbar = async () => {
                     </Link>
 
                 {/* Search Bar */}
-            <Input className="bg-secondary" placeholder='Search store' />
-                </div>
+            <Input className="bg-white" placeholder='Search store' />
+            </div>
             </div>
             {/* Logo */}
             <Link href="/" className="flex justify-start gap-4 lg:ml-0 ">
-                <p className="font-semibold text-xl">LOGO</p>
+                {/* <p className="font-semibold text-xl">LOGO</p> */}
+                <Image
+                alt="logo"
+                height="170"
+                width="170"
+                className=""
+                src="/images/spray-logo.png"
+                />
             </Link>
             
                 {/* Cart */}
@@ -70,8 +78,8 @@ const Navbar = async () => {
             </div>
             {/* Nav dropdowns */}
             <div className="flex items-center ml-4 justify-between w-1/3">
-            <CategoryNav data={categories} />
             <DesignerNav data={designers} />
+            <CategoryNav data={categories} />
             <SellerNav data={sellers} />
             </div>
             {/* Empty w-1/3 div */}

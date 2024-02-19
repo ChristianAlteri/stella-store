@@ -6,7 +6,7 @@ interface NavBarContainerProps {
     children
   }) => {
     return ( 
-      <div className="bg-secondary gap-4 w-full mx-auto relative px-4 sm:px-6 lg:px-8 flex h-9 items-center">
+      <div className="bg-white gap-4 w-full mx-auto relative px-4 sm:px-6 lg:px-8 flex h-9 items-center">
         {children}
       </div>
      );
