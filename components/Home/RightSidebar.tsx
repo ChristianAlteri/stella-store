@@ -16,7 +16,7 @@ interface RightSideProps {
     const params = useParams();
     //   console.log(store);
     return (
-        <aside className="flex flex-col w-1/6 text-right p-3 justify-end items-end">
+        <aside className="flex flex-col w-1/6 text-right p-3 justify-start items-end">
             Sellers
             {data.map((category, index) => (
                 <div className='flex flex-row text-sm text-stone-700 hover:text-stone-900 text-right'>

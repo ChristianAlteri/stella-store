@@ -73,7 +73,7 @@ const Navbar = async () => {
         
         <SecondNavBarContainer >
             {/* Filters */}
-            <div className="justify-between w-1/3 text-sm text-stone-700 rounded-md gap-4 font-medium transition-colors hover:text-stone-900 hover:bg-secondary hover:underline hover:cursor-pointer">
+            <div className="justify-between w-1/3 text-sm text-stone-700 rounded-md gap-4 font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer">
                 filters
             </div>
             {/* Nav dropdowns */}

@@ -19,7 +19,7 @@ const DesignerNav: React.FC<DesignerProps> = ({ data }) => {
 
   return (
     <Menu>
-      <MenuButton onClick={handleToggle} className="text-sm text-stone-700 rounded-md p-2 font-medium transition-colors hover:text-stone-900 hover:bg-secondary hover:underline hover:cursor-pointer">
+      <MenuButton onClick={handleToggle} className="text-sm text-stone-700 rounded-md p-2 font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer">
         Designers
       </MenuButton>
       <MenuList>
