@@ -2,6 +2,7 @@ import getSingleProduct from "@/actions/get-single-product";
 import getProducts from "@/actions/get-products";
 import ProductCard from "@/components/ui/product-card";
 import SuggestedContainer from "@/components/ui/SuggestedContainer";
+import Gallery from "@/components/Gallery";
 
 
 interface IndividualProductPageProps {
@@ -37,11 +38,10 @@ const IndividualProductPage: React.FC<IndividualProductPageProps> = async ({
 
                     {/* Second column */}
                     <div className="flex flex-col w-full items-center text-center justify-center">
-                        Product photos
+                        <Gallery images={product.images}/>
                     <div>
-                        <h3 className="text-xs">Styled with</h3>
                         <div className="flex p-3 gap-4">
-                            <SuggestedContainer data={suggestedProductsBasedOnDesigner}/>
+                            <SuggestedContainer title="Styled with" data={suggestedProductsBasedOnDesigner}/>
                         </div>
                     </div>
                     </div>
