@@ -32,7 +32,7 @@ const Navbar = async () => {
 
   return ( 
     // Split into two Navbar row with 1/3 columns
-    <div className="border-b">
+    <div className="border-b sticky top-0">
       <Container>
         <FirstNavBarContainer
         >

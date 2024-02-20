@@ -40,7 +40,6 @@ export interface Product {
   description: string;
   ourPrice: string;
   retailPrice: string;
-  seller: Seller;
   size: Size;
   color: Color;
   images: Image[];
@@ -56,6 +55,8 @@ export interface Product {
   clicks: number | null | undefined;
   reference: string | null | undefined;
   designer: Designer;
+  category: Category;
+  seller: Seller;
 }
 
 export interface Image {

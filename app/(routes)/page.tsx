@@ -28,7 +28,7 @@ const Homepage = async () => {
 
     return ( 
         <>
-            {/* <div className="grid grid-cols-6 gap-4"> */}
+
             <div className="flex flex-row w-full gap-4 bg-white">
                 
                 {/* First column */}
@@ -37,14 +37,13 @@ const Homepage = async () => {
 
                 {/* Second column */}
                 <HomeContainer>
-                    <Billboard data={billboardData} />
+                    {/* <Billboard data={billboardData} /> */}
                     <ProductGrid>
                             {productData.map((item) => (
                                 
                                 <ProductCard key={item.id} item={item} />
                                 
                              ))}
-                            {/* <ProductList title="Featured Products" data={productData} /> */}
                         <div className="">
                         </div>
                     </ProductGrid>
