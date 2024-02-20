@@ -10,7 +10,7 @@ interface SuggestedContainerProps {
 const SuggestedContainer: React.FC<SuggestedContainerProps> = ({ data, title }) => {
   return (
     <div className="p-4">
-      <h3 className="flex hover:underline hover:cursor-pointer text-stone-900 flex-row justify-start p-4 items-start text-xs">
+      <h3 className="flex hover:underline hover:cursor-pointer text-stone-900 flex-row justify-start  items-start text-xs">
         {title}
       </h3>
       <div className="grid grid-cols-4 w-full items-center">

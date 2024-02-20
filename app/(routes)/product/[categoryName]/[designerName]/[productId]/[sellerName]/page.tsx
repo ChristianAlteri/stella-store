@@ -19,10 +19,11 @@ const IndividualProductPage: React.FC<IndividualProductPageProps> = async ({
     const product = await getSingleProduct(params.productId);
 
     let designerName = product?.designer?.name;
-    let sellerName = product?.seller?.name;
+    let sellerInstagram = product?.seller?.instagramHandle.split("@")[1];
     const suggestedProductsBasedOnCategory = await getProducts({categoryId: product?.category?.id});
     const suggestedProductsBasedOnDesigner = await getProducts({ designerId: product?.designer?.id});
-    const suggestedProductsSellerOnDesigner = await getProducts({ sellerId: product?.seller?.id});
+    const suggestedProductsBasedOnSeller = await getProducts({ sellerId: product?.seller?.id});
+    // console.log("Seller products", suggestedProductsBasedOnSeller);
     return ( 
         <>
 
@@ -52,9 +53,10 @@ const IndividualProductPage: React.FC<IndividualProductPageProps> = async ({
                     </aside>
                 </div>
 
+                {/* Change this first search to proper recommended algorithm */}
                <SuggestedContainer title="BASED ON YOUR RECENT ACTIVITY" data={suggestedProductsBasedOnCategory}/>
                <SuggestedContainer title={designerName.toUpperCase()} data={suggestedProductsBasedOnDesigner}/>
-               <SuggestedContainer title={`MORE FROM ${sellerName.toUpperCase()}`} data={suggestedProductsSellerOnDesigner}/>
+               <SuggestedContainer title={`MORE FROM ${sellerInstagram.toUpperCase()}`} data={suggestedProductsBasedOnSeller}/>
         </>
      );
 }

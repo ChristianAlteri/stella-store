@@ -31,7 +31,7 @@ const getProducts = async (query: Query): Promise<Product[]> => {
     });
     const response = await axios.get(url);
 
-    // console.log("response from get-products", response.data);
+    console.log("response from get-products", response.data);
     return response.data;
   } catch (error) {
 
