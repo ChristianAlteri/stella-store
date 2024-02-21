@@ -6,6 +6,8 @@ import { Tab } from "@headlessui/react";
 import { Image } from "@/types";
 
 import GalleryTab from "./gallery-tab";
+import { useRouter } from "next/navigation";
+
 
 interface GalleryProps {
   images: Image[];
@@ -14,19 +16,19 @@ interface GalleryProps {
 const Gallery: React.FC<GalleryProps> = ({
   images = []
 }) => {
-    console.log("images", images);
+
   return ( 
     <Tab.Group as="div" className="flex flex-col-reverse">
-      <div className="mt-6  w-full ">
+      <div className="mt-6 w-full">
         <Tab.List className="grid grid-cols-4 gap-2" >
           {images.map((image) => (
-            <GalleryTab key={image.id} image={image} />
+            <GalleryTab  key={image.id} image={image} />
           ))}
         </Tab.List>
       </div>
       <Tab.Panels className=" w-full">
         {images.map((image) => (
-          <Tab.Panel key={image.id}>
+          <Tab.Panel className="hover:cursor-pointer" key={image.id} onClick={() => window.open(`${image.url}`, '_blank')}>
             <div className="h-full w-full">
               <NextImage
                 height={300}

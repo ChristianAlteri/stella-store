@@ -48,8 +48,8 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
                     />
                 </div>
             </div>
+        <div className="flex aspect-square rounded-md justify-center">
         {/* Image */}
-        <div className="flex aspect-square rounded-md relative justify-center">
             <Image
                 height={600}
                 width={100}
@@ -57,7 +57,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
                 alt={item.name}
                 // fill
                 // objectFit="fill"
-                className="rounded-md relative"
+                className="rounded-md "
             />
         </div>
         <div className="flex flex-col text-left">

@@ -6,6 +6,7 @@ import { Image } from "@/types";
 
 interface GalleryTabProps {
   image: Image;
+    onClick?: () => void;
 }
 
 const GalleryTab: React.FC<GalleryTabProps> = ({
@@ -25,11 +26,6 @@ const GalleryTab: React.FC<GalleryTabProps> = ({
               className="object-cover object-center" 
             />
           </span>
-          <span
-            className={cn(
-              'absolute inset-0 rounded-md ',
-            )}
-          />
         </div>
       )}
     </Tab>
