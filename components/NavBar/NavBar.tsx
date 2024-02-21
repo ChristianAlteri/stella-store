@@ -39,10 +39,10 @@ const Navbar = async () => {
             <div className="flex w-1/3">
                 {/* Mens/Womens/search */}
                 <div className="flex  gap-3" >
-                    <Link href="/womens" className=" ">
+                    <Link href="/categories/womens" className=" ">
                         <p className="hover:underline text-stone-700 hover:text-stone-900 hover:cursor-pointer">womens</p>
                     </Link>
-                    <Link href="/mens" className=" ">
+                    <Link href="/categories/mens" className=" ">
                         <p className="hover:underline text-stone-700 hover:text-stone-900 hover:cursor-pointer">mens</p>
                     </Link>
 

@@ -2,30 +2,38 @@
 
 import React, { useEffect, useState } from 'react';
 
-import { Category, Designer  } from '@/types';
+import { cn } from "@/lib/utils";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Category, Designer, Seller  } from '@/types';
 import { useParams } from 'next/navigation';
 
 
 interface RightSideProps {
-    data: Category[];
+    data: Seller[];
     // store: Store[];
   }
 
   
   const RightSidebar: React.FC<RightSideProps> = ({ data }) => {
     const params = useParams();
+    const pathname = usePathname();
     //   console.log(store);
     return (
         <aside className="flex flex-col w-1/6 text-right p-3 justify-start items-end">
-            Sellers
-            {data.map((category, index) => (
-                <div key={category.id} className='flex flex-row text-sm text-stone-700 hover:text-stone-900 text-right'>
-                    <a className="hover:underline" 
-                    href={`/api/${params.storeId}/designers/${category.id}`}>
-                        {category.name}
-                    </a>
-                </div>
-            ))}
+            <Link className='hover:underline' href={`/sellers`}>Sellers</Link>
+            {data.map((seller, index) => (
+                    <Link href={`/sellers/${seller.instagramHandle}`}>
+                    <p
+                        className={cn(
+                            "text-sm font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer",
+                            pathname === `/seller/${seller.instagramHandle}` ? "text-stone" : "text-stone-500"
+                            )}
+                            >
+                        {seller.instagramHandle.split('@')[1].toUpperCase()}
+                    </p>
+                    </Link>
+                ))}
         </aside>
     );
 }

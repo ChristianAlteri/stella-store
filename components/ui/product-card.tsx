@@ -5,6 +5,7 @@ import Image from "next/image";
 import ProductCardButton from "./ProductCardButton";
 import { CiHeart, CiShare2, CiShoppingCart  } from "react-icons/ci";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 
 interface ProductListProps {
@@ -21,7 +22,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
 
   return (
     <>
-      <div onClick={handleProductClick} className="bg-white group cursor-pointer rounded-md p-2 ">
+      <div className="bg-white group cursor-pointer rounded-md p-2 ">
         {/* Actions */}
             <div className="flex flex-col gap-1 justify-end items-end right-0 hover:text-primary">
                 {/* Likes */}
@@ -51,6 +52,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
         <div className="flex aspect-square rounded-md justify-center">
         {/* Image */}
             <Image
+                onClick={handleProductClick}
                 height={600}
                 width={100}
                 src={item?.images?.[0].url}
@@ -61,12 +63,13 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
             />
         </div>
         <div className="flex flex-col text-left">
-            <h1 className="text-xs hover:underline text-black hover:text-stone-700">{item.designer.name.toUpperCase()}</h1>
-            <h3 className="text-xs hover:underline text-black hover:text-stone-700">{item.name}</h3>
+
+            <Link href={`/designers/${item.designer.name}`}className="text-xs hover:underline text-black hover:text-stone-700">{item.designer.name.toUpperCase()}</Link>
+            <h3 onClick={handleProductClick} className="text-xs hover:underline text-black hover:text-stone-700">{item.name}</h3>
             <div className="flex flex-row gap-1">
-                <h6 className="text-xs hover:underline text-red-500">£{item.ourPrice}</h6>
+                <h6 onClick={handleProductClick} className="text-xs hover:underline text-red-500">£{item.ourPrice}</h6>
                 <h6 className="text-xs text-stone-500">from</h6>
-                <h6 className="text-xs hover:underline text-stone-500">£{item.retailPrice}</h6>
+                <h6 onClick={handleProductClick} className="text-xs hover:underline text-stone-500">£{item.retailPrice}</h6>
             </div>
         </div>
       </div>

@@ -56,12 +56,12 @@ const IndividualProductPage: React.FC<IndividualProductPageProps> = async ({
 
                 {/* Suggestions */}
                 <div className="flex justify-center p-3 gap-4">
-                    <SuggestedContainer title="Styled with" data={suggestedProductsBasedOnDesigner}/>
+                    <SuggestedContainer route="recommended" title="Styled with" data={suggestedProductsBasedOnDesigner}/>
                 </div>
                 {/* Change this first search to proper recommended algorithm */}
-               <SuggestedContainer title="BASED ON YOUR RECENT ACTIVITY" data={suggestedProductsBasedOnCategory}/>
-               <SuggestedContainer title={designerName.toUpperCase()} data={suggestedProductsBasedOnDesigner}/>
-               <SuggestedContainer title={`MORE FROM ${sellerInstagram.toUpperCase()}`} data={suggestedProductsBasedOnSeller}/>
+               <SuggestedContainer route="recommended" title="BASED ON YOUR RECENT ACTIVITY" data={suggestedProductsBasedOnCategory}/>
+               <SuggestedContainer route="designers"   title={designerName} data={suggestedProductsBasedOnDesigner}/>
+               <SuggestedContainer route="sellers" header="MORE FROM" title={sellerInstagram} data={suggestedProductsBasedOnSeller}/>
         </>
      );
 }
