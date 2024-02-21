@@ -4,6 +4,7 @@ import ProductCard from "@/components/ui/product-card";
 import SuggestedContainer from "@/components/ui/SuggestedContainer";
 import Gallery from "@/components/Gallery";
 import DetailsCard from "@/components/ui/DetailsCard";
+import BuyNowCard from "@/components/ui/BuyNowCard";
 
 
 interface IndividualProductPageProps {
@@ -32,24 +33,24 @@ const IndividualProductPage: React.FC<IndividualProductPageProps> = async ({
                 <div className="flex flex-row w-full gap-3 bg-white">
                     
                     {/* First column */}
-                    <aside className="flex flex-col w-3/6 text-left p-3 justify-center items-start">
+                    <aside className="flex flex-col w-2/6 text-left p-3 justify-center items-start">
                         <DetailsCard data={product}/>
                     </aside>
                 
 
                     {/* Second column */}
-                    <div className="grid grid-cols-1 overflow-auto">
+                    <div className="w-full gird grid-cols-1 overflow-auto">
                         <div className="flex flex-col w-full h-full items-center text-center justify-center">
                             <Gallery images={product.images}/>
                             <div>
-                            </div>
+                        </div>
                         </div>
                     </div>
 
                     {/* Third column */}
 
-                    <aside className="flex flex-col w-3/6 text-right p-3 justify-center items-end">
-                        <p>BUY NOW</p>
+                    <aside className="flex flex-col w-2/6 text-right p-3 justify-center items-end">
+                    <BuyNowCard data={product}/>
                     </aside>
                 </div>
 

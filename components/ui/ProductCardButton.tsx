@@ -20,10 +20,10 @@ onClick,
     return ( 
         <button 
           onClick={onClick} 
-          className={cn(
-            'flex items-center bg-transparent hover:scale-120 transition',
-            className
-          )}
+          className=
+            "flex items-center bg-transparent hover:scale-140 hover:text-primary hover:cursor-pointer"
+
+          
         >
           {icon}
         </button>
