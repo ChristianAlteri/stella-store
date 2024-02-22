@@ -4,7 +4,7 @@ import React from 'react';
 
 import { cn } from "@/lib/utils";
 
-import { Designer  } from '@/types';
+import { Category, Designer  } from '@/types';
 import { useParams }from 'next/navigation';
 
 import Link from "next/link";
@@ -12,28 +12,28 @@ import { usePathname } from "next/navigation";
 
 
 interface LeftSideProps {
-    data: Designer[];
+    data: Category[];
     title?: string;
     // store: Store[];
   }
 
   
-  const LeftSidebar: React.FC<LeftSideProps> = ({ data, title }) => {
+  const LeftCategorySidebar: React.FC<LeftSideProps> = ({ data, title }) => {
     const pathname = usePathname();
     const params = useParams();
     //   console.log(store);
     return (
             <aside className="flex flex-col w-1/6 text-left p-3 justify-start items-start">
-                <Link className='hover:underline' href={`/designers`}>{title}</Link>
-                {data.map((designer, index) => (
-                    <Link href={`/designers/${designer.name}`} key={designer.name}>
+                <Link className='hover:underline' href={`/categories`}>{title}</Link>
+                {data.map((data, index) => (
+                    <Link href={`/categories/${data.name}`} key={data.name}>
                     <p
                         className={cn(
                             "text-sm font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer",
-                            pathname === `/designer/${designer.name}` ? "text-stone" : "text-stone-500"
+                            pathname === `/categories/${data.name}` ? "text-stone" : "text-stone-500"
                             )}
                             >
-                        {designer.name}
+                        {data.name}
                     </p>
                     </Link>
                 ))}
@@ -49,4 +49,4 @@ interface LeftSideProps {
     );
 }
 
-export default LeftSidebar;
+export default LeftCategorySidebar;

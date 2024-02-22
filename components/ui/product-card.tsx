@@ -49,7 +49,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
                     />
                 </div>
             </div>
-        <div className="flex aspect-square rounded-md justify-center">
+        <div className="flex h-full w-full rounded-md justify-center">
         {/* Image */}
             <Image
                 onClick={handleProductClick}
@@ -59,7 +59,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
                 alt={item.name}
                 // fill
                 // objectFit="fill"
-                className="rounded-md "
+                className="rounded-md"
             />
         </div>
         <div className="flex flex-col text-left">

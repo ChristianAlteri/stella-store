@@ -10,7 +10,7 @@ import { useParams } from 'next/navigation';
 
 
 interface RightSideProps {
-    data: Seller[];
+    data: Category[];
     title?: string;
     // store: Store[];
   }
@@ -18,23 +18,23 @@ interface RightSideProps {
   
 
   
-  const RightSidebar: React.FC<RightSideProps> = ({ data, title }) => {
+  const RightCategorySidebar: React.FC<RightSideProps> = ({ data, title }) => {
       const params = useParams();
       const pathname = usePathname();
 
     //   console.log(store);
     return (
         <aside className="flex flex-col w-1/6 text-right p-3 justify-start items-end">
-            <Link className='hover:underline' href={`/sellers`}>{title}</Link>
-            {data.map((seller, index) => (
-                    <Link href={`/sellers/${seller.instagramHandle}`}  key={seller.name}>
+            <Link className='hover:underline' href={`/categories`}>{title}</Link>
+            {data.map((category, index) => (
+                    <Link href={`/categories/${category.name}`} key={category.name}>
                     <p
                         className={cn(
                             "text-sm font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer",
-                            pathname === `/sellers/${seller.instagramHandle}` ? "text-stone" : "text-stone-500"
+                            pathname === `/categories/${category.name}` ? "text-stone" : "text-stone-500"
                             )}
                             >
-                        {seller.instagramHandle.split('@')[1].toUpperCase()}
+                        {category.name}
                     </p>
                     </Link>
                 ))}
@@ -42,4 +42,4 @@ interface RightSideProps {
     );
 }
 
-export default RightSidebar;
+export default RightCategorySidebar;

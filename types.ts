@@ -7,26 +7,23 @@ export interface Billboard {
 export interface Category {
   id: string;
   name: string;
-  billboard: string;
+  billboardId: string;
+  billboard: Billboard;
 }
 
 export interface Designer {
   id: string;
   name: string;
-  billboard: string;
+  billboardId: string;
+  billboard: Billboard;
 }
 
 export interface Seller {
   id: string;
   name: string;
   instagramHandle: string;
-  billboard: string;
-}
-
-export interface Billboard {
-  id: string;
-  label: string;
-  imageUrl: string;
+  billboardId: string;
+  billboard: Billboard;
 }
 
 export interface Store {

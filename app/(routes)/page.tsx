@@ -3,14 +3,15 @@ import LeftSidebar from "../../components/Home/LeftSidebar";
 import RightSidebar from "../../components/Home/RightSidebar";
 import ProductGrid from "../../components/Home/ProductGrid";
 import Billboard from "@/components/Billboard/Billboard";
+import ProductCard from "@/components/ui/product-card";
+import ProductList from "@/components/Home/product-list";
 
 import getDesigners from "@/actions/get-designers";
 import getCategories from "@/actions/get-categories";
 import getBillboard from "@/actions/get-billboard";
 import getProducts from "@/actions/get-products";
-import ProductList from "@/components/Home/product-list";
-import ProductCard from "@/components/ui/product-card";
 import getSellers from "@/actions/get-sellers";
+
 
 export const revalidate = 0
 
@@ -19,7 +20,7 @@ const Homepage = async () => {
     const categoryData = await getCategories();
     const sellerData = await getSellers();
     const productData = await getProducts({all: true});
-    const billboardData = await getBillboard("d391b3a5-91dc-4e9e-b088-fd2e9057e743");
+    const billboardData = await getBillboard("4f972736-5236-4e1d-b352-bfb301423d71");
 
     console.log("this should be productData", productData);
 
@@ -32,7 +33,7 @@ const Homepage = async () => {
             <div className="flex flex-row w-full gap-4 bg-white">
                 
                 {/* First column */}
-                <LeftSidebar data={designersData} />
+                <LeftSidebar title="Designers" data={designersData} />
                
 
                 {/* Second column */}
@@ -51,7 +52,7 @@ const Homepage = async () => {
 
                 {/* Third column */}
 
-                <RightSidebar data={sellerData}/>
+                <RightSidebar title="Sellers" data={sellerData}/>
 
             </div>
         </>
