@@ -13,12 +13,14 @@ import getSellers from "@/actions/get-sellers";
 import getColors from "@/actions/get-colors";
 import getSizes from "@/actions/get-sizes";
 import getSingleCategory from "@/actions/get-single-category";
+import getSingleDesigner from "@/actions/get-single-designer";
+import LeftCategorySidebar from "@/components/Home/LeftCategorySidebar";
 
 export const revalidate = 0;
 
-interface CategoryNamePageProps {
+interface DesignerNamePageProps {
     params: {
-        categoryId: string;
+        designerId: string;
     },
     searchParams: {
         sizeId: string;
@@ -34,45 +36,44 @@ interface CategoryNamePageProps {
 }
 
 
-const CategoryNamePage: React.FC<CategoryNamePageProps> = async ({
+const DesignerNamePage: React.FC<DesignerNamePageProps> = async ({
     params,
     searchParams
 }) => {
     const productData = await getProducts({
-        categoryId: params.categoryId,
+        designerId: params.designerId,
+        categoryId: searchParams.categoryId,
         sizeId: searchParams.sizeId,
         colorId: searchParams.colorId,
         materialId: searchParams.materialId,
         isOnSale: searchParams.isOnSale,
         isFeatured: searchParams.isFeatured,
-        designerId: searchParams.designerId,
         sellerId: searchParams.sellerId
     });
     const sizes = await getSizes();
     const colors = await getColors();
-    const categoryData = await getSingleCategory(params.categoryId);
+    const designersData = await getSingleDesigner(params.designerId);
 
-    const designersData = await getDesigners();
+    const categoryData = await getCategories();
     const sellerData = await getSellers();
-
+    const billboardData = await getBillboard("4f972736-5236-4e1d-b352-bfb301423d71");
 
 
     return ( 
         <>
 
+
             <div className="flex flex-row w-full gap-4 bg-white">
                 
                 {/* First column */}
-                <LeftSidebar title="Designers" data={designersData} />
+                <LeftCategorySidebar title="Categories" data={categoryData} />
                
 
                 {/* Second column */}
                 <HomeContainer>
-
-                    <Billboard data={categoryData?.billboard} />
-
+                    <Billboard data={designersData?.billboard} />
                     <ProductGrid>
-                            {categoryData?.products?.map((item) => (
+                            {designersData?.products?.map((item) => (
                                 
                                 <ProductCard key={item.id} item={item} />
                                 
@@ -89,4 +90,4 @@ const CategoryNamePage: React.FC<CategoryNamePageProps> = async ({
      );
 }
  
-export default CategoryNamePage;
+export default DesignerNamePage;

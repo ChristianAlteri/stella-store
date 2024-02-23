@@ -39,12 +39,12 @@ const Navbar = async () => {
             <div className="flex w-1/3">
                 {/* Mens/Womens/search */}
                 <div className="flex  gap-3" >
-                    <Link href="/categories/womens" className=" ">
+                    {/* <Link href="/categories/womens" className=" ">
                         <p className="hover:underline text-stone-700 hover:text-stone-900 hover:cursor-pointer">womens</p>
                     </Link>
                     <Link href="/categories/mens" className=" ">
                         <p className="hover:underline text-stone-700 hover:text-stone-900 hover:cursor-pointer">mens</p>
-                    </Link>
+                    </Link> */}
 
                 {/* Search Bar */}
             <Input className="bg-white" placeholder='Search store' />
@@ -63,7 +63,7 @@ const Navbar = async () => {
             </Link>
             
                 {/* Cart */}
-                <div className="flex flex-row p-4 gap-4 w-1/3 justify-end">
+                <div className="flex flex-row gap-3 w-1/3 justify-end">
                     
                     <HeartButton />
                     <ShoppingCartButton />

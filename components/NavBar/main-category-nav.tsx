@@ -25,11 +25,11 @@ const CategoryNav: React.FC<CategoryProps> = ({ data }) => {
       <MenuList>
         {data.map((route) => (
           <MenuItem key={route.id}>
-            <Link href={`/categories/${route.name}`}>
+            <Link href={`/categories/${route.id}`}>
               <p
                 className={cn(
                   "text-sm font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer",
-                  pathname === `/categories/${route.name}` ? "text-stone" : "text-stone-500"
+                  pathname === `/categories/${route.id}` ? "text-stone" : "text-stone-500"
                 )}
               >
                 {route.name}

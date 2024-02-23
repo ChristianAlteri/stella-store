@@ -26,11 +26,11 @@ const SellerNav: React.FC<SellerProps> = ({ data }) => {
       <MenuList>
         {data.map((route) => (
           <MenuItem key={route.id}>
-            <Link href={`/sellers/${route.instagramHandle}`}>
+            <Link href={`/sellers/${route.id}`}>
               <p
                 className={cn(
                   "text-sm font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer",
-                  pathname === `/seller/${route.instagramHandle}` ? "text-stone" : "text-stone-500"
+                  pathname === `/seller/${route.id}` ? "text-stone" : "text-stone-500"
                 )}
               >
                 {route.instagramHandle.replace('@', '').toUpperCase()}

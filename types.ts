@@ -17,6 +17,7 @@ export interface Designer {
   name: string;
   billboardId: string;
   billboard: Billboard;
+  products: Product[];
 }
 
 export interface Seller {
@@ -25,6 +26,7 @@ export interface Seller {
   instagramHandle: string;
   billboardId: string;
   billboard: Billboard;
+  products: Product[];
 }
 
 export interface Store {

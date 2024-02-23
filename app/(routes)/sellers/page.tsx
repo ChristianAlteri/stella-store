@@ -24,9 +24,6 @@ const SellerPage = async () => {
     const productData = await getProducts({all: true});
     
     
-    const billboardId = categoryData.map((data) => { return data.billboardId; });
-    console.log(sellerData);
-    console.log("billy this should be billboardID", billboardId);
     const billboardData = await getBillboard("4f972736-5236-4e1d-b352-bfb301423d71");
 
     return ( 

@@ -54,8 +54,8 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
         {/* Image */}
             <Image
                 onClick={handleProductClick}
-                height={600}
-                width={100}
+                height={300}
+                width={300}
                 src={item?.images?.[0].url}
                 alt={item.name}
                 // fill

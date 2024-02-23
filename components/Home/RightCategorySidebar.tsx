@@ -27,11 +27,11 @@ interface RightSideProps {
         <aside className="flex flex-col w-1/6 text-right p-3 justify-start items-end">
             <Link className='hover:underline' href={`/categories`}>{title}</Link>
             {data.map((category, index) => (
-                    <Link href={`/categories/${category.name}`} key={category.name}>
+                    <Link href={`/categories/${category.id}`} key={category.name}>
                     <p
                         className={cn(
                             "text-sm font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer",
-                            pathname === `/categories/${category.name}` ? "text-stone" : "text-stone-500"
+                            pathname === `/categories/${category.id}` ? "text-stone" : "text-stone-500"
                             )}
                             >
                         {category.name}

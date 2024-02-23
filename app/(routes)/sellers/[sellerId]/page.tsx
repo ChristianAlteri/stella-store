@@ -13,12 +13,14 @@ import getSellers from "@/actions/get-sellers";
 import getColors from "@/actions/get-colors";
 import getSizes from "@/actions/get-sizes";
 import getSingleCategory from "@/actions/get-single-category";
+import getSingleSeller from "@/actions/get-single-seller";
+import RightCategorySidebar from "@/components/Home/RightCategorySidebar";
 
 export const revalidate = 0;
 
-interface CategoryNamePageProps {
+interface SellerNamePageProps {
     params: {
-        categoryId: string;
+        sellerId: string;
     },
     searchParams: {
         sizeId: string;
@@ -34,26 +36,26 @@ interface CategoryNamePageProps {
 }
 
 
-const CategoryNamePage: React.FC<CategoryNamePageProps> = async ({
+const SellerNamePage: React.FC<SellerNamePageProps> = async ({
     params,
     searchParams
 }) => {
     const productData = await getProducts({
-        categoryId: params.categoryId,
+        sellerId: params.sellerId,
+        categoryId: searchParams.categoryId,
         sizeId: searchParams.sizeId,
         colorId: searchParams.colorId,
         materialId: searchParams.materialId,
         isOnSale: searchParams.isOnSale,
         isFeatured: searchParams.isFeatured,
         designerId: searchParams.designerId,
-        sellerId: searchParams.sellerId
     });
     const sizes = await getSizes();
     const colors = await getColors();
-    const categoryData = await getSingleCategory(params.categoryId);
+    const sellerData = await getSingleSeller(params.sellerId);
 
     const designersData = await getDesigners();
-    const sellerData = await getSellers();
+    const categoryData = await getCategories()
 
 
 
@@ -69,10 +71,10 @@ const CategoryNamePage: React.FC<CategoryNamePageProps> = async ({
                 {/* Second column */}
                 <HomeContainer>
 
-                    <Billboard data={categoryData?.billboard} />
+                    <Billboard data={sellerData?.billboard} />
 
                     <ProductGrid>
-                            {categoryData?.products?.map((item) => (
+                            {sellerData?.products?.map((item) => (
                                 
                                 <ProductCard key={item.id} item={item} />
                                 
@@ -82,11 +84,11 @@ const CategoryNamePage: React.FC<CategoryNamePageProps> = async ({
 
                 {/* Third column */}
 
-                <RightSidebar title="Sellers" data={sellerData}/>
+                <RightCategorySidebar title="Categories" data={categoryData}/>
 
             </div>
         </>
      );
 }
  
-export default CategoryNamePage;
+export default SellerNamePage;

@@ -26,25 +26,17 @@ interface LeftSideProps {
             <aside className="flex flex-col w-1/6 text-left p-3 justify-start items-start">
                 <Link className='hover:underline' href={`/designers`}>{title}</Link>
                 {data.map((designer, index) => (
-                    <Link href={`/designers/${designer.name}`} key={designer.name}>
+                    <Link href={`/designers/${designer.id}`} key={designer.name}>
                     <p
                         className={cn(
                             "text-sm font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer",
-                            pathname === `/designer/${designer.name}` ? "text-stone" : "text-stone-500"
+                            pathname === `/designer/${designer.id}` ? "text-stone" : "text-stone-500"
                             )}
                             >
                         {designer.name}
                     </p>
                     </Link>
                 ))}
-                {/* {data.map((designer, index) => (
-                    <div key={designer.id} className='flex flex-row text-sm text-stone-700 hover:text-stone-900'>
-                        <a className="hover:underline" 
-                        href={`${process.env.NEXT_PUBLIC_API_URL}/designer/${designer.id}`}>
-                            {designer.name}
-                        </a>
-                    </div>
-                ))} */}
             </aside>
     );
 }

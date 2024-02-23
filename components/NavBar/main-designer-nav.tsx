@@ -25,11 +25,11 @@ const DesignerNav: React.FC<DesignerProps> = ({ data }) => {
       <MenuList>
         {data.map((route) => (
           <MenuItem key={route.id}>
-            <Link href={`/designers/${route.name}`}>
+            <Link href={`/designers/${route.id}`}>
               <p
                 className={cn(
                   "text-sm font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer",
-                  pathname === `/designers/${route.name}` ? "text-stone" : "text-stone-500"
+                  pathname === `/designers/${route.id}` ? "text-stone" : "text-stone-500"
                 )}
               >
                 {route.name}
