@@ -65,7 +65,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
         </div>
         <div className="flex flex-col text-left">
 
-            <Link href={`/designers/${item?.designerId}`}className="text-xs hover:underline text-black hover:text-stone-700">{item.designerName.toUpperCase()}</Link>
+            <Link href={`/designers/${item?.designer?.id}`}className="text-xs hover:underline text-black hover:text-stone-700">{item.designer?.name.toUpperCase()}</Link>
             {/* <Link href={`/designers/${item?.designerId}`}className="text-xs hover:underline text-black hover:text-stone-700">{item.designerId}</Link> */}
             <h3 onClick={handleProductClick} className="text-xs hover:underline text-black hover:text-stone-700">{item.name}</h3>
             <div className="flex flex-row gap-1">

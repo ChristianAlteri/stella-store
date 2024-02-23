@@ -9,7 +9,7 @@ const URL=`${process.env.NEXT_PUBLIC_API_URL}/categories`;
 const getSingleCategory = async (id: string): Promise<Category> => {
   try {
     const response = await axios.get(`${URL}/${id}`);
-    // console.log("response from get-products", response.data);
+    // console.log("response from get-single-category", response.data);
     return response.data;
   } catch (error) {
 
