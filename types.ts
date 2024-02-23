@@ -9,6 +9,7 @@ export interface Category {
   name: string;
   billboardId: string;
   billboard: Billboard;
+  products: Product[];
 }
 
 export interface Designer {
@@ -51,9 +52,11 @@ export interface Product {
   likes: number | null | undefined;
   clicks: number | null | undefined;
   reference: string | null | undefined;
-  designer: Designer;
   category: Category;
   seller: Seller;
+  designerName: string;
+  designer: Designer;
+  designerId: string;
 }
 
 export interface Image {

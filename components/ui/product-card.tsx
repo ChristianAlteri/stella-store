@@ -14,10 +14,11 @@ interface ProductListProps {
 
 
 const ProductCard: React.FC<ProductListProps> = ({ item }) => {
+    console.log("item",item);
     const router = useRouter();
 
     const handleProductClick = () => {
-        router.push(`/product/${item?.category?.name}/${item?.designer?.name}/${item?.id}/${item?.seller?.instagramHandle}`);
+        router.push(`/product/${item?.category?.id}/${item?.designer?.name}/${item?.id}/${item?.seller?.instagramHandle}`);
     }
 
   return (
@@ -64,7 +65,8 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
         </div>
         <div className="flex flex-col text-left">
 
-            <Link href={`/designers/${item.designer.name}`}className="text-xs hover:underline text-black hover:text-stone-700">{item.designer.name.toUpperCase()}</Link>
+            <Link href={`/designers/${item?.designerId}`}className="text-xs hover:underline text-black hover:text-stone-700">{item.designerName.toUpperCase()}</Link>
+            {/* <Link href={`/designers/${item?.designerId}`}className="text-xs hover:underline text-black hover:text-stone-700">{item.designerId}</Link> */}
             <h3 onClick={handleProductClick} className="text-xs hover:underline text-black hover:text-stone-700">{item.name}</h3>
             <div className="flex flex-row gap-1">
                 <h6 onClick={handleProductClick} className="text-xs hover:underline text-red-500">£{item.ourPrice}</h6>

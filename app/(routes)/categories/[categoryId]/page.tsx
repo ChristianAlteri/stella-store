@@ -10,13 +10,52 @@ import getCategories from "@/actions/get-categories";
 import getBillboard from "@/actions/get-billboard";
 import getProducts from "@/actions/get-products";
 import getSellers from "@/actions/get-sellers";
+import getColors from "@/actions/get-colors";
+import getSizes from "@/actions/get-sizes";
+import getSingleCategory from "@/actions/get-single-category";
 
-const CategoryNamePage = async () => {
+export const revalidate = 0;
+
+interface CategoryNamePageProps {
+    params: {
+        categoryId: string;
+    },
+    searchParams: {
+        sizeId: string;
+        colorId: string;
+        materialId: string;
+        categoryId: string;
+        designerId: string;
+        sellerId: string;
+        isFeatured: boolean;
+        isOnSale: boolean;
+    }
+
+}
+
+
+const CategoryNamePage: React.FC<CategoryNamePageProps> = async ({
+    params,
+    searchParams
+}) => {
+    const productData = await getProducts({
+        categoryId: params.categoryId,
+        sizeId: searchParams.sizeId,
+        colorId: searchParams.colorId,
+        materialId: searchParams.materialId,
+        isOnSale: searchParams.isOnSale,
+        isFeatured: searchParams.isFeatured,
+        designerId: searchParams.designerId,
+        sellerId: searchParams.sellerId
+    });
+    const sizes = await getSizes();
+    const colors = await getColors();
+    const categoryData = await getSingleCategory(params.categoryId);
+
     const designersData = await getDesigners();
-    const categoryData = await getCategories();
     const sellerData = await getSellers();
-    const productData = await getProducts({all: true});
     const billboardData = await getBillboard("4f972736-5236-4e1d-b352-bfb301423d71");
+
 
     return ( 
         <>
@@ -32,7 +71,7 @@ const CategoryNamePage = async () => {
                 <HomeContainer>
                     <Billboard data={billboardData} />
                     <ProductGrid>
-                            {productData.map((item) => (
+                            {categoryData?.products?.map((item) => (
                                 
                                 <ProductCard key={item.id} item={item} />
                                 
@@ -42,7 +81,7 @@ const CategoryNamePage = async () => {
 
                 {/* Third column */}
 
-                <RightSidebar title="Categories" data={sellerData}/>
+                <RightSidebar title="Sellers" data={sellerData}/>
 
             </div>
         </>

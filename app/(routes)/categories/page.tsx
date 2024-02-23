@@ -35,7 +35,7 @@ const CategoryPage = async () => {
                     <Billboard data={billboardData} />
                     <CategoryCardGrid>
                         {categoryData.map((category) => (
-                        <CategoryCard route="categories" key={category.name} data={category} />
+                        <CategoryCard route="categories" key={category.name} id={category.id} data={category} />
                         ))}
                     </CategoryCardGrid>
                 </HomeContainer>

@@ -44,7 +44,7 @@ const DesignerPage = async () => {
                     <Billboard data={billboardData} />
                     <CategoryCardGrid>
                         {designersData.map((designer) => (
-                        <CategoryCard route="designers" key={designer.name} data={designer} />
+                        <CategoryCard route="designers" id={designer.id} key={designer.name} data={designer} />
                         ))}
                     </CategoryCardGrid>
                 </HomeContainer>
