@@ -22,11 +22,6 @@ const Homepage = async () => {
     const productData = await getProducts({all: true});
     const billboardData = await getBillboard("a8d1234e-35d9-4dae-896a-762eb28045c3");
 
-    console.log("this should be productData", productData);
-
-    // const billboardId = designersData.map((designer) => {designer.billboard})
-    // console.log("billy this should be billboardID", billboardId);
-
     return ( 
         <>
 

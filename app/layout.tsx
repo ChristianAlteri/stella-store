@@ -4,6 +4,7 @@ import './globals.css'
 
 import Footer from '@/components/Footer/Footer'
 import Navbar from '@/components/NavBar/NavBar'
+import ToastProvider from '@/providers/toast-provider'
 
 const font = Arimo({
   weight: '400',
@@ -24,6 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={font.className}>
+        <ToastProvider />
         <Navbar />
         {children}
         <Footer />

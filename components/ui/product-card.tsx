@@ -6,6 +6,8 @@ import ProductCardButton from "./ProductCardButton";
 import { CiHeart, CiShare2, CiShoppingCart  } from "react-icons/ci";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { MouseEventHandler } from "react";
+import useCart from "@/hooks/use-cart";
 
 
 interface ProductListProps {
@@ -16,6 +18,13 @@ interface ProductListProps {
 const ProductCard: React.FC<ProductListProps> = ({ item }) => {
     // console.log("item",item);
     const router = useRouter();
+    const cart = useCart();
+
+    const onAddToCart: MouseEventHandler<HTMLButtonElement> = (event) => {
+        event.stopPropagation();
+        console.log("Adding item to cart", item);
+        cart.addItem(item);
+    };
 
     const handleProductClick = () => {
         router.push(`/product/${item?.category?.id}/${item?.designer?.name}/${item?.id}/${item?.seller?.instagramHandle}`);
@@ -59,31 +68,11 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
                     <div className="opacity-0 group-hover:opacity-100">
                     <ProductCardButton 
                         icon={<CiShoppingCart  />}  
-                        onClick={() => {console.log('Add to cart')}}
+                        onClick={(event) => onAddToCart(event)}
                         />
                     </div>
                 </div>
             </div>
-            {/* <div className="flex h-full w-full rounded-md justify-center relative">
-
-                <Image
-                    onClick={handleProductClick}
-                    height={300}
-                    width={300}
-                    src={item?.images?.[1].url}
-                    alt={item.name}
-                    className="opacity-0 hover:opacity-100 transition-opacity duration-300 ease-in-out"
-                />
-
-                <Image
-                    onClick={handleProductClick}
-                    height={300}
-                    width={300}
-                    src={item?.images?.[0].url}
-                    alt={item.name}
-                    className="hover:opacity-0 transition-opacity duration-300 ease-in-out"
-                />
-            </div> */}
             <div className="relative h-full w-full rounded-md flex justify-center items-center">
                 {/* Base Image - always visible */}
                 <div className=" inset-0 w-full h-full flex justify-center items-center">
