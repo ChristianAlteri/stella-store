@@ -23,7 +23,6 @@ const CategoryPage = async () => {
     return ( 
         <>
 
-
             <div className="flex flex-row w-full gap-4 bg-white">
                 
                 {/* First column */}

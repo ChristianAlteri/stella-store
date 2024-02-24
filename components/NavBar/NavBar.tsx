@@ -52,7 +52,7 @@ const Navbar = async () => {
             </div>
             {/* Logo */}
             <Link href="/" className="flex justify-start gap-4 lg:ml-0 ">
-                {/* <p className="font-semibold text-xl">LOGO</p> */}
+                <p className="font-semibold text-xl">LOGO</p>
                 <div className="flex mt-4">
                     {/* <Image
                     alt="logo"

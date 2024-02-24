@@ -64,19 +64,50 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
                     </div>
                 </div>
             </div>
-        <div className="flex h-full w-full rounded-md justify-center">
-        {/* Image */}
-            <Image
-                onClick={handleProductClick}
-                height={300}
-                width={300}
-                src={item?.images?.[0].url}
-                alt={item.name}
-                // fill
-                // objectFit="fill"
-                className="rounded-md"
-            />
-        </div>
+            {/* <div className="flex h-full w-full rounded-md justify-center relative">
+
+                <Image
+                    onClick={handleProductClick}
+                    height={300}
+                    width={300}
+                    src={item?.images?.[1].url}
+                    alt={item.name}
+                    className="opacity-0 hover:opacity-100 transition-opacity duration-300 ease-in-out"
+                />
+
+                <Image
+                    onClick={handleProductClick}
+                    height={300}
+                    width={300}
+                    src={item?.images?.[0].url}
+                    alt={item.name}
+                    className="hover:opacity-0 transition-opacity duration-300 ease-in-out"
+                />
+            </div> */}
+            <div className="relative h-full w-full rounded-md flex justify-center items-center">
+                {/* Base Image - always visible */}
+                <div className=" inset-0 w-full h-full flex justify-center items-center">
+                    <Image
+                        onClick={handleProductClick}
+                        height={150}
+                        width={150}
+                        src={item?.images?.[0].url}
+                        alt={item.name}
+                        className="rounded-md transition-opacity duration-200 ease-in-out"
+                    />
+                </div>
+                {/* Hover Image - only visible on hover */}
+                <div className="absolute inset-0 flex justify-center items-center hover:opacity-100 opacity-0 transition-opacity duration-200 ease-in-out">
+                    <Image
+                        onClick={handleProductClick}
+                        height={150}
+                        width={150}
+                        src={item?.images?.[1].url}
+                        alt={item.name}
+                        className="rounded-md"
+                    />
+                </div>
+            </div>
         <div className="flex flex-col text-left">
 
             <Link href={`/designers/${item?.designer?.id}`}className="text-xs hover:underline text-black hover:text-stone-700">{item.designer?.name.toUpperCase()}</Link>

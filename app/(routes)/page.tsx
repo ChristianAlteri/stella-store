@@ -20,7 +20,7 @@ const Homepage = async () => {
     const categoryData = await getCategories();
     const sellerData = await getSellers();
     const productData = await getProducts({all: true});
-    const billboardData = await getBillboard("4f972736-5236-4e1d-b352-bfb301423d71");
+    const billboardData = await getBillboard("a8d1234e-35d9-4dae-896a-762eb28045c3");
 
     console.log("this should be productData", productData);
 
