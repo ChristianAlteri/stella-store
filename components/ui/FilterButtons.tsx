@@ -55,12 +55,12 @@ const FilterButtons: React.FC<FilterButtonsProps> = ({
             {name}
           </h3>
           
-          <div className="flex overflow-x-auto flex-wrap gap-2">
+          <div className="flex flex-row w-full overflow-x-auto gap-2 ">
             {data.map((filter) => (
-              <div key={filter.id} className="flex items-center">
+              <div key={filter.id} className="flex flex-row items-center">
                 <Button
                   className={cn(
-                    'rounded-md flex justify-center items-center text-center text-xs text-stone-500 p-2 bg-white border border-stone-300',
+                    'rounded-md flex flex-row justify-center items-center text-center text-xs text-stone-500 p-2 bg-white border border-stone-300',
                     selectedValue === filter.id && 'bg-black text-white'
                   )}
                   onClick={() => onClick(filter.id)}

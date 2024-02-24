@@ -15,6 +15,7 @@ import getSizes from "@/actions/get-sizes";
 import getSingleCategory from "@/actions/get-single-category";
 import FilterButtons from "@/components/ui/FilterButtons";
 import NoResults from "@/components/ui/no-results";
+import MobileFilters from "@/components/ui/MobileFilters";
 
 export const revalidate = 0;
 
@@ -56,6 +57,7 @@ const CategoryNamePage: React.FC<CategoryNamePageProps> = async ({
 
     const designersData = await getDesigners();
     const sellerData = await getSellers();
+    const categories = await getCategories();
 
 
 
@@ -72,7 +74,14 @@ const CategoryNamePage: React.FC<CategoryNamePageProps> = async ({
                 <HomeContainer>
 
                     <Billboard data={categoryData?.billboard} />
-                    <div className="grid grid-cols-3 w-full">
+                            <MobileFilters 
+                                sizes={sizes} 
+                                colors={colors} 
+                                designers={designersData}
+                                categories={categories}
+                            />
+                    <div className="hidden lg:flex text-start items-start justify-start">      
+                    <div className="grid grid-cols-4 text-start items-start justify-start w-full">
                             <FilterButtons 
                                 valueKey="sizeId"
                                 name = "Sizes"
@@ -89,6 +98,7 @@ const CategoryNamePage: React.FC<CategoryNamePageProps> = async ({
                                 data={designersData} 
                             />
                     </div>
+                    </div>  
 
                     <ProductGrid>
                     {/* <div className="flex justify-center">

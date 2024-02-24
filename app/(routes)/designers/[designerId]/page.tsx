@@ -16,6 +16,7 @@ import getSingleCategory from "@/actions/get-single-category";
 import getSingleDesigner from "@/actions/get-single-designer";
 import LeftCategorySidebar from "@/components/Home/LeftCategorySidebar";
 import FilterButtons from "@/components/ui/FilterButtons";
+import MobileFilters from "@/components/ui/MobileFilters";
 
 export const revalidate = 0;
 
@@ -57,6 +58,7 @@ const DesignerNamePage: React.FC<DesignerNamePageProps> = async ({
 
     const categoryData = await getCategories();
     const sellerData = await getSellers();
+    const designers = await getDesigners();
     const billboardData = await getBillboard("4f972736-5236-4e1d-b352-bfb301423d71");
 
 
@@ -73,6 +75,13 @@ const DesignerNamePage: React.FC<DesignerNamePageProps> = async ({
                 {/* Second column */}
                 <HomeContainer>
                     <Billboard data={designersData?.billboard} />
+                            <MobileFilters 
+                                        sizes={sizes} 
+                                        colors={colors} 
+                                        designers={designers}
+                                        categories={categoryData}
+                                    />
+                    <div className="hidden lg:flex text-start items-start justify-start"> 
                     <div className="grid grid-cols-3 w-full">
                             <FilterButtons 
                                 valueKey="sizeId"
@@ -89,6 +98,7 @@ const DesignerNamePage: React.FC<DesignerNamePageProps> = async ({
                                 name = "Categories"
                                 data={categoryData} 
                             />
+                    </div>
                     </div>
                     <ProductGrid>
                             {productData?.map((item) => (

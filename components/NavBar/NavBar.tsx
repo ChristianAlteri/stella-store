@@ -54,14 +54,14 @@ const Navbar = async () => {
             <Link href="/" className="flex justify-start gap-4 lg:ml-0 ">
                 {/* <p className="font-semibold text-xl">LOGO</p> */}
                 <div className="flex mt-4">
-                    <Image
+                    {/* <Image
                     alt="logo"
                     height="30"
                     width="170"
                     // fill
                     className=""
                     src="/images/spray.png"
-                    />
+                    /> */}
                 </div>
             </Link>
             
