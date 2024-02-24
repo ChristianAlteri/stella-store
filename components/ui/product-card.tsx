@@ -14,7 +14,7 @@ interface ProductListProps {
 
 
 const ProductCard: React.FC<ProductListProps> = ({ item }) => {
-    console.log("item",item);
+    // console.log("item",item);
     const router = useRouter();
 
     const handleProductClick = () => {
@@ -27,27 +27,41 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
         {/* Actions */}
             <div className="flex flex-col gap-1 justify-end items-end right-0 hover:text-primary">
                 {/* Likes */}
-                <div className="opacity-20 group-hover:opacity-100">
-                <ProductCardButton 
-                
-                    icon={<CiHeart />}  
-                    onClick={() => {console.log('add this to my likes')}}
-                />
+                <div className="flex flex-row justify-between w-full">
+                    <div className="opacity-0 group-hover:opacity-100 text-xs text-stone-200 hover:text-stone-500">
+                        {item?.likes} people have this in their likes
+                    </div>
+                    <div className="opacity-20 group-hover:opacity-100">
+                    <ProductCardButton 
+                        icon={<CiHeart />}  
+                        onClick={() => {console.log('add this to my likes')}}
+                    />
+                    </div>
                 </div>
 
                 {/* Share */}
-                <div className="opacity-0 group-hover:opacity-100">
-                <ProductCardButton 
-                    icon={<CiShare2  />}  
-                    onClick={() => {console.log('Share this')}}
-                    />
+                <div className="flex flex-row justify-between w-full">
+                    <div className="opacity-0 group-hover:opacity-100 text-xs text-stone-200 hover:text-stone-500">
+                        {item?.clicks} people interested
+                    </div>
+                    <div className="opacity-0 group-hover:opacity-100">
+                    <ProductCardButton 
+                        icon={<CiShare2  />}  
+                        onClick={() => {console.log('Share this')}}
+                        />
+                    </div>
                 </div>
                 {/* Cart */}
-                <div className="opacity-0 group-hover:opacity-100">
-                <ProductCardButton 
-                    icon={<CiShoppingCart  />}  
-                    onClick={() => {console.log('Add to cart')}}
-                    />
+                <div className="flex flex-row justify-between w-full">
+                    <div className="opacity-0 group-hover:opacity-100 text-xs text-stone-200 hover:text-stone-500">
+                        size {item?.size?.name}
+                    </div>
+                    <div className="opacity-0 group-hover:opacity-100">
+                    <ProductCardButton 
+                        icon={<CiShoppingCart  />}  
+                        onClick={() => {console.log('Add to cart')}}
+                        />
+                    </div>
                 </div>
             </div>
         <div className="flex h-full w-full rounded-md justify-center">

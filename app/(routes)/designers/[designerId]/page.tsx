@@ -15,6 +15,7 @@ import getSizes from "@/actions/get-sizes";
 import getSingleCategory from "@/actions/get-single-category";
 import getSingleDesigner from "@/actions/get-single-designer";
 import LeftCategorySidebar from "@/components/Home/LeftCategorySidebar";
+import FilterButtons from "@/components/ui/FilterButtons";
 
 export const revalidate = 0;
 
@@ -72,12 +73,30 @@ const DesignerNamePage: React.FC<DesignerNamePageProps> = async ({
                 {/* Second column */}
                 <HomeContainer>
                     <Billboard data={designersData?.billboard} />
+                    <div className="grid grid-cols-3 w-full">
+                            <FilterButtons 
+                                valueKey="sizeId"
+                                name = "Sizes"
+                                data={sizes} 
+                            />
+                            <FilterButtons 
+                                valueKey="colorId"
+                                name = "Colors"
+                                data={colors} 
+                            />
+                            <FilterButtons 
+                                valueKey="categoryId"
+                                name = "Categories"
+                                data={categoryData} 
+                            />
+                    </div>
                     <ProductGrid>
-                            {designersData?.products?.map((item) => (
-                                
+                            {productData?.map((item) => (
+                                            <ProductCard key={item.id} item={item} />
+                                    ))}
+                            {/* {designersData?.products?.map((item) => (
                                 <ProductCard key={item.id} item={item} />
-                                
-                             ))}
+                             ))} */}
                     </ProductGrid>
                 </HomeContainer>
 

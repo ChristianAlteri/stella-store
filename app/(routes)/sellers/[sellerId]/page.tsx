@@ -15,6 +15,7 @@ import getSizes from "@/actions/get-sizes";
 import getSingleCategory from "@/actions/get-single-category";
 import getSingleSeller from "@/actions/get-single-seller";
 import RightCategorySidebar from "@/components/Home/RightCategorySidebar";
+import FilterButtons from "@/components/ui/FilterButtons";
 
 export const revalidate = 0;
 
@@ -72,13 +73,36 @@ const SellerNamePage: React.FC<SellerNamePageProps> = async ({
                 <HomeContainer>
 
                     <Billboard data={sellerData?.billboard} />
+                    <div className="grid grid-cols-4 w-full">
+                            <FilterButtons 
+                                valueKey="sizeId"
+                                name = "Sizes"
+                                data={sizes} 
+                            />
+                            <FilterButtons 
+                                valueKey="colorId"
+                                name = "Colors"
+                                data={colors} 
+                            />
+                            <FilterButtons 
+                                valueKey="designerId"
+                                name = "Designers"
+                                data={designersData} 
+                            />
+                            <FilterButtons 
+                                valueKey="categoryId"
+                                name = "Categories"
+                                data={categoryData} 
+                            />
+                    </div>
 
                     <ProductGrid>
-                            {sellerData?.products?.map((item) => (
-                                
+                            {/* {sellerData?.products?.map((item) => (
                                 <ProductCard key={item.id} item={item} />
-                                
-                             ))}
+                             ))} */}
+                            {productData?.map((item) => (
+                                    <ProductCard key={item.id} item={item} />
+                            ))}
                     </ProductGrid>
                 </HomeContainer>
 

@@ -13,6 +13,8 @@ import getSellers from "@/actions/get-sellers";
 import getColors from "@/actions/get-colors";
 import getSizes from "@/actions/get-sizes";
 import getSingleCategory from "@/actions/get-single-category";
+import FilterButtons from "@/components/ui/FilterButtons";
+import NoResults from "@/components/ui/no-results";
 
 export const revalidate = 0;
 
@@ -70,13 +72,36 @@ const CategoryNamePage: React.FC<CategoryNamePageProps> = async ({
                 <HomeContainer>
 
                     <Billboard data={categoryData?.billboard} />
+                    <div className="grid grid-cols-3 w-full">
+                            <FilterButtons 
+                                valueKey="sizeId"
+                                name = "Sizes"
+                                data={sizes} 
+                            />
+                            <FilterButtons 
+                                valueKey="colorId"
+                                name = "Colors"
+                                data={colors} 
+                            />
+                            <FilterButtons 
+                                valueKey="designerId"
+                                name = "Designers"
+                                data={designersData} 
+                            />
+                    </div>
 
                     <ProductGrid>
-                            {categoryData?.products?.map((item) => (
-                                
+                    {/* <div className="flex justify-center">
+                        {categoryData?.products.length === 0 && <NoResults />}
+                    </div> */}
+
+                            {productData?.map((item) => (
+                                    <ProductCard key={item.id} item={item} />
+                            ))}
+
+                            {/* {categoryData?.products?.map((item) => (
                                 <ProductCard key={item.id} item={item} />
-                                
-                             ))}
+                            ))} */}
                     </ProductGrid>
                 </HomeContainer>
 
