@@ -37,6 +37,14 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
             console.error(error);
         }
     }
+    const onClickButton = async (item: any) => {
+        try {
+            console.log("onClickButton");
+            await axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/products/${item.id}/clicks`, { clicks: item?.clicks! + 1 });
+        } catch (error) {
+            console.error(error);
+        }
+    }
 
     const onAddTolikes: MouseEventHandler<HTMLButtonElement> = async (event) => {
         event.stopPropagation();
@@ -52,7 +60,9 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
 
   return (
     <>
-      <div className="bg-white group cursor-pointer rounded-md p-2 ">
+      <div className="bg-white group cursor-pointer rounded-md p-2"
+      onClick={() => onClickButton(item)}
+      >
         {/* Actions */}
             <div className="flex flex-col gap-1 justify-end items-end right-0 hover:text-primary">
                 {/* Likes */}
@@ -95,7 +105,8 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
             </div>
             <div className="relative h-full w-full rounded-md flex justify-center items-center">
                 {/* Base Image - always visible */}
-                <div className=" inset-0 w-full h-full flex justify-center items-center">
+                <div className="inset-0 w-full h-full flex justify-center items-center"
+                >
                     <Image
                         onClick={handleProductClick}
                         height={150}
