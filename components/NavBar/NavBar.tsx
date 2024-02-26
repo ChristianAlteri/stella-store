@@ -21,6 +21,7 @@ import getDesigners from "@/actions/get-designers";
 import getSellers from "@/actions/get-sellers";
 import ShoppingCartButton from "./buttons/ShoppingCartButton";
 import HeartButton from "./buttons/HeartButton";
+import { MenuItem } from "@chakra-ui/react";
 
 
 const Navbar = async () => {
@@ -77,7 +78,7 @@ const Navbar = async () => {
         <SecondNavBarContainer >
             {/* Filters */}
             <div className="justify-between w-1/3 text-sm text-stone-700 rounded-md gap-4 font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer">
-                filters
+                filters/ topLiked, mostViewed, newArrivals
             </div>
             {/* Nav dropdowns */}
             <div className="flex items-center ml-4 justify-between w-1/3">
