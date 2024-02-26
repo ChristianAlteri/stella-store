@@ -1,26 +1,25 @@
+import LeftSidebar from "@/components/Home/LeftSidebar";
+import ProductGrid from "@/components/Home/ProductGrid";
+import RightSidebar from "@/components/Home/RightSidebar";
 import HomeContainer from "@/components/ui/HomeContainer";
-import LeftSidebar from "../../components/Home/LeftSidebar";
-import RightSidebar from "../../components/Home/RightSidebar";
-import ProductGrid from "../../components/Home/ProductGrid";
-import Billboard from "@/components/Billboard/Billboard";
 import ProductCard from "@/components/ui/product-card";
-import ProductList from "@/components/Home/product-list";
+import Billboard from "@/components/Billboard/Billboard";
 
 import getDesigners from "@/actions/get-designers";
 import getCategories from "@/actions/get-categories";
 import getBillboard from "@/actions/get-billboard";
 import getProducts from "@/actions/get-products";
 import getSellers from "@/actions/get-sellers";
+import CategoryCard from "@/components/ui/category-card";
+import CategoryCardGrid from "@/components/Home/CategoryCardGrid";
+import getTopLikes from "@/actions/get-top-likes";
 
-
-export const revalidate = 0
-
-const Homepage = async () => {
+const TopLikesPage = async () => {
     const designersData = await getDesigners();
     const categoryData = await getCategories();
     const sellerData = await getSellers();
-    const productData = await getProducts({all: true});
-    const billboardData = await getBillboard("a8d1234e-35d9-4dae-896a-762eb28045c3");
+    const topLikedProducts = await getTopLikes({all: true})
+    // const billboardData = await getBillboard("a8d1234e-35d9-4dae-896a-762eb28045c3");
 
     return ( 
         <>
@@ -33,9 +32,10 @@ const Homepage = async () => {
 
                 {/* Second column */}
                 <HomeContainer>
-                    {/* <Billboard data={billboardData} /> */}
-                    <ProductGrid>
-                            {productData.map((item) => (
+                        {/* <Billboard data={billboardData} /> */}
+                        <div>TOP LIKED PRODUCTS</div>
+                        <ProductGrid>
+                            {topLikedProducts.map((item) => (
                                 
                                 <ProductCard key={item.id} item={item} />
                                 
@@ -52,4 +52,4 @@ const Homepage = async () => {
      );
 }
  
-export default Homepage;
+export default TopLikesPage;

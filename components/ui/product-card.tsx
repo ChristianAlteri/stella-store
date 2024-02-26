@@ -39,7 +39,6 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
     }
     const onClickButton = async (item: any) => {
         try {
-            console.log("onClickButton");
             await axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/products/${item.id}/clicks`, { clicks: item?.clicks! + 1 });
         } catch (error) {
             console.error(error);
