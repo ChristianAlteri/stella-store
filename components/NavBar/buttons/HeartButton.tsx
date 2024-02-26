@@ -6,7 +6,8 @@ import { useEffect, useState } from "react";
 
 import Button from "@/components/ui/button";
 import { CiHeart, CiShoppingCart } from "react-icons/ci";
-// import useCart from "@/hooks/use-cart";
+import useLike from "@/hooks/use-like";
+
 
 const HeartButton = () => {
   const [isMounted, setIsMounted] = useState(false);
@@ -16,7 +17,7 @@ const HeartButton = () => {
   }, []);
 
   const router = useRouter();
-//   const cart = useCart();
+  const likes = useLike();
 
   if (!isMounted) {
     return null;
@@ -24,10 +25,10 @@ const HeartButton = () => {
 
   return ( 
     <div className="">
-      <Button onClick={() => router.push('/wish-list')} className="flex ">
+      <Button onClick={() => router.push('/likes')} className="flex ">
       <CiHeart size={"20px"} className="hover:cursor-pointer hover:text-stone-900 hover:underline"/>
         <span className="p-1 text-xs text-green-800">
-          {/* {cart.items.length} */}27
+          {likes.items.length}
         </span>
       </Button>
     </div>

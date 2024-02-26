@@ -8,6 +8,9 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { MouseEventHandler } from "react";
 import useCart from "@/hooks/use-cart";
+import useLike from "@/hooks/use-like";
+import axios from "axios";
+
 
 
 interface ProductListProps {
@@ -15,16 +18,33 @@ interface ProductListProps {
 }
 
 
+
 const ProductCard: React.FC<ProductListProps> = ({ item }) => {
-    // console.log("item",item);
+
     const router = useRouter();
     const cart = useCart();
+    const likes = useLike();
 
     const onAddToCart: MouseEventHandler<HTMLButtonElement> = (event) => {
         event.stopPropagation();
-        console.log("Adding item to cart", item);
         cart.addItem(item);
     };
+
+    const onLikeButton = async (item: any) => {
+        try {
+            await axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/products/${item.id}/likes`, { likes: item?.likes! + 1 });
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    const onAddTolikes: MouseEventHandler<HTMLButtonElement> = async (event) => {
+        event.stopPropagation();
+        console.log("Adding item to Likes", item);
+        likes.addItem(item);
+        onLikeButton(item)
+    };
+
 
     const handleProductClick = () => {
         router.push(`/product/${item?.category?.id}/${item?.designer?.name}/${item?.id}/${item?.seller?.instagramHandle}`);
@@ -43,7 +63,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
                     <div className="opacity-20 group-hover:opacity-100">
                     <ProductCardButton 
                         icon={<CiHeart />}  
-                        onClick={() => {console.log('add this to my likes')}}
+                        onClick={(event) => onAddTolikes(event)}
                     />
                     </div>
                 </div>
