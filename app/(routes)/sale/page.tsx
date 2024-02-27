@@ -15,8 +15,7 @@ const salePage = async () => {
     const designersData = await getDesigners();
     const categoryData = await getCategories();
     const sellerData = await getSellers();
-    const onSaleItems = await getOnSale({all: true})
-
+    const onSaleItems = await getOnSale({isOnSale: true})
 
     return ( 
         <>
