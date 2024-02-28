@@ -8,7 +8,7 @@ import useCart from "@/hooks/use-cart";
 import { Product } from "@/types";
 import { IoCloseOutline } from "react-icons/io5";
 import useLike from "@/hooks/use-like";
-
+import { useRouter } from "next/navigation";
 
 interface LikedItemProps {
   data: Product;
@@ -17,41 +17,56 @@ interface LikedItemProps {
 const LikedItem: React.FC<LikedItemProps> = ({
   data
 }) => {
-  const likes = useLike();
+  const useLikesFunc = useLike();
+  const router = useRouter();
 
   const onRemove = () => {
-    likes.removeItem(data.id);
+    useLikesFunc.removeItem(data.id);
   };
 
+  const handleProductClick = () => {
+    router.push(`/product/${data?.category?.id}/${data?.designer?.name}/${data?.id}/${data?.seller?.instagramHandle}`);
+}
+
   return ( 
-    <li className="flex py-6 border-b">
-      <div className="relative h-24 w-24 rounded-md overflow-hidden sm:h-48 sm:w-48">
+    <div className="group flex py-6 border-b w-full">
+      <div className="relative overflow-hidden">
         <Image
-          fill
+          height={50}
+          width={50}
           src={data.images[0].url}
           alt=""
-          className="object-cover object-center"
         />
       </div>
-      <div className="relative ml-4 flex flex-1 flex-col justify-between sm:ml-6">
+      <div className="relative flex flex-1 flex-col justify-between ">
         <div className="absolute z-10 right-0 top-0">
           <IconButton onClick={onRemove} icon={<IoCloseOutline size={15} />} />
         </div>
-        <div className="relative pr-9 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:pr-0">
+        <div className="relative pr-9 w-full">
           <div className="flex justify-between">
-            <p className=" text-lg font-semibold text-black">
+            <p className="text-sm ml-4 mb-4 text-black hover:underline hover:cursor-pointer"
+            onClick={handleProductClick}
+            >
               {data.name}
             </p>
           </div>
-
-          <div className="mt-1 flex text-sm">
-            <p className="text-gray-500">{data.color.name}</p>
-            <p className="ml-4 border-l border-gray-200 pl-4 text-gray-500">{data.size.name}</p>
+          <div className="flex flex-row">
+            <div className="flex flex-row justify-center items-center">
+                <p className="ml-4 border-l border-gray-200 pl-4 text-xs text-stone-500">{data.likes} likes</p>
+                <p className="ml-4 border-l border-gray-200 pl-4 text-xs text-stone-500"> {data.clicks} interested</p>
+              </div>
+            <div className="hidden group-hover:cursor-pointer group-hover:flex flex-col mt-1 text-xs">
+              <div className="flex">
+                <p className="ml-4 border-l border-gray-200 pl-4 text-stone-500"> £{data.ourPrice} </p>
+                <p className="ml-4 border-l border-gray-200 pl-4 text-stone-500">{data.designer.name}</p>
+                <p className="ml-4 border-l border-gray-200 pl-4 text-stone-500">{data.seller.instagramHandle}</p>
+              </div>
+            </div>
           </div>
-          <h1> £{data.ourPrice} </h1>
+
         </div>
       </div>
-    </li>
+    </div>
   );
 }
  

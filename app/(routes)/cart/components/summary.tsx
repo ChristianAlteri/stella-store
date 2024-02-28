@@ -8,6 +8,7 @@ import Button from "@/components/ui/button";
 import useCart from "@/hooks/use-cart";
 import { toast } from "react-hot-toast";
 import { TbFaceId, TbFaceIdError } from "react-icons/tb";
+import { Input } from "@/components/ui/input";
 
 const Summary = () => {
   const searchParams = useSearchParams();
@@ -59,21 +60,31 @@ const toastError = (message: string) => {
   }
 
   return ( 
+    <div className="h-full top-0 flex ">
     <div
-      className="mt-16 rounded-lg bg-white px-4 py-6 sm:p-6 lg:col-span-5 lg:mt-0 lg:p-8"
+      className="rounded-lg top-0 bg-white px-4 py-6 sm:p-6 lg:col-span-5 lg:mt-0 lg:p-8"
     >
-      <h2 className="text-lg font-medium text-gray-900">
+      <h2 className="text-xs text-stone-700">
+        Enter your email or continue as a guest
+      </h2>
+      <Input placeholder="Email" className="mt-1" />
+      <h2 className="mt-6 text-sm text-stone-900">
         Order summary
       </h2>
-      <div className="mt-6 space-y-4">
+      <div className="mt-3 space-y-4">
         <div className="flex items-center justify-between border-t border-gray-200 pt-4">
-          <div className="text-base font-medium text-gray-900">Order total</div>
-         <h1> £{totalPrice}</h1>
+          <div className="text-xs text-stone-900">Order total</div>
+         <h1 className="text-xs text-stone-900"> £{totalPrice}</h1>
+        </div>
+        <div className="flex items-center justify-between border-t border-gray-200 pt-4">
+          <div className="text-xs text-stone-900">Shipping</div>
+         <h1 className="text-xs text-stone-400">at checkout</h1>
         </div>
       </div>
-      <Button onClick={onCheckout} disabled={items.length === 0} className="w-full mt-6">
+      <Button onClick={onCheckout} disabled={items.length === 0} className="w-full mt-6 border text-xs rounded-md bg-black text-white p-1">
         Checkout
       </Button>
+    </div>
     </div>
   );
 }

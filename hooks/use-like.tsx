@@ -53,6 +53,7 @@ const useLike = create(
     toastSuccess('Item removed from wishlist.');
   },
   removeAll: () => set({ items: [] }),
+  getActiveItems: () => get().items.filter((item) => !item.isArchived),
 }), {
   name: 'likes-storage',
   storage: createJSONStorage(() => localStorage)
