@@ -34,7 +34,7 @@ const CartPage: React.FC<CartPageProps> = ({
   }
 
   return (
-    <div className="flex flex-row w-auto bg-white">
+    <div className="flex flex-row w-1/2 bg-white justify-center items-center">
         <div className="w-2/3 p-4">
           <h1 className="text-sm font-bold text-black">Shopping Cart</h1>
               {cart.items.length === 0 && <p className="text-neutral-500">No items added to cart.</p>}
