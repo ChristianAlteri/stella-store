@@ -21,7 +21,7 @@ onClick,
         <button 
           onClick={onClick} 
           className=
-            "flex items-center bg-transparent hover:scale-140 hover:text-primary hover:cursor-pointer"
+            "flex items-center bg-transparent"
 
           
         >

@@ -59,30 +59,29 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
 
   return (
     <>
-      <div className="bg-white group cursor-pointer rounded-md p-2"
+      <div className="bg-white rounded-md mt-4 mb-4 p-2"
       onClick={() => onClickButton(item)}
       >
         {/* Actions */}
-            <div className="flex flex-col gap-1 justify-end items-end right-0 hover:text-primary">
+            <div className="flex flex-col gap-1 justify-end items-end right-0 ">
                 {/* Likes */}
                 <div className="flex flex-row justify-between w-full">
-                    <div className="opacity-0 group-hover:opacity-100 text-xs text-stone-400 hover:text-stone-700">
-                        {item?.likes} people have this in their likes
+                    <div className="text-xs text-stone-300 hover:text-stone-700 hidden md:block hover:cursor-pointer">
+                        {item?.likes} likes
                     </div>
-                    <div className="opacity-20 group-hover:opacity-100">
+                    <div className="text-stone-500 hover:scale-110 hover:cursor-pointer hover:text-black">
                     <ProductCardButton 
                         icon={<CiHeart />}  
                         onClick={(event) => onAddTolikes(event)}
                     />
                     </div>
                 </div>
-
                 {/* Share */}
                 <div className="flex flex-row justify-between w-full">
-                    <div className="opacity-0 group-hover:opacity-100 text-xs text-stone-400 hover:text-stone-700">
+                    <div className="text-xs text-stone-300 hover:text-stone-700 hidden md:block hover:cursor-pointer">
                         {item?.clicks} people interested
                     </div>
-                    <div className="opacity-0 group-hover:opacity-100">
+                    <div className="text-stone-500 hover:scale-110 hover:cursor-pointer hover:text-black">
                     <ProductCardButton 
                         icon={<CiShare2  />}  
                         onClick={() => {console.log('Share this')}}
@@ -90,11 +89,8 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
                     </div>
                 </div>
                 {/* Cart */}
-                <div className="flex flex-row justify-between w-full">
-                    <div className="opacity-0 group-hover:opacity-100 text-xs text-stone-400 hover:text-stone-700">
-                        size {item?.size?.name}
-                    </div>
-                    <div className="opacity-0 group-hover:opacity-100">
+                <div className="flex flex-row justify-end w-full">
+                    <div className="text-stone-800 hover:scale-110 hover:cursor-pointer hover:text-black">
                     <ProductCardButton 
                         icon={<CiShoppingCart  />}  
                         onClick={(event) => onAddToCart(event)}
@@ -102,9 +98,9 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
                     </div>
                 </div>
             </div>
-            <div className="relative h-full w-full rounded-md flex justify-center items-center">
+            <div className="relative h-full w-full rounded-md flex justify-center items-center z-0">
                 {/* Base Image - always visible */}
-                <div className="inset-0 w-full h-full flex justify-center items-center"
+                <div className="inset-0 w-full h-full flex justify-center items-center hover:cursor-pointer"
                 >
                     <Image
                         onClick={handleProductClick}
@@ -118,7 +114,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
                 </div>
                 {/* Hover Image - only visible on hover */}
                 {item?.images?.[1] && (
-                <div className="absolute inset-0 flex justify-center items-center hover:opacity-100 opacity-0 transition-opacity duration-200 ease-in-out">
+                <div className="absolute inset-0 flex justify-center items-center hover:opacity-100 hover:cursor-pointer opacity-0 transition-opacity duration-200 ease-in-out">
                     <Image
                         onClick={handleProductClick}
                         height={150}
@@ -135,10 +131,13 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
             <Link href={`/designers/${item?.designer?.id}`}className="text-xs hover:underline text-black hover:text-stone-700">{item.designer?.name.toUpperCase()}</Link>
             <h3 onClick={handleProductClick} className="text-xs hover:underline text-black hover:text-stone-700">{item.name}</h3>
             <div className="flex flex-row gap-1">
-                <h6 onClick={handleProductClick} className="text-xs hover:underline text-red-500">£{item.ourPrice}</h6>
+                <h6 onClick={handleProductClick} className="text-xs text-red-500">£{item.ourPrice}</h6>
                 <h6 className="text-xs text-stone-500">from</h6>
-                <h6 onClick={handleProductClick} className="text-xs hover:underline text-stone-500">£{item.retailPrice}</h6>
+                <h6 onClick={handleProductClick} className="text-xs text-stone-500">£{item.retailPrice}</h6>
             </div>
+            <div className="text-xs text-stone-300 hover:text-stone-700 hidden md:block hover:cursor-pointer">
+                        size {item?.size?.name}
+             </div>
         </div>
       </div>
     </>

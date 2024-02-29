@@ -12,7 +12,7 @@ const LikesPageServer = async () => {
   return (
 
       <div className="flex flex-col bg-white ">
-        <div className="flex justify-center ">
+        <div className="flex w-full justify-center ">
           <LikesPage />
         </div>
           <SuggestedContainer route="recommended" title="NEW ARRIVALS" data={products}/>

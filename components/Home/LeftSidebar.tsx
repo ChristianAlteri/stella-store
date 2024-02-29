@@ -23,7 +23,7 @@ interface LeftSideProps {
     const params = useParams();
     //   console.log(store);
     return (
-            <aside className="flex flex-col w-1/6 text-left p-3 justify-start items-start">
+            <aside className="flex flex-col w-1/6 text-left p-3 justify-start items-start ">
                 <Link className='hover:underline' href={`/designers`}>{title}</Link>
                 {data.map((designer, index) => (
                     <Link href={`/designers/${designer.id}`} key={designer.name}>

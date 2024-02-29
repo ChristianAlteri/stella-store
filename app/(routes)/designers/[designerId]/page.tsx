@@ -103,7 +103,7 @@ const DesignerNamePage: React.FC<DesignerNamePageProps> = async ({
                     <ProductGrid>
                             {productData?.map((item) => (
                                             <ProductCard key={item.id} item={item} />
-                                    ))}
+                            ))}
                             {/* {designersData?.products?.map((item) => (
                                 <ProductCard key={item.id} item={item} />
                              ))} */}

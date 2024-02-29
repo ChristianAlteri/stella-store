@@ -19,9 +19,11 @@ const CategoryNav: React.FC<CategoryProps> = ({ data }) => {
 
   return (
     <Menu>
+      {/* <a href={`/categories`}> */}
       <MenuButton onClick={handleToggle} className="text-sm text-stone-700 rounded-md p-2 font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer">
         Categories
       </MenuButton>
+      {/* </a> */}
       <MenuList>
         {data.map((route) => (
           <MenuItem key={route.id}>

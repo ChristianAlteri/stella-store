@@ -22,6 +22,7 @@ import getSellers from "@/actions/get-sellers";
 import ShoppingCartButton from "./buttons/ShoppingCartButton";
 import HeartButton from "./buttons/HeartButton";
 import { MenuItem } from "@chakra-ui/react";
+import MobileFilters from "../ui/MobileFilters";
 
 
 const Navbar = async () => {
@@ -33,7 +34,7 @@ const Navbar = async () => {
 
   return ( 
     // Split into two Navbar row with 1/3 columns
-    <div className="border-b sticky top-0">
+    <div className="border-b sticky top-0 z-20">
       <Container>
         <FirstNavBarContainer
         >
@@ -68,23 +69,26 @@ const Navbar = async () => {
             
                 {/* Cart */}
                 <div className="flex flex-row gap-3 w-1/3 justify-end">
-                    
                     <HeartButton />
                     <ShoppingCartButton />
-
                 </div>
         </FirstNavBarContainer>
         
         <SecondNavBarContainer >
             {/* Filters */}
             <div className="justify-between w-1/3 text-sm text-stone-700 rounded-md gap-4 font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer">
-                filters/ topLiked, mostViewed, newArrivals, sale
+                {/* filters/ topLiked, mostViewed, newArrivals, sale */}
+                <MobileFilters 
+                    sellers={sellers}
+                    designers={designers}
+                    categories={categories}
+                />
             </div>
             {/* Nav dropdowns */}
             <div className="flex items-center ml-4 justify-between w-1/3">
-            <DesignerNav data={designers} />
-            <CategoryNav data={categories} />
-            <SellerNav data={sellers} />
+                <DesignerNav data={designers} />
+                <CategoryNav data={categories} />
+                <SellerNav data={sellers} />
             </div>
             {/* Empty w-1/3 div */}
             <div className="flex w-1/3"></div>

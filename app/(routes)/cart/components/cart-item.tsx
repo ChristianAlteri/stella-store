@@ -8,6 +8,7 @@ import useCart from "@/hooks/use-cart";
 import { Product } from "@/types";
 import { IoCloseOutline } from "react-icons/io5";
 import { useRouter } from "next/navigation";
+import { CiCircleRemove } from "react-icons/ci";
 
 
 
@@ -41,7 +42,7 @@ const CartItem: React.FC<CartItemProps> = ({
       </div>
       <div className="relative flex flex-1 flex-col justify-between ">
         <div className="absolute z-10 right-0 top-0">
-          <IconButton onClick={onRemove} icon={<IoCloseOutline size={15} />} />
+          <IconButton onClick={onRemove} icon={<CiCircleRemove  size={20} />} />
         </div>
         <div className="relative pr-9 w-full">
           <div className="flex justify-between">
