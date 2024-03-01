@@ -12,7 +12,7 @@ import FilterButtons from "@/components/ui/FilterButtons";
 import IconButton from "./icon-button";
 import { Input } from "./input";
 
-interface MobileFiltersProps {
+interface OnPageFiltersModalProps {
   sizes?: Size[];
   colors?: Color[];
   designers?: Designer[];
@@ -20,7 +20,7 @@ interface MobileFiltersProps {
   sellers?: Seller[];
 }
 
-const MobileFilters: React.FC<MobileFiltersProps> = ({
+const OnPageFiltersModal: React.FC<OnPageFiltersModalProps> = ({
   sizes,
   colors,
   designers,
@@ -40,16 +40,15 @@ const MobileFilters: React.FC<MobileFiltersProps> = ({
     <>
       <Button
         onClick={onOpen}
-        className="flex hover:underline hover:cursor-pointer p-2 hover:text-stone-900 transition text-xs items-center gap-x-2 "
+        className="flex hover:underline hover:cursor-pointer p-2 hover:text-stone-900 transition text-xs items-center gap-x-2 lg:hidden"
       >
-       {/* Search Bar */}
-       <Input className="bg-white hover:cursor-pointer" placeholder='Search store' />
+        Filter options:
       </Button>
 
       <Dialog
         open={open}
         as="div"
-        className="relative z-40 "
+        className="relative z-40 lg:hidden"
         onClose={onClose}
       >
         {/* Background color and opacity */}
@@ -131,4 +130,4 @@ const MobileFilters: React.FC<MobileFiltersProps> = ({
   );
 };
 
-export default MobileFilters;
+export default OnPageFiltersModal;

@@ -37,9 +37,8 @@ const FilterList: React.FC<FilterListProps> = ({ data, name, valueKey, onClose }
 
   return (
     <>
-        
-      <div className="flex flex-col w-full overflow-x-auto gap-2 ">
-        <div key={data?.id} className="flex flex-row items-center">
+      <div className="grid grid-cols-3 w-full overflow-x-auto gap-2 ">
+        <div key={data?.id} className="grid items-center">
           <div
             className={cn(
               "rounded-md flex border flex-row justify-center items-center text-center text-xs text-stone-500 p-2 bg-white border-stone-300",

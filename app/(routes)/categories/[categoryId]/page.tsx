@@ -16,6 +16,7 @@ import getSingleCategory from "@/actions/get-single-category";
 import FilterButtons from "@/components/ui/FilterButtons";
 import NoResults from "@/components/ui/no-results";
 import MobileFilters from "@/components/ui/MobileFilters";
+import OnPageFiltersModal from "@/components/ui/OnPageFiltersModal";
 
 export const revalidate = 0;
 
@@ -74,7 +75,7 @@ const CategoryNamePage: React.FC<CategoryNamePageProps> = async ({
                 <HomeContainer>
 
                     <Billboard data={categoryData?.billboard} />
-                            <MobileFilters 
+                            <OnPageFiltersModal 
                                 sizes={sizes} 
                                 colors={colors} 
                                 designers={designersData}
