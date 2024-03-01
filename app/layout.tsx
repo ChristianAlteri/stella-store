@@ -26,6 +26,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={font.className}>
         <ToastProvider />
+        <div className=' bg-rose-200'> advertisment</div>
         <Navbar />
         {children}
         <Footer />

@@ -1,20 +1,50 @@
+"use client";
+
 import { Billboard } from "@/types";
+import React from "react";
+import { useEffect, useState } from "react";
+import ReactPlayer from "react-player";
 
 interface BillboardProps {
   data: Billboard;
 }
 
-const Billboard: React.FC<BillboardProps> = ({
-  data
-}) => {
-  console
-  return ( 
+const Billboard: React.FC<BillboardProps> = ({ data }) => {
+  const [isMounted, setIsMounted] = useState(false);
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) {
+    return null;
+  }
+
+  return (
     <div className="p-3 sm:p-4 lg:p-6 rounded-xl overflow-hidden ">
-      <div style={{ width: '80vw', height: '60vh', backgroundSize: "fill", backgroundImage: `url(${data?.imageUrl})` }} 
-        className="rounded-xl relative aspect-square overflow-hidden bg-cover">
-      </div>
+      {data?.imageUrl.match(/https:\/\/.*\/image.*/) && (
+        <div
+          style={{
+            width: "80vw",
+            height: "60vh",
+            backgroundSize: "cover",
+            backgroundImage: `url(${data?.imageUrl})`,
+          }}
+          className="rounded-xl relative aspect-square overflow-hidden bg-cover"
+        ></div>
+      )}
+      {/* Cloudinary use /video in the url */}
+      {data?.imageUrl.match(/https:\/\/.*\/video.*/) && (
+        <ReactPlayer
+          url={data?.imageUrl}
+          style={{ width: "100%", height: "100%" }}
+          // controls
+          loop={true}
+          playing={true}
+          muted={true}
+        />
+      )}
     </div>
-   );
+  );
 };
 
 export default Billboard;

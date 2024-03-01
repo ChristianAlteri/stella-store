@@ -7,10 +7,11 @@ import ProductCardButton from "./ProductCardButton";
 import { CiHeart, CiShare2, CiShoppingCart  } from "react-icons/ci";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { MouseEventHandler } from "react";
+import { MouseEventHandler, useEffect, useState } from "react";
 import useCart from "@/hooks/use-cart";
 import useLike from "@/hooks/use-like";
 import axios from "axios";
+import ReactPlayer from "react-player";
 
 
 
@@ -21,10 +22,18 @@ interface ProductListProps {
 
 
 const ProductCard: React.FC<ProductListProps> = ({ item }) => {
-
     const router = useRouter();
     const cart = useCart();
     const likes = useLike();
+
+    const [isMounted, setIsMounted] = useState(false);
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
+
+    if (!isMounted) {
+        return null;
+    }
 
     const onAddToCart: MouseEventHandler<HTMLButtonElement> = (event) => {
         event.stopPropagation();
@@ -57,6 +66,9 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
     const handleProductClick = () => {
         router.push(`/product/${item?.category?.id}/${item?.designer?.name}/${item?.id}/${item?.seller?.instagramHandle}`);
     }
+
+    const imageFiles = item?.images?.filter(image => !image.url.match(/https:\/\/.*\/video.*/));
+
 
   return (
     <>
@@ -99,37 +111,51 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
                     </div>
                 </div>
             </div>
-            <div className="relative h-full w-full rounded-md flex justify-center items-center z-0">
+            <div className="relative h-full w-full rounded-md flex justify-center items-center z-20">
                 {/* Base Image - always visible */}
-                <div className="inset-0 w-full h-full flex justify-center items-center hover:cursor-pointer"
-                >
+                <div className="inset-0 w-full h-full flex justify-center items-center hover:cursor-pointer">
                     <Image
                         onClick={handleProductClick}
                         height={300}
                         width={150}
-                        src={item?.images?.[0].url}
+                        // src={item?.images?.[0].url}
+                        src={imageFiles[0].url}
                         alt={item.name}
-
                         priority
                         className="rounded-md transition-opacity duration-200 ease-in-out"
                     />
                 </div>
                 {/* Hover Image - only visible on hover */}
-                {item?.images?.[1] && (
+                {imageFiles[1] && (
                 <div className="absolute inset-0 flex justify-center items-center hover:opacity-100 hover:cursor-pointer opacity-0 transition-opacity duration-200 ease-in-out">
                     <Image
                         onClick={handleProductClick}
                         height={150}
                         width={150}
-                        src={item?.images?.[1].url}
+                        src={imageFiles[1].url}
                         alt={item.name}
                         className="rounded-md"
                     />
                 </div>
                 )}
+                {/* Cloudinary use /video in the url */}
+                {item?.images?.map(image => 
+                    image.url.match(/https:\/\/.*\/video.*/) ? (
+                        <div key={image.id} className="z-0 absolute inset-0 flex justify-center  hover:opacity-100 hover:cursor-pointer opacity-0 transition-opacity duration-200 ease-in-out overflow-hidden">
+                            <ReactPlayer
+                            url={image.url}
+                            objectFit="cover"
+                            loop={true}
+                            playing={true}
+                            muted={true}
+                            />
+                            
+                        </div>
+                        ) : null
+                        )}
             </div>
-        <div className="flex flex-col text-left">
 
+        <div className="flex flex-col text-left">
             <Link href={`/designers/${item?.designer?.id}`}className="text-xs hover:underline text-black hover:text-stone-700">{item.designer?.name.toUpperCase()}</Link>
             <h3 onClick={handleProductClick} className="text-xs hover:underline text-black hover:text-stone-700">{item.name}</h3>
             <div className="flex flex-row gap-1">

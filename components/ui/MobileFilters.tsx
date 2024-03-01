@@ -28,10 +28,13 @@ const MobileFilters: React.FC<MobileFiltersProps> = ({
   sellers,
 }) => {
   const [open, setOpen] = useState(false);
+  const [filtersOpen, setFiltersOpen] = useState(false);
 
   const onOpen = () => setOpen(true);
   const onClose = () => setOpen(false);
-  console.log(sizes);
+
+  const toggleFilters = () => setFiltersOpen(prev => !prev);
+
 
   return (
     <>
@@ -39,7 +42,8 @@ const MobileFilters: React.FC<MobileFiltersProps> = ({
         onClick={onOpen}
         className="flex hover:underline hover:cursor-pointer p-2 hover:text-stone-900 transition text-xs items-center gap-x-2 lg:hidden"
       >
-        Filters
+       {/* Search Bar */}
+       <Input className="bg-white hover:cursor-pointer" placeholder='Search store' />
       </Button>
 
       <Dialog
@@ -73,46 +77,52 @@ const MobileFilters: React.FC<MobileFiltersProps> = ({
                 <p>newArrivals</p>
                 <p>sale</p>
               </div>
-              <div className="text-xs">Filter by:</div>
+              <div onClick={toggleFilters} className="flex flex-row justify-center text-center text-xs hover:underline hover:cursor-pointer">
+                Filter options:
+              </div>
+              {filtersOpen && (
               <div className="grid grid-rows-7 gap-7">
-                <div className="flex flex-row overflow-x-auto w-full ">
-                  {designers && (
-                    <FilterButtons
-                      valueKey="designerId"
-                      name="Designers"
-                      data={designers}
-                    />
-                  )}
-                </div>
+                <div className="flex flex-col gap-7 overflow-x-auto w-full ">
+                {designers && (
+                  <FilterButtons
+                    valueKey="designerId"
+                    name="Designer"
+                    data={designers}
+                  />
+                )}
                 {categories && (
                   <FilterButtons
-                    valueKey="categoryId"
-                    name="Categories"
-                    data={categories}
+                  valueKey="categoryId"
+                  name="Category"
+                  data={categories}
                   />
-                )}
+                  )}
                 {sellers && (
                   <FilterButtons
-                    valueKey="sellerId"
-                    name="Sellers"
-                    data={sellers}
+                  valueKey="sellerId"
+                  name="Seller"
+                  data={sellers}
                   />
-                )}
+                  )}
+                  {/*TODO: Add material and condition  */}
                 {sizes && (
                   <FilterButtons 
                   valueKey="sizeId" 
                   name="Sizes" 
                   data={sizes} 
                   />
-                )}
+                  )}
                 {colors && (
                   <FilterButtons
-                    valueKey="colorId"
-                    name="Colors"
-                    data={colors}
+                  valueKey="colorId"
+                  name="Colors"
+                  data={colors}
                   />
-                )}
+                  )}
+                  </div>
+                  <div className="border ">Show results</div>
               </div>
+              )}
             </div>
           </Dialog.Panel>
         </div>

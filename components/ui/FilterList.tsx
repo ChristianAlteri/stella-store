@@ -7,14 +7,16 @@ import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import qs from "query-string";
 import Button from "./button";
+import { IoCloseOutline } from "react-icons/io5";
 
 interface FilterListProps {
   data: (Size | Color | Designer | Seller | Category) | undefined;
   name: string;
   valueKey: string;
+  onClose: () => void;
 }
 
-const FilterList: React.FC<FilterListProps> = ({ data, name, valueKey }) => {
+const FilterList: React.FC<FilterListProps> = ({ data, name, valueKey, onClose }) => {
   const [isExpanded, setIsExpanded] = useState(false); // State to control visibility
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -35,18 +37,19 @@ const FilterList: React.FC<FilterListProps> = ({ data, name, valueKey }) => {
 
   return (
     <>
-      <div className="flex flex-row w-full overflow-x-auto gap-2 ">
-          <div key={data?.id} className="flex flex-row items-center">
-            <Button
-              className={cn(
-                "rounded-md flex flex-row justify-center items-center text-center text-xs text-stone-500 p-2 bg-white border border-stone-300",
-                selectedValue === data?.id && "bg-black text-white"
-              )}
-              onClick={() => onClick(data?.id)}
-            >
-              {data?.name}
-            </Button>
+        
+      <div className="flex flex-col w-full overflow-x-auto gap-2 ">
+        <div key={data?.id} className="flex flex-row items-center">
+          <div
+            className={cn(
+              "rounded-md flex border flex-row justify-center items-center text-center text-xs text-stone-500 p-2 bg-white border-stone-300",
+              selectedValue === data?.id && "bg-primary text-white"
+            )}
+            onClick={() => onClick(data?.id)}
+          >
+            {data?.name}
           </div>
+        </div>
       </div>
     </>
   );
