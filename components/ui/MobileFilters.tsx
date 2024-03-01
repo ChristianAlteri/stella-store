@@ -13,11 +13,11 @@ import IconButton from "./icon-button";
 import { Input } from "./input";
 
 interface MobileFiltersProps {
-  sizes?: Size[],
-  colors?: Color[],
-  designers?: Designer[],
-  categories?: Category[],
-  sellers?: Seller[]
+  sizes?: Size[];
+  colors?: Color[];
+  designers?: Designer[];
+  categories?: Category[];
+  sellers?: Seller[];
 }
 
 const MobileFilters: React.FC<MobileFiltersProps> = ({
@@ -25,7 +25,7 @@ const MobileFilters: React.FC<MobileFiltersProps> = ({
   colors,
   designers,
   categories,
-  sellers
+  sellers,
 }) => {
   const [open, setOpen] = useState(false);
 
@@ -41,60 +41,84 @@ const MobileFilters: React.FC<MobileFiltersProps> = ({
       >
         Filters
       </Button>
-  
-      <Dialog open={open} as="div" className="relative z-40 lg:hidden" onClose={onClose}>
-        
+
+      <Dialog
+        open={open}
+        as="div"
+        className="relative z-40 lg:hidden"
+        onClose={onClose}
+      >
         {/* Background color and opacity */}
         <div className="fixed inset-0 bg-black bg-opacity-45" />
-        
+
         {/* Dialog position */}
-        <div className="fixed inset-0 z-40 flex">
-          <Dialog.Panel className="relative flex h-full w-full flex-col overflow-y-auto bg-white py-4 pb-6 shadow-xl">
+        <div className="fixed justify-center items-center inset-0 z-40 flex">
+          <Dialog.Panel className="flex rounded-sm flex-col h-1/3 w-2/3 overflow-y-auto bg-white py-4 pb-6 shadow-xl">
             <div className="flex flex-col w-full items-center justify-center">
+              <div className="top-0 right-0 relative flex items-center justify-end px-4 w-full">
+                <IconButton
+                  icon={<IoCloseOutline size={15} />}
+                  onClick={onClose}
+                />
+              </div>
               <div className="flex flex-col w-1/2 justify-center items-center">
-            {/* Search Bar */}
-                <Input className="bg-white" placeholder='Search store' />
+                {/* Search Bar */}
+                <Input className="bg-white" placeholder="Search store" />
               </div>
             </div>
-            <div className="flex items-center justify-end px-4">
-              <IconButton icon={<IoCloseOutline size={15} />} onClick={onClose} />
-            </div>
             <div className="flex flex-col gap-4 p-4">
-            <div className="grid grid-rows-7 gap-7">
-                {sizes && <FilterButtons
-                    valueKey="sizeId" 
-                    name="Sizes" 
-                    data={sizes}
-                />}
-                {colors && <FilterButtons 
-                    valueKey="colorId"
-                    name = "Colors"
-                    data={colors} 
-                />}
+              <div className="flex gap-2 flex-row text-xs justify-center items-center">
+                <p>topLiked</p>
+                <p>mostViewed</p>
+                <p>newArrivals</p>
+                <p>sale</p>
+              </div>
+              <div className="text-xs">Filter by:</div>
+              <div className="grid grid-rows-7 gap-7">
                 <div className="flex flex-row overflow-x-auto w-full ">
-                    {designers && <FilterButtons 
-                        valueKey="designerId"
-                        name = "Designers"
-                        data={designers} 
-                    />}
+                  {designers && (
+                    <FilterButtons
+                      valueKey="designerId"
+                      name="Designers"
+                      data={designers}
+                    />
+                  )}
                 </div>
-                {categories && <FilterButtons 
+                {categories && (
+                  <FilterButtons
                     valueKey="categoryId"
-                    name = "Categories"
-                    data={categories} 
-                />}
-                {sellers && <FilterButtons 
+                    name="Categories"
+                    data={categories}
+                  />
+                )}
+                {sellers && (
+                  <FilterButtons
                     valueKey="sellerId"
-                    name = "Sellers"
-                    data={sellers} 
-                />}
+                    name="Sellers"
+                    data={sellers}
+                  />
+                )}
+                {sizes && (
+                  <FilterButtons 
+                  valueKey="sizeId" 
+                  name="Sizes" 
+                  data={sizes} 
+                  />
+                )}
+                {colors && (
+                  <FilterButtons
+                    valueKey="colorId"
+                    name="Colors"
+                    data={colors}
+                  />
+                )}
+              </div>
             </div>
-          </div>
           </Dialog.Panel>
         </div>
       </Dialog>
     </>
   );
-}
+};
 
 export default MobileFilters;

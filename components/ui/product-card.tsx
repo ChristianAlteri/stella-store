@@ -2,6 +2,7 @@
 
 import { Designer, Product } from "@/types";
 import Image from "next/image";
+
 import ProductCardButton from "./ProductCardButton";
 import { CiHeart, CiShare2, CiShoppingCart  } from "react-icons/ci";
 import { useRouter } from "next/navigation";
@@ -104,10 +105,11 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
                 >
                     <Image
                         onClick={handleProductClick}
-                        height={150}
+                        height={300}
                         width={150}
                         src={item?.images?.[0].url}
                         alt={item.name}
+
                         priority
                         className="rounded-md transition-opacity duration-200 ease-in-out"
                     />

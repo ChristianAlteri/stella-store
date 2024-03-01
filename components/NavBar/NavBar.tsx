@@ -23,12 +23,16 @@ import ShoppingCartButton from "./buttons/ShoppingCartButton";
 import HeartButton from "./buttons/HeartButton";
 import { MenuItem } from "@chakra-ui/react";
 import MobileFilters from "../ui/MobileFilters";
+import getSizes from "@/actions/get-sizes";
+import getColors from "@/actions/get-colors";
 
 
 const Navbar = async () => {
         const sellers = await getSellers();
         const designers = await getDesigners();
         const categories = await getCategories();
+        const sizes = await getSizes();
+        const colors = await getColors();
        
 //   console.log(sellers);
 
@@ -82,6 +86,8 @@ const Navbar = async () => {
                     sellers={sellers}
                     designers={designers}
                     categories={categories}
+                    sizes={sizes}
+                    colors={colors}
                 />
             </div>
             {/* Nav dropdowns */}
