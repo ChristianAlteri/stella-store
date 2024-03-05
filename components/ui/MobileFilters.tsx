@@ -6,11 +6,12 @@ import { Dialog } from "@headlessui/react";
 
 import { IoCloseOutline } from "react-icons/io5";
 import Button from "@/components/ui/button";
-import { Category, Color, Designer, Seller, Size } from "@/types";
+import { Category, Color, Designer, Product, Seller, Size } from "@/types";
 
 import FilterButtons from "@/components/ui/FilterButtons";
 import IconButton from "./icon-button";
 import { Input } from "./input";
+import SearchInput from "./search-input";
 
 interface MobileFiltersProps {
   sizes?: Size[];
@@ -18,6 +19,7 @@ interface MobileFiltersProps {
   designers?: Designer[];
   categories?: Category[];
   sellers?: Seller[];
+  products?: Product[];
 }
 
 const MobileFilters: React.FC<MobileFiltersProps> = ({
@@ -42,8 +44,8 @@ const MobileFilters: React.FC<MobileFiltersProps> = ({
         onClick={onOpen}
         className="flex hover:underline hover:cursor-pointer p-2 hover:text-stone-900 transition text-xs items-center gap-x-2 "
       >
-       {/* Search Bar */}
-       <Input className="bg-white hover:cursor-pointer" placeholder='Search store' />
+       {/* Filter button disguised as a search bar */}
+       <Input className="bg-white hover:cursor-pointer " placeholder='Filter' />
       </Button>
 
       <Dialog
@@ -67,7 +69,14 @@ const MobileFilters: React.FC<MobileFiltersProps> = ({
               </div>
               <div className="flex flex-col w-1/2 justify-center items-center">
                 {/* Search Bar */}
-                <Input className="bg-white" placeholder="Search store" />
+                <SearchInput 
+                label="Search store..."  
+                sizes={sizes}
+                colors={colors}
+                designers={designers}
+                categories={categories}
+                sellers={sellers}
+                />
               </div>
             </div>
             <div className="flex flex-col gap-4 p-4">

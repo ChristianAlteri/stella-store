@@ -13,8 +13,8 @@ const font = Arimo({
 })
 
 export const metadata: Metadata = {
-  title: 'Store',
-  description: "we'll figure out a name",
+  title: '@nondrobe',
+  description: "@@@",
 }
 
 export default function RootLayout({
@@ -26,7 +26,6 @@ export default function RootLayout({
     <html lang="en">
       <body className={font.className}>
         <ToastProvider />
-        <div className=' bg-rose-200'> advertisment</div>
         <Navbar />
         {children}
         <Footer />
