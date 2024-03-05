@@ -67,6 +67,13 @@ const MobileFilters: React.FC<MobileFiltersProps> = ({
                   onClick={onClose}
                 />
               </div>
+              {/* Quick links that redirect to pages */}
+              <div className="flex gap-2 flex-row text-xs justify-center items-center">
+                <p>topLiked</p>
+                <p>mostViewed</p>
+                <p>newArrivals</p>
+                <p>sale</p>
+              </div>
               <div className="flex flex-col w-1/2 justify-center items-center">
                 {/* Search Bar */}
                 <SearchInput 
@@ -80,12 +87,6 @@ const MobileFilters: React.FC<MobileFiltersProps> = ({
               </div>
             </div>
             <div className="flex flex-col gap-4 p-4">
-              <div className="flex gap-2 flex-row text-xs justify-center items-center">
-                <p>topLiked</p>
-                <p>mostViewed</p>
-                <p>newArrivals</p>
-                <p>sale</p>
-              </div>
               <div onClick={toggleFilters} className="flex flex-row justify-center text-center text-xs hover:underline hover:cursor-pointer">
                 Filter options:
               </div>
