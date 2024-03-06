@@ -26,13 +26,13 @@ const DetailsCard: React.FC<DetailsCardProps> = ({
     return ( 
         <div className="flex flex-col m-5">
             <div className="m-2">
-                <Link href={`/designers/${data?.designer?.name}`} className="text-sm hover:underline hover:cursor-pointer">{data?.designer?.name.toUpperCase()} </Link>
+                <Link href={`/designers/${data?.designer?.id}`} className="text-sm hover:underline hover:cursor-pointer">{data?.designer?.name.toUpperCase()} </Link>
                 <h1 className="text-xs p-1">{data?.name}</h1>
             </div>
             <div className="m-2">
                     <div className="flex flex-row gap-1">
                         <h1 className="text-xs">Sold By </h1>
-                        <Link href={`/sellers/${data?.seller?.instagramHandle}`} className="text-xs hover:underline hover:cursor-pointer"> {data?.seller?.instagramHandle.split("@")[1].toUpperCase()}</Link>
+                        <Link href={`/sellers/${data?.seller?.id}`} className="text-xs hover:underline hover:cursor-pointer"> {data?.seller?.instagramHandle.split("@")[1].toUpperCase()}</Link>
                     </div>
                 <div className="p-1">
                     <h1 className="text-xs ">In {data?.condition?.toLocaleLowerCase()} condition</h1>

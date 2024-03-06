@@ -59,7 +59,7 @@ const MobileFilters: React.FC<MobileFiltersProps> = ({
 
         {/* Dialog position */}
         <div className="fixed justify-center items-center inset-0 z-40 flex">
-          <Dialog.Panel className="flex rounded-sm flex-col h-1/3 w-2/3 overflow-y-auto bg-white py-4 pb-6 shadow-xl">
+          <Dialog.Panel className="flex rounded-sm flex-col h-2/3 w-2/3 overflow-y-auto bg-white py-4 pb-6 shadow-xl">
             <div className="flex flex-col w-full items-center justify-center">
               <div className="top-0 right-0 relative flex items-center justify-end px-4 w-full">
                 <IconButton
@@ -88,7 +88,7 @@ const MobileFilters: React.FC<MobileFiltersProps> = ({
             </div>
             <div className="flex flex-col gap-4 p-4">
               <div onClick={toggleFilters} className="flex flex-row justify-center text-center text-xs hover:underline hover:cursor-pointer">
-                Filter options:
+                Toggle filters:
               </div>
               {filtersOpen && (
               <div className="grid grid-rows-7 gap-7">
@@ -130,7 +130,12 @@ const MobileFilters: React.FC<MobileFiltersProps> = ({
                   />
                   )}
                   </div>
-                  <div className="border ">Show results</div>
+                 
+                <div
+                onClick={onClose}
+                className="flex flex-row justify-center items-center text-center">
+                  <button className="border" style={{ width: '100px', height: '100px'}}>Show results</button>
+                </div> 
               </div>
               )}
             </div>
