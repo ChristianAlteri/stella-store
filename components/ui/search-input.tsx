@@ -11,13 +11,14 @@ import {
   MenuGroup,
   MenuOptionGroup,
   MenuDivider,
-} from '@chakra-ui/react'
+} from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import ReactPlayer from "react-player";
 import Link from "next/link";
 
 import { CiSliderHorizontal } from "react-icons/ci";
+import ProductList from "../Home/product-list";
 
 interface SearchResultItem {
   id: number | string; // Use the correct type for your id
@@ -47,6 +48,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
   const [modalOpen, setModalOpen] = React.useState(true);
   const inputRef = React.useRef<HTMLInputElement>(null);
   const [searchQuery, setSearchQuery] = React.useState("");
+  const router = useRouter();
 
   const [searchResults, setSearchResults] = React.useState<SearchResultItem[]>(
     []
@@ -54,8 +56,34 @@ const SearchInput: React.FC<SearchInputProps> = ({
   const [filteredSellers, setFilteredSellers] = React.useState<
     Seller[] | undefined
   >([]);
-
-  const router = useRouter();
+  console.log("filteredSellers", filteredSellers);
+  //try to filter sellers by the price of their products
+  const filteredSellersByPrice = (sellers: Seller[]) => {
+    const filteredSellers = sellers.map((seller) => {
+      // Sort products by ourPrice
+      const sortedProducts = seller.products.sort(
+        (a, b) => parseFloat(a.ourPrice) - parseFloat(b.ourPrice)
+      );
+      // Calculate total price
+      const totalPrice = sortedProducts.reduce(
+        (acc, product) => acc + parseFloat(product.ourPrice),
+        0
+      );
+      // Calculate average price (totalPrice divided by the number of products)
+      const averagePrice = sortedProducts.length > 0 ? totalPrice / sortedProducts.length : 0;
+      // Log average price for each seller
+      console.log(`Average price for seller ${seller.name}: ${averagePrice.toFixed(2)}`);
+      return {
+        ...seller,
+        products: sortedProducts,
+        averagePrice // Store the average price with each seller
+      };
+    }).sort((a, b) => b.averagePrice - a.averagePrice); // Sort sellers by average price in descending order
+  
+    console.log("filteredSellersByAveragePrice", filteredSellers);
+    setFilteredSellers(filteredSellers); // Update the state to re-render the UI
+    return filteredSellers; // You may not need to return this for React, but kept for consistency
+  };
 
   const handleSearch = () => {
     setSearchQuery(inputRef.current?.value || "");
@@ -74,12 +102,13 @@ const SearchInput: React.FC<SearchInputProps> = ({
       inputRef.current.focus();
     }
     if (searchQuery) {
+      // Filter sellers
       setFilteredSellers(
         sellers?.filter((seller) =>
           seller.instagramHandle.includes(searchQuery)
         )
       );
-      console.log("filteredSellers", filteredSellers);
+
 
       const fetchData = async () => {
         try {
@@ -109,8 +138,8 @@ const SearchInput: React.FC<SearchInputProps> = ({
       <div>
         {searchResults && searchResults.length > 0 && (
           <div className="bg-white rounded-md">
-            {searchResults.map((product) => (
-              <div className="" key={product.id}>
+            {searchResults.map((product, index) => (
+              <div className="" key={`${product.id}-${index}`}>
                 <p
                   className="text-xs"
                   onClick={() => handleProductClick(product)}
@@ -128,31 +157,37 @@ const SearchInput: React.FC<SearchInputProps> = ({
         // title and refine filter
         <div className="bg-white rounded-md flex flex-col overflow-hidden w-full mt-5">
           <div className="flex flex-row justify-between items-center text-center gap-2 m-1">
-            <p className="text-xs ">SELLER</p>
-            {/* <select className="text-xs" name="Refine:" id="refineFilter">
-                  <option value="Price:High-Low">High-Low</option>
-                  <option value="Price:Low-High">Low-High</option>
-                </select> */}
+            <p className="text-xs ">SELLERS</p>
             <div className="text-xs">
-              <Menu
-              >
-                
-                  <MenuButton className="flex flex-row justify-between"
-                      transition='all 0.2s'
-                      flexDirection={'row'}
-                    >
-                      Price <CiSliderHorizontal className=" flex flex-row w-4 h-4" size={15}/>
-                  </MenuButton>
-                  <MenuList>
-                    <MenuItem>High-Low</MenuItem>
-                    <MenuItem>Low-High</MenuItem>
-                  </MenuList>
+              <Menu autoSelect={true} isLazy>
+                <MenuButton
+                  className="flex flex-row justify-between"
+                  transition="all 0.2s"
+                  flexDirection={"row"}
+                >
+                  <CiSliderHorizontal
+                    className=" flex flex-row w-4 h-4"
+                    size={15}
+                  />
+                </MenuButton>
+                <MenuList background={"white"}>
+                  <MenuItem className="hover:underline hover:cursor-pointer"
+                  onClick={() => setFilteredSellers(filteredSellersByPrice(filteredSellers))}
+                  >
+                    High-Low
+                  </MenuItem>
+                  <MenuItem className="hover:underline hover:cursor-pointer"
+                  
+                  >
+                    Low-High
+                  </MenuItem>
+                </MenuList>
               </Menu>
             </div>
           </div>
-          {filteredSellers?.map((seller) => (
+          {filteredSellers?.map((seller, index) => (
             <>
-              <div className="flex flex-row justify-center gap-3 m-1">
+              <div className="flex flex-row justify-center gap-3 m-1" >
                 <Link href={`/sellers/${seller?.id}`}>
                   {" "}
                   <p className="text-xs hover:underline hover:cursor-pointer">

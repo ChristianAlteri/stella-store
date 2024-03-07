@@ -12,6 +12,8 @@ import FilterButtons from "@/components/ui/FilterButtons";
 import IconButton from "./icon-button";
 import { Input } from "./input";
 import SearchInput from "./search-input";
+import HeartButton from "../NavBar/buttons/HeartButton";
+import ShoppingCartButton from "../NavBar/buttons/ShoppingCartButton";
 
 interface MobileFiltersProps {
   sizes?: Size[];
@@ -60,12 +62,18 @@ const MobileFilters: React.FC<MobileFiltersProps> = ({
         {/* Dialog position */}
         <div className="fixed justify-center items-center inset-0 z-40 flex">
           <Dialog.Panel className="flex rounded-sm flex-col h-2/3 w-2/3 overflow-y-auto bg-white py-4 pb-6 shadow-xl">
-            <div className="flex flex-col w-full items-center justify-center">
-              <div className="top-0 right-0 relative flex items-center justify-end px-4 w-full">
-                <IconButton
-                  icon={<IoCloseOutline size={15} />}
-                  onClick={onClose}
-                />
+            <div className="flex flex-col w-full items-center justify-center ">
+              <div className="flex flex-row justify-between w-full p-2 top-0 items-center text-center lg:w-1/2 md:w-1/2">
+                <div className="">
+                  <IconButton
+                    icon={<IoCloseOutline size={17} />}
+                    onClick={onClose}
+                  />
+                </div>
+                {/* Cart */}
+                <div className="">
+                    <ShoppingCartButton />
+                </div>
               </div>
               {/* Quick links that redirect to pages */}
               <div className="flex gap-2 flex-row text-xs justify-center items-center">
