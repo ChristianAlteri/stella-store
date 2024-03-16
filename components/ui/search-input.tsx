@@ -125,7 +125,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
       };
       fetchData();
     }
-  }, [searchQuery, sellers]);
+  }, [searchQuery, sellers, URL]);
 
   return (
     <>
@@ -133,7 +133,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
         ref={inputRef}
         placeholder={label}
         onChange={handleSearch}
-        className="flex text-xs flex-row lg:w-full w-full justify-between items-center h-6 border-b gap-1"
+        className="flex text-xs flex-row w-full justify-between items-center h-6 border-b gap-1"
       />
       <div>
         {searchResults && searchResults.length > 0 && (

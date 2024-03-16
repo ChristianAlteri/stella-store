@@ -25,7 +25,7 @@ const CategoryCard:React.FC<CategoryCardProps> = ({
             <p className="text-xl font-bold absolute top-0 left-0 w-full h-full flex items-center justify-center">
                 {data?.name}
             </p>
-            <img
+            <Image
                 height={900}
                 width={500}
                 src={data?.billboard?.imageUrl}

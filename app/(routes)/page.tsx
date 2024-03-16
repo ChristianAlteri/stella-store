@@ -8,9 +8,9 @@ import ProductList from "@/components/Home/product-list";
 
 import getDesigners from "@/actions/get-designers";
 import getCategories from "@/actions/get-categories";
-import getBillboard from "@/actions/get-billboard";
 import getProducts from "@/actions/get-products";
 import getSellers from "@/actions/get-sellers";
+import getBillboardByName from "@/actions/get-billboard-by-name";
 
 
 export const revalidate = 0
@@ -20,34 +20,35 @@ const Homepage = async () => {
     const categoryData = await getCategories();
     const sellerData = await getSellers();
     const productData = await getProducts({all: true});
-    const billboardData = await getBillboard("a8d1234e-35d9-4dae-896a-762eb28045c3");
+    const billboardData = await getBillboardByName("homePage");
+
 
     return ( 
         <>
-
-            <div className="flex flex-row w-full gap-4 bg-white">
+            {/* if logged in re route to 'for-you' page */}
+                <div className="flex flex-row w-full h-full gap-4 bg-white">
+                    
+                    {/* First column */}
+                    <LeftSidebar title="Designers" data={designersData} />
                 
-                {/* First column */}
-                <LeftSidebar title="Designers" data={designersData} />
-               
 
-                {/* Second column */}
-                <HomeContainer>
-                    {/* <Billboard data={billboardData} /> */}
-                    <ProductGrid>
-                            {productData.map((item) => (
-                                
-                                <ProductCard key={item.id} item={item} />
-                                
-                             ))}
-                    </ProductGrid>
-                </HomeContainer>
+                    {/* Second column */}
+                    <HomeContainer>
+                        {/* <Billboard data={billboardData} /> */}
+                        <ProductGrid>
+                                {productData.map((item) => (
+                                    
+                                    <ProductCard key={item.id} item={item} />
+                                    
+                                ))}
+                        </ProductGrid>
+                    </HomeContainer>
 
-                {/* Third column */}
+                    {/* Third column */}
 
-                <RightSidebar title="Sellers" data={sellerData}/>
+                    <RightSidebar title="Sellers" data={sellerData}/>
 
-            </div>
+                </div>
         </>
      );
 }

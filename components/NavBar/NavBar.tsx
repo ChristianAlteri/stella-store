@@ -56,15 +56,17 @@ const Navbar = async () => {
         <Container>
             <FirstNavBarContainer>
                 {/* Search Filters */}
-                <div className="flex justify-between w-1/3 text-sm text-stone-700 rounded-md gap-2 font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer">
-                    <MobileFilters 
-                        sellers={sellers}
-                        designers={designers}
-                        categories={categories}
-                        sizes={sizes}
-                        colors={colors}
-                        products={products}
-                    />
+                <div className="flex flex-row w-1/3 justify-start">
+                    <div className="flex flex-col items-start justify-start w-full">
+                        <MobileFilters 
+                            sellers={sellers}
+                            designers={designers}
+                            categories={categories}
+                            sizes={sizes}
+                            colors={colors}
+                            products={products}
+                        />
+                    </div>
                 </div>
                 {/* Logo */}
                 <Link href="/" className="flex">
@@ -92,11 +94,27 @@ const Navbar = async () => {
             <SecondNavBarContainer >
                 {/* <div className="flex w-1/3"></div> */}
                 {/* Nav dropdowns */}
-                <div className="flex flex-col w-2/3 justify-center items-center">
-                    <div className="flex items-center justify-between w-2/3 ">
-                        <DesignerNav data={designers} />
+                <div className="flex flex-col w-full justify-center items-center">
+                    <div className="flex flex-col items-center justify-center w-full ">
+                            {/* <MobileFilters 
+                                sellers={sellers}
+                                designers={designers}
+                                categories={categories}
+                                sizes={sizes}
+                                colors={colors}
+                                products={products}
+                            /> */}
+                            {/* Quick links that redirect to pages */}
+                        <div className="flex items-center text-center w-2/3 text-xs md:text-sm text-stone-700 gap-2 justify-between">
+                            <Link href={`/top-likes`}><p className=" items-center text-center hover:text-stone-900 hover:underline hover:cursor-pointer">Top liked</p></Link>
+                            <Link href={`/most-viewed`}><p className="items-center text-center hover:text-stone-900 hover:underline hover:cursor-pointer">Trending</p></Link>
+                            <Link href={`/for-you`}><p className="items-center text-center hover:text-stone-900 hover:underline hover:cursor-pointer">For you</p></Link>
+                            <Link href={`/`}><p className="items-center text-center hover:text-stone-900 hover:underline hover:cursor-pointer">New arrivals</p></Link>
+                            <Link href={`/sale`}><p className="items-center text-center hover:text-stone-900 hover:underline hover:cursor-pointer">Sale</p></Link>
+                        </div>
+                        {/* <DesignerNav data={designers} />
                         <CategoryNav data={categories} />
-                        <SellerNav data={sellers} />
+                        <SellerNav data={sellers} /> */}
                     </div>
                 </div>
                 {/* Empty w-1/3 div */}

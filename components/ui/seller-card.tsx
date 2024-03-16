@@ -22,7 +22,7 @@ const SellerCard:React.FC<SellerCardProps> = ({
             <p className="text-xl font-bold absolute top-0 left-0 w-full h-full flex items-center justify-center bg-white bg-opacity-50 text-stone-900 opacity-0 hover:opacity-100 transition-opacity duration-300 ease-in-out">
                 {data?.instagramHandle.split("@")[1].toUpperCase()}
             </p>
-            <img
+            <Image
                 height={900}
                 width={500}
                 src={data?.billboard?.imageUrl}

@@ -2,21 +2,13 @@ import LeftSidebar from "@/components/Home/LeftSidebar";
 import ProductGrid from "@/components/Home/ProductGrid";
 import RightSidebar from "@/components/Home/RightSidebar";
 import HomeContainer from "@/components/ui/HomeContainer";
-import ProductCard from "@/components/ui/product-card";
-
 
 import getDesigners from "@/actions/get-designers";
-import getCategories from "@/actions/get-categories";
 import getSellers from "@/actions/get-sellers";
-import getMostViewed from "@/actions/get-most-viewed";
-import Link from "next/link";
 
-const TopLikesPage = async () => {
+const ForYouPage = async () => {
     const designersData = await getDesigners();
-    const categoryData = await getCategories();
     const sellerData = await getSellers();
-    const mostViewedProducts = await getMostViewed({all: true})
-    console.log("mostViewedProducts", mostViewedProducts);
 
 
     return ( 
@@ -31,14 +23,10 @@ const TopLikesPage = async () => {
                 {/* Second column */}
                 <HomeContainer>
                         {/* <Billboard data={billboardData} /> */}
-                        <div>MOST VIEWED PRODUCTS</div>
+                        <div>Start liking and viewing products, the more you interact with the app the better it will recommended items</div>
                         <ProductGrid>
-                            {mostViewedProducts.map((item) => (
-                                
-                                <ProductCard key={item.id} item={item} />
-                                
-                             ))}
-                    </ProductGrid>
+                           <div>I need to build the user login</div>
+                        </ProductGrid>
                 </HomeContainer>
 
                 {/* Third column */}
@@ -50,4 +38,4 @@ const TopLikesPage = async () => {
      );
 }
  
-export default TopLikesPage;
+export default ForYouPage;

@@ -12,14 +12,14 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, type, ...props }, ref) => {
     return (
       <>
-      <div className="flex flex-row lg:w-full w-1/2 justify-between items-center h-6 border-b  gap-1">
+      <div className="flex w-full flex-row text-center justify-center items-center h-6 gap-1">
         <CiSearch size={17} className="flex flex-row justify-center"/>
         <input 
         onSubmit={() => {}} 
         aria-label="Search"
           type={type}
           className={cn(
-            "flex flex-row  bg-background text-sm file:bg-transparent file:text-sm file:font-sm placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50",
+            "flex text-sm w-full",
             className
           )}
           ref={ref}

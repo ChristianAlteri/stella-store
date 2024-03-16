@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Plus, X } from "lucide-react";
+
 import { Dialog } from "@headlessui/react";
 
 import { IoCloseOutline } from "react-icons/io5";
@@ -12,8 +12,9 @@ import FilterButtons from "@/components/ui/FilterButtons";
 import IconButton from "./icon-button";
 import { Input } from "./input";
 import SearchInput from "./search-input";
-import HeartButton from "../NavBar/buttons/HeartButton";
+
 import ShoppingCartButton from "../NavBar/buttons/ShoppingCartButton";
+import Link from "next/link";
 
 interface MobileFiltersProps {
   sizes?: Size[];
@@ -42,13 +43,15 @@ const MobileFilters: React.FC<MobileFiltersProps> = ({
 
   return (
     <>
-      <Button
-        onClick={onOpen}
-        className="flex hover:underline hover:cursor-pointer p-2 hover:text-stone-900 transition text-xs items-center gap-x-2 "
-      >
-       {/* Filter button disguised as a search bar */}
-       <Input className="bg-white hover:cursor-pointer " placeholder='Filter' />
-      </Button>
+      <div className="flex w-full justify-start">
+        <Button
+          onClick={onOpen}
+          className="flex hover:underline hover:cursor-pointer hover:text-stone-900 transition z-40 text-xs items-center "
+        >
+        {/* Filter button disguised as a search bar */}
+        <Input className="bg-white z-40 w-full hover:cursor-pointer " placeholder='Search store...' />
+        </Button>
+      </div>
 
       <Dialog
         open={open}
@@ -76,11 +79,11 @@ const MobileFilters: React.FC<MobileFiltersProps> = ({
                 </div>
               </div>
               {/* Quick links that redirect to pages */}
-              <div className="flex gap-2 flex-row text-xs justify-center items-center">
-                <p>topLiked</p>
-                <p>mostViewed</p>
-                <p>newArrivals</p>
-                <p>sale</p>
+              <div className="flex gap-2 flex-row text-xs lg:w-1/2 md:w-1/2 justify-between items-center mb-4">
+                <Link href={`/top-likes`}><p className="hover:underline hover:cursor-pointer" onClick={onClose}>Top liked</p></Link>
+                <Link href={`/most-viewed`}><p className="hover:underline hover:cursor-pointer" onClick={onClose}>Most viewed</p></Link>
+                <Link href={`/`}><p className="hover:underline hover:cursor-pointer" onClick={onClose}>New arrivals</p></Link>
+                <Link href={`/sale`}><p className="hover:underline hover:cursor-pointer" onClick={onClose}>Sale</p></Link>
               </div>
               <div className="flex flex-col w-1/2 justify-center items-center">
                 {/* Search Bar */}
