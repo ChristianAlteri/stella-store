@@ -9,7 +9,6 @@ import { useParams } from "next/navigation";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import SortButton from "./sort-button";
 import SortFilter from "./sort-filter";
 
 interface LeftSideProps {
@@ -36,7 +35,7 @@ const LeftSidebar: React.FC<LeftSideProps> = ({
     
     <aside className="h-full w-full">
       <div className="flex flex-col w-full text-center gap-3">
-        <SortFilter valueKey="sort" data={productData} />
+        <SortFilter valueKey="sort" data={productData} /> 
         <div>
           <Link className="hover:underline" href={`/sellers`}>
             Sellers

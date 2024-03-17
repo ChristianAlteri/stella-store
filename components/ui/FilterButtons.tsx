@@ -6,10 +6,11 @@ import { Category, Color, Designer, Seller, Size } from "@/types";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import qs from "query-string";
-import Button from "./button";
 import FilterList from "./FilterList";
 import { IoCloseOutline } from "react-icons/io5";
 import { IoIosArrowForward } from "react-icons/io";
+import { CiSliderHorizontal, CiSliderVertical  } from "react-icons/ci";
+import { CiSquarePlus } from "react-icons/ci";
 
 interface FilterButtonsProps {
   data: (Size | Color | Designer | Seller | Category)[] | undefined;
@@ -41,25 +42,24 @@ const FilterButtons: React.FC<FilterButtonsProps> = ({
   };
 
   return (
-    <div className="flex rounded-md flex-row items-start justify-start text-start">
+    <div className="flex flex-row items-start justify-start text-start ">
       <div className="flex w-full flex-row items-center border-b border-stone-300 ">
         <div className="mb-2">
-        {/* Hide name when isExpanded is true */}
         {!isExpanded && (
           <h3
-            className="flex w-full flex-row items-center text-xs hover:underline hover:cursor-pointer"
+            className="flex w-full flex-row items-center text-sm hover:underline hover:cursor-pointer gap-2"
             onClick={() => setIsExpanded(!isExpanded)}
           >
             {name}
-            <div className="flex w-full justify-end">
-              <IoIosArrowForward />
-            </div>
+            <CiSquarePlus className="flex flex-row hover:cursor-pointer text-stone-600 hover:text-stone-900" size={15} />
           </h3>
         )}
-        {/* Only show this section when isExpanded is true */}
+
         {isExpanded && (
-          <div>
-            <div onClick={() => setIsExpanded(false)}>
+          <div className="flex flex-col gap-2">
+            <div 
+            className="flex w-1/2 flex-row justify-center items-center text-center text-sm bg-stone-400 text-white border rounded-md hover:cursor-pointer hover:underline"
+            onClick={() => setIsExpanded(false)}>
               <IoCloseOutline size={15} />
             </div>
             {data?.map((filter) => (

@@ -18,7 +18,6 @@ const SortFilter: React.FC<SortFilterProps> = ({ data, valueKey }) => {
 
   const toggleFilters = () => setFiltersOpen((prev) => !prev);
   const [filtersOpen, setFiltersOpen] = useState(false);
-  // const selectedValue = searchParams.get(valueKey);
 
   const onClick = (id: string | undefined) => {
     const current = qs.parse(searchParams.toString());
@@ -36,45 +35,46 @@ const SortFilter: React.FC<SortFilterProps> = ({ data, valueKey }) => {
 
   return (
     <>
-      <div className="flex flex-col ">
+      <div className="flex flex-row w-full">
         <div
-          className="flex text-stone-600 hover:text-stone-900 hover:cursor-pointer "
+          className="flex text-stone-600 hover:text-stone-900 hover:cursor-pointer"
           onClick={toggleFilters}
         >
-          <CiSliderHorizontal className=" flex flex-row " size={20} />
+          <CiSliderHorizontal className="flex flex-row" size={20} />
         </div>
         {filtersOpen && (
-          <div className="flex flex-col gap-1">
+          <div className="flex flex-col gap-1 w-full">
+            <br />
+
             <div key="high-to-low" className="grid items-center">
               <div
-                className="flex flex-row justify-center items-center text-left text-xs text-stone-500 hover:underline hover:cursor-pointer"
+                className="flex flex-row  justify-center items-center text-left text-xs text-stone-500 hover:underline hover:cursor-pointer"
                 onClick={() => onClick("high-to-low")}
               >
                 Latest
               </div>
             </div>
-            <div key="low-to-high" className="grid items-center">
-              <div
-                className="flex flex-row justify-center gap-1 items-center text-center text-xs "
-                onClick={() => onClick("low-to-high")}
-              >
-                <p className="flex flex-row text-stone-900">Price:</p>
-                <p className="flex flex-row text-stone-500 hover:underline hover:cursor-pointer">
-                Low to high
-                </p>
+              <div key="low-to-high" className="grid items-center">
+                <div
+                  className=" flex flex-row justify-center gap-1 items-center text-center text-xs "
+                  onClick={() => onClick("low-to-high")}
+                >
+                  <p className="w-full flex flex-row text-stone-900">Price:</p>
+                  <p className="w-full flex flex-row text-stone-500 hover:underline hover:cursor-pointer">
+                    Low to high
+                  </p>
+                </div>
               </div>
-            </div>
 
             <div key="high-to-low" className="grid items-center">
               <div
                 className="flex flex-row justify-center gap-1 items-center text-center text-xs text-stone-500 hover:underline hover:cursor-pointer"
                 onClick={() => onClick("high-to-low")}
               >
-               <p className="flex flex-row text-stone-900">Price:</p>
+                <p className="flex flex-row text-stone-900">Price:</p>
                 <p className="flex flex-row text-stone-500 hover:underline hover:cursor-pointer">
-                High to low
+                  High to low
                 </p>
-                
               </div>
             </div>
           </div>

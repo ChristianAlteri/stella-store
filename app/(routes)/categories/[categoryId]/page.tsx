@@ -61,9 +61,9 @@ const CategoryNamePage: React.FC<CategoryNamePageProps> = async ({
 
   return (
     <>
-      <div className="flex flex-row w-full gap-4 bg-white">
+      <div className="grid grid-cols-8 gap-4 bg-white">
         {/* First column */}
-        <div className=" flex-col justify-start items-start w-1/6 p-6 hidden sticky z-50 h-full md:flex">
+        <div className="col-span-1 justify-start items-start w-1/6 p-6 hidden sticky z-50 h-full md:flex">
           <LeftSidebar
             designers={designers}
             categories={categories}
@@ -75,17 +75,17 @@ const CategoryNamePage: React.FC<CategoryNamePageProps> = async ({
         </div>
 
         {/* Second column */}
-        <HomeContainer>
+        <div className="col-span-6 flex flex-col items-center w-full">
           <Billboard data={categoryData?.billboard} />
           <ProductGrid>
             {productData?.map((item) => (
               <ProductCard key={item.id} item={item} />
             ))}
           </ProductGrid>
-        </HomeContainer>
+        </div>
 
         {/* Third column */}
-        <div className="sticky z-50">
+        <div className="col-span-1 justify-start items-start w-1/6 p-6 hidden sticky z-50 h-full md:flex">
           <RightSidebar
             designers={designers}
             categories={categories}
