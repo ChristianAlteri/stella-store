@@ -1,6 +1,7 @@
 "use client";
 
 import { Billboard } from "@/types";
+import Image from "next/image";
 import React from "react";
 import { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
@@ -19,10 +20,12 @@ const Billboard: React.FC<BillboardProps> = ({ data }) => {
     return null;
   }
 
+  // console.log('bill',data.imageUrl);
+
   return (
     <div className="p-3 sm:p-4 lg:p-6 rounded-xl overflow-hidden ">
       {data?.imageUrl.match(/https:\/\/.*\/image.*/) && (
-        <div
+        <img
           style={{
             width: "80vw",
             height: "60vh",
@@ -30,7 +33,7 @@ const Billboard: React.FC<BillboardProps> = ({ data }) => {
             backgroundImage: `url(${data?.imageUrl})`,
           }}
           className="rounded-xl relative aspect-square overflow-hidden bg-cover"
-        ></div>
+        ></img>
       )}
       {/* Cloudinary use /video in the url */}
       {data?.imageUrl.match(/https:\/\/.*\/video.*/) && (

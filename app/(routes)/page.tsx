@@ -1,6 +1,6 @@
 import HomeContainer from "@/components/ui/HomeContainer";
-import LeftSidebar from "../../components/Home/LeftSidebar";
-import RightSidebar from "../../components/Home/RightSidebar";
+// import LeftSidebar from "../../components/Home/LeftSidebar";
+// import RightSidebar from "../../components/Home/RightSidebar";
 import ProductGrid from "../../components/Home/ProductGrid";
 import Billboard from "@/components/Billboard/Billboard";
 import ProductCard from "@/components/ui/product-card";
@@ -11,46 +11,50 @@ import getCategories from "@/actions/get-categories";
 import getProducts from "@/actions/get-products";
 import getSellers from "@/actions/get-sellers";
 import getBillboardByName from "@/actions/get-billboard-by-name";
+import LeftSidebar from "@/components/SideBars/LeftSideBar";
+import getColors from "@/actions/get-colors";
+import getSizes from "@/actions/get-sizes";
 
-
-export const revalidate = 0
+export const revalidate = 0;
 
 const Homepage = async () => {
-    const designersData = await getDesigners();
-    const categoryData = await getCategories();
-    const sellerData = await getSellers();
-    const productData = await getProducts({all: true});
-    const billboardData = await getBillboardByName("homePage");
+  const designers = await getDesigners();
+  const categories = await getCategories();
+  const sellers = await getSellers();
+  const products = await getProducts({ all: true });
+  const colors = await getColors();
+  const sizes = await getSizes();
+  const billboard = await getBillboardByName("homePage");
 
+  return (
+    <>
+      {/* TODO: if logged in re route to 'for-you' page */}
+      <div className="flex flex-row w-full h-full gap-4 bg-white">
+        {/* First column */}
+        <LeftSidebar
+          designers={designers}
+          categories={categories}
+          sellers={sellers}
+          colors={colors}
+          sizes={sizes}
+        />
 
-    return ( 
-        <>
-            {/* if logged in re route to 'for-you' page */}
-                <div className="flex flex-row w-full h-full gap-4 bg-white">
-                    
-                    {/* First column */}
-                    <LeftSidebar title="Designers" data={designersData} />
-                
+        {/* Second column */}
+        <HomeContainer>
+          {/* <Billboard data={billboardData} /> */}
+          <ProductGrid>
+            {products.map((item) => (
+              <ProductCard key={item.id} item={item} />
+            ))}
+          </ProductGrid>
+        </HomeContainer>
 
-                    {/* Second column */}
-                    <HomeContainer>
-                        {/* <Billboard data={billboardData} /> */}
-                        <ProductGrid>
-                                {productData.map((item) => (
-                                    
-                                    <ProductCard key={item.id} item={item} />
-                                    
-                                ))}
-                        </ProductGrid>
-                    </HomeContainer>
+        {/* Third column
 
-                    {/* Third column */}
+                    <RightSidebar title="Sellers" data={sellerData}/> */}
+      </div>
+    </>
+  );
+};
 
-                    <RightSidebar title="Sellers" data={sellerData}/>
-
-                </div>
-        </>
-     );
-}
- 
 export default Homepage;

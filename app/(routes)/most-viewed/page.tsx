@@ -1,6 +1,6 @@
-import LeftSidebar from "@/components/Home/LeftSidebar";
+// import LeftSidebar from "@/components/Home/LeftSidebar";
 import ProductGrid from "@/components/Home/ProductGrid";
-import RightSidebar from "@/components/Home/RightSidebar";
+// import RightSidebar from "@/components/Home/RightSidebar";
 import HomeContainer from "@/components/ui/HomeContainer";
 import ProductCard from "@/components/ui/product-card";
 
@@ -25,7 +25,7 @@ const TopLikesPage = async () => {
             <div className="flex flex-row w-full gap-4 bg-white">
                 
                 {/* First column */}
-                <LeftSidebar title="Designers" data={designersData} />
+                {/* <LeftSidebar title="Designers" data={designersData} /> */}
                
 
                 {/* Second column */}
@@ -43,7 +43,7 @@ const TopLikesPage = async () => {
 
                 {/* Third column */}
 
-                <RightSidebar title="Sellers" data={sellerData}/>
+                {/* <RightSidebar title="Sellers" data={sellerData}/> */}
 
             </div>
         </>

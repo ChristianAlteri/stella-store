@@ -22,7 +22,7 @@ const FilterButtons: React.FC<FilterButtonsProps> = ({
   name,
   valueKey,
 }) => {
-  const [isExpanded, setIsExpanded] = useState(false); // State to control visibility
+  const [isExpanded, setIsExpanded] = useState(false); 
   const searchParams = useSearchParams();
   const router = useRouter();
   const selectedValue = searchParams.get(valueKey);

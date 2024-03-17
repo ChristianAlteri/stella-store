@@ -1,6 +1,6 @@
-import LeftSidebar from "@/components/Home/LeftSidebar";
+// import LeftSidebar from "@/components/Home/LeftSidebar";
 import ProductGrid from "@/components/Home/ProductGrid";
-import RightSidebar from "@/components/Home/RightSidebar";
+// import RightSidebar from "@/components/Home/RightSidebar";
 import HomeContainer from "@/components/ui/HomeContainer";
 import ProductCard from "@/components/ui/product-card";
 import Billboard from "@/components/Billboard/Billboard";
@@ -14,7 +14,7 @@ import getColors from "@/actions/get-colors";
 import getSizes from "@/actions/get-sizes";
 import getSingleCategory from "@/actions/get-single-category";
 import getSingleSeller from "@/actions/get-single-seller";
-import RightCategorySidebar from "@/components/Home/RightCategorySidebar";
+// import RightCategorySidebar from "@/components/Home/RightCategorySidebar";
 import FilterButtons from "@/components/ui/FilterButtons";
 import MobileFilters from "@/components/ui/MobileFilters";
 
@@ -67,7 +67,7 @@ const SellerNamePage: React.FC<SellerNamePageProps> = async ({
             <div className="flex flex-row w-full gap-4 bg-white">
                 
                 {/* First column */}
-                <LeftSidebar title="Designers" data={designersData} />
+                {/* <LeftSidebar title="Designers" data={designersData} /> */}
                
 
                 {/* Second column */}
@@ -117,7 +117,7 @@ const SellerNamePage: React.FC<SellerNamePageProps> = async ({
 
                 {/* Third column */}
 
-                <RightCategorySidebar title="Categories" data={categoryData}/>
+                {/* <RightCategorySidebar title="Categories" data={categoryData}/> */}
 
             </div>
         </>

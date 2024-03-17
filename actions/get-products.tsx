@@ -11,9 +11,10 @@ interface Query {
   sellerId?: string;
   colorId?: string;
   sizeId?: string;
+  sort?: string;
+  materialId?: string;
   isFeatured?: boolean;
   isOnSale?: boolean;
-  materialId?: string;
   all?: boolean;
 }
 
@@ -31,6 +32,7 @@ const getProducts = async (query: Query): Promise<Product[]> => {
         designerId: query.designerId,
         sellerId: query.sellerId,
         all: query.all,
+        sort: query.sort,
       },
     });
     const response = await axios.get(url);

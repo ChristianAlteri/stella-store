@@ -1,6 +1,6 @@
 import HomeContainer from "@/components/ui/HomeContainer";
-import LeftSidebar from "../../../components/Home/LeftSidebar";
-import RightCategorySidebar from "../../../components/Home/RightCategorySidebar";
+// import LeftSidebar from "../../../components/Home/LeftSidebar";
+// import RightCategorySidebar from "../../../components/Home/RightCategorySidebar";
 import ProductGrid from "../../../components/Home/ProductGrid";
 import Billboard from "@/components/Billboard/Billboard";
 import ProductCard from "@/components/ui/product-card";
@@ -11,7 +11,7 @@ import getCategories from "@/actions/get-categories";
 import getBillboard from "@/actions/get-billboard";
 import getProducts from "@/actions/get-products";
 import getSellers from "@/actions/get-sellers";
-import CategoryCardGrid from "@/components/Home/CategoryCardGrid";
+import CategoryCardGrid from "@/components/Home/CategoryCardGridTest";
 import SellerCard from "@/components/ui/seller-card";
 
 
@@ -32,7 +32,7 @@ const SellerPage = async () => {
             <div className="flex flex-row w-full gap-4 bg-white">
                 
                 {/* First column */}
-                <LeftSidebar title="Designers" data={designersData} />
+                {/* <LeftSidebar title="Designers" data={designersData} /> */}
                
 
                 {/* Second column */}
@@ -47,7 +47,7 @@ const SellerPage = async () => {
 
                 {/* Third column */}
 
-                <RightCategorySidebar title="Categories" data={categoryData}/>
+                {/* <RightCategorySidebar title="Categories" data={categoryData}/> */}
 
             </div>
         </>

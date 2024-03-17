@@ -13,11 +13,10 @@ interface FilterListProps {
   data: (Size | Color | Designer | Seller | Category) | undefined;
   name: string;
   valueKey: string;
-  onClose: () => void;
+  onClose?: () => void;
 }
 
 const FilterList: React.FC<FilterListProps> = ({ data, name, valueKey, onClose }) => {
-  const [isExpanded, setIsExpanded] = useState(false); // State to control visibility
   const searchParams = useSearchParams();
   const router = useRouter();
   const selectedValue = searchParams.get(valueKey);
@@ -40,10 +39,11 @@ const FilterList: React.FC<FilterListProps> = ({ data, name, valueKey, onClose }
       <div className="grid grid-cols-3 w-full overflow-x-auto gap-2 ">
         <div key={data?.id} className="grid items-center">
           <div
-            className={cn(
-              "rounded-md flex border flex-row justify-center items-center text-center text-xs text-stone-500 p-2 bg-white border-stone-300",
-              selectedValue === data?.id && "bg-primary text-white"
-            )}
+            // className={cn(
+            //   "rounded-md flex border flex-row justify-center items-center text-center text-xs text-stone-500 p-2 bg-white border-stone-300",
+            //   selectedValue === data?.id && "bg-primary text-white"
+            // )}
+            className="rounded-md flex border flex-row justify-center items-center text-center text-xs text-stone-500 p-2 bg-white border-stone-300"
             onClick={() => onClick(data?.id)}
           >
             {data?.name}
