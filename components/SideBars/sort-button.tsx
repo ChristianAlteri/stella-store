@@ -1,14 +1,15 @@
 "use client";
 
-import { Category, Color, Designer, Product, Seller, Size } from "@/types";
+import { Category, Color, Designer, Product, Seller, Size, Condition } from "@/types";
 
 
-import FilterList from "../ui/FilterList";
+import FilterList from "./filter-list";
 
 
 interface SortButtonProps {
   sizes?: Size[];
   colors?: Color[];
+  conditions?: Condition[];
   designers?: Designer[];
   categories?: Category[];
   sellers?: Seller[];
@@ -21,6 +22,7 @@ const SortButton: React.FC<SortButtonProps> = ({
   designers,
   categories,
   sellers,
+  conditions,
 }) => {
 
   console.log('right', sellers);

@@ -8,7 +8,7 @@ import { IoCloseOutline } from "react-icons/io5";
 import Button from "@/components/ui/button";
 import { Category, Color, Designer, Product, Seller, Size } from "@/types";
 
-import FilterButtons from "@/components/ui/FilterButtons";
+import FilterButtons from "@/components/SideBars/filter-buttons";
 import IconButton from "./icon-button";
 import { Input } from "./input";
 import SearchInput from "./search-input";

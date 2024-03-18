@@ -1,19 +1,16 @@
 "use client";
 
-import { useState } from "react"; // Import useState
-import { cn } from "@/lib/utils";
-import { Category, Color, Designer, Seller, Size } from "@/types";
+import { useState } from "react";
+import { Category, Color, Condition, Designer, Seller, Size } from "@/types";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import qs from "query-string";
-import FilterList from "./FilterList";
+import FilterList from "./filter-list";
 import { IoCloseOutline } from "react-icons/io5";
-import { IoIosArrowForward } from "react-icons/io";
-import { CiSliderHorizontal, CiSliderVertical  } from "react-icons/ci";
 import { CiSquarePlus } from "react-icons/ci";
 
 interface FilterButtonsProps {
-  data: (Size | Color | Designer | Seller | Category)[] | undefined;
+  data: (Size | Color | Designer | Seller | Category | Condition)[] | undefined;
   name: string;
   valueKey: string;
 }

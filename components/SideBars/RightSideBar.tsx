@@ -4,22 +4,23 @@ import React from "react";
 
 import { cn } from "@/lib/utils";
 
-import { Category, Color, Designer, Product, Seller, Size } from "@/types";
+import { Category, Color, Condition, Designer, Product, Seller, Size } from "@/types";
 import { useParams } from "next/navigation";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import SortButton from "./sort-button";
 import SortFilter from "./sort-filter";
-import FilterButtons from "../ui/FilterButtons";
+import FilterButtons from "./filter-buttons";
 
 interface RightSideProps {
-  productData?: Product[];
   sizes?: Size[];
+  colors?: Color[];
+  conditions?: Condition[];
+  productData?: Product[];
   designers?: Designer[];
   categories?: Category[];
   sellers?: Seller[];
-  colors?: Color[];
 }
 
 const RightSidebar: React.FC<RightSideProps> = ({
@@ -29,6 +30,7 @@ const RightSidebar: React.FC<RightSideProps> = ({
   sellers,
   sizes,
   colors,
+  conditions,
 }) => {
   const pathname = usePathname();
   const params = useParams();
@@ -39,6 +41,7 @@ const RightSidebar: React.FC<RightSideProps> = ({
       <div className="flex flex-col justify-center items-center text-end w-full gap-3">
         <FilterButtons valueKey="sizeId" name="Sizes" data={sizes} />
         <FilterButtons valueKey="colorId" name="Colors" data={colors} />
+        <FilterButtons valueKey="conditionId" name="Conditions" data={conditions} />
       </div>
     </aside>
   );

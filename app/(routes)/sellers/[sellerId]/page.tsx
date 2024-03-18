@@ -15,7 +15,7 @@ import getSizes from "@/actions/get-sizes";
 import getSingleCategory from "@/actions/get-single-category";
 import getSingleSeller from "@/actions/get-single-seller";
 // import RightCategorySidebar from "@/components/Home/RightCategorySidebar";
-import FilterButtons from "@/components/ui/FilterButtons";
+import FilterButtons from "@/components/SideBars/filter-buttons";
 import MobileFilters from "@/components/ui/MobileFilters";
 
 export const revalidate = 0;

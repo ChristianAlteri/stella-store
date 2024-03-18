@@ -1,16 +1,16 @@
 "use client";
 
-import { useState } from "react"; 
+
 import { cn } from "@/lib/utils";
-import { Category, Color, Designer, Seller, Size } from "@/types";
+import { Category, Color, Condition, Designer, Seller, Size } from "@/types";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import qs from "query-string";
-import Button from "./button";
-import { IoCloseOutline } from "react-icons/io5";
+
+
 
 interface FilterListProps {
-  data: (Size | Color | Designer | Seller | Category) | undefined;
+  data: (Size | Color | Designer | Seller | Category | Condition) | undefined;
   name: string;
   valueKey: string;
   onClose?: () => void;

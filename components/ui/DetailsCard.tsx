@@ -11,8 +11,7 @@ interface DetailsCardProps {
 const DetailsCard: React.FC<DetailsCardProps> = ({
     data
 }) => {
-
-
+    console.log(data);
     const descriptionElements = data.description
         .split("- ") // Split the description by the hyphen
         .filter(item => item.trim() !== '') // Remove any empty strings 
@@ -32,10 +31,10 @@ const DetailsCard: React.FC<DetailsCardProps> = ({
             <div className="m-2">
                     <div className="flex flex-row gap-1">
                         <h1 className="text-xs">Sold By </h1>
-                        <Link href={`/sellers/${data?.seller?.id}`} className="text-xs hover:underline hover:cursor-pointer"> {data?.seller?.instagramHandle.split("@")[1].toUpperCase()}</Link>
+                        <Link href={`/sellers/${data?.seller?.id}`} className="text-xs hover:underline hover:cursor-pointer"> {data?.seller?.instagramHandle.toUpperCase()}</Link>
                     </div>
                 <div className="p-1">
-                    <h1 className="text-xs ">In {data?.condition?.toLocaleLowerCase()} condition</h1>
+                    <h1 className="text-xs ">In {data?.condition?.name} condition</h1>
                     <h1 className="text-xs ">Size {data?.size?.name}</h1>
                 </div>
             </div>

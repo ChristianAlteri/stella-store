@@ -42,12 +42,12 @@ export interface Product {
   retailPrice: string;
   size: Size;
   color: Color;
+  condition: Condition;
   images: Image[];
   isFeatured: boolean;
   isArchived: boolean;
   isOnSale: boolean;
   location: string | null | undefined;
-  condition: string | null | undefined;
   sex: string | null | undefined;
   material: string | null | undefined;
   measurements: string | null | undefined;
@@ -73,6 +73,11 @@ export interface Size {
 }
 
 export interface Color {
+  id: string;
+  name: string;
+  value: string;
+}
+export interface Condition {
   id: string;
   name: string;
   value: string;
