@@ -43,8 +43,8 @@ const DetailsCard: React.FC<DetailsCardProps> = ({
                     <h1 className="text-xs p-1">{descriptionElements}</h1>
                     <h1 className="text-xs underline">Specs </h1>
                 <div className="p-1">
-                    <h1 className="text-xs">Material: {data?.material}</h1>
-                    <h1 className="text-xs">Measurements: {data?.measurements}</h1>
+                    <h1 className="text-xs">Material: {data?.material?.name}</h1>
+                    <h1 className="text-xs">Measurements: ??</h1>
                     <div className="flex flex-row gap-2">
                         <h1 className="text-xs">Colour: </h1>
                         <div className="h-4 w-4 rounded-sm border border-stone-300" style={{backgroundColor: data?.color?.value}}></div>

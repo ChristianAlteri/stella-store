@@ -43,20 +43,19 @@ export interface Product {
   size: Size;
   color: Color;
   condition: Condition;
+  material: Material;
   images: Image[];
   isFeatured: boolean;
   isArchived: boolean;
   isOnSale: boolean;
   location: string | null | undefined;
-  sex: string | null | undefined;
-  material: string | null | undefined;
-  measurements: string | null | undefined;
+
+
   likes: number | null | undefined;
   clicks: number | null | undefined;
-  reference: string | null | undefined;
+
   category: Category;
   seller: Seller;
-  designerName: string;
   designer: Designer;
   designerId: string;
 }
@@ -71,13 +70,17 @@ export interface Size {
   name: string;
   value: string;
 }
-
 export interface Color {
   id: string;
   name: string;
   value: string;
 }
 export interface Condition {
+  id: string;
+  name: string;
+  value: string;
+}
+export interface Material {
   id: string;
   name: string;
   value: string;

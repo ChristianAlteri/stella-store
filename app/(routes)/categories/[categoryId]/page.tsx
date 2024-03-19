@@ -1,5 +1,4 @@
 import ProductGrid from "@/components/Home/ProductGrid";
-import HomeContainer from "@/components/ui/HomeContainer";
 import ProductCard from "@/components/ui/product-card";
 import Billboard from "@/components/Billboard/Billboard";
 
@@ -12,8 +11,8 @@ import getSizes from "@/actions/get-sizes";
 import getSingleCategory from "@/actions/get-single-category";
 import LeftSidebar from "@/components/SideBars/LeftSideBar";
 import RightSidebar from "@/components/SideBars/RightSideBar";
-import SortFilter from "@/components/SideBars/sort-filter";
 import getConditions from "@/actions/get-conditions";
+import getMaterials from "@/actions/get-materials";
 
 export const revalidate = 0;
 
@@ -59,6 +58,7 @@ const CategoryNamePage: React.FC<CategoryNamePageProps> = async ({
   const designers = await getDesigners();
   const sellers = await getSellers();
   const categories = await getCategories();
+  const materials = await getMaterials();
 
   return (
     <>
@@ -87,7 +87,12 @@ const CategoryNamePage: React.FC<CategoryNamePageProps> = async ({
 
         {/* Third column */}
         <div className="col-span-1 justify-start items-start w-1/6 p-6 hidden sticky z-50 h-full md:flex">
-          <RightSidebar colors={colors} sizes={sizes} conditions={conditions} />
+          <RightSidebar 
+          colors={colors} 
+          sizes={sizes} 
+          conditions={conditions} 
+          materials={materials} 
+          />
         </div>
       </div>
     </>

@@ -2,7 +2,7 @@
 
 
 import { cn } from "@/lib/utils";
-import { Category, Color, Condition, Designer, Seller, Size } from "@/types";
+import { Category, Color, Condition, Designer, Material, Seller, Size } from "@/types";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import qs from "query-string";
@@ -10,7 +10,7 @@ import qs from "query-string";
 
 
 interface FilterListProps {
-  data: (Size | Color | Designer | Seller | Category | Condition) | undefined;
+  data: (Size | Color | Designer | Seller | Category | Condition | Material) | undefined;
   name: string;
   valueKey: string;
   onClose?: () => void;

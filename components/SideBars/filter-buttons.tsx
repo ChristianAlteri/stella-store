@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Category, Color, Condition, Designer, Seller, Size } from "@/types";
+import { Category, Color, Condition, Designer, Material, Seller, Size } from "@/types";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import qs from "query-string";
@@ -10,7 +10,7 @@ import { IoCloseOutline } from "react-icons/io5";
 import { CiSquarePlus } from "react-icons/ci";
 
 interface FilterButtonsProps {
-  data: (Size | Color | Designer | Seller | Category | Condition)[] | undefined;
+  data: (Size | Color | Designer | Seller | Category | Condition | Material)[] | undefined;
   name: string;
   valueKey: string;
 }
@@ -21,22 +21,6 @@ const FilterButtons: React.FC<FilterButtonsProps> = ({
   valueKey,
 }) => {
   const [isExpanded, setIsExpanded] = useState(false); 
-  const searchParams = useSearchParams();
-  const router = useRouter();
-  const selectedValue = searchParams.get(valueKey);
-
-  const onClick = (id: string) => {
-    const current = qs.parse(searchParams.toString());
-    const query = { ...current, [valueKey]: id };
-    if (current[valueKey] === id) {
-      query[valueKey] = null;
-    }
-    const url = qs.stringifyUrl(
-      { url: window.location.href, query },
-      { skipNull: true }
-    );
-    router.push(url);
-  };
 
   return (
     <div className="flex flex-row items-start justify-start text-start ">

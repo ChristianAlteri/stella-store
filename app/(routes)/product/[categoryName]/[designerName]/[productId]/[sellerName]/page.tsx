@@ -23,6 +23,7 @@ const IndividualProductPage: React.FC<IndividualProductPageProps> = async ({
 
     let designerName = product?.designer?.name;
     let sellerInstagram = product?.seller?.instagramHandle;
+    
     const suggestedProductsBasedOnCategory = await getProducts({categoryId: product?.category?.id});
     const suggestedProductsBasedOnDesigner = await getProducts({ designerId: product?.designer?.id});
     const suggestedProductsBasedOnSeller = await getProducts({ sellerId: product?.seller?.id});
