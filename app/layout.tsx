@@ -1,26 +1,26 @@
-import type { Metadata } from 'next'
-import { Arimo } from 'next/font/google'
-import './globals.css'
+import type { Metadata } from "next";
+import { Arimo } from "next/font/google";
+import "./globals.css";
 
-import Footer from '@/components/Footer/Footer'
-import Navbar from '@/components/NavBar/NavBar'
-import ToastProvider from '@/providers/toast-provider'
+import Footer from "@/components/Footer/Footer";
+import Navbar from "@/components/NavBar/NavBar";
+import ToastProvider from "@/providers/toast-provider";
 
 const font = Arimo({
-  weight: '400',
+  weight: "400",
 
-  subsets: ['latin'],
-})
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
-  title: '@nondrobe',
+  title: "@nondrobe",
   description: "@@@",
-}
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en">
@@ -28,8 +28,21 @@ export default function RootLayout({
         <ToastProvider />
         <Navbar />
         {children}
-        <Footer />
+        <Footer 
+        searchParams={{
+          sizeId: "",
+          colorId: "",
+          conditionId: "",
+          materialId: "",
+          categoryId: "",
+          designerId: "",
+          sellerId: "",
+          sort: "",
+          isFeatured: false,
+          isOnSale: false
+        }} 
+        /> 
       </body>
     </html>
-  )
+  );
 }

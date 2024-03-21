@@ -48,8 +48,7 @@ export interface Product {
   isFeatured: boolean;
   isArchived: boolean;
   isOnSale: boolean;
-  location: string | null | undefined;
-
+  isCharity: boolean;
 
   likes: number | null | undefined;
   clicks: number | null | undefined;

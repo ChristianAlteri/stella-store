@@ -74,12 +74,12 @@ const DesignerNamePage: React.FC<DesignerNamePageProps> = async ({
                 {/* Second column */}
                 <HomeContainer>
                     <Billboard data={designersData?.billboard} />
-                            <MobileFilters 
+                            {/* <MobileFilters 
                                         sizes={sizes} 
                                         colors={colors} 
                                         designers={designers}
                                         categories={categoryData}
-                                    />
+                                    /> */}
                     <div className="hidden lg:flex text-start items-start justify-start"> 
                     <div className="grid grid-cols-3 w-full">
                             <FilterButtons 

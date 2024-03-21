@@ -6,31 +6,48 @@ import { Dialog } from "@headlessui/react";
 
 import { IoCloseOutline } from "react-icons/io5";
 import Button from "@/components/ui/button";
-import { Category, Color, Designer, Product, Seller, Size } from "@/types";
+import {
+  Category,
+  Color,
+  Condition,
+  Designer,
+  Material,
+  Product,
+  Seller,
+  Size,
+} from "@/types";
 
 import FilterButtons from "@/components/SideBars/filter-buttons";
 import IconButton from "./icon-button";
-import { Input } from "./input";
+import { CiMenuBurger } from "react-icons/ci";
+
 import SearchInput from "./search-input";
 
 import ShoppingCartButton from "../NavBar/buttons/ShoppingCartButton";
 import Link from "next/link";
 
 interface MobileFiltersProps {
-  sizes?: Size[];
-  colors?: Color[];
+  products: Product[] | undefined;
+  colors: Color[] | undefined;
   designers?: Designer[];
   categories?: Category[];
   sellers?: Seller[];
-  products?: Product[];
+  sizes?: Size[];
+  conditions?: Condition[];
+  materials?: Material[];
+  icon?: React.ReactNode;
 }
 
 const MobileFilters: React.FC<MobileFiltersProps> = ({
-  sizes,
+  products,
   colors,
   designers,
   categories,
   sellers,
+  sizes,
+  conditions,
+  materials,
+  icon,
 }) => {
   const [open, setOpen] = useState(false);
   const [filtersOpen, setFiltersOpen] = useState(false);
@@ -43,13 +60,13 @@ const MobileFilters: React.FC<MobileFiltersProps> = ({
 
   return (
     <>
-      <div className="flex w-full justify-start">
+      <div className="flex w-full justify-start gap-4">
         <Button
           onClick={onOpen}
           className="flex hover:underline hover:cursor-pointer hover:text-stone-900 transition z-40 text-xs items-center "
         >
         {/* Filter button disguised as a search bar */}
-        <Input className="bg-white z-40 w-full hover:cursor-pointer " placeholder='Search store...' />
+        {icon}
         </Button>
       </div>
 

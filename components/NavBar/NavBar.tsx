@@ -3,30 +3,27 @@ import Image from "next/image";
 import Container from "../ui/Container";
 
 // import { Input } from '@chakra-ui/react'
-import { Input } from "@/components/ui/input";
-
-import { CiHeart, CiShoppingCart } from "react-icons/ci";
 
 import SecondNavBarContainer from "./Containers/SecondNavBarContainer";
 import FirstNavBarContainer from "./Containers/FirstNavBarContainer";
-
-import CategoryNav from "./main-category-nav";
-import DesignerNav from "./main-designer-nav";
-import SellerNav from "./main-seller-nav";
 
 import getCategories from "@/actions/get-categories";
 import getDesigners from "@/actions/get-designers";
 import getSellers from "@/actions/get-sellers";
 import ShoppingCartButton from "./buttons/ShoppingCartButton";
 import HeartButton from "./buttons/HeartButton";
+import { Input } from "../ui/input";
 
 import MobileFilters from "../ui/MobileFilters";
 import getSizes from "@/actions/get-sizes";
 import getColors from "@/actions/get-colors";
 import getBillboardByName from "@/actions/get-billboard-by-name";
 import BannerBillboard from "../Billboard/BannerBillboard";
-import getBillboard from "@/actions/get-billboard";
 import getProducts from "@/actions/get-products";
+import getMaterials from "@/actions/get-materials";
+import getConditions from "@/actions/get-conditions";
+import Button from "../ui/button";
+import { CiMenuBurger } from "react-icons/ci";
 
 const Navbar = async () => {
   const sellers = await getSellers();
@@ -34,10 +31,11 @@ const Navbar = async () => {
   const categories = await getCategories();
   const sizes = await getSizes();
   const colors = await getColors();
+  const materials = await getMaterials();
+  const conditions = await getConditions();
   const products = await getProducts({ all: true });
   const advertismentBillboard = await getBillboardByName("OnSale");
 
-  // const addvertismentBillboard = await getBillboard('30313316-d9de-4cdb-a9c9-b40708854042');
 
   return (
     <>
@@ -52,8 +50,10 @@ const Navbar = async () => {
           <Container>
           <FirstNavBarContainer>
             {/* Search Filters */}
-            <div className="flex flex-row w-1/3 justify-start">
-              <div className="flex flex-col items-start justify-start w-full">
+            <div className="flex flex-row w-1/3 justify-start gap-4">
+                <div className="flex hover:underline hover:cursor-pointer hover:text-stone-900 transition z-40 text-xs items-center ">
+                  <CiMenuBurger size={17} className="md:hidden flex flex-row justify-center" />
+                </div>
                 <MobileFilters
                   sellers={sellers}
                   designers={designers}
@@ -61,8 +61,10 @@ const Navbar = async () => {
                   sizes={sizes}
                   colors={colors}
                   products={products}
+                  materials={materials}
+                  conditions={conditions}
+                  icon={<Input className="bg-white z-40 w-full hover:cursor-pointer " placeholder='Search store...' />}
                 />
-              </div>
             </div>
             {/* Logo */}
             <Link href="/" className="flex">

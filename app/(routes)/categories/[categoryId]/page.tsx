@@ -1,6 +1,8 @@
 import ProductGrid from "@/components/Home/ProductGrid";
 import ProductCard from "@/components/ui/product-card";
 import Billboard from "@/components/Billboard/Billboard";
+import RightSidebar from "@/components/SideBars/RightSideBar";
+import LeftSidebar from "@/components/SideBars/LeftSideBar";
 
 import getDesigners from "@/actions/get-designers";
 import getCategories from "@/actions/get-categories";
@@ -9,10 +11,9 @@ import getSellers from "@/actions/get-sellers";
 import getColors from "@/actions/get-colors";
 import getSizes from "@/actions/get-sizes";
 import getSingleCategory from "@/actions/get-single-category";
-import LeftSidebar from "@/components/SideBars/LeftSideBar";
-import RightSidebar from "@/components/SideBars/RightSideBar";
 import getConditions from "@/actions/get-conditions";
 import getMaterials from "@/actions/get-materials";
+
 
 export const revalidate = 0;
 

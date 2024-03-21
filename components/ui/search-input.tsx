@@ -23,6 +23,7 @@ import ProductList from "../Home/product-list";
 interface SearchResultItem {
   id: number | string; // Use the correct type for your id
   name: string;
+  images: { url: string }[];
 }
 
 export interface SearchInputProps {
@@ -141,11 +142,12 @@ const SearchInput: React.FC<SearchInputProps> = ({
             {searchResults.map((product, index) => (
               <div className="" key={`${product.id}-${index}`}>
                 <p
-                  className="text-xs"
+                  className="text-xs p-10"
                   onClick={() => handleProductClick(product)}
                 >
                   {product.name}
                 </p>
+                  <img height={20} width={20} src={product.images[0].url} alt="image" />
                 {/* TODO: style */}
               </div>
             ))}
