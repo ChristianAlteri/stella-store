@@ -24,6 +24,7 @@ import getMaterials from "@/actions/get-materials";
 import getConditions from "@/actions/get-conditions";
 import Button from "../ui/button";
 import { CiMenuBurger } from "react-icons/ci";
+import ClientAdvisor from "../ui/ClientAdvisor";
 
 const Navbar = async () => {
   const sellers = await getSellers();
@@ -64,6 +65,9 @@ const Navbar = async () => {
                   materials={materials}
                   conditions={conditions}
                   icon={<Input className="bg-white z-40 w-full hover:cursor-pointer " placeholder='Search store...' />}
+                />
+                <ClientAdvisor 
+                  products={products}
                 />
             </div>
             {/* Logo */}

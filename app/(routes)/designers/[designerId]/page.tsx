@@ -1,121 +1,102 @@
-
 import ProductGrid from "@/components/Home/ProductGrid";
-import HomeContainer from "@/components/ui/HomeContainer";
 import ProductCard from "@/components/ui/product-card";
 import Billboard from "@/components/Billboard/Billboard";
+import RightSidebar from "@/components/SideBars/RightSideBar";
+import LeftSidebar from "@/components/SideBars/LeftSideBar";
 
 import getDesigners from "@/actions/get-designers";
 import getCategories from "@/actions/get-categories";
-import getBillboard from "@/actions/get-billboard";
 import getProducts from "@/actions/get-products";
 import getSellers from "@/actions/get-sellers";
 import getColors from "@/actions/get-colors";
 import getSizes from "@/actions/get-sizes";
-import getSingleCategory from "@/actions/get-single-category";
+import getConditions from "@/actions/get-conditions";
+import getMaterials from "@/actions/get-materials";
 import getSingleDesigner from "@/actions/get-single-designer";
-import LeftCategorySidebar from "@/components/Home/LeftCategorySidebarTest";
-import FilterButtons from "@/components/SideBars/filter-buttons";
-import MobileFilters from "@/components/ui/MobileFilters";
 
 export const revalidate = 0;
 
 interface DesignerNamePageProps {
-    params: {
-        designerId: string;
-    },
-    searchParams: {
-        sizeId: string;
-        colorId: string;
-        materialId: string;
-        categoryId: string;
-        designerId: string;
-        sellerId: string;
-        isFeatured: boolean;
-        isOnSale: boolean;
-    }
-
+  params: {
+    designerId: string;
+  };
+  searchParams: {
+    sizeId: string;
+    colorId: string;
+    conditionId: string;
+    materialId: string;
+    categoryId: string;
+    designerId: string;
+    sellerId: string;
+    sort: string;
+    isFeatured: boolean;
+    isOnSale: boolean;
+  };
 }
-
 
 const DesignerNamePage: React.FC<DesignerNamePageProps> = async ({
-    params,
-    searchParams
+  params,
+  searchParams,
 }) => {
-    const productData = await getProducts({
-        designerId: params.designerId,
-        categoryId: searchParams.categoryId,
-        sizeId: searchParams.sizeId,
-        colorId: searchParams.colorId,
-        materialId: searchParams.materialId,
-        isOnSale: searchParams.isOnSale,
-        isFeatured: searchParams.isFeatured,
-        sellerId: searchParams.sellerId
-    });
-    const sizes = await getSizes();
-    const colors = await getColors();
-    const designersData = await getSingleDesigner(params.designerId);
+  const productData = await getProducts({
+    designerId: params.designerId,
+    sort: searchParams.sort,
+    sizeId: searchParams.sizeId,
+    colorId: searchParams.colorId,
+    conditionId: searchParams.conditionId,
+    materialId: searchParams.materialId,
+    isOnSale: searchParams.isOnSale,
+    isFeatured: searchParams.isFeatured,
+    categoryId: searchParams.categoryId,
+    sellerId: searchParams.sellerId,
+  });
+  const designerData = await getSingleDesigner(params.designerId);
 
-    const categoryData = await getCategories();
-    const sellerData = await getSellers();
-    const designers = await getDesigners();
-    const billboardData = await getBillboard("a8d1234e-35d9-4dae-896a-762eb28045c3");
+  const sizes = await getSizes();
+  const colors = await getColors();
+  const conditions = await getConditions();
+  const designers = await getDesigners();
+  const sellers = await getSellers();
+  const categories = await getCategories();
+  const materials = await getMaterials();
 
+  return (
+    <>
+      <div className="grid grid-cols-8 gap-4 bg-white">
+        {/* First column */}
+        <div className="col-span-1 justify-start items-start w-1/6 p-6 hidden sticky z-50 h-full md:flex">
+          <LeftSidebar
+            designers={designers}
+            categories={categories}
+            sellers={sellers}
+            colors={colors}
+            sizes={sizes}
+            productData={productData}
+          />
+        </div>
 
-    return ( 
-        <>
+        {/* Second column */}
+        <div className="col-span-6 flex flex-col items-center w-full">
+          <Billboard data={designerData?.billboard} />
+          <ProductGrid>
+            {productData?.map((item) => (
+              <ProductCard key={item.id} item={item} />
+            ))}
+          </ProductGrid>
+        </div>
 
+        {/* Third column */}
+        <div className="col-span-1 justify-start items-start w-1/6 p-6 hidden sticky z-50 h-full md:flex">
+          <RightSidebar
+            colors={colors}
+            sizes={sizes}
+            conditions={conditions}
+            materials={materials}
+          />
+        </div>
+      </div>
+    </>
+  );
+};
 
-            <div className="flex flex-row w-full gap-4 bg-white">
-                
-                {/* First column */}
-                {/* <LeftCategorySidebar title="Categories" data={categoryData} /> */}
-               
-
-                {/* Second column */}
-                <HomeContainer>
-                    <Billboard data={designersData?.billboard} />
-                            {/* <MobileFilters 
-                                        sizes={sizes} 
-                                        colors={colors} 
-                                        designers={designers}
-                                        categories={categoryData}
-                                    /> */}
-                    <div className="hidden lg:flex text-start items-start justify-start"> 
-                    <div className="grid grid-cols-3 w-full">
-                            <FilterButtons 
-                                valueKey="sizeId"
-                                name = "Sizes"
-                                data={sizes} 
-                            />
-                            <FilterButtons 
-                                valueKey="colorId"
-                                name = "Colors"
-                                data={colors} 
-                            />
-                            <FilterButtons 
-                                valueKey="categoryId"
-                                name = "Categories"
-                                data={categoryData} 
-                            />
-                    </div>
-                    </div>
-                    <ProductGrid>
-                            {productData?.map((item) => (
-                                            <ProductCard key={item.id} item={item} />
-                            ))}
-                            {/* {designersData?.products?.map((item) => (
-                                <ProductCard key={item.id} item={item} />
-                             ))} */}
-                    </ProductGrid>
-                </HomeContainer>
-
-                {/* Third column */}
-
-                {/* <RightSidebar title="Sellers" data={sellerData}/> */}
-
-            </div>
-        </>
-     );
-}
- 
 export default DesignerNamePage;

@@ -14,7 +14,6 @@ import getSingleCategory from "@/actions/get-single-category";
 import getConditions from "@/actions/get-conditions";
 import getMaterials from "@/actions/get-materials";
 
-
 export const revalidate = 0;
 
 interface CategoryNamePageProps {
@@ -40,6 +39,7 @@ const CategoryNamePage: React.FC<CategoryNamePageProps> = async ({
   searchParams,
 }) => {
   const productData = await getProducts({
+    categoryId: params.categoryId,
     sort: searchParams.sort,
     sizeId: searchParams.sizeId,
     colorId: searchParams.colorId,
@@ -48,7 +48,6 @@ const CategoryNamePage: React.FC<CategoryNamePageProps> = async ({
     isOnSale: searchParams.isOnSale,
     isFeatured: searchParams.isFeatured,
     designerId: searchParams.designerId,
-    categoryId: params.categoryId,
     sellerId: searchParams.sellerId,
   });
   const categoryData = await getSingleCategory(params.categoryId);
@@ -88,11 +87,11 @@ const CategoryNamePage: React.FC<CategoryNamePageProps> = async ({
 
         {/* Third column */}
         <div className="col-span-1 justify-start items-start w-1/6 p-6 hidden sticky z-50 h-full md:flex">
-          <RightSidebar 
-          colors={colors} 
-          sizes={sizes} 
-          conditions={conditions} 
-          materials={materials} 
+          <RightSidebar
+            colors={colors}
+            sizes={sizes}
+            conditions={conditions}
+            materials={materials}
           />
         </div>
       </div>

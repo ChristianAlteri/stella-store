@@ -3,7 +3,6 @@
 import React from "react";
 
 import { Category, Color, Condition, Designer, Material, Product, Seller, Size } from "@/types";
-
 import FilterButtons from "./filter-buttons";
 
 interface RightSideProps {

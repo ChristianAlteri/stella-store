@@ -60,6 +60,8 @@ const FooterSort: React.FC<FooterSortProps> = ({
     router.push(url);
   };
 
+  console.log('footer-Sort', designers);
+
   if (isExpanded) {
     return (
       <>

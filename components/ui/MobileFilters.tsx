@@ -54,9 +54,7 @@ const MobileFilters: React.FC<MobileFiltersProps> = ({
 
   const onOpen = () => setOpen(true);
   const onClose = () => setOpen(false);
-
-  const toggleFilters = () => setFiltersOpen(prev => !prev);
-
+  const toggleFilters = () => setFiltersOpen((prev) => !prev);
 
   return (
     <>
@@ -65,17 +63,12 @@ const MobileFilters: React.FC<MobileFiltersProps> = ({
           onClick={onOpen}
           className="flex hover:underline hover:cursor-pointer hover:text-stone-900 transition z-40 text-xs items-center "
         >
-        {/* Filter button disguised as a search bar */}
-        {icon}
+          {/* Filter button disguised as a search bar */}
+          {icon}
         </Button>
       </div>
 
-      <Dialog
-        open={open}
-        as="div"
-        className="relative z-40 "
-        onClose={onClose}
-      >
+      <Dialog open={open} as="div" className="relative z-40 " onClose={onClose}>
         {/* Background color and opacity */}
         <div className="fixed inset-0 bg-black bg-opacity-45" />
 
@@ -92,79 +85,116 @@ const MobileFilters: React.FC<MobileFiltersProps> = ({
                 </div>
                 {/* Cart */}
                 <div className="">
-                    <ShoppingCartButton />
+                  <ShoppingCartButton />
                 </div>
               </div>
               {/* Quick links that redirect to pages */}
               <div className="flex gap-2 flex-row text-xs lg:w-1/2 md:w-1/2 justify-between items-center mb-4">
-                <Link href={`/top-likes`}><p className="hover:underline hover:cursor-pointer" onClick={onClose}>Top liked</p></Link>
-                <Link href={`/most-viewed`}><p className="hover:underline hover:cursor-pointer" onClick={onClose}>Most viewed</p></Link>
-                <Link href={`/`}><p className="hover:underline hover:cursor-pointer" onClick={onClose}>New arrivals</p></Link>
-                <Link href={`/sale`}><p className="hover:underline hover:cursor-pointer" onClick={onClose}>Sale</p></Link>
+                <Link href={`/top-likes`}>
+                  <p
+                    className="hover:underline hover:cursor-pointer"
+                    onClick={onClose}
+                  >
+                    Top liked
+                  </p>
+                </Link>
+                <Link href={`/most-viewed`}>
+                  <p
+                    className="hover:underline hover:cursor-pointer"
+                    onClick={onClose}
+                  >
+                    Most viewed
+                  </p>
+                </Link>
+                <Link href={`/`}>
+                  <p
+                    className="hover:underline hover:cursor-pointer"
+                    onClick={onClose}
+                  >
+                    New arrivals
+                  </p>
+                </Link>
+                <Link href={`/sale`}>
+                  <p
+                    className="hover:underline hover:cursor-pointer"
+                    onClick={onClose}
+                  >
+                    Sale
+                  </p>
+                </Link>
               </div>
               <div className="flex flex-col w-1/2 justify-center items-center">
                 {/* Search Bar */}
-                <SearchInput 
-                label="Search store..."  
-                sizes={sizes}
-                colors={colors}
-                designers={designers}
-                categories={categories}
-                sellers={sellers}
+                <SearchInput
+                  label="Search store..."
+                  sizes={sizes}
+                  colors={colors}
+                  designers={designers}
+                  categories={categories}
+                  sellers={sellers}
                 />
               </div>
             </div>
             <div className="flex flex-col gap-4 p-4">
-              <div onClick={toggleFilters} className="flex flex-row justify-center text-center text-xs hover:underline hover:cursor-pointer">
+              <div
+                onClick={toggleFilters}
+                className="flex flex-row justify-center text-center text-xs hover:underline hover:cursor-pointer"
+              >
                 Toggle filters:
               </div>
               {filtersOpen && (
-              <div className="grid grid-rows-7 gap-7">
-                <div className="flex flex-col gap-7 overflow-x-auto w-full ">
-                {designers && (
-                  <FilterButtons
-                    valueKey="designerId"
-                    name="Designer"
-                    data={designers}
-                  />
-                )}
-                {categories && (
-                  <FilterButtons
-                  valueKey="categoryId"
-                  name="Category"
-                  data={categories}
-                  />
-                  )}
-                {sellers && (
-                  <FilterButtons
-                  valueKey="sellerId"
-                  name="Seller"
-                  data={sellers}
-                  />
-                  )}
-                  {/*TODO: Add material and condition  */}
-                {sizes && (
-                  <FilterButtons 
-                  valueKey="sizeId" 
-                  name="Sizes" 
-                  data={sizes} 
-                  />
-                  )}
-                {colors && (
-                  <FilterButtons
-                  valueKey="colorId"
-                  name="Colors"
-                  data={colors}
-                  />
-                  )}
+                <div className="grid grid-rows-7 gap-7">
+                  <div className="flex flex-col gap-7 overflow-x-auto w-full ">
+                    {designers && (
+                      <FilterButtons
+                        valueKey="designerId"
+                        name="Designer"
+                        data={designers}
+                      />
+                    )}
+                    {categories && (
+                      <FilterButtons
+                        valueKey="categoryId"
+                        name="Category"
+                        data={categories}
+                      />
+                    )}
+                    {sellers && (
+                      <FilterButtons
+                        valueKey="sellerId"
+                        name="Seller"
+                        data={sellers}
+                      />
+                    )}
+                    {/*TODO: Add material and condition  */}
+                    {sizes && (
+                      <FilterButtons
+                        valueKey="sizeId"
+                        name="Sizes"
+                        data={sizes}
+                      />
+                    )}
+                    {colors && (
+                      <FilterButtons
+                        valueKey="colorId"
+                        name="Colors"
+                        data={colors}
+                      />
+                    )}
                   </div>
-                 
-                <div
-                onClick={onClose}
-                className="flex flex-row justify-center items-center text-center">
-                  <button className="border" style={{ width: '100px', height: '100px'}}>Show results</button>
-                </div> 
-              </div>
+
+                  <div
+                    onClick={onClose}
+                    className="flex flex-row justify-center items-center text-center"
+                  >
+                    <button
+                      className="border"
+                      style={{ width: "100px", height: "100px" }}
+                    >
+                      Show results
+                    </button>
+                  </div>
+                </div>
               )}
             </div>
           </Dialog.Panel>

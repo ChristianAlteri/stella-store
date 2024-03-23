@@ -14,6 +14,7 @@ import getBillboardByName from "@/actions/get-billboard-by-name";
 import LeftSidebar from "@/components/SideBars/LeftSideBar";
 import getColors from "@/actions/get-colors";
 import getSizes from "@/actions/get-sizes";
+import ClientAdvisor from "@/components/ui/ClientAdvisor";
 
 export const revalidate = 0;
 
@@ -26,6 +27,8 @@ const Homepage = async () => {
   const sizes = await getSizes();
   const billboard = await getBillboardByName("homePage");
 
+
+  
   return (
     <>
       {/* TODO: if logged in re route to 'for-you' page */}
@@ -42,6 +45,9 @@ const Homepage = async () => {
         {/* Second column */}
         <HomeContainer>
           {/* <Billboard data={billboardData} /> */}
+          <ClientAdvisor 
+            products={products}
+          />
           <ProductGrid>
             {products.map((item) => (
               <ProductCard key={item.id} item={item} />
