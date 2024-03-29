@@ -8,10 +8,12 @@ import {
   Color,
   Condition,
   Designer,
+  Gender,
   Material,
   Product,
   Seller,
   Size,
+  Subcategory,
 } from "@/types";
 import qs from "query-string";
 import { CiSquareRemove } from "react-icons/ci";
@@ -27,6 +29,8 @@ interface FooterSortProps {
   sizes?: Size[];
   conditions?: Condition[];
   materials?: Material[];
+  genders?: Gender[];
+  subcategories?: Subcategory[];
   valueKey: string;
 }
 
@@ -39,6 +43,8 @@ const FooterSort: React.FC<FooterSortProps> = ({
   sizes,
   conditions,
   materials,
+  genders,
+  subcategories,
   valueKey,
 }) => {
   const searchParams = useSearchParams();
@@ -106,6 +112,8 @@ const FooterSort: React.FC<FooterSortProps> = ({
             products={products}
             materials={materials}
             conditions={conditions}
+            genders={genders}
+            subcategories={subcategories}
             icon={"More..."}
           />
         </div>

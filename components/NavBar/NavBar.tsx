@@ -22,9 +22,11 @@ import BannerBillboard from "../Billboard/BannerBillboard";
 import getProducts from "@/actions/get-products";
 import getMaterials from "@/actions/get-materials";
 import getConditions from "@/actions/get-conditions";
-import Button from "../ui/button";
+
 import { CiMenuBurger } from "react-icons/ci";
 import ClientAdvisor from "../ui/ClientAdvisor";
+import getGenders from "@/actions/get-genders";
+import getSubcategories from "@/actions/get-sub-categories";
 
 const Navbar = async () => {
   const sellers = await getSellers();
@@ -34,6 +36,8 @@ const Navbar = async () => {
   const colors = await getColors();
   const materials = await getMaterials();
   const conditions = await getConditions();
+  const genders = await getGenders();
+  const subcategories = await getSubcategories();
   const products = await getProducts({ all: true });
   const advertismentBillboard = await getBillboardByName("OnSale");
 
@@ -47,7 +51,6 @@ const Navbar = async () => {
 
       {/* // Split into two Navbar row with 1/3 columns */}
       <div className="border-b bg-white w-full top-0 z-50">
-        {/* <div className="flex flex-col items-center w-full"> */}
           <Container>
           <FirstNavBarContainer>
             {/* Search Filters */}
@@ -64,6 +67,8 @@ const Navbar = async () => {
                   products={products}
                   materials={materials}
                   conditions={conditions}
+                  genders={genders}
+                  subcategories={subcategories}
                   icon={<Input className="bg-white z-40 w-full hover:cursor-pointer " placeholder='Search store...' />}
                 />
                 <ClientAdvisor 
@@ -73,16 +78,6 @@ const Navbar = async () => {
             {/* Logo */}
             <Link href="/" className="flex">
               <p className="font-bold text-xl">@ANONDROBE</p>
-              {/* <div className="flex">
-                        <Image
-                        alt="logo"
-                        height="30"
-                        width="230"
-                        // fill
-                        className=""
-                        src="/images/jpegspray.jpeg"
-                        />
-                    </div> */}
             </Link>
 
             {/* Cart */}
@@ -93,18 +88,9 @@ const Navbar = async () => {
           </FirstNavBarContainer>
 
           <SecondNavBarContainer>
-            {/* <div className="flex w-1/3"></div> */}
             {/* Nav dropdowns */}
             <div className="flex flex-col w-full justify-center items-center">
               <div className="flex flex-col items-center justify-center w-full ">
-                {/* <MobileFilters 
-                                sellers={sellers}
-                                designers={designers}
-                                categories={categories}
-                                sizes={sizes}
-                                colors={colors}
-                                products={products}
-                            /> */}
                 {/* Quick links that redirect to pages */}
                 <div className="flex items-center text-center w-2/3 text-xs md:text-sm text-stone-700 gap-2 justify-between">
                   <Link href={`/top-likes`}>
@@ -133,16 +119,10 @@ const Navbar = async () => {
                     </p>
                   </Link>
                 </div>
-                {/* <DesignerNav data={designers} />
-                        <CategoryNav data={categories} />
-                        <SellerNav data={sellers} /> */}
               </div>
             </div>
-            {/* Empty w-1/3 div */}
-            {/* <div className="flex w-1/3"></div> */}
           </SecondNavBarContainer>
           </Container>
-        {/* </div> */}
       </div>
     </>
   );

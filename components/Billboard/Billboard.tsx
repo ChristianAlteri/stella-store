@@ -26,16 +26,16 @@ const Billboard: React.FC<BillboardProps> = ({ data }) => {
   }
 
   return (
-    <div className="p-3 sm:p-4 lg:p-6 rounded-xl overflow-hidden ">
+    <div className="p-3 sm:p-4 lg:p-6 rounded-xl overflow-hidden justify-center items-center">
       {data?.imageUrl.match(/https:\/\/.*\/image.*/) && (
         <img
           style={{
-            width: "80vw",
+            width: "120vh",
             height: "60vh",
             backgroundSize: "cover",
             backgroundImage: `url(${data?.imageUrl})`,
           }}
-          className="rounded-xl relative aspect-square overflow-hidden bg-cover"
+          className="flex justify-center items-center rounded-xl relative aspect-square overflow-hidden bg-cover"
         ></img>
       )}
       {/* Cloudinary use /video in the url */}

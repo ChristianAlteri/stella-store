@@ -2,7 +2,7 @@
 
 
 import { cn } from "@/lib/utils";
-import { Category, Color, Condition, Designer, Material, Seller, Size } from "@/types";
+import { Category, Color, Condition, Designer, Gender, Material, Seller, Size, Subcategory } from "@/types";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import qs from "query-string";
@@ -10,7 +10,7 @@ import qs from "query-string";
 
 
 interface FilterListProps {
-  data: (Size | Color | Designer | Seller | Category | Condition | Material) | undefined;
+  data: (Size | Color | Designer | Seller | Category | Condition | Material | Subcategory | Gender) | undefined;
   name: string;
   valueKey: string;
   onClose?: () => void;
@@ -42,8 +42,8 @@ const FilterList: React.FC<FilterListProps> = ({ data, name, valueKey, onClose }
         <div key={data?.id} className="grid items-center">
           <div
             className={cn(
-              "flex-row justify-center items-center text-center text-sm p-2 bg-white border rounded-md hover:cursor-pointer hover:underline",
-              isSelected ? "bg-emerald-400 text-white" : "text-stone-500"
+              "flex-row justify-center items-center text-center text-sm p-2 bg-white hover:cursor-pointer hover:underline",
+              isSelected ? " rounded-md underline" : "text-stone-500"
             )}
             onClick={() => onClick(data?.id)}
           >

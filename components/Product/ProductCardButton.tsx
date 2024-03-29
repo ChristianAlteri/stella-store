@@ -22,8 +22,6 @@ onClick,
           onClick={onClick} 
           className=
             "flex items-center bg-transparent"
-
-          
         >
           {icon}
         </button>

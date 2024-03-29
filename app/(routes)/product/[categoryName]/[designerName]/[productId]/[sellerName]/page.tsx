@@ -1,6 +1,6 @@
 import getSingleProduct from "@/actions/get-single-product";
 import getProducts from "@/actions/get-products";
-import ProductCard from "@/components/ui/product-card";
+import ProductCard from "@/components/Product/product-card";
 import SuggestedContainer from "@/components/ui/SuggestedContainer";
 import Gallery from "@/components/Gallery";
 import DetailsCard from "@/components/ui/DetailsCard";

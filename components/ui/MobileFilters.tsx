@@ -11,10 +11,12 @@ import {
   Color,
   Condition,
   Designer,
+  Gender,
   Material,
   Product,
   Seller,
   Size,
+  Subcategory,
 } from "@/types";
 
 import FilterButtons from "@/components/SideBars/filter-buttons";
@@ -35,6 +37,8 @@ interface MobileFiltersProps {
   sizes?: Size[];
   conditions?: Condition[];
   materials?: Material[];
+  genders?: Gender[];
+  subcategories?: Subcategory[]; 
   icon?: React.ReactNode;
 }
 
@@ -47,6 +51,8 @@ const MobileFilters: React.FC<MobileFiltersProps> = ({
   sizes,
   conditions,
   materials,
+  genders,
+  subcategories,
   icon,
 }) => {
   const [open, setOpen] = useState(false);
@@ -166,7 +172,13 @@ const MobileFilters: React.FC<MobileFiltersProps> = ({
                         data={sellers}
                       />
                     )}
-                    {/*TODO: Add material and condition  */}
+                    {subcategories && (
+                      <FilterButtons
+                        valueKey="subcategoryId"
+                        name="Subcategories"
+                        data={subcategories}
+                      />
+                    )}
                     {sizes && (
                       <FilterButtons
                         valueKey="sizeId"
@@ -174,11 +186,32 @@ const MobileFilters: React.FC<MobileFiltersProps> = ({
                         data={sizes}
                       />
                     )}
+                    {materials && (
+                      <FilterButtons
+                        valueKey="materialId"
+                        name="Materials"
+                        data={materials}
+                      />
+                    )}
+                    {conditions && (
+                      <FilterButtons
+                        valueKey="conditionId"
+                        name="Conditions"
+                        data={conditions}
+                      />
+                    )}
                     {colors && (
                       <FilterButtons
-                        valueKey="colorId"
-                        name="Colors"
-                        data={colors}
+                      valueKey="colorId"
+                      name="Colors"
+                      data={colors}
+                      />
+                      )}
+                    {genders && (
+                      <FilterButtons
+                        valueKey="genderId"
+                        name="Genders"
+                        data={genders}
                       />
                     )}
                   </div>

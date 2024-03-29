@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Category, Color, Condition, Designer, Material, Seller, Size } from "@/types";
+import { Category, Color, Condition, Designer, Gender, Material, Seller, Size, Subcategory } from "@/types";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import qs from "query-string";
@@ -10,7 +10,7 @@ import { IoCloseOutline } from "react-icons/io5";
 import { CiSquarePlus } from "react-icons/ci";
 
 interface FilterButtonsProps {
-  data: (Size | Color | Designer | Seller | Category | Condition | Material)[] | undefined;
+  data: (Size | Color | Designer | Seller | Category | Condition | Material | Subcategory | Gender)[] | undefined;
   name: string;
   valueKey: string;
 }

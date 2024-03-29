@@ -2,7 +2,7 @@
 
 import React from "react";
 
-import { Category, Color, Condition, Designer, Material, Product, Seller, Size } from "@/types";
+import { Category, Color, Condition, Designer, Material, Product, Seller, Size, Subcategory } from "@/types";
 import FilterButtons from "./filter-buttons";
 
 interface RightSideProps {
@@ -10,6 +10,7 @@ interface RightSideProps {
   colors?: Color[];
   conditions?: Condition[];
   materials?: Material[];
+  subcategories?: Subcategory[];
   productData?: Product[];
   designers?: Designer[];
   categories?: Category[];
@@ -25,6 +26,7 @@ const RightSidebar: React.FC<RightSideProps> = ({
   colors,
   conditions,
   materials,
+  subcategories,
 }) => {
 
   return (
@@ -35,6 +37,7 @@ const RightSidebar: React.FC<RightSideProps> = ({
         <FilterButtons valueKey="colorId" name="Colors" data={colors} />
         <FilterButtons valueKey="conditionId" name="Conditions" data={conditions} />
         <FilterButtons valueKey="materialId" name="Materials" data={materials} />
+        <FilterButtons valueKey="subcategoryId" name="Sub-Category" data={subcategories} />
       </div>
     </aside>
   );

@@ -2,7 +2,7 @@
 import ProductGrid from "@/components/Home/ProductGrid";
 // import RightSidebar from "@/components/Home/RightSidebar";
 import HomeContainer from "@/components/ui/HomeContainer";
-import ProductCard from "@/components/ui/product-card";
+import ProductCard from "@/components/Product/product-card";
 import Billboard from "@/components/Billboard/Billboard";
 
 import getDesigners from "@/actions/get-designers";

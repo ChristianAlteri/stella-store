@@ -9,6 +9,8 @@ import getSizes from "@/actions/get-sizes";
 import getConditions from "@/actions/get-conditions";
 import getMaterials from "@/actions/get-materials";
 import { Product } from "@/types";
+import getGenders from "@/actions/get-genders";
+import getSubcategories from "@/actions/get-sub-categories";
 
 interface FooterProps {
   searchParams: {
@@ -16,6 +18,8 @@ interface FooterProps {
     colorId: string;
     conditionId: string;
     materialId: string;
+    subcategoryId: string;
+    genderId: string;
     categoryId: string;
     designerId: string;
     sellerId: string;
@@ -36,6 +40,8 @@ const Footer: React.FC<FooterProps> = async ({ searchParams }) => {
     isFeatured: searchParams.isFeatured,
     designerId: searchParams.designerId,
     sellerId: searchParams.sellerId,
+    subcategoryId: searchParams.subcategoryId,
+    genderId: searchParams.genderId,
   });
 
   const sizes = await getSizes();
@@ -45,6 +51,8 @@ const Footer: React.FC<FooterProps> = async ({ searchParams }) => {
   const sellers = await getSellers();
   const categories = await getCategories();
   const materials = await getMaterials();
+  const genders = await getGenders();
+  const subcategories = await getSubcategories();
 
   return (
     <>
@@ -59,6 +67,8 @@ const Footer: React.FC<FooterProps> = async ({ searchParams }) => {
           sellers={sellers}
           categories={categories}
           materials={materials}
+          subcategories={subcategories}
+          genders={genders}
         />
       </footer>
       {/* This footer will only render on screens larger than an iPad (larger than 768px) */}

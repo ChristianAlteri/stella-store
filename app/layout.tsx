@@ -37,6 +37,8 @@ export default function RootLayout({
           categoryId: "",
           designerId: "",
           sellerId: "",
+          subcategoryId: "",
+          genderId: "",
           sort: "",
           isFeatured: false,
           isOnSale: false

@@ -1,5 +1,5 @@
 import React from 'react';
-import ProductCard from '@/components/ui/product-card'; 
+import ProductCard from '@/components/Product/product-card'; 
 import { Product } from '@/types';
 import Link from 'next/link';
 

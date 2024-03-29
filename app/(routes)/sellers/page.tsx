@@ -3,7 +3,7 @@ import HomeContainer from "@/components/ui/HomeContainer";
 // import RightCategorySidebar from "../../../components/Home/RightCategorySidebar";
 import ProductGrid from "../../../components/Home/ProductGrid";
 import Billboard from "@/components/Billboard/Billboard";
-import ProductCard from "@/components/ui/product-card";
+import ProductCard from "@/components/Product/product-card";
 import ProductList from "@/components/Home/product-list";
 
 import getDesigners from "@/actions/get-designers";

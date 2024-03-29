@@ -1,5 +1,5 @@
 import ProductGrid from "@/components/Home/ProductGrid";
-import ProductCard from "@/components/ui/product-card";
+import ProductCard from "@/components/Product/product-card";
 import Billboard from "@/components/Billboard/Billboard";
 import RightSidebar from "@/components/SideBars/RightSideBar";
 import LeftSidebar from "@/components/SideBars/LeftSideBar";

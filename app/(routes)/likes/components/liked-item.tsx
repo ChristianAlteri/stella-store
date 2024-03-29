@@ -11,7 +11,7 @@ import useLike from "@/hooks/use-like";
 import { useRouter } from "next/navigation";
 import { MouseEventHandler } from "react";
 import { CiCircleRemove, CiShare2, CiShoppingCart } from "react-icons/ci";
-import ProductCardButton from "@/components/ui/ProductCardButton";
+import ProductCardButton from "@/components/Product/ProductCardButton";
 import Link from "next/link";
 
 interface LikedItemProps {

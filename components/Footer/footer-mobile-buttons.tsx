@@ -5,10 +5,12 @@ import {
   Color,
   Condition,
   Designer,
+  Gender,
   Material,
   Product,
   Seller,
   Size,
+  Subcategory,
 } from "@/types";
 import { useState } from "react";
 import { CiSliderHorizontal } from "react-icons/ci";
@@ -24,6 +26,8 @@ interface FooterMobileButtonsProps {
   sizes?: Size[];
   conditions?: Condition[];
   materials?: Material[];
+  genders?: Gender[];
+  subcategories?: Subcategory[];
 }
 
 const FooterMobileButtons: React.FC<FooterMobileButtonsProps> = ({
@@ -35,6 +39,8 @@ const FooterMobileButtons: React.FC<FooterMobileButtonsProps> = ({
   sizes,
   conditions,
   materials,
+  genders,
+  subcategories,
 }) => {
   const [isActive, setIsActive] = useState(false);
 
@@ -57,6 +63,8 @@ const FooterMobileButtons: React.FC<FooterMobileButtonsProps> = ({
           sellers={sellers}
           categories={categories}
           materials={materials}
+          genders={genders}
+          subcategories={subcategories}
         />
       </>
     );

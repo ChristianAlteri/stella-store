@@ -84,3 +84,13 @@ export interface Material {
   name: string;
   value: string;
 }
+export interface Gender {
+  id: string;
+  name: string;
+  value: string;
+}
+export interface Subcategory {
+  id: string;
+  name: string;
+  value: string;
+}

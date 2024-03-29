@@ -2,7 +2,7 @@ import HomeContainer from "@/components/ui/HomeContainer";
 import LeftCategorySidebar from "../../../components/Home/LeftCategorySidebarTest";
 import ProductGrid from "../../../components/Home/ProductGrid";
 import Billboard from "@/components/Billboard/Billboard";
-import ProductCard from "@/components/ui/product-card";
+import ProductCard from "@/components/Product/product-card";
 import ProductList from "@/components/Home/product-list";
 
 import getDesigners from "@/actions/get-designers";

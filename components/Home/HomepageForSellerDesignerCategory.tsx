@@ -2,17 +2,17 @@
 
 import { useState } from "react";
 import CategoryCard from "../ui/category-card";
-import { Category } from "@/types";
+import { Category, Designer, Seller } from "@/types";
 import { CiSearch } from "react-icons/ci";
 
 interface HomepageForSellerDesignerCategoryProps {
-  categoryData: Category[];
+  data: Category[] | Seller[] | Designer[];
 }
 
 const HomepageForSellerDesignerCategory: React.FC<
   HomepageForSellerDesignerCategoryProps
-> = ({ categoryData }) => {
-  const [filteredData, setFilteredData] = useState(categoryData);
+> = ({ data }) => {
+  const [filteredData, setFilteredData] = useState(data);
   const [search, setSearch] = useState("");
 
   const handleSearch = (e: any) => {
@@ -20,11 +20,11 @@ const HomepageForSellerDesignerCategory: React.FC<
     setSearch(value);
 
     if (value.trim() === "") {
-      // If search is empty, reset to the original categoryData
-      setFilteredData(categoryData);
+      // If search is empty, reset to the original data
+      setFilteredData(data);
     } else {
       // Otherwise, filter categories based on the search term
-      const localFiltered = categoryData.filter((category) =>
+      const localFiltered = data.filter((category) =>
         category.name.toLowerCase().includes(value.toLowerCase())
       );
       setFilteredData(localFiltered);
@@ -90,7 +90,7 @@ const HomepageForSellerDesignerCategory: React.FC<
     <>
       <div className="flex flex-col items-center justify-center text-center gap-4 w-full p-1">
         <div className="grid row-span-4">
-          <div className="flex justify-center items-center text-center flex-col row-span-1 gap-2">
+          <div className="flex justify-center items-center text-center flex-col row-span-1 gap-2 p-5">
             <div className="flex flex-row gap-1 justify-center items-center">
             <CiSearch />
             <input

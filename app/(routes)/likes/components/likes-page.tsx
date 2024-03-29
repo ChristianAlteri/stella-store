@@ -9,7 +9,7 @@ import Summary from './summary'
 import LikeItem from './liked-item';
 import useLike from '@/hooks/use-like';
 import { Product } from '@/types';
-import ProductCard from '@/components/ui/product-card';
+import ProductCard from '@/components/Product/product-card';
 
 export const revalidate = 0;
 
