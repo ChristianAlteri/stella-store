@@ -100,7 +100,7 @@ const HomepageForSellerDesignerCategory: React.FC<
               onChange={handleSearch}
             />
             </div>
-            <div className="flex flex-row text-xs justify-center items-center text-center gap-3">
+            <div className="flex flex-row text-xs justify-center items-center text-center gap-3 mt-4">
                 <h1>Sort by: </h1>
                 <div className="flex flex-row justify-center hover:underline hover:cursor-pointer" onClick={sortMostPopular}>Most Popular</div>
                 <div className="flex flex-row justify-center hover:underline hover:cursor-pointer" onClick={sortAverageLowestPrice}>Lowest Prices</div>

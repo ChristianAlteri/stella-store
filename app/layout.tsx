@@ -41,7 +41,8 @@ export default function RootLayout({
           genderId: "",
           sort: "",
           isFeatured: false,
-          isOnSale: false
+          isOnSale: false,
+          isCharity: false,
         }} 
         /> 
       </body>

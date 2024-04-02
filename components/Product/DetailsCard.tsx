@@ -58,7 +58,6 @@ const DetailsCard: React.FC<DetailsCardProps> = ({ data }) => {
         <h1 className="text-xs underline">Specs </h1>
         <div className="p-1">
           <h1 className="text-xs">Material: {data?.material?.name}</h1>
-          <h1 className="text-xs">Measurements: ??</h1>
           <div className="flex flex-row gap-2">
             <h1 className="text-xs">Colour: </h1>
             <div

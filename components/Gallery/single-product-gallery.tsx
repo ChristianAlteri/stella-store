@@ -18,7 +18,7 @@ const Gallery: React.FC<GalleryProps> = ({
 }) => {
 
   return ( 
-    <Tab.Group as="div" className="flex flex-col-reverse">
+    <Tab.Group as="div" className="flex flex-col-reverse ">
       <div className="mt-6 w-full">
         <Tab.List className="grid grid-cols-4 gap-2" >
           {images.map((image) => (
@@ -26,7 +26,7 @@ const Gallery: React.FC<GalleryProps> = ({
           ))}
         </Tab.List>
       </div>
-      <Tab.Panels className=" w-full">
+      <Tab.Panels className=" w-full ">
         {images.map((image) => (
           <Tab.Panel className="hover:cursor-pointer" key={image.id} onClick={() => window.open(`${image.url}`, '_blank')}>
             <div className="h-full w-full">

@@ -18,6 +18,8 @@ interface Query {
   materialId?: string;
   isFeatured?: boolean;
   isOnSale?: boolean;
+  isHidden?: boolean;
+  isCharity?: boolean;
   all?: boolean;
 }
 
@@ -35,6 +37,8 @@ const getProducts = async (query: Query): Promise<Product[]> => {
         subcategoryId: query.subcategoryId,
         isFeatured: query.isFeatured,
         isOnSale: query.isOnSale,
+        isCharity: query.isCharity,
+        isHidden: query.isHidden,
         designerId: query.designerId,
         sellerId: query.sellerId,
         all: query.all,

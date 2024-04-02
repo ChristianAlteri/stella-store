@@ -16,6 +16,7 @@ import getConditions from "@/actions/get-conditions";
 import getMaterials from "@/actions/get-materials";
 import getGenders from "@/actions/get-genders";
 import getSubcategories from "@/actions/get-sub-categories";
+import SaleCharityFilter from "@/components/Home/sale-charity-filter";
 
 export const revalidate = 0;
 
@@ -36,6 +37,7 @@ interface CategoryNamePageProps {
     sort: string;
     isFeatured: boolean;
     isOnSale: boolean;
+    isCharity: boolean;
   };
 }
 
@@ -53,6 +55,7 @@ const CategoryNamePage: React.FC<CategoryNamePageProps> = async ({
     genderId: searchParams.genderId,
     subcategoryId: searchParams.subcategoryId,
     isOnSale: searchParams.isOnSale,
+    isCharity: searchParams.isCharity,
     isFeatured: searchParams.isFeatured,
     designerId: searchParams.designerId,
     sellerId: searchParams.sellerId,
@@ -90,6 +93,7 @@ const CategoryNamePage: React.FC<CategoryNamePageProps> = async ({
           <div className="flex flex-col justify-center items-center p-2 shadow-lg rounded-md">
             <h1>{categoryData?.name}</h1>
             <GenderFilter valueKey="genderId" name="Genders" data={genders} />
+            <SaleCharityFilter/>
           </div>
 
           <ProductGrid>

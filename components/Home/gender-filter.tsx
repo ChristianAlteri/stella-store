@@ -11,8 +11,6 @@ import {
   Size,
 } from "@/types";
 import FilterList from "../SideBars/filter-list";
-import { IoCloseOutline } from "react-icons/io5";
-import { CiSquarePlus } from "react-icons/ci";
 
 interface GenderFilterProps {
   data:

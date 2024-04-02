@@ -3,12 +3,8 @@
 import { Product } from "@/types";
 import Image from "next/image";
 
-
 import ProductCardButton from "./ProductCardButton";
-import {
-  CiHeart,
-  CiShoppingCart,
-} from "react-icons/ci";
+import { CiHeart, CiShoppingCart } from "react-icons/ci";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { MouseEventHandler, useEffect, useState } from "react";
@@ -17,6 +13,7 @@ import useLike from "@/hooks/use-like";
 import axios from "axios";
 import ReactPlayer from "react-player";
 import ShareButton from "./share-button";
+
 
 interface ProductListProps {
   item: Product;
@@ -116,17 +113,21 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
               />
             </div>
           </div>
-          {/* <div className="text-xs text-stone-300 hover:text-stone-700 md:block hidden hover:cursor-pointer">
-              {item?.likes} likes
-            </div>
-            <div className="text-xs text-stone-300 hover:text-stone-700 md:block hidden hover:cursor-pointer">
-              {item?.clicks} people interested
-            </div> */}
         </div>
+        {/* Number of likes and people interested */}
+        {/* <div className="gap-1 flex-row flex w-full p-1 mb-2 justify-center md:justify-between">
+          <div className="text-xs text-stone-300 hover:text-stone-700 md:flex hidden hover:cursor-pointer  w-full justify-center">
+              {item?.likes}
+            </div>
+            <div className="text-xs text-stone-300 hover:text-stone-700 md:flex hidden hover:cursor-pointer  w-full justify-center">
+              {item?.clicks} 
+            </div>
+        </div> */}
 
         <div className="relative h-full w-full rounded-md flex justify-center items-center z-20">
           {/* Base Image - always visible */}
           <div className="inset-0 w-full h-full flex justify-center items-center hover:cursor-pointer">
+            {/* If item is marked hidden we blur it. Used for unreleased products */}
             <Image
               onClick={handleProductClick}
               height={300}
@@ -135,7 +136,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
               src={imageFiles[0].url}
               alt={item.name}
               priority
-              className="rounded-md transition-opacity duration-200 ease-in-out"
+              className={`rounded-md transition-opacity duration-200 ease-in-out ${item.isCharity ? 'blur-xl' : ''}`} //TODO: chnage to isHidden
             />
           </div>
           {/* Hover Image - only visible on hover */}
@@ -147,7 +148,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
                 width={150}
                 src={imageFiles[1].url}
                 alt={item.name}
-                className="rounded-md"
+                className={`rounded-md ${item.isCharity ? 'blur-xl' : ''}`}
               />
             </div>
           )}
@@ -156,7 +157,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
             image.url.match(/https:\/\/.*\/video.*/) ? (
               <div
                 key={image.id}
-                className="z-0 absolute inset-0 flex justify-center  hover:opacity-100 hover:cursor-pointer opacity-0 transition-opacity duration-200 ease-in-out overflow-hidden"
+                className={`z-0 absolute inset-0 flex justify-center  hover:opacity-100 hover:cursor-pointer opacity-0 transition-opacity duration-200 ease-in-out overflow-hidden ${item.isCharity ? 'blur-xl' : ''}`}
               >
                 <ReactPlayer
                   url={image.url}

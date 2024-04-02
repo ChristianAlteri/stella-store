@@ -3,8 +3,8 @@
 import { Product } from "@/types";
 import React, { MouseEventHandler } from "react";
 import { CiHeart, CiShare2 } from "react-icons/ci";
-import ProductCardButton from "../Product/ProductCardButton";
-import ShareButton from "../Product/share-button";
+import ProductCardButton from "./ProductCardButton";
+import ShareButton from "./share-button";
 import axios from "axios";
 import useLike from "@/hooks/use-like";
 
