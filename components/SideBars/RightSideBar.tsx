@@ -69,10 +69,13 @@ const RightSidebar: React.FC<RightSideProps> = ({
         <div className="ml-1 row-span-1 h-full overflow-y-auto bg-white ">
             <FilterButtons valueKey="subcategoryId" name="Sub-Category" data={subcategories}/>
         </div>
-        { randomisedProductData?.length > 0 ? 
-          <MiniProductCard data={randomisedProductData} 
-          /> : null 
-        }
+        {/* <div className="ml-1 row-span-1 h-full relative bg-white"> */}
+        <div className="flex flex-col  bg-white">
+          { randomisedProductData?.length > 0 ? 
+            <MiniProductCard data={randomisedProductData} 
+            /> : null 
+          }
+        </div>
       </div>
     </aside>
   );
