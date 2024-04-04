@@ -50,7 +50,7 @@ const Navbar = async () => {
       />
 
       {/* // Split into two Navbar row with 1/3 columns */}
-      <div className="border-b bg-white w-full top-0 z-50">
+      <div className="border-b sticky bg-white w-full top-0 z-50">
           <Container>
           <FirstNavBarContainer>
             {/* Search Filters */}

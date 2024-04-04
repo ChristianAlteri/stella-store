@@ -1,10 +1,12 @@
-import getSingleProduct from "@/actions/get-single-product";
-import getProducts from "@/actions/get-products";
-import ProductCard from "@/components/Product/product-card";
 import SuggestedContainer from "@/components/ui/SuggestedContainer";
 import Gallery from "@/components/Gallery/single-product-gallery";
 import DetailsCard from "@/components/Product/DetailsCard";
 import BuyNowCard from "@/components/Product/BuyNowCard";
+
+import getSingleProduct from "@/actions/get-single-product";
+import getProducts from "@/actions/get-products";
+
+import { sortByMostLiked, sortByMostViewed, sortPriceLowToHigh } from "@/utils/sortdata";
 
 interface IndividualProductPageProps {
   params: {
@@ -20,19 +22,27 @@ const IndividualProductPage: React.FC<IndividualProductPageProps> = async ({
 }) => {
   const product = await getSingleProduct(params.productId);
 
-  let designerName = product?.designer?.name;
-  let sellerInstagram = product?.seller?.instagramHandle;
-
+  const suggestedProductsBasedOnSeller = await getProducts({
+    sellerId: product?.seller?.id,
+  });
   const suggestedProductsBasedOnCategory = await getProducts({
     categoryId: product?.category?.id,
   });
   const suggestedProductsBasedOnDesigner = await getProducts({
     designerId: product?.designer?.id,
   });
-  const suggestedProductsBasedOnSeller = await getProducts({
-    sellerId: product?.seller?.id,
-  });
-  // console.log("Seller products", suggestedProductsBasedOnSeller);
+
+  //sorted data
+  const sortedProductsBasedOnSeller = sortPriceLowToHigh(
+    suggestedProductsBasedOnSeller
+  );
+  const sortedProductsBasedOnCategory = sortByMostViewed(
+    suggestedProductsBasedOnCategory
+  );
+  const sortedProductsBasedOnDesigner = sortByMostLiked(
+    suggestedProductsBasedOnDesigner
+  );
+
   return (
     <>
       <div className="flex flex-row w-full gap-3 bg-white">
@@ -43,7 +53,11 @@ const IndividualProductPage: React.FC<IndividualProductPageProps> = async ({
 
         {/* Second column */}
         <div className="w-full gird grid-cols-1 overflow-auto">
-          <div className={`flex flex-col w-full h-full items-center text-center justify-center ${product.isCharity ? 'blur-xl' : ''}`}>
+          <div
+            className={`flex flex-col w-full h-full items-center text-center justify-center ${
+              product.isCharity ? "blur-xl" : ""
+            }`}
+          >
             <Gallery images={product.images} />
           </div>
         </div>
@@ -56,30 +70,32 @@ const IndividualProductPage: React.FC<IndividualProductPageProps> = async ({
       </div>
 
       {/* Suggestions */}
-      <div className="flex justify-center p-3 gap-4">
-        <SuggestedContainer
-          route="recommended"
-          title="Styled with"
-          data={suggestedProductsBasedOnDesigner}
-        />
+      <div className="flex justify-center p-2 gap-4">
+        {sortedProductsBasedOnSeller.length > 0 && (
+          <SuggestedContainer
+            route={`sellers/${product?.seller?.id}`}
+            header="MORE FROM"
+            title={product?.seller?.instagramHandle}
+            data={sortedProductsBasedOnSeller}
+          />
+        )}
       </div>
-      {/* Change this first search to proper recommended algorithm */}
-      <SuggestedContainer
-        route="recommended"
-        title="BASED ON YOUR RECENT ACTIVITY"
-        data={suggestedProductsBasedOnCategory}
-      />
-      <SuggestedContainer
-        route="designers"
-        title={designerName}
-        data={suggestedProductsBasedOnDesigner}
-      />
-      <SuggestedContainer
-        route="sellers"
-        header="MORE FROM"
-        title={sellerInstagram}
-        data={suggestedProductsBasedOnSeller}
-      />
+      {sortedProductsBasedOnCategory.length > 0 && ( //most clicked
+        <SuggestedContainer
+          route={`categories/${product?.category?.id}`}
+          header="POPULAR IN"
+          title={product?.category?.name} 
+          data={sortedProductsBasedOnCategory}
+        />
+      )}
+      {sortedProductsBasedOnDesigner.length > 0 && ( // most liked
+        <SuggestedContainer
+          route={`designers/${product?.seller?.id}`}
+          header="SHOP"
+          title={product?.designer?.name}
+          data={sortedProductsBasedOnDesigner}
+        />
+      )}
     </>
   );
 };

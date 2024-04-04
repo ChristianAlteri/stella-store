@@ -28,6 +28,10 @@ const getProducts = async (query: Query): Promise<Product[]> => {
     const url = qs.stringifyUrl({
       url: URL,
       query: { 
+        all: query.all,
+        sellerId: query.sellerId,
+        designerId: query.designerId,
+        categoryId: query.categoryId,
         colorId: query.colorId,
         sizeId: query.sizeId,
         conditionId: query.conditionId,
@@ -39,9 +43,6 @@ const getProducts = async (query: Query): Promise<Product[]> => {
         isOnSale: query.isOnSale,
         isCharity: query.isCharity,
         isHidden: query.isHidden,
-        designerId: query.designerId,
-        sellerId: query.sellerId,
-        all: query.all,
         sort: query.sort,
       },
     });

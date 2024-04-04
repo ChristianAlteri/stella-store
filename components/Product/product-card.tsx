@@ -14,7 +14,6 @@ import axios from "axios";
 import ReactPlayer from "react-player";
 import ShareButton from "./share-button";
 
-
 interface ProductListProps {
   item: Product;
 }
@@ -83,7 +82,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
   return (
     <>
       <div
-        className="bg-white rounded-md mt-4 mb-4 p-2 col-span-1 w-full"
+        className="bg-white rounded-md mt-4 mb-4 p-2 col-span-1 w-full "
         onClick={() => onClickButton(item)}
       >
         <div className="gap-1 flex-row flex w-full p-1 mb-2 justify-center md:justify-between">
@@ -124,7 +123,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
             </div>
         </div> */}
 
-        <div className="relative h-full w-full rounded-md flex justify-center items-center z-20">
+        <div className="relative h-full w-full rounded-md flex justify-center items-center z-50">
           {/* Base Image - always visible */}
           <div className="inset-0 w-full h-full flex justify-center items-center hover:cursor-pointer">
             {/* If item is marked hidden we blur it. Used for unreleased products */}
@@ -136,7 +135,9 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
               src={imageFiles[0].url}
               alt={item.name}
               priority
-              className={`rounded-md transition-opacity duration-200 ease-in-out ${item.isCharity ? 'blur-xl' : ''}`} //TODO: chnage to isHidden
+              className={`rounded-md transition-opacity duration-200 ease-in-out ${
+                item.isCharity ? "blur-xl" : ""
+              }`} //TODO: chnage to isHidden
             />
           </div>
           {/* Hover Image - only visible on hover */}
@@ -148,7 +149,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
                 width={150}
                 src={imageFiles[1].url}
                 alt={item.name}
-                className={`rounded-md ${item.isCharity ? 'blur-xl' : ''}`}
+                className={`rounded-md ${item.isCharity ? "blur-xl" : ""}`}
               />
             </div>
           )}
@@ -157,7 +158,9 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
             image.url.match(/https:\/\/.*\/video.*/) ? (
               <div
                 key={image.id}
-                className={`z-0 absolute inset-0 flex justify-center  hover:opacity-100 hover:cursor-pointer opacity-0 transition-opacity duration-200 ease-in-out overflow-hidden ${item.isCharity ? 'blur-xl' : ''}`}
+                className={`z-50 absolute inset-0 flex justify-center  hover:opacity-100 hover:cursor-pointer opacity-0 transition-opacity duration-200 ease-in-out overflow-hidden ${
+                  item.isCharity ? "blur-xl" : ""
+                }`}
               >
                 <ReactPlayer
                   url={image.url}
@@ -170,9 +173,9 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
             ) : null
           )}
         </div>
-
-        <div className="flex flex-col m-5">
-          <div className="flex gap- justify-between text-left mt-3">
+        {/* large screens */}
+        <div className="lg:flex flex-col hidden m-5">
+          <div className="flex justify-between text-left mt-3">
             <Link
               href={`/designers/${item?.designer?.id}`}
               className="text-xs hover:underline text-black hover:text-stone-700"
@@ -195,7 +198,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
               <h6 onClick={handleProductClick} className="text-xs text-red-500">
                 £{item.ourPrice}
               </h6>
-              <h6 className="text-xs text-stone-500">from</h6>
+              <h6 className="text-xs text-stone-400">RRP</h6>
               <h6
                 onClick={handleProductClick}
                 className="text-xs text-stone-800 line-through"
@@ -203,6 +206,36 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
                 £{item.retailPrice}
               </h6>
             </div>
+          </div>
+        </div>
+        {/* mobile screens */}
+        <div className="flex flex-col justify-center items-center lg:hidden m-5">
+          <Link
+            href={`/designers/${item?.designer?.id}`}
+            className="text-xs hover:underline underline text-black hover:text-stone-700"
+          >
+            {item.designer?.name.toUpperCase()}
+          </Link>
+          <h3
+            onClick={handleProductClick}
+            className="text-xs hover:underline text-black hover:text-stone-700 hover:cursor-pointer"
+          >
+            {item.name}
+          </h3>
+          <div className="text-xs text-stone-300 hover:text-stone-700 ">
+            {item?.size?.name}
+          </div>
+          <div className="flex flex-row gap-1">
+            <h6 onClick={handleProductClick} className="text-xs text-red-500">
+              £{item.ourPrice}
+            </h6>
+            <h6 className="text-xs text-stone-400">RRP</h6>
+            <h6
+              onClick={handleProductClick}
+              className="text-xs text-stone-800 line-through"
+            >
+              £{item.retailPrice}
+            </h6>
           </div>
         </div>
       </div>

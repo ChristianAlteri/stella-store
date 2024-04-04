@@ -30,13 +30,13 @@ export default function RootLayout({
         {children}
         <Footer 
         searchParams={{
+          categoryId: "",
+          designerId: "",
+          sellerId: "",
           sizeId: "",
           colorId: "",
           conditionId: "",
           materialId: "",
-          categoryId: "",
-          designerId: "",
-          sellerId: "",
           subcategoryId: "",
           genderId: "",
           sort: "",

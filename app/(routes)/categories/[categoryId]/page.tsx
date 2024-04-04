@@ -61,6 +61,7 @@ const CategoryNamePage: React.FC<CategoryNamePageProps> = async ({
     sellerId: searchParams.sellerId,
   });
   const categoryData = await getSingleCategory(params.categoryId);
+  const featuredProducts = await getProducts({ isFeatured: true });
 
   const sizes = await getSizes();
   const colors = await getColors();
@@ -74,9 +75,9 @@ const CategoryNamePage: React.FC<CategoryNamePageProps> = async ({
 
   return (
     <>
-      <div className="grid grid-cols-8 gap-4 bg-white">
+      <div className="justify-center items-center md:grid flex grid-cols-8 gap-4 bg-white">
         {/* First column */}
-        <div className="col-span-1 justify-start items-start w-1/6 p-6 hidden sticky z-50 h-full md:flex">
+        <div className="col-span-1 justify-start items-start w-full p-6 hidden sticky z-50 h-full md:grid" style={{ width: '100%' }}>
           <LeftSidebar
             designers={designers}
             categories={categories}
@@ -104,13 +105,14 @@ const CategoryNamePage: React.FC<CategoryNamePageProps> = async ({
         </div>
 
         {/* Third column */}
-        <div className="col-span-1 justify-end items-end w-1/6 p-6 hidden top-0 sticky z-50 h-full md:flex">
+        <div className="col-span-1 justify-start items-start w-full p-6 hidden sticky z-50 h-full md:grid" style={{ width: '100%' }}>
           <RightSidebar
             colors={colors}
             sizes={sizes}
             conditions={conditions}
             materials={materials}
             subcategories={subcategories}
+            productData={featuredProducts}
           />
         </div>
       </div>

@@ -23,16 +23,16 @@ const FilterButtons: React.FC<FilterButtonsProps> = ({
   const [isExpanded, setIsExpanded] = useState(false); 
 
   return (
-    <div className="flex flex-row items-start justify-start text-start ">
-      <div className="flex w-full flex-row items-center border-b border-stone-300 ">
+    <div className="flex flex-row items-start justify-start text-start">
+      <div className="flex w-full flex-row items-center">
         <div className="mb-2">
         {!isExpanded && (
           <h3
             className="flex w-full flex-row items-center text-sm hover:underline hover:cursor-pointer gap-2"
             onClick={() => setIsExpanded(!isExpanded)}
           >
-            {name}
             <CiSquarePlus className="flex flex-row hover:cursor-pointer text-stone-600 hover:text-stone-900" size={15} />
+            {name}
           </h3>
         )}
 

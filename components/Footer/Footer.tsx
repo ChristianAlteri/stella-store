@@ -14,15 +14,15 @@ import getSubcategories from "@/actions/get-sub-categories";
 
 interface FooterProps {
   searchParams: {
+    categoryId: string;
+    designerId: string;
+    sellerId: string;
     sizeId: string;
     colorId: string;
     conditionId: string;
     materialId: string;
     subcategoryId: string;
     genderId: string;
-    categoryId: string;
-    designerId: string;
-    sellerId: string;
     sort: string;
     isFeatured: boolean;
     isOnSale: boolean;
@@ -33,6 +33,9 @@ interface FooterProps {
 const Footer: React.FC<FooterProps> = async ({ searchParams }) => {
   const productData = await getProducts({
     sort: searchParams.sort,
+    designerId: searchParams.designerId,
+    sellerId: searchParams.sellerId,
+    categoryId: searchParams.categoryId,
     sizeId: searchParams.sizeId,
     colorId: searchParams.colorId,
     conditionId: searchParams.conditionId,
@@ -40,8 +43,6 @@ const Footer: React.FC<FooterProps> = async ({ searchParams }) => {
     isOnSale: searchParams.isOnSale,
     isCharity: searchParams.isCharity,
     isFeatured: searchParams.isFeatured,
-    designerId: searchParams.designerId,
-    sellerId: searchParams.sellerId,
     subcategoryId: searchParams.subcategoryId,
     genderId: searchParams.genderId,
   });
