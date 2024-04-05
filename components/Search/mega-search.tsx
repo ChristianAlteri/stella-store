@@ -20,15 +20,15 @@ import {
 } from "@/types";
 
 import FilterButtons from "@/components/SideBars/filter-buttons";
-import IconButton from "./icon-button";
-import { CiMenuBurger } from "react-icons/ci";
+import IconButton from "../ui/icon-button";
 
-import SearchInput from "./search-input";
+
+import SearchInputAndResults from "./search-input-and-results";
 
 import ShoppingCartButton from "../NavBar/buttons/ShoppingCartButton";
 import Link from "next/link";
 
-interface MobileFiltersProps {
+interface MegaSearchProps {
   products: Product[] | undefined;
   colors: Color[] | undefined;
   designers?: Designer[];
@@ -42,7 +42,7 @@ interface MobileFiltersProps {
   icon?: React.ReactNode;
 }
 
-const MobileFilters: React.FC<MobileFiltersProps> = ({
+const MegaSearch: React.FC<MegaSearchProps> = ({
   products,
   colors,
   designers,
@@ -56,20 +56,18 @@ const MobileFilters: React.FC<MobileFiltersProps> = ({
   icon,
 }) => {
   const [open, setOpen] = useState(false);
-  const [filtersOpen, setFiltersOpen] = useState(false);
+  
 
   const onOpen = () => setOpen(true);
   const onClose = () => setOpen(false);
-  const toggleFilters = () => setFiltersOpen((prev) => !prev);
 
   return (
     <>
       <div className="flex w-full justify-start gap-4">
         <Button
           onClick={onOpen}
-          className="flex hover:underline hover:cursor-pointer hover:text-stone-900 transition z-40 text-xs items-center "
+          className="flex hover:underline hover:cursor-pointer hover:text-stone-900 transition z-50 text-xs items-center "
         >
-          {/* Filter button disguised as a search bar */}
           {icon}
         </Button>
       </div>
@@ -131,7 +129,7 @@ const MobileFilters: React.FC<MobileFiltersProps> = ({
               </div>
               <div className="flex flex-col w-1/2 justify-center items-center">
                 {/* Search Bar */}
-                <SearchInput
+                <SearchInputAndResults
                   label="Search store..."
                   sizes={sizes}
                   colors={colors}
@@ -141,95 +139,9 @@ const MobileFilters: React.FC<MobileFiltersProps> = ({
                 />
               </div>
             </div>
-            <div className="flex flex-col gap-4 p-4">
-              <div
-                onClick={toggleFilters}
-                className="flex flex-row justify-center text-center text-xs hover:underline hover:cursor-pointer"
-              >
-                Toggle filters:
-              </div>
-              {filtersOpen && (
-                <div className="grid grid-rows-7 gap-7">
-                  <div className="flex flex-col gap-7 overflow-x-auto w-full ">
-                    {designers && (
-                      <FilterButtons
-                        valueKey="designerId"
-                        name="Designer"
-                        data={designers}
-                      />
-                    )}
-                    {categories && (
-                      <FilterButtons
-                        valueKey="categoryId"
-                        name="Category"
-                        data={categories}
-                      />
-                    )}
-                    {sellers && (
-                      <FilterButtons
-                        valueKey="sellerId"
-                        name="Seller"
-                        data={sellers}
-                      />
-                    )}
-                    {subcategories && (
-                      <FilterButtons
-                        valueKey="subcategoryId"
-                        name="Subcategories"
-                        data={subcategories}
-                      />
-                    )}
-                    {sizes && (
-                      <FilterButtons
-                        valueKey="sizeId"
-                        name="Sizes"
-                        data={sizes}
-                      />
-                    )}
-                    {materials && (
-                      <FilterButtons
-                        valueKey="materialId"
-                        name="Materials"
-                        data={materials}
-                      />
-                    )}
-                    {conditions && (
-                      <FilterButtons
-                        valueKey="conditionId"
-                        name="Conditions"
-                        data={conditions}
-                      />
-                    )}
-                    {colors && (
-                      <FilterButtons
-                      valueKey="colorId"
-                      name="Colors"
-                      data={colors}
-                      />
-                      )}
-                    {genders && (
-                      <FilterButtons
-                        valueKey="genderId"
-                        name="Genders"
-                        data={genders}
-                      />
-                    )}
-                  </div>
 
-                  <div
-                    onClick={onClose}
-                    className="flex flex-row justify-center items-center text-center"
-                  >
-                    <button
-                      className="border"
-                      style={{ width: "100px", height: "100px" }}
-                    >
-                      Show results
-                    </button>
-                  </div>
-                </div>
-              )}
-            </div>
+
+            
           </Dialog.Panel>
         </div>
       </Dialog>
@@ -237,4 +149,6 @@ const MobileFilters: React.FC<MobileFiltersProps> = ({
   );
 };
 
-export default MobileFilters;
+export default MegaSearch;
+
+

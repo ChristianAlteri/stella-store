@@ -29,6 +29,7 @@ interface RightSideProps {
   designers?: Designer[];
   categories?: Category[];
   sellers?: Seller[];
+  miniProductTitle?: string;
 }
 
 const RightSidebar: React.FC<RightSideProps> = ({
@@ -37,7 +38,8 @@ const RightSidebar: React.FC<RightSideProps> = ({
   conditions,
   materials,
   subcategories,
-  productData
+  productData,
+  miniProductTitle,
 }) => {
 
   const [randomisedProductData, setRandomisedProductData] = useState(productData!);
@@ -72,7 +74,10 @@ const RightSidebar: React.FC<RightSideProps> = ({
         {/* <div className="ml-1 row-span-1 h-full relative bg-white"> */}
         <div className="flex flex-col  bg-white">
           { randomisedProductData?.length > 0 ? 
-            <MiniProductCard data={randomisedProductData} 
+            <MiniProductCard 
+            miniProductTitle={miniProductTitle}
+            miniProductRoute="/featured"
+            data={randomisedProductData} 
             /> : null 
           }
         </div>

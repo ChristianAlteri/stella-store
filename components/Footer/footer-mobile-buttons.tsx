@@ -16,6 +16,7 @@ import { useState } from "react";
 import { CiSliderHorizontal } from "react-icons/ci";
 import FooterSort from "./footer-sort";
 import Link from "next/link";
+import FilterModal from "./filter-modal";
 
 interface FooterMobileButtonsProps {
   products?: Product[];
@@ -28,6 +29,7 @@ interface FooterMobileButtonsProps {
   materials?: Material[];
   genders?: Gender[];
   subcategories?: Subcategory[];
+  onSaleProducts?: Product[];
 }
 
 const FooterMobileButtons: React.FC<FooterMobileButtonsProps> = ({
@@ -41,6 +43,7 @@ const FooterMobileButtons: React.FC<FooterMobileButtonsProps> = ({
   materials,
   genders,
   subcategories,
+  onSaleProducts,
 }) => {
   const [isActive, setIsActive] = useState(false);
 
@@ -72,6 +75,12 @@ const FooterMobileButtons: React.FC<FooterMobileButtonsProps> = ({
 
   return (
     <>
+    <div
+        className="flex items-center justify-center col-span-1 w-full border-t border-b border-r min-h-[65px]"
+        onClick={toggleFooterSortExpanded}
+      >
+        <CiSliderHorizontal size={25} />
+      </div>
       <Link
         href={`/sellers`}
         className="text-xs flex items-center justify-center col-span-1 w-full border-t border-b border-r min-h-[65px]"
@@ -84,18 +93,23 @@ const FooterMobileButtons: React.FC<FooterMobileButtonsProps> = ({
       >
         Designers
       </Link>
-      <Link
-        href={`/categories`}
-        className="text-xs flex items-center justify-center col-span-1 w-full border-t border-b border-r min-h-[65px]"
-      >
-        Categories
-      </Link>
       <div
         className="flex items-center justify-center col-span-1 w-full border-t border-b border-r min-h-[65px]"
-        onClick={toggleFooterSortExpanded}
       >
-        <CiSliderHorizontal size={16} />
+        <FilterModal
+          colors={colors}
+          sizes={sizes}
+          conditions={conditions}
+          designers={designers}
+          sellers={sellers}
+          categories={categories}
+          materials={materials}
+          genders={genders}
+          subcategories={subcategories}
+          onSaleProducts={onSaleProducts}
+          />
       </div>
+      
     </>
   );
 };

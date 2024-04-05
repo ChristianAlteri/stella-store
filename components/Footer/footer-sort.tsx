@@ -18,7 +18,7 @@ import {
 import qs from "query-string";
 import { CiSquareRemove } from "react-icons/ci";
 import FooterMobileButtons from "./footer-mobile-buttons";
-import MobileFilters from "../ui/MobileFilters";
+import MegaSearch from "../Search/mega-search";
 
 interface FooterSortProps {
   products: Product[] | undefined;
@@ -66,7 +66,6 @@ const FooterSort: React.FC<FooterSortProps> = ({
     router.push(url);
   };
 
-  console.log('footer-Sort', designers);
 
   if (isExpanded) {
     return (
@@ -77,7 +76,7 @@ const FooterSort: React.FC<FooterSortProps> = ({
   }
 
   return (
-    <div className="h-full absolute text-xs flex flex-col items-center justify-center col-span-4 w-full border min-h-[56px]">
+    <div className="h-full absolute text-xs flex flex-col items-center justify-center col-span-4 w-full border min-h-[65px] mb-7 p-4 bg-white">
       <div className="flex flex-row w-full justify-center items-center gap-8 p-3">
         <div
           className="flex flex-row "
@@ -103,7 +102,7 @@ const FooterSort: React.FC<FooterSortProps> = ({
           Price: High to low
         </div>
         <div className="flex flex-row">
-          <MobileFilters
+          <MegaSearch
             sellers={sellers}
             designers={designers}
             categories={categories}

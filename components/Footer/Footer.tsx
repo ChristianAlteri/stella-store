@@ -56,6 +56,7 @@ const Footer: React.FC<FooterProps> = async ({ searchParams }) => {
   const materials = await getMaterials();
   const genders = await getGenders();
   const subcategories = await getSubcategories();
+  const onSaleProducts = await getProducts({ isOnSale: true });
 
   return (
     <>
@@ -72,6 +73,7 @@ const Footer: React.FC<FooterProps> = async ({ searchParams }) => {
           materials={materials}
           subcategories={subcategories}
           genders={genders}
+          onSaleProducts={onSaleProducts}
         />
       </footer>
       {/* This footer will only render on screens larger than an iPad (larger than 768px) */}

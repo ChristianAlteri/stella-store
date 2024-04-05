@@ -113,6 +113,7 @@ const CategoryNamePage: React.FC<CategoryNamePageProps> = async ({
             materials={materials}
             subcategories={subcategories}
             productData={featuredProducts}
+            miniProductTitle="Our top picks"
           />
         </div>
       </div>

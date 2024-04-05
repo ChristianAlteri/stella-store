@@ -81,7 +81,7 @@ const DetailsCard: React.FC<DetailsCardProps> = ({ data }) => {
             <div className="flex flex-row p-1">
               <h1 className=" text-xs">
                 A percentage of proceeds from this sale will go to charity
-                <p>
+                <p className="text-green-500">
                     <CiBadgeDollar size={20} />
                 </p>
               </h1>

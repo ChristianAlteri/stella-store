@@ -8,9 +8,11 @@ import { useRouter } from "next/navigation";
 
 interface MiniProductCardProps {
   data: Product[] | undefined;
+  miniProductTitle?: string;
+  miniProductRoute?: string;
 }
 
-const MiniProductCard: React.FC<MiniProductCardProps> = ({ data }) => {
+const MiniProductCard: React.FC<MiniProductCardProps> = ({ data, miniProductTitle, miniProductRoute }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentProduct, setCurrentProduct] = useState<Product>(data![0]);
   const [opacity, setOpacity] = useState(0);
@@ -101,12 +103,12 @@ useEffect(() => {
       </div>
       <div>
         <Link
-          href={"/featured"}
-          className="flex justify-center text-sm font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer"
+          href={miniProductRoute || "/"}
+          className="flex justify-center text-sm font-medium transition-colors border shadow-md rounded-md p-1 hover:text-stone-900 hover:underline hover:cursor-pointer"
         >
-          Our picks
+          {miniProductTitle}
         </Link>
-        <div className="flex flex-col" key={currentProduct.id}>
+        <div className="flex flex-col p-1" key={currentProduct.id}>
           <div
             onClick={handleProductClick}
             className="flex justify-center items-center hover:cursor-pointer"

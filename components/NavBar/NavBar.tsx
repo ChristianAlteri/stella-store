@@ -14,7 +14,7 @@ import ShoppingCartButton from "./buttons/ShoppingCartButton";
 import HeartButton from "./buttons/HeartButton";
 import { Input } from "../ui/input";
 
-import MobileFilters from "../ui/MobileFilters";
+import MegaSearch from "../Search/mega-search";
 import getSizes from "@/actions/get-sizes";
 import getColors from "@/actions/get-colors";
 import getBillboardByName from "@/actions/get-billboard-by-name";
@@ -50,7 +50,7 @@ const Navbar = async () => {
       />
 
       {/* // Split into two Navbar row with 1/3 columns */}
-      <div className="border-b sticky bg-white w-full top-0 z-50">
+      <div className="border-b sticky bg-white w-full top-0 z-40">
           <Container>
           <FirstNavBarContainer>
             {/* Search Filters */}
@@ -58,7 +58,7 @@ const Navbar = async () => {
                 <div className="flex hover:underline hover:cursor-pointer hover:text-stone-900 transition z-40 text-xs items-center ">
                   <CiMenuBurger size={17} className="md:hidden flex flex-row justify-center" />
                 </div>
-                <MobileFilters
+                <MegaSearch
                   sellers={sellers}
                   designers={designers}
                   categories={categories}

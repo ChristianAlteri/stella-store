@@ -26,7 +26,7 @@ interface SearchResultItem {
   images: { url: string }[];
 }
 
-export interface SearchInputProps {
+export interface SearchInputAndResultsProps {
   sizes?: Size[];
   colors?: Color[];
   designers?: Designer[];
@@ -36,7 +36,7 @@ export interface SearchInputProps {
   children?: React.ReactNode;
 }
 
-const SearchInput: React.FC<SearchInputProps> = ({
+const SearchInputAndResults: React.FC<SearchInputAndResultsProps> = ({
   sizes,
   colors,
   designers,
@@ -234,4 +234,4 @@ const SearchInput: React.FC<SearchInputProps> = ({
   );
 };
 
-export default SearchInput;
+export default SearchInputAndResults;
