@@ -4,8 +4,7 @@ import React, { useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import qs from "query-string";
-import { CiSliderHorizontal } from "react-icons/ci";
-import { MdKeyboardArrowDown } from "react-icons/md";
+import { TfiMore } from "react-icons/tfi";
 import { cn } from "@/lib/utils";
 
 interface SaleCharityFilterProps {}
@@ -33,6 +32,7 @@ const SaleCharityFilter: React.FC<SaleCharityFilterProps> = ({}) => {
   };
   const isOnSaleSelected = searchParams.get("isOnSale") === "true";
   const isCharitySelected = searchParams.get("isCharity") === "true";
+  const isHiddenSelected = searchParams.get("isHidden") === "true";
 
   return (
     <>
@@ -41,35 +41,35 @@ const SaleCharityFilter: React.FC<SaleCharityFilterProps> = ({}) => {
           className="flex text-stone-600 hover:text-stone-900 hover:cursor-pointer"
           onClick={toggleFilters}
         >
-          <MdKeyboardArrowDown className="flex flex-row" size={20} />
+          {/* <MdKeyboardArrowDown className="flex flex-row mt-2" size={20} /> */}
+          <TfiMore className="flex flex-row mt-2" size={17} />
         </div>
         {filtersOpen && (
-          <div className="flex justify-center items-center text-center flex-row gap-9 w-full p-1">
-            <br />
+          <div className="flex flex-row w-full justify-center items-center gap-5 ">
 
-            <div key="sale" className="flex justify-center items-center flex-col w-full ">
-              <div
-                className={cn(
-                    "w-full flex flex-row justify-center text-xs text-stone-500 hover:underline hover:cursor-pointer",
-                    isOnSaleSelected ? " rounded-md underline text-stone-900" : "text-stone-500"
-                  )}
-                onClick={() => onClick("isOnSale", "true")}
-              >
-                Sale
-              </div>
-            </div>
-            <div key="charity" className="flex justify-center items-center flex-col w-full ">
-              <div
-               className={cn(
-                "w-full flex flex-row justify-center text-xs text-stone-500 hover:underline hover:cursor-pointer",
-                isCharitySelected ? " rounded-md underline text-stone-900" : "text-stone-500"
-              )}
-                onClick={() => onClick("isCharity","true")}
-              >
-                Charity
-              </div>
+          <div key="sale" className="flex flex-col justify-center items-center text-xs text-stone-500 hover:underline hover:cursor-pointer">
+            <div className={cn(
+              isOnSaleSelected ? "bg-green-200 w-full p-4 rounded-xl h-full font-bold text-black scale-110 transition-transform animate-pulse " : "text-stone-500"
+            )} onClick={() => onClick("isOnSale", "true")}>
+              Sale
             </div>
           </div>
+          
+          <div key="charity" className="flex flex-row justify-center items-center text-xs text-stone-500 hover:underline hover:cursor-pointer">
+            <div className={cn(
+              isCharitySelected ? "bg-green-200 w-full p-4 rounded-xl h-full font-bold text-black scale-110 transition-transform animate-pulse" : "text-stone-500"
+            )} onClick={() => onClick("isCharity", "true")}>
+              Charity
+            </div>
+          </div>
+          <div key="hidden" className="flex flex-row justify-center items-center text-xs text-stone-500 hover:underline hover:cursor-pointer">
+            <div className={cn(
+              isHiddenSelected ? "bg-green-200 w-full p-4 rounded-xl h-full font-bold text-black scale-110 transition-transform animate-pulse" : "text-stone-500"
+            )} onClick={() => onClick("isHidden", "true")}>
+              Unreleased
+            </div>
+          </div>
+        </div>
         )}
       </div>
     </>

@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { CiSquareChevLeft, CiSquareChevRight } from "react-icons/ci";
 import { useRouter } from "next/navigation";
+import { Tooltip } from "@material-tailwind/react";
 
 interface MiniProductCardProps {
   data: Product[] | undefined;
@@ -12,7 +13,11 @@ interface MiniProductCardProps {
   miniProductRoute?: string;
 }
 
-const MiniProductCard: React.FC<MiniProductCardProps> = ({ data, miniProductTitle, miniProductRoute }) => {
+const MiniProductCard: React.FC<MiniProductCardProps> = ({
+  data,
+  miniProductTitle,
+  miniProductRoute,
+}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentProduct, setCurrentProduct] = useState<Product>(data![0]);
   const [opacity, setOpacity] = useState(0);
@@ -40,7 +45,7 @@ const MiniProductCard: React.FC<MiniProductCardProps> = ({ data, miniProductTitl
   }, [data]);
 
   // fade in opacity of description
-useEffect(() => {
+  useEffect(() => {
     const opacityInterval = setInterval(() => {
       setOpacity((prevOpacity) => (prevOpacity === 0 ? 1 : 0));
     }, 2500); // TODO: can we make this variable change with the length of data
@@ -90,24 +95,33 @@ useEffect(() => {
     );
   };
 
-
   return (
     <div className="flex flex-col">
-      <div className="flex flex-row w-full justify-between p-1">
-        <button onClick={handlePrev} className="flex">
-          <CiSquareChevLeft />
-        </button>
-        <button onClick={handleNext} className="flex">
-          <CiSquareChevRight />
-        </button>
-      </div>
       <div>
         <Link
           href={miniProductRoute || "/"}
           className="flex justify-center text-sm font-medium transition-colors border shadow-md rounded-md p-1 hover:text-stone-900 hover:underline hover:cursor-pointer"
         >
-          {miniProductTitle}
+          <Tooltip
+            className="flex flex-row p-2 z-50 text-xs bg-transparent text-stone-600 "
+            placement="top"
+            animate={{
+              mount: { scale: 1, y: 0 },
+              unmount: { scale: 0, y: 55 },
+            }}
+            content={`Click to browse ${miniProductTitle} for a limited time`}
+          >
+            {miniProductTitle}
+          </Tooltip>
         </Link>
+        <div className="flex flex-row w-full justify-between p-2 mt-2">
+          <button onClick={handlePrev} className="flex shadow-sm ">
+            <CiSquareChevLeft size={23} />
+          </button>
+          <button onClick={handleNext} className="flex shadow-sm ">
+            <CiSquareChevRight size={23} />
+          </button>
+        </div>
         <div className="flex flex-col p-1" key={currentProduct.id}>
           <div
             onClick={handleProductClick}
@@ -119,6 +133,9 @@ useEffect(() => {
                 alt={currentProduct.name}
                 width={70}
                 height={70}
+                className={` transition-opacity duration-200 ease-in-out ${
+                  currentProduct?.isCharity ? "blur-xl" : ""
+                }`} //TODO: chnage to isHidden
               />
               <div
                 className="absolute top-0 left-0 w-full h-full flex items-center justify-center transition-opacity duration-300 "
@@ -161,170 +178,4 @@ useEffect(() => {
 
 export default MiniProductCard;
 
-// "use client";
-// import React, { use, useEffect, useState } from "react";
-// import { Product } from "@/types";
-// import Image from "next/image";
-// import Link from "next/link";
-// import { CiSquareChevLeft, CiSquareChevRight } from "react-icons/ci";
-// import { useRouter } from "next/navigation";
 
-// interface MiniProductCardProps {
-//   data: Product[] | undefined;
-// }
-
-// const MiniProductCard: React.FC<MiniProductCardProps> = ({ data }) => {
-//   const [currentIndex, setCurrentIndex] = useState(0);
-//   const [currentProduct, setCurrentProduct] = useState<Product>(data![0]);
-//   const [opacity, setOpacity] = useState(0);
-//   const [intervalId, setIntervalId] = useState<NodeJS.Timeout | null>(null);
-//   const [opacityIntervalId, setOpacityIntervalId] =
-//     useState<NodeJS.Timeout | null>(null);
-//   const router = useRouter();
-
-//   // click handlers
-//   const handleNext = () => {
-//     console.log("click", intervalId);
-//     const isFirstSlide = currentIndex === 0;
-//     const newIndex = isFirstSlide ? data!.length - 1 : currentIndex - 1;
-//     setCurrentIndex(newIndex);
-//     if (intervalId) {
-//         clearInterval(intervalId);
-//         setIntervalId(null); // Reset intervalId to indicate there's no active interval
-//       }
-//   };
-//   const handlePrev = () => {
-//     const isLastSlide = currentIndex === data!.length - 1;
-//     const newIndex = isLastSlide ? 0 : currentIndex + 1;
-//     setCurrentIndex(newIndex);
-//   };
-
-//   // flick through products
-//   useEffect(() => {
-//     // console.log("interval", intervalId);
-//     const interval = setInterval(() => {
-//       setCurrentIndex((currentIndex) => {
-//         const newIndex = (currentIndex + 1) % data!.length;
-//         setCurrentProduct(data![newIndex]);
-//         return newIndex;
-//       });
-//     }, 1000);
-//     setIntervalId(interval);
-
-//     return () => {
-//       if (intervalId) {
-//         clearInterval(intervalId);
-//       }
-//     };
-//   }, []);
-
-//   // fade in opacity of description
-//   useEffect(() => {
-//     // console.log("opacityIntervalId", opacityIntervalId);
-//     const opacityInterval = setInterval(() => {
-//       setOpacity((prevOpacity) => (prevOpacity === 0 ? 1 : 0));
-//     }, 3000);
-
-//     setOpacityIntervalId(opacityInterval);
-
-//     return () => {
-//       if (opacityIntervalId) {
-//         clearInterval(opacityIntervalId);
-//       }
-//     };
-//   }, []);
-
-//   // cleanup function
-//   useEffect(() => {
-//     // console.log("cleanup", intervalId, opacityIntervalId);
-//     return () => {
-//       if (intervalId) {
-//         clearInterval(intervalId);
-//       }
-//       if (opacityIntervalId) {
-//         clearInterval(opacityIntervalId);
-//       }
-//     };
-//   }, [intervalId, opacityIntervalId, data]);
-
-//   const handleProductClick = () => {
-//     router.push(
-//       `/product/${currentProduct?.category?.id}/${currentProduct?.designer?.id}/${currentProduct?.id}/${currentProduct?.seller?.id}`
-//     );
-//   };
-
-//   return (
-//     <div className="flex flex-col">
-//       <div className="flex flex-row w-full justify-between p-1">
-//         <button onClick={handlePrev} className="flex">
-//           <CiSquareChevLeft />
-//         </button>
-//         <button onClick={handleNext} className="flex">
-//           <CiSquareChevRight />
-//         </button>
-//       </div>
-//       <div>
-//         <Link
-//           href={"/featured"}
-//           className="flex justify-center text-sm font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer"
-//         >
-//           Our picks
-//         </Link>
-//         <div className="flex flex-col" key={currentProduct.id}>
-//           <Link
-//             href={`/product/${currentProduct?.category?.id}/${currentProduct?.designer?.id}/${currentProduct?.id}/${currentProduct?.seller?.id}`}
-//             className="flex justify-center items-center hover:cursor-pointer"
-//           >
-//             <div className="relative">
-//               <Image
-//                 src={currentProduct.images[0].url}
-//                 alt={currentProduct.name}
-//                 width={70}
-//                 height={70}
-//               />
-//               <div
-//                 className="absolute top-0 left-0 w-full h-full flex items-center justify-center transition-opacity duration-300 "
-//                 style={{ opacity }}
-//               >
-//                 <div className="flex flex-col justify-center items-center m-5 ">
-//                   <Link
-//                     href={`/designers/${currentProduct?.designer?.id}`}
-//                     className="text-xs hover:underline underline text-black hover:text-stone-700 bg-stone-200 bg-opacity-60"
-//                   >
-//                     {currentProduct.designer?.name.toUpperCase()}
-//                   </Link>
-//                   <h3
-//                     onClick={handleProductClick}
-//                     className="text-xs hover:underline text-black hover:text-stone-700 hover:cursor-pointer bg-stone-200 bg-opacity-60"
-//                   >
-//                     {currentProduct.name}
-//                   </h3>
-//                   <div className="text-xs text-white hover:text-stone-700  bg-stone-200 bg-opacity-60">
-//                     {currentProduct?.size?.name}
-//                   </div>
-//                   <div className="flex flex-row gap-1 bg-stone-200 bg-opacity-60">
-//                     <h6
-//                       onClick={handleProductClick}
-//                       className="text-xs text-red-500"
-//                     >
-//                       £{currentProduct.ourPrice}
-//                     </h6>
-//                     <h6 className="text-xs text-stone-400">RRP</h6>
-//                     <h6
-//                       onClick={handleProductClick}
-//                       className="text-xs text-stone-800 line-through"
-//                     >
-//                       £{currentProduct.retailPrice}
-//                     </h6>
-//                   </div>
-//                 </div>
-//               </div>
-//             </div>
-//           </Link>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default MiniProductCard;

@@ -7,8 +7,6 @@ import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import qs from "query-string";
 
-
-
 interface FilterListProps {
   data: (Size | Color | Designer | Seller | Category | Condition | Material | Subcategory | Gender) | undefined;
   name: string;

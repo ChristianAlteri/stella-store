@@ -14,14 +14,12 @@ import {
 } from "@/types";
 import { Drawer } from "@material-tailwind/react";
 import FilterButtons from "../SideBars/filter-buttons";
-import React, { useRef } from "react";
-import SaleCharityFilter from "../Home/sale-charity-filter";
-import RightSidebar from "../SideBars/RightSideBar";
-import getProducts from "@/actions/get-products";
+import React from "react";
 import { GoFilter } from "react-icons/go";
-import { CiSquareChevLeft } from "react-icons/ci";
-import { IoChevronBackOutline, IoChevronForwardOutline } from "react-icons/io5";
+
+import {  IoChevronForwardOutline } from "react-icons/io5";
 import MiniProductCard from "../Product/mini-product-card";
+import SaleCharityFilter from "../Home/sale-charity-filter";
 
 interface FilterModalProps {
   colors: Color[] | undefined;
@@ -41,10 +39,10 @@ const FilterModal: React.FC<FilterModalProps> = ({
   designers,
   categories,
   sellers,
+  genders,
   sizes,
   conditions,
   materials,
-  genders,
   subcategories,
   onSaleProducts,
 }) => {
@@ -61,14 +59,16 @@ const FilterModal: React.FC<FilterModalProps> = ({
         <GoFilter className="flex flex-row" size={25} />
       </div>
       <Drawer 
-      open={open} 
-      onClose={closeDrawer} 
-      placement="right" 
-      transition={{
-        type: "tween",
-        duration: 0.3,
-      }}
-      className=" bg-white opacity-95 " placeholder={undefined} size={500} >
+        open={open} 
+        onClose={closeDrawer} 
+        placement="right" 
+        transition={{
+            type: "tween",
+            duration: 0.3,
+        }}
+        className=" bg-white opacity-95 " 
+        placeholder={undefined} size={500} 
+      >
         <div className="grid grid-cols-1 gap-4 p-4">
           
           <div className="flex flex-row items-center justify-center text-black mb-4">
@@ -103,6 +103,7 @@ const FilterModal: React.FC<FilterModalProps> = ({
                 data={subcategories}
               />
             </div>
+            <SaleCharityFilter/>
             <div className="flex flex-col bg-white">
               {onSaleProducts && (
                 <MiniProductCard miniProductRoute="/sale" miniProductTitle="On Sale" data={onSaleProducts} />

@@ -1,20 +1,18 @@
 import Link from "next/link";
-import Image from "next/image";
-import Container from "../ui/Container";
-
-// import { Input } from '@chakra-ui/react'
 
 import SecondNavBarContainer from "./Containers/SecondNavBarContainer";
 import FirstNavBarContainer from "./Containers/FirstNavBarContainer";
+import MegaSearch from "../Search/mega-search";
+import ShoppingCartButton from "./buttons/ShoppingCartButton";
+import HeartButton from "./buttons/HeartButton";
+import HamburgerMenu from "./hamburger-menu";
+import ClientAdvisor from "../ui/ClientAdvisor";
+import Container from "../ui/Container";
+import { Input } from "../ui/input";
 
 import getCategories from "@/actions/get-categories";
 import getDesigners from "@/actions/get-designers";
 import getSellers from "@/actions/get-sellers";
-import ShoppingCartButton from "./buttons/ShoppingCartButton";
-import HeartButton from "./buttons/HeartButton";
-import { Input } from "../ui/input";
-
-import MegaSearch from "../Search/mega-search";
 import getSizes from "@/actions/get-sizes";
 import getColors from "@/actions/get-colors";
 import getBillboardByName from "@/actions/get-billboard-by-name";
@@ -22,9 +20,6 @@ import BannerBillboard from "../Billboard/BannerBillboard";
 import getProducts from "@/actions/get-products";
 import getMaterials from "@/actions/get-materials";
 import getConditions from "@/actions/get-conditions";
-
-import { CiMenuBurger } from "react-icons/ci";
-import ClientAdvisor from "../ui/ClientAdvisor";
 import getGenders from "@/actions/get-genders";
 import getSubcategories from "@/actions/get-sub-categories";
 
@@ -41,7 +36,6 @@ const Navbar = async () => {
   const products = await getProducts({ all: true });
   const advertismentBillboard = await getBillboardByName("OnSale");
 
-
   return (
     <>
       <BannerBillboard
@@ -55,9 +49,13 @@ const Navbar = async () => {
           <FirstNavBarContainer>
             {/* Search Filters */}
             <div className="flex flex-row w-1/3 justify-start gap-4">
-                <div className="flex hover:underline hover:cursor-pointer hover:text-stone-900 transition z-40 text-xs items-center ">
-                  <CiMenuBurger size={17} className="md:hidden flex flex-row justify-center" />
-                </div>
+                <HamburgerMenu 
+                 designers={designers}
+                 categories={categories}
+                 sellers={sellers}
+                 colors={colors}
+                 sizes={sizes}
+                />
                 <MegaSearch
                   sellers={sellers}
                   designers={designers}

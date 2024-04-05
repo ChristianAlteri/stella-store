@@ -12,11 +12,10 @@ import {
   Size,
   Subcategory,
 } from "@/types";
-import { useState } from "react";
-import { CiSliderHorizontal } from "react-icons/ci";
 import FooterSort from "./footer-sort";
-import Link from "next/link";
 import FilterModal from "./filter-modal";
+import GenderFilter from "./gender-filter";
+import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
 
 interface FooterMobileButtonsProps {
   products?: Product[];
@@ -27,7 +26,7 @@ interface FooterMobileButtonsProps {
   sizes?: Size[];
   conditions?: Condition[];
   materials?: Material[];
-  genders?: Gender[];
+  genders?: Gender[] | undefined;
   subcategories?: Subcategory[];
   onSaleProducts?: Product[];
 }
@@ -45,17 +44,12 @@ const FooterMobileButtons: React.FC<FooterMobileButtonsProps> = ({
   subcategories,
   onSaleProducts,
 }) => {
-  const [isActive, setIsActive] = useState(false);
 
-  const [isFooterSortExpanded, setFooterSortExpanded] = useState(false);
-  const toggleFooterSortExpanded = () => {
-    setFooterSortExpanded((prev) => !prev);
-    setIsActive(!isActive);
-  };
-
-  if (isFooterSortExpanded) {
-    return (
-      <>
+  return (
+    <div className="flex col-span-4 flex-row w-full h-full justify-center items-center">
+    <div
+        className="flex items-center justify-center col-span-1 w-full border-t border-b border-r min-h-[65px]"
+      >
         <FooterSort
           valueKey="sort"
           products={products}
@@ -69,30 +63,23 @@ const FooterMobileButtons: React.FC<FooterMobileButtonsProps> = ({
           genders={genders}
           subcategories={subcategories}
         />
-      </>
-    );
-  }
-
-  return (
-    <>
-    <div
-        className="flex items-center justify-center col-span-1 w-full border-t border-b border-r min-h-[65px]"
-        onClick={toggleFooterSortExpanded}
-      >
-        <CiSliderHorizontal size={25} />
       </div>
-      <Link
-        href={`/sellers`}
-        className="text-xs flex items-center justify-center col-span-1 w-full border-t border-b border-r min-h-[65px]"
+      <div
+        className="text-xs flex items-center justify-center col-span-1 w-full border-t border-b border-r min-h-[65px] z-35"
       >
-        Sellers
-      </Link>
-      <Link
-        href={`/designers`}
-        className="text-xs flex items-center justify-center col-span-1 w-full border-t border-b border-r min-h-[65px]"
+      <GenderFilter 
+      icon={<BsGenderMale size={27}/>}
+      gender={genders ? genders[0] : undefined} 
+      />
+      </div>
+      <div
+        className="text-xs flex items-center justify-center col-span-1 w-full border-t border-b border-r min-h-[65px] z-35"
       >
-        Designers
-      </Link>
+       <GenderFilter 
+       icon={<BsGenderFemale size={27}/>}
+       gender={genders ? genders[1] : undefined} 
+       />
+      </div>
       <div
         className="flex items-center justify-center col-span-1 w-full border-t border-b border-r min-h-[65px]"
       >
@@ -110,7 +97,7 @@ const FooterMobileButtons: React.FC<FooterMobileButtonsProps> = ({
           />
       </div>
       
-    </>
+    </div>
   );
 };
 

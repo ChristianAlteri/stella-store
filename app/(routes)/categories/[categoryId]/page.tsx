@@ -3,7 +3,10 @@ import ProductCard from "@/components/Product/product-card";
 import Billboard from "@/components/Billboard/Billboard";
 import RightSidebar from "@/components/SideBars/RightSideBar";
 import LeftSidebar from "@/components/SideBars/LeftSideBar";
-import GenderFilter from "@/components/Home/gender-filter";
+import GenderFilter from "@/components/Footer/gender-filter"
+import SaleCharityFilter from "@/components/Home/sale-charity-filter";
+
+import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
 
 import getDesigners from "@/actions/get-designers";
 import getCategories from "@/actions/get-categories";
@@ -16,7 +19,10 @@ import getConditions from "@/actions/get-conditions";
 import getMaterials from "@/actions/get-materials";
 import getGenders from "@/actions/get-genders";
 import getSubcategories from "@/actions/get-sub-categories";
-import SaleCharityFilter from "@/components/Home/sale-charity-filter";
+
+
+
+
 
 export const revalidate = 0;
 
@@ -91,10 +97,25 @@ const CategoryNamePage: React.FC<CategoryNamePageProps> = async ({
         {/* Second column */}
         <div className="col-span-6 flex flex-col justify-center items-center w-full">
           <Billboard data={categoryData?.billboard} />
-          <div className="flex flex-col justify-center items-center p-2 shadow-lg rounded-md">
-            <h1>{categoryData?.name}</h1>
-            <GenderFilter valueKey="genderId" name="Genders" data={genders} />
-            <SaleCharityFilter/>
+
+          <div className="flex-col justify-center items-center p-2 shadow-2xl rounded-md w-1/4 h-full border hidden md:flex">
+            <h1>{categoryData?.name}</h1> 
+            <div className="flex flex-row justify-center items-center p-4 shadow-lg rounded-md w-full h-full ">
+
+            <div className=" h-full w-full">
+              <GenderFilter 
+                icon={<BsGenderMale size={20}/>}
+                gender={genders ? genders[0] : undefined} 
+              />
+            </div>
+            <div className=" h-full w-full">
+              <GenderFilter 
+                icon={<BsGenderFemale size={20}/>}
+                gender={genders ? genders[1] : undefined} 
+              />
+            </div>
+            </div>
+              <SaleCharityFilter/>
           </div>
 
           <ProductGrid>
