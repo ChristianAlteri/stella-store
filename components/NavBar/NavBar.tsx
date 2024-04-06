@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import Link from "next/link";
 
@@ -13,7 +13,20 @@ import Container from "../ui/Container";
 import BannerBillboard from "../Billboard/BannerBillboard";
 import { Input } from "../ui/input";
 
-import { Billboard, Category, Color, Condition, Designer, Gender, Material, Product, Seller, Size, Subcategory } from "@/types";
+import {
+  Billboard,
+  Category,
+  Color,
+  Condition,
+  Designer,
+  Gender,
+  Material,
+  Product,
+  Seller,
+  Size,
+  Subcategory,
+} from "@/types";
+
 
 interface NavbarProps {
   sellers: Seller[];
@@ -42,7 +55,6 @@ const Navbar: React.FC<NavbarProps> = ({
   products,
   navBarBillboard,
 }) => {
-  
   return (
     <>
       <BannerBillboard
@@ -52,31 +64,34 @@ const Navbar: React.FC<NavbarProps> = ({
 
       {/* // Split into two Navbar row with 1/3 columns */}
       <div className="border-b sticky bg-white w-full top-0 z-40">
-          <Container>
+        <Container>
           <FirstNavBarContainer>
             {/* Search Filters */}
             <div className="flex flex-row w-1/3 justify-start gap-4">
-                {/* <HamburgerMenu 
+              <MegaSearch
+                sellers={sellers}
+                designers={designers}
+                categories={categories}
+                sizes={sizes}
+                colors={colors}
+                products={products}
+                materials={materials}
+                conditions={conditions}
+                genders={genders}
+                subcategories={subcategories}
+                icon={
+                  <Input
+                    className="bg-white z-40 w-full hover:cursor-pointer "
+                    placeholder="Search store..."
+                  />
+                }
+              />
+              <HamburgerMenu 
                  designers={designers}
                  categories={categories}
                  sellers={sellers}
-                /> */}
-                <MegaSearch
-                  sellers={sellers}
-                  designers={designers}
-                  categories={categories}
-                  sizes={sizes}
-                  colors={colors}
-                  products={products}
-                  materials={materials}
-                  conditions={conditions}
-                  genders={genders}
-                  subcategories={subcategories}
-                  icon={<Input className="bg-white z-40 w-full hover:cursor-pointer " placeholder='Search store...' />}
                 />
-                <ClientAdvisor 
-                  products={products}
-                />
+              <ClientAdvisor products={products} />
             </div>
             {/* Logo */}
             <Link href="/" className="flex">
@@ -125,7 +140,7 @@ const Navbar: React.FC<NavbarProps> = ({
               </div>
             </div>
           </SecondNavBarContainer>
-          </Container>
+        </Container>
       </div>
     </>
   );

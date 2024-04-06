@@ -21,9 +21,15 @@ const nextConfig = {
         },
       ];
     },
-  images: {
-      domains: ['res.cloudinary.com'],
-  },
+    images: {
+      remotePatterns: [
+        {
+          protocol: 'https',
+          hostname: 'res.cloudinary.com',
+          pathname: '**',
+        },
+      ],
+    },
   webpack: (config, options) => {
     config.infrastructureLogging = {
       level: 'error',
