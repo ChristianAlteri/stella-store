@@ -1,3 +1,5 @@
+'use client'
+
 import Link from "next/link";
 
 import SecondNavBarContainer from "./Containers/SecondNavBarContainer";
@@ -8,39 +10,44 @@ import HeartButton from "./buttons/HeartButton";
 import HamburgerMenu from "./hamburger-menu";
 import ClientAdvisor from "../ui/ClientAdvisor";
 import Container from "../ui/Container";
+import BannerBillboard from "../Billboard/BannerBillboard";
 import { Input } from "../ui/input";
 
-import getCategories from "@/actions/get-categories";
-import getDesigners from "@/actions/get-designers";
-import getSellers from "@/actions/get-sellers";
-import getSizes from "@/actions/get-sizes";
-import getColors from "@/actions/get-colors";
-import getBillboardByName from "@/actions/get-billboard-by-name";
-import BannerBillboard from "../Billboard/BannerBillboard";
-import getProducts from "@/actions/get-products";
-import getMaterials from "@/actions/get-materials";
-import getConditions from "@/actions/get-conditions";
-import getGenders from "@/actions/get-genders";
-import getSubcategories from "@/actions/get-sub-categories";
+import { Billboard, Category, Color, Condition, Designer, Gender, Material, Product, Seller, Size, Subcategory } from "@/types";
 
-const Navbar = async () => {
-  const sellers = await getSellers();
-  const designers = await getDesigners();
-  const categories = await getCategories();
-  const sizes = await getSizes();
-  const colors = await getColors();
-  const materials = await getMaterials();
-  const conditions = await getConditions();
-  const genders = await getGenders();
-  const subcategories = await getSubcategories();
-  const products = await getProducts({ all: true });
-  const advertismentBillboard = await getBillboardByName("OnSale");
+interface NavbarProps {
+  sellers: Seller[];
+  designers: Designer[];
+  categories: Category[];
+  sizes: Size[];
+  colors: Color[];
+  materials: Material[];
+  conditions: Condition[];
+  genders: Gender[];
+  subcategories: Subcategory[];
+  products: Product[];
+  navBarBillboard: Billboard;
+}
 
+const Navbar: React.FC<NavbarProps> = ({
+  sellers,
+  designers,
+  categories,
+  sizes,
+  colors,
+  materials,
+  conditions,
+  genders,
+  subcategories,
+  products,
+  navBarBillboard,
+}) => {
+  
   return (
     <>
       <BannerBillboard
         //@ts-ignore
-        data={advertismentBillboard}
+        data={navBarBillboard}
       />
 
       {/* // Split into two Navbar row with 1/3 columns */}
