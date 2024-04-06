@@ -49,13 +49,11 @@ const Navbar = async () => {
           <FirstNavBarContainer>
             {/* Search Filters */}
             <div className="flex flex-row w-1/3 justify-start gap-4">
-                <HamburgerMenu 
+                {/* <HamburgerMenu 
                  designers={designers}
                  categories={categories}
                  sellers={sellers}
-                 colors={colors}
-                 sizes={sizes}
-                />
+                /> */}
                 <MegaSearch
                   sellers={sellers}
                   designers={designers}

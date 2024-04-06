@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "node --max-old-space-size=4096 node_modules/.bin/next build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -41,7 +41,7 @@
     "zustand": "^4.5.1"
   },
   "devDependencies": {
-    "@types/node": "^20",
+    "@types/node": "^20.12.5",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@types/react-slick": "^0.23.13",

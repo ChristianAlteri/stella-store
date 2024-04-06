@@ -20,10 +20,6 @@ import getMaterials from "@/actions/get-materials";
 import getGenders from "@/actions/get-genders";
 import getSubcategories from "@/actions/get-sub-categories";
 
-
-
-
-
 export const revalidate = 0;
 
 interface CategoryNamePageProps {

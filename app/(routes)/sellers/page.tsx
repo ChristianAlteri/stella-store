@@ -1,30 +1,8 @@
-import HomeContainer from "@/components/ui/HomeContainer";
-// import LeftSidebar from "../../../components/Home/LeftSidebar";
-// import RightCategorySidebar from "../../../components/Home/RightCategorySidebar";
-import ProductGrid from "../../../components/Home/ProductGrid";
-import Billboard from "@/components/Billboard/Billboard";
-import ProductCard from "@/components/Product/product-card";
-import ProductList from "@/components/Home/product-list";
-
-import getDesigners from "@/actions/get-designers";
-import getCategories from "@/actions/get-categories";
-import getBillboard from "@/actions/get-billboard";
-import getProducts from "@/actions/get-products";
-import getSellers from "@/actions/get-sellers";
-import CategoryCardGrid from "@/components/Home/CategoryCardGridTest";
-import SellerCard from "@/components/ui/seller-card";
 
 
-export const revalidate = 0
 
 const SellerPage = async () => {
-    const designersData = await getDesigners();
-    const categoryData = await getCategories();
-    const sellerData = await getSellers();
-    const productData = await getProducts({all: true});
-    
-    
-    const billboardData = await getBillboard("a8d1234e-35d9-4dae-896a-762eb28045c3");
+
 
     return ( 
         <>
@@ -35,7 +13,7 @@ const SellerPage = async () => {
                 {/* <LeftSidebar title="Designers" data={designersData} /> */}
                
 
-                {/* Second column */}
+                {/* Second column
                 <HomeContainer>
                     <Billboard data={billboardData} />
                     <CategoryCardGrid>
@@ -43,7 +21,7 @@ const SellerPage = async () => {
                         <SellerCard route="sellers" key={seller.name} data={seller} />
                         ))}
                     </CategoryCardGrid>
-                </HomeContainer>
+                </HomeContainer> */}
 
                 {/* Third column */}
 

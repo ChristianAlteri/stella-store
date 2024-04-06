@@ -1,6 +1,7 @@
 import type { Config } from "tailwindcss"
+import withMT from "@material-tailwind/react/utils/withMT";
 
-const config = {
+const config: Config = withMT({
   darkMode: ["class"],
   content: [
     './pages/**/*.{ts,tsx}',
@@ -75,6 +76,6 @@ const config = {
     },
   },
   plugins: [require("tailwindcss-animate")],
-} satisfies Config
+}) as Config
 
 export default config

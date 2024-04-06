@@ -2,13 +2,8 @@
 import ProductGrid from "@/components/Home/ProductGrid";
 import HomeContainer from "@/components/ui/HomeContainer";
 
-import getDesigners from "@/actions/get-designers";
-import getSellers from "@/actions/get-sellers";
 
 const ForYouPage = async () => {
-    const designersData = await getDesigners();
-    const sellerData = await getSellers();
-
 
     return ( 
         <>
