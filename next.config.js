@@ -23,7 +23,13 @@ const nextConfig = {
     },
   images: {
       domains: ['res.cloudinary.com'],
-  }
+  },
+  webpack: (config, options) => {
+    config.infrastructureLogging = {
+      level: 'error',
+    };
+    return config;
+  },
 }
 
 module.exports = nextConfig

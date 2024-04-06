@@ -16,7 +16,7 @@ const TopLikesPage = async () => {
     const categoryData = await getCategories();
     const sellerData = await getSellers();
     const mostViewedProducts = await getMostViewed({all: true})
-    console.log("mostViewedProducts", mostViewedProducts);
+   
 
 
     return ( 

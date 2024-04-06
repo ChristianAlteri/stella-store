@@ -8,7 +8,6 @@ import getColors from "@/actions/get-colors";
 import getSizes from "@/actions/get-sizes";
 import getConditions from "@/actions/get-conditions";
 import getMaterials from "@/actions/get-materials";
-import { Product } from "@/types";
 import getGenders from "@/actions/get-genders";
 import getSubcategories from "@/actions/get-sub-categories";
 
