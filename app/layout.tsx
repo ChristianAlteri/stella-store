@@ -46,7 +46,7 @@ export default async function RootLayout({
   const genders = await getGenders();
   const subcategories = await getSubcategories();
   const products = await getProducts({ all: true });
-  const navBarBillboard = await getBillboardByName("OnSale");
+  const navBarBillboard = await getBillboardByName("navBarBillboard");
 
   return (
     <html lang="en">

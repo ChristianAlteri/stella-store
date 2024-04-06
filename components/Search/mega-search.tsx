@@ -25,7 +25,7 @@ import IconButton from "../ui/icon-button";
 
 import SearchInputAndResults from "./search-input-and-results";
 
-import ShoppingCartButton from "../NavBar/buttons/ShoppingCartButton";
+import ShoppingCartButton from "../NavBar/ShoppingCartButton";
 import Link from "next/link";
 
 interface MegaSearchProps {

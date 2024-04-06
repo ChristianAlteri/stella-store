@@ -48,7 +48,7 @@ const FooterMobileButtons: React.FC<FooterMobileButtonsProps> = ({
   return (
     <div className="flex col-span-4 flex-row w-full h-full justify-center items-center">
     <div
-        className="flex items-center justify-center col-span-1 w-full border-t border-b border-r min-h-[65px]"
+        className="flex items-center justify-center col-span-1 w-full border-t border-b border-r min-h-[55px]"
       >
         <FooterSort
           valueKey="sort"
@@ -65,23 +65,23 @@ const FooterMobileButtons: React.FC<FooterMobileButtonsProps> = ({
         />
       </div>
       <div
-        className="text-xs flex items-center justify-center col-span-1 w-full border-t border-b border-r min-h-[65px] z-35"
+        className="text-xs flex items-center justify-center col-span-1 w-full border-t border-b border-r min-h-[55px] z-35"
       >
       <GenderFilter 
-      icon={<BsGenderMale size={27}/>}
+      icon={<BsGenderMale size={25}/>}
       gender={genders ? genders[0] : undefined} 
       />
       </div>
       <div
-        className="text-xs flex items-center justify-center col-span-1 w-full border-t border-b border-r min-h-[65px] z-35"
+        className="text-xs flex items-center justify-center col-span-1 w-full border-t border-b border-r min-h-[55px] z-35"
       >
        <GenderFilter 
-       icon={<BsGenderFemale size={27}/>}
+       icon={<BsGenderFemale size={25}/>}
        gender={genders ? genders[1] : undefined} 
        />
       </div>
       <div
-        className="flex items-center justify-center col-span-1 w-full border-t border-b border-r min-h-[65px]"
+        className="flex items-center justify-center col-span-1 w-full border-t border-b border-r min-h-[55px]"
       >
         <FilterModal
           colors={colors}

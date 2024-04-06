@@ -123,7 +123,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
             </div>
         </div> */}
 
-        <div className="relative h-full w-full rounded-md flex justify-center items-center z-50">
+        <div className="relative h-full w-full rounded-md flex justify-center items-center z-30">
           {/* Base Image - always visible */}
           <div className="inset-0 w-full h-full flex justify-center items-center hover:cursor-pointer">
             {/* If item is marked hidden we blur it. Used for unreleased products */}
