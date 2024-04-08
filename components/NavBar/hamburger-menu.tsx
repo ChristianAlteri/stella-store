@@ -1,13 +1,14 @@
-import { Drawer } from "@material-tailwind/react";
 import Link from "next/link";
 import React, { useEffect } from "react";
-import { CiMenuBurger } from "react-icons/ci";
+import { Category, Designer, Product, Seller } from "@/types";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
-import { Category, Designer, Product, Seller } from "@/types";
-import MiniProductCard from "../Product/mini-product-card";
 import MiniProductCarousel from "../Product/mini-product-carousel";
 
+import { Drawer } from "@material-tailwind/react";
+
+import { CiMenuBurger } from "react-icons/ci";
+import QuickLinks from "./quick-links";
 
 interface HamburgerMenuProps {
   designers?: Designer[];
@@ -39,7 +40,7 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
         className="flex justify-center text-center text-xs hover:underline hover:cursor-pointer"
       >
         <CiMenuBurger
-          size={17}
+          size={20}
           className="md:hidden flex justify-center"
         />
       </div>
@@ -56,6 +57,9 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
         placeholder={undefined}
       >
         <div className="grid grid-rows-7 h-full">
+        <div className="row-span-1 bg-stone-100 flex items-center justify-around text-xs text-stone-700 shadow-md">
+            <QuickLinks />
+          </div>
 
           <div className="row-span-3 p-4 overflow-y-auto">
             <div className="grid grid-cols-3 gap-4">
@@ -114,24 +118,12 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
             </div>
           </div>
 
-          <div className="row-span-1 bg-stone-100 flex items-center justify-around text-xs text-stone-700">
-            <Link href="/top-likes" className="hover:underline">Top liked</Link>
-            <Link href="/most-viewed" className="hover:underline">Trending</Link>
-            <Link href="/for-you" className="hover:underline">For you</Link>
-            <Link href="/" className="hover:underline">New arrivals</Link>
-            <Link href="/sale" className="hover:underline">Sale</Link>
-          </div>
+          
 
           <div className="row-span-3 bg-stone-200 flex items-center justify-center ">
             <div className="top-0">
-                {/* <MiniProductCard
-                  // only top ten products
-                  data={topTen}
-                  // miniProductTitle="Most Viewed"
-                  // miniProductRoute="/most-viewed"
-                /> */}
                 <MiniProductCarousel
-                  // only top ten products
+                  // TODO: only top ten products
                   data={topTen}
                   miniProductTitle="Most Viewed"
                   miniProductRoute="/most-viewed"

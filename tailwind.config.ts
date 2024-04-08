@@ -19,6 +19,9 @@ const config: Config = withMT({
       },
     },
     extend: {
+      boxShadow: {
+        'top': '0 -3px 5px -1px rgba(115,115,115,0.5)',
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

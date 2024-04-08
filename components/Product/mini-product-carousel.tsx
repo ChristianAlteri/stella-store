@@ -1,9 +1,10 @@
 import { Product } from "@/types";
-import { Carousel } from "@material-tailwind/react";
+import { Carousel, IconButton } from "@material-tailwind/react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { ChevronRightIcon } from "lucide-react";
 
 interface MiniProductCarouselProps {
   data: Product[] | undefined;
@@ -12,30 +13,13 @@ interface MiniProductCarouselProps {
 }
 
 const MiniProductCarousel: React.FC<MiniProductCarouselProps> = ({ data, miniProductTitle, miniProductRoute }) => {
-//   const [currentIndex, setCurrentIndex] = useState(0);
-//   const intervalIdRef = useRef<NodeJS.Timeout | null>(null);
   const router = useRouter();
 
-//   useEffect(() => {
-//     intervalIdRef.current = setInterval(() => {
-//       setCurrentIndex((currentIndex) => {
-//         const newIndex = (currentIndex + 1) % data!.length;
-//         return newIndex;
-//       });
-//     }, 1000);
-
-//     return () => {
-//       if (intervalIdRef.current) {
-//         clearInterval(intervalIdRef.current);
-//       }
-//     };
-//   }, [data]);
-
   return (
-    <>
+    <div className="flex flex-col justify-center items-center mb-4">
      <Link
           href={miniProductRoute || "/"}
-          className="flex justify-center text-sm font-medium transition-colors border shadow-md rounded-md p-1 hover:text-stone-900 hover:underline hover:cursor-pointer"
+          className="w-1/3 flex justify-center text-sm font-medium transition-colors border shadow-md rounded-md p-1 hover:text-stone-900 hover:underline hover:cursor-pointer mb-3"
         >
         <div className="flex flex-row p-2 z-50 text-xs bg-transparent text-stone-600 ">
             {miniProductTitle}
@@ -72,7 +56,7 @@ const MiniProductCarousel: React.FC<MiniProductCarouselProps> = ({ data, miniPro
       </div>
       ))}
     </Carousel>
-    </>
+    </div>
   );
 };
 

@@ -23,6 +23,7 @@ import {
   Size,
   Subcategory,
 } from "@/types";
+import QuickLinks from "./quick-links";
 
 interface NavbarProps {
   sellers: Seller[];
@@ -60,7 +61,8 @@ const Navbar: React.FC<NavbarProps> = ({
         data={navBarBillboard}
       />
 
-      <div className="border-b sticky bg-white w-full top-0 z-40">
+      <div className="sticky bg-white w-full top-0 z-40 shadow-md">
+
         <div className="grid md:grid-rows-2 grid-rows-1 min-h-[55px] p-1">
           <div className="row-span-1 w-full">
 
@@ -108,35 +110,31 @@ const Navbar: React.FC<NavbarProps> = ({
             </div>
           </div>
 
-          <div className="row-span-1 w-full md:flex hidden mt-3">
+          <div className="row-span-1 w-full md:flex hidden p-2">
             <div className="flex-col w-full justify-center items-center ">
               <div className="flex flex-col items-center justify-center w-full ">
                 <div className="flex items-center text-center w-2/3 text-xs md:text-sm text-stone-700 gap-2 justify-between">
-                  <Link href={`/top-likes`}>
-                    <p className=" items-center text-center hover:text-stone-900 hover:underline hover:cursor-pointer">
-                      Top liked
-                    </p>
+                  <QuickLinks />
+                  {/* <Link href="/top-likes" className="flex flex-col justify-center items-center rounded-xl w-full h-2/3 hover:underline">
+                  <CiHeart size={25}/>
+                    Top Liked
                   </Link>
-                  <Link href={`/most-viewed`}>
-                    <p className="items-center text-center hover:text-stone-900 hover:underline hover:cursor-pointer">
-                      Trending
-                    </p>
+                  <Link href="/most-viewed" className="flex flex-col justify-center items-center rounded-xl w-full h-2/3 hover:underline">
+                    <IoMdTrendingUp size={25}/>
+                    Trending
                   </Link>
-                  <Link href={`/for-you`}>
-                    <p className="items-center text-center hover:text-stone-900 hover:underline hover:cursor-pointer">
-                      For you
-                    </p>
+                  <Link href="/for-you" className="flex flex-col justify-center items-center rounded-xl w-full h-2/3 hover:underline">
+                    <RiHome5Line size={25}/>
+                    For You
                   </Link>
-                  <Link href={`/`}>
-                    <p className="items-center text-center hover:text-stone-900 hover:underline hover:cursor-pointer">
-                      New arrivals
-                    </p>
+                  <Link href="/" className="flex flex-col justify-center items-center rounded-xl w-full h-2/3 hover:underline">
+                    <TbPlaneArrival size={25}/>
+                    New Arrivals
                   </Link>
-                  <Link href={`/sale`}>
-                    <p className="items-center text-center hover:text-stone-900 hover:underline hover:cursor-pointer">
-                      Sale
-                    </p>
-                  </Link>
+                  <Link href="/sale" className="flex flex-col justify-center items-center rounded-xl w-full h-2/3 hover:underline">
+                  <CiCoinInsert size={25}/>
+                    Sale
+                  </Link> */}
                 </div>
               </div>
             </div>

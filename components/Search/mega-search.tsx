@@ -83,7 +83,7 @@ const MegaSearch: React.FC<MegaSearchProps> = ({
               <div className="flex flex-row justify-between w-full p-2 top-0 items-center text-center lg:w-1/2 md:w-1/2">
                 <div className="">
                   <IconButton
-                    icon={<IoCloseOutline size={17} />}
+                    icon={<IoCloseOutline size={20} />}
                     onClick={onClose}
                   />
                 </div>

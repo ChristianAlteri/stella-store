@@ -26,7 +26,7 @@ const HeartButton = () => {
   return ( 
     <div className="">
       <Button onClick={() => router.push('/likes')} className="flex ">
-      <CiHeart size={"20px"} className="hover:cursor-pointer hover:text-stone-900 hover:underline"/>
+      <CiHeart size={"24px"} className="hover:cursor-pointer hover:text-stone-900 hover:underline"/>
         <span className="p-1 text-xs text-green-800">
           {likes.items.length}
         </span>

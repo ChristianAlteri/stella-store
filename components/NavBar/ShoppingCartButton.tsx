@@ -26,7 +26,7 @@ const ShoppingCartButton = () => {
   return ( 
     <div className="">
       <Button onClick={() => router.push('/cart')} className="flex ">
-      <CiShoppingCart size={"20px"} className="hover:cursor-pointer hover:text-stone-900 hover:underline"/>
+      <CiShoppingCart size={"24px"} className="hover:cursor-pointer hover:text-stone-900 hover:underline"/>
         <span className="p-1 text-xs text-green-800">
           {cart.items.length}
         </span>

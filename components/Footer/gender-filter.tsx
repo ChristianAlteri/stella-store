@@ -45,8 +45,8 @@ const GenderFilter: React.FC<GenderFilterProps> = ({ gender, icon }) => {
               className={cn(
                 "w-full h-full flex flex-row justify-center text-xs text-white hover:underline hover:cursor-pointer",
                 isSelected
-                ? "bg-green-200 w-4/5 p-2 rounded-xl h-full font-bold text-black scale-110 transition-transform animate-pulse "
-                  : "text-stone-700 w-4/5 p-2 h-full scale-90"
+                ? "bg-green-200 w-4/5  rounded-xl h-full font-bold text-black scale-110 transition-transform animate-pulse "
+                  : "text-stone-700 w-4/5  h-full scale-90"
               )}
               onClick={() => {
                 if (gender) {

@@ -68,7 +68,7 @@ export default async function RootLayout({
           topTen={topTen}
           navBarBillboard={navBarBillboard}
         />
-        {children}
+          {children}
         <Footer
           searchParams={{
             categoryId: "",

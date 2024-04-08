@@ -46,10 +46,9 @@ const FooterMobileButtons: React.FC<FooterMobileButtonsProps> = ({
 }) => {
 
   return (
-    <div className="flex col-span-4 flex-row w-full h-full justify-center items-center">
+    <div className="flex col-span-4 flex-row w-full h-full justify-center items-center shadow-top">
     <div
-        className="flex items-center justify-center col-span-1 w-full border-t border-b border-r min-h-[55px]"
-      >
+        className="flex flex-col items-center justify-center col-span-1 w-full min-h-[55px] text-xs">
         <FooterSort
           valueKey="sort"
           products={products}
@@ -62,27 +61,23 @@ const FooterMobileButtons: React.FC<FooterMobileButtonsProps> = ({
           materials={materials}
           genders={genders}
           subcategories={subcategories}
-        />
+        />Sort by
       </div>
-      <div
-        className="text-xs flex items-center justify-center col-span-1 w-full border-t border-b border-r min-h-[55px] z-35"
-      >
+      <div className="text-xs flex items-center justify-center col-span-1 w-full min-h-[55px] z-35 flex-col">
       <GenderFilter 
       icon={<BsGenderMale size={25}/>}
       gender={genders ? genders[0] : undefined} 
-      />
+      /> Menswear
       </div>
       <div
-        className="text-xs flex items-center justify-center col-span-1 w-full border-t border-b border-r min-h-[55px] z-35"
-      >
+        className="text-xs flex-col flex items-center justify-center col-span-1 w-full min-h-[55px] z-35">
        <GenderFilter 
        icon={<BsGenderFemale size={25}/>}
        gender={genders ? genders[1] : undefined} 
-       />
+       /> Womenswear
       </div>
       <div
-        className="flex items-center justify-center col-span-1 w-full border-t border-b border-r min-h-[55px]"
-      >
+        className="text-xs flex flex-col items-center justify-center col-span-1 w-full min-h-[55px]">
         <FilterModal
           colors={colors}
           sizes={sizes}
@@ -94,7 +89,7 @@ const FooterMobileButtons: React.FC<FooterMobileButtonsProps> = ({
           genders={genders}
           subcategories={subcategories}
           onSaleProducts={onSaleProducts}
-          />
+          /> Filter by
       </div>
       
     </div>

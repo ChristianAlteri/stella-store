@@ -85,7 +85,7 @@ const ClientAdvisor: React.FC<ClientAdvisorProps> = ({ products }) => {
           <Dialog.Panel className="rounded-sm flex flex-col h-2/3 w-2/3 overflow-y-auto bg-white py-4 pb-6 shadow-xl">
             <div className="flex flex-row justify-end p-2">
               <IconButton
-                icon={<IoCloseOutline size={17} />}
+                icon={<IoCloseOutline size={20} />}
                 onClick={onClose}
               />
             </div>
