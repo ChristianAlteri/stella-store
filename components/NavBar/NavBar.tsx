@@ -36,6 +36,7 @@ interface NavbarProps {
   subcategories: Subcategory[];
   products: Product[];
   navBarBillboard: Billboard;
+  topTen: Product[];
 }
 
 const Navbar: React.FC<NavbarProps> = ({
@@ -50,6 +51,7 @@ const Navbar: React.FC<NavbarProps> = ({
   subcategories,
   products,
   navBarBillboard,
+  topTen
 }) => {
   return (
     <>
@@ -68,6 +70,7 @@ const Navbar: React.FC<NavbarProps> = ({
                   designers={designers}
                   categories={categories}
                   sellers={sellers}
+                  topTen={topTen}
                 />
 
                 <MegaSearch

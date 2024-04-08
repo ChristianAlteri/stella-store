@@ -17,6 +17,7 @@ import getMaterials from "@/actions/get-materials";
 import getConditions from "@/actions/get-conditions";
 import getGenders from "@/actions/get-genders";
 import getSubcategories from "@/actions/get-sub-categories";
+import getTopTen from "@/actions/get-top-ten";
 
 
 
@@ -46,6 +47,7 @@ export default async function RootLayout({
   const genders = await getGenders();
   const subcategories = await getSubcategories();
   const products = await getProducts({ all: true });
+  const topTen = await getTopTen({ all: true }, "most-viewed");
   const navBarBillboard = await getBillboardByName("navBarBillboard");
 
   return (
@@ -63,6 +65,7 @@ export default async function RootLayout({
           genders={genders}
           subcategories={subcategories}
           products={products}
+          topTen={topTen}
           navBarBillboard={navBarBillboard}
         />
         {children}

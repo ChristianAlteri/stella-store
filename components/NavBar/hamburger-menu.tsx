@@ -4,18 +4,23 @@ import React, { useEffect } from "react";
 import { CiMenuBurger } from "react-icons/ci";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
-import { Category, Designer, Seller } from "@/types";
+import { Category, Designer, Product, Seller } from "@/types";
+import MiniProductCard from "../Product/mini-product-card";
+import MiniProductCarousel from "../Product/mini-product-carousel";
+
 
 interface HamburgerMenuProps {
   designers?: Designer[];
   categories?: Category[];
   sellers?: Seller[];
+  topTen?: Product[];
 }
 
 const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
   designers,
   categories,
-  // sellers,
+  sellers,
+  topTen
 }) => {
   const pathname = usePathname();
   const [open, setOpen] = React.useState(false);
@@ -26,37 +31,6 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
     closeDrawer();
   }, [pathname]);
 
-  const sellers = [
-    { id: "1", instagramHandle: "seller1" },
-    { id: "2", instagramHandle: "seller2" },
-    { id: "3", instagramHandle: "seller3" },
-    { id: "1", instagramHandle: "seller1" },
-    { id: "2", instagramHandle: "seller2" },
-    { id: "3", instagramHandle: "seller3" },
-    { id: "1", instagramHandle: "seller1" },
-    { id: "2", instagramHandle: "seller2" },
-    { id: "3", instagramHandle: "seller3" },
-    { id: "1", instagramHandle: "seller1" },
-    { id: "2", instagramHandle: "seller2" },
-    { id: "3", instagramHandle: "seller3" },
-    { id: "1", instagramHandle: "seller1" },
-    { id: "2", instagramHandle: "seller2" },
-    { id: "3", instagramHandle: "seller3" },
-    { id: "1", instagramHandle: "seller1" },
-    { id: "2", instagramHandle: "seller2" },
-    { id: "3", instagramHandle: "seller3" },
-    { id: "1", instagramHandle: "seller1" },
-    { id: "2", instagramHandle: "seller2" },
-    { id: "3", instagramHandle: "seller3" },
-    { id: "1", instagramHandle: "seller1" },
-    { id: "2", instagramHandle: "seller2" },
-    { id: "3", instagramHandle: "seller3" },
-
-    { id: "1", instagramHandle: "seller1" },
-    { id: "2", instagramHandle: "seller2" },
-    { id: "3", instagramHandle: "seller3" },
-    
-  ]
 
   return (
     <>
@@ -85,7 +59,8 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
 
           <div className="row-span-3 p-4 overflow-y-auto">
             <div className="grid grid-cols-3 gap-4">
-              <div>
+
+              <div className="border-r p-2 m-1 w-full">
                 <Link href="/sellers" className="underline">Sellers</Link>
                   <div className="mt-2 flex flex-col gap-2">
                     {sellers?.map((seller) => (
@@ -102,7 +77,7 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
                     ))}
                   </div>
               </div>
-              <div>
+              <div className="p-2 m-1 w-full">
                 <Link href="/designers" className="underline">Designers</Link>
                 <div className="mt-2 flex flex-col gap-2 ">
                   {designers?.map((designer) => (
@@ -119,7 +94,7 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
                   ))}
                 </div>
               </div>
-              <div className="border-l">
+              <div className="border-l p-2 m-1 w-full">
                 <Link href="/categories" className="underline">Categories</Link>
                 <div className="mt-2 flex flex-col gap-2 ">
                   {categories?.map((category) => (
@@ -147,7 +122,22 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
             <Link href="/sale" className="hover:underline">Sale</Link>
           </div>
 
-          <div className="row-span-3 bg-stone-200 flex items-center justify-center">MOVING PRODUCT</div>
+          <div className="row-span-3 bg-stone-200 flex items-center justify-center ">
+            <div className="top-0">
+                {/* <MiniProductCard
+                  // only top ten products
+                  data={topTen}
+                  // miniProductTitle="Most Viewed"
+                  // miniProductRoute="/most-viewed"
+                /> */}
+                <MiniProductCarousel
+                  // only top ten products
+                  data={topTen}
+                  miniProductTitle="Most Viewed"
+                  miniProductRoute="/most-viewed"
+                />
+            </div>
+          </div>
         </div>
       </Drawer>
     </>
