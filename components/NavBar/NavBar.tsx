@@ -115,26 +115,6 @@ const Navbar: React.FC<NavbarProps> = ({
               <div className="flex flex-col items-center justify-center w-full ">
                 <div className="flex items-center text-center w-2/3 text-xs md:text-sm text-stone-700 gap-2 justify-between">
                   <QuickLinks />
-                  {/* <Link href="/top-likes" className="flex flex-col justify-center items-center rounded-xl w-full h-2/3 hover:underline">
-                  <CiHeart size={25}/>
-                    Top Liked
-                  </Link>
-                  <Link href="/most-viewed" className="flex flex-col justify-center items-center rounded-xl w-full h-2/3 hover:underline">
-                    <IoMdTrendingUp size={25}/>
-                    Trending
-                  </Link>
-                  <Link href="/for-you" className="flex flex-col justify-center items-center rounded-xl w-full h-2/3 hover:underline">
-                    <RiHome5Line size={25}/>
-                    For You
-                  </Link>
-                  <Link href="/" className="flex flex-col justify-center items-center rounded-xl w-full h-2/3 hover:underline">
-                    <TbPlaneArrival size={25}/>
-                    New Arrivals
-                  </Link>
-                  <Link href="/sale" className="flex flex-col justify-center items-center rounded-xl w-full h-2/3 hover:underline">
-                  <CiCoinInsert size={25}/>
-                    Sale
-                  </Link> */}
                 </div>
               </div>
             </div>

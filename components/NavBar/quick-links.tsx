@@ -10,24 +10,24 @@ import { RiHome5Line } from "react-icons/ri";
 const QuickLinks = () => {
     return ( 
         <>
-            <Link href="/top-likes" className="flex flex-col justify-center items-center rounded-xl w-full h-2/3 hover:underline">
-            <CiHeart size={25}/>
+            <Link href="/top-likes" className="flex flex-col text-xs justify-center items-center rounded-xl w-full h-2/3 hover:underline">
+            <CiHeart size={20}/>
               Top Liked
             </Link>
-            <Link href="/most-viewed" className="flex flex-col justify-center items-center rounded-xl w-full h-2/3 hover:underline">
-              <IoMdTrendingUp size={25}/>
+            <Link href="/most-viewed" className="flex flex-col text-xs justify-center items-center rounded-xl w-full h-2/3 hover:underline">
+              <IoMdTrendingUp size={20}/>
               Trending
             </Link>
-            <Link href="/for-you" className="flex flex-col justify-center items-center rounded-xl w-full h-2/3 hover:underline">
-              <RiHome5Line size={25}/>
+            <Link href="/for-you" className="flex flex-col text-xs justify-center items-center rounded-xl w-full h-2/3 hover:underline">
+              <RiHome5Line size={20}/>
               For You
             </Link>
-            <Link href="/" className="flex flex-col justify-center items-center rounded-xl w-full h-2/3 hover:underline">
-              <TbPlaneArrival size={25}/>
+            <Link href="/" className="flex flex-col text-xs justify-center items-center rounded-xl w-full h-2/3 hover:underline">
+              <TbPlaneArrival size={20}/>
               New Arrivals
             </Link>
-            <Link href="/sale" className="flex flex-col justify-center items-center rounded-xl w-full h-2/3 hover:underline">
-            <CiCoinInsert size={25}/>
+            <Link href="/sale" className="flex flex-col text-xs justify-center items-center rounded-xl w-full h-2/3 hover:underline">
+            <CiCoinInsert size={20}/>
               Sale
             </Link>
         </>

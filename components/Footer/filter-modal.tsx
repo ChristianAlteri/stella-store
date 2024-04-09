@@ -71,10 +71,12 @@ const FilterModal: React.FC<FilterModalProps> = ({
       >
         <div className="grid grid-cols-1 gap-4 p-4">
           
+        
           <div className="flex flex-row items-center justify-center text-black mb-4">
             <span className="underline text-md">Filter by</span>
             <GoFilter className="ml-2" size={20} />
           </div>
+          <SaleCharityFilter/>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             <div className="h-full overflow-y-auto bg-white">
               <FilterButtons valueKey="sizeId" name="Sizes" data={sizes} />
@@ -103,7 +105,6 @@ const FilterModal: React.FC<FilterModalProps> = ({
                 data={subcategories}
               />
             </div>
-            <SaleCharityFilter/>
             <div className="flex flex-col bg-white">
               {onSaleProducts && (
                 <MiniProductCard miniProductRoute="/sale" miniProductTitle="On Sale" data={onSaleProducts} />

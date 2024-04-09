@@ -32,7 +32,7 @@ const LeftSidebar: React.FC<LeftSideProps> = ({
 
   return (
     <aside className="h-full fixed p-4 z-50">
-      <SortFilter valueKey="sort" data={productData} />
+      {/* <SortFilter valueKey="sort" data={productData} /> */}
       <div className="grid grid-rows-3 h-1/2 justify-start items-start">
         <div className="row-span-1 h-full">
           <Link className="hover:underline underline bg-white" href={`/sellers`}>

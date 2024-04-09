@@ -34,7 +34,7 @@ const GenderFilter: React.FC<GenderFilterProps> = ({ gender, icon }) => {
   return (
     <>
       <div className="flex flex-col w-full justify-center items-center h-full">
-        <div className="flex justify-center items-center text-center flex-row w-full h-full">
+        <div className="flex justify-center items-center text-center flex-row w-full h-full text-xs">
           <br />
 
           <div
@@ -43,10 +43,10 @@ const GenderFilter: React.FC<GenderFilterProps> = ({ gender, icon }) => {
           >
             <div
               className={cn(
-                "w-full h-full flex flex-row justify-center text-xs text-white hover:underline hover:cursor-pointer",
+                "w-full h-full flex flex-col justify-center items-center text-center text-xs text-white hover:underline hover:cursor-pointer",
                 isSelected
-                ? "bg-green-200 w-4/5  rounded-xl h-full font-bold text-black scale-110 transition-transform animate-pulse "
-                  : "text-stone-700 w-4/5  h-full scale-90"
+                ? "bg-green-200 w-4/5 text-xs rounded-xl h-full p-1 text-black scale-110 transition-transform animate-pulse "
+                  : "text-stone-700 w-4/5 text-xs h-full scale-90"
               )}
               onClick={() => {
                 if (gender) {
@@ -54,7 +54,7 @@ const GenderFilter: React.FC<GenderFilterProps> = ({ gender, icon }) => {
                 }
               }}
             >
-              {icon}
+             {icon}{gender?.name} 
             </div>
           </div>
         </div>

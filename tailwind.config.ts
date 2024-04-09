@@ -1,14 +1,14 @@
-import type { Config } from "tailwindcss"
+import type { Config } from "tailwindcss";
 import withMT from "@material-tailwind/react/utils/withMT";
 
 const config: Config = withMT({
   darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
-	],
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+  ],
   prefix: "",
   theme: {
     container: {
@@ -20,9 +20,10 @@ const config: Config = withMT({
     },
     extend: {
       boxShadow: {
-        'top': '0 -3px 5px -1px rgba(115,115,115,0.5)',
+        top: "0 -3px 5px -1px rgba(115,115,115,0.5)",
       },
       colors: {
+        'bubble-gum': '#A4F065',
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -79,6 +80,6 @@ const config: Config = withMT({
     },
   },
   plugins: [require("tailwindcss-animate")],
-}) as Config
+}) as Config;
 
-export default config
+export default config;

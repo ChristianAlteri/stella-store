@@ -1,11 +1,10 @@
-"use client";
-
 import React, { useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { Product } from "@/types";
 import qs from "query-string";
-import { CiSliderHorizontal } from "react-icons/ci";
+import { cn } from "@/lib/utils";
+import { FiArrowDown, FiArrowUp } from "react-icons/fi";
 
 interface SortFilterProps {
   data: Product[] | undefined;
@@ -15,9 +14,6 @@ interface SortFilterProps {
 const SortFilter: React.FC<SortFilterProps> = ({ data, valueKey }) => {
   const searchParams = useSearchParams();
   const router = useRouter();
-
-  const toggleFilters = () => setFiltersOpen((prev) => !prev);
-  const [filtersOpen, setFiltersOpen] = useState(false);
 
   const onClick = (id: string | undefined) => {
     const current = qs.parse(searchParams.toString());
@@ -33,57 +29,42 @@ const SortFilter: React.FC<SortFilterProps> = ({ data, valueKey }) => {
     router.push(url);
   };
 
+  const isLowToHighSelected = searchParams.get("sort") === "low-to-high";
+  const isHighToLowSelected = searchParams.get("sort") === "high-to-low";
+
   return (
     <>
-      <div className="flex flex-col justify-start items-start mb-4">
-        <div
-          className="flex text-xs gap-2 justify-center items-center text-stone-600 hover:text-stone-900 hover:cursor-pointer"
-          onClick={toggleFilters}
-        >
-          Sort by
-          <CiSliderHorizontal className="flex flex-row" size={17} />
+      <div className="justify-center items-center mb-4 grid grid-cols-2 gap-2 w-full">
+        <div className="col-span-2 flex justify-center items-center mb-4">
         </div>
-        {filtersOpen && (
-          <div className="flex flex-col justify-center items-center gap-1 w-full">
-            <div className="flex flex-row gap-1 w-full">
-              <br />
-              <div key="high-to-low" className="grid items-center">
-                <div
-                  className="flex flex-row  justify-center items-center text-left text-xs text-stone-500 hover:underline hover:cursor-pointer"
-                  onClick={() => onClick("high-to-low")}
-                >
-                  Latest
-                </div>
-              </div>
+        <div className="flex flex-col justify-center gap-1 items-center text-center text-xs text-stone-500 hover:underline hover:cursor-pointer col-span-1 w-full">
+          <p
+            className={cn(
+              isLowToHighSelected
+                ? "bg-green-200 w-full p-1 rounded-xl h-full font-bold text-black scale-110 transition-transform animate-pulse "
+                : "text-stone-500"
+            )}
+            onClick={() => onClick("low-to-high")}
+          >
+            <div className="flex flex-col justify-center items-center">
+              <FiArrowDown size={20} /> Low to high
             </div>
-            <div className="flex flex-row gap-1 w-full">
-              <div key="low-to-high" className="grid items-center">
-                <div
-                  className=" flex flex-row justify-center gap-1 items-center text-center text-xs "
-                  onClick={() => onClick("low-to-high")}
-                >
-                  {/* <p className="w-full flex flex-row text-stone-900">Price:</p> */}
-                  <p className="w-full flex flex-row text-stone-500 hover:underline hover:cursor-pointer">
-                    Low to high
-                  </p>
-                </div>
-              </div>
+          </p>
+        </div>
+        <div className="flex flex-col justify-center gap-1 items-center text-center text-xs text-stone-500 hover:underline hover:cursor-pointer col-span-1 w-full">
+          <p
+            className={cn(
+              isHighToLowSelected
+                ? "bg-green-200 w-full p-1 rounded-xl h-full font-bold text-black scale-110 transition-transform animate-pulse "
+                : "text-stone-500"
+            )}
+            onClick={() => onClick("high-to-low")}
+          >
+            <div className="flex flex-col justify-center items-center">
+              <FiArrowUp size={20} />High to low
             </div>
-            <div className="flex flex-row gap-1 w-full">
-              <div key="high-to-low" className="grid items-center">
-                <div
-                  className="flex flex-row justify-center gap-1 items-center text-center text-xs text-stone-500 hover:underline hover:cursor-pointer"
-                  onClick={() => onClick("high-to-low")}
-                >
-                  {/* <p className="flex flex-row text-stone-900">Price:</p> */}
-                  <p className="flex flex-row text-stone-500 hover:underline hover:cursor-pointer">
-                    High to low
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
+          </p>
+        </div>
       </div>
     </>
   );
