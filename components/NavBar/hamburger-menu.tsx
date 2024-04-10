@@ -2,7 +2,7 @@ import Link from "next/link";
 import React, { useEffect } from "react";
 import { Category, Designer, Product, Seller } from "@/types";
 import { cn } from "@/lib/utils";
-import { usePathname } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 import MiniProductCarousel from "../Product/mini-product-carousel";
 
 import { Drawer } from "@material-tailwind/react";
@@ -31,6 +31,19 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
   useEffect(() => {
     closeDrawer();
   }, [pathname]);
+
+  const isSellerSelected = (sellerId: string) => {
+    const { sellerId: currentSellerId } = useParams();
+    return currentSellerId === sellerId;
+  };
+  const isDesignerSelected = (designerId: string) => {
+    const { designerId: currentDesignerId } = useParams();
+    return currentDesignerId === designerId;
+  };
+  const isCategorySelected = (categoryId: string) => {
+    const { categoryId: currentCategoryId } = useParams();
+    return currentCategoryId === categoryId;
+  };
 
 
   return (
@@ -72,8 +85,10 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
                         href={`/sellers/${seller.id}`}
                         key={seller.instagramHandle}
                         className={cn(
-                          "text-sm font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer",
-                          pathname === `/sellers/${seller.id}` ? "text-stone" : "text-stone-500"
+                          "flex justify-start text-sm font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer",
+                          isSellerSelected(seller.id)
+                            ? "text-stone bg-stella-green rounded-md w-full p-1 flex justify-center items-center text-white transition-transform animate-pulse"
+                            : "text-stone-500"
                         )}
                       >
                         {seller.instagramHandle}
@@ -89,8 +104,10 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
                       href={`/designers/${designer.id}`}
                       key={designer.name}
                       className={cn(
-                        "text-sm hover:text-stone-900 hover:underline hover:cursor-pointer",
-                        pathname === `/designers/${designer.id}` ? "text-stone" : "text-stone-500"
+                        "flex justify-start text-sm font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer",
+                        isDesignerSelected(designer.id)
+                          ? "text-stone bg-stella-green rounded-md w-full p-1 flex justify-center items-center text-white transition-transform animate-pulse"
+                          : "text-stone-500"
                       )}
                     >
                       {designer.name}
@@ -106,8 +123,10 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
                       href={`/categories/${category.id}`}
                       key={category.name}
                       className={cn(
-                        "text-sm font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer",
-                        pathname === `/categories/${category.id}` ? "text-stone" : "text-stone-500"
+                        "flex justify-start text-sm font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer",
+                        isCategorySelected(category.id)
+                          ? "text-stone bg-stella-green rounded-md w-full p-1 flex justify-center items-center text-white transition-transform animate-pulse"
+                          : "text-stone-500"
                       )}
                     >
                       {category.name}

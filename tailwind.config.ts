@@ -23,7 +23,7 @@ const config: Config = withMT({
         top: "0 -3px 5px -1px rgba(115,115,115,0.5)",
       },
       colors: {
-        'bubble-gum': '#A4F065',
+        'stella-green': '#25d33f',
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

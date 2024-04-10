@@ -101,7 +101,7 @@ const FooterSort: React.FC<FooterSortProps> = ({
               <div
                 className={cn(
                   isLatest
-                    ? " bg-green-200 w-4/5 p-2  rounded-xl h-full font-bold text-black scale-110 transition-transform animate-pulse "
+                    ? " bg-stella-green w-4/5 p-2  rounded-xl h-full font-bold text-black scale-110 transition-transform animate-pulse "
                     : "text-stone-700 w-4/5 h-full scale-90"
                 )}
                 key="latest"
@@ -116,7 +116,7 @@ const FooterSort: React.FC<FooterSortProps> = ({
                 key="low-to-high"
                 className={cn(
                   isLowToHighSelected
-                    ? "bg-green-200 w-4/5 p-2 rounded-xl h-full font-bold text-black scale-110 transition-transform animate-pulse "
+                    ? "bg-stella-green w-4/5 p-2 rounded-xl h-full font-bold text-black scale-110 transition-transform animate-pulse "
                     : "text-stone-700 w-4/5 h-full scale-90"
                 )}
                 onClick={() => onClick("low-to-high")}
@@ -130,7 +130,7 @@ const FooterSort: React.FC<FooterSortProps> = ({
                 key="high-to-low"
                 className={cn(
                   isHighToLowSelected
-                    ? "bg-green-200 w-4/5 p-2 rounded-xl h-full font-bold text-black scale-110 transition-transform animate-pulse "
+                    ? "bg-stella-green w-4/5 p-2 rounded-xl h-full font-bold text-black scale-110 transition-transform animate-pulse "
                     : "text-stone-700 w-4/5 h-full scale-90"
                 )}
                 onClick={() => onClick("high-to-low")}

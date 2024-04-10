@@ -38,12 +38,12 @@ const SaleCharityFilter: React.FC<SaleCharityFilterProps> = ({}) => {
         <div className="flex justify-center items-center gap-4 w-full h-full">
           <div
             key="sale"
-            className="flex flex-col justify-center gap-1 items-center text-center text-xs text-stone-500 hover:underline hover:cursor-pointer w-full"
+            className="flex flex-col justify-center gap-1 items-center text-center text-xs text-stone-500  hover:cursor-pointer w-full"
           >
             <div
               className={cn(
                 isOnSaleSelected
-                  ? "bg-green-200 w-full p-1 rounded-xl h-full text-black scale-110 transition-transform animate-pulse  flex flex-col justify-center items-center"
+                  ? "bg-stella-green w-full flex justify-center items-center text-white text-xs rounded-md h-full p-1 scale-110 transition-transform animate-pulse"
                   : "text-stone-500 w-full flex flex-col justify-center items-center"
               )}
               onClick={() => onClick("isOnSale", "true")}
@@ -53,12 +53,12 @@ const SaleCharityFilter: React.FC<SaleCharityFilterProps> = ({}) => {
           </div>
           <div
             key="charity"
-            className="flex flex-col justify-center gap-1 items-center text-center text-xs text-stone-500 hover:underline hover:cursor-pointer w-full"
+            className="flex flex-col justify-center gap-1 items-center text-center text-xs text-stone-500  hover:cursor-pointer w-full"
           >
             <div
               className={cn(
                 isCharitySelected
-                  ? "bg-green-200 w-full p-1 rounded-xl h-full text-black scale-110 transition-transform animate-pulse flex flex-col justify-center items-center"
+                  ? "bg-stella-green w-full flex justify-center items-center text-white text-xs rounded-md h-full p-1 scale-110 transition-transform animate-pulse"
                   : "text-stone-500 w-full flex flex-col justify-center items-center"
               )}
               onClick={() => onClick("isCharity", "true")}
@@ -68,11 +68,11 @@ const SaleCharityFilter: React.FC<SaleCharityFilterProps> = ({}) => {
           </div>
           <div
             key="hidden"
-            className="flex flex-col justify-center gap-1 items-center text-center text-xs text-stone-500 hover:underline hover:cursor-pointer w-full h-full">
+            className="flex flex-col justify-center gap-1 items-center text-center text-xs text-stone-500  hover:cursor-pointer w-full h-full">
             <div
               className={cn(
                 isHiddenSelected
-                  ? "bg-bubble-gum w-full p-1 rounded-xl h-full text-black scale-110 transition-transform animate-pulse  flex flex-col justify-center items-center"
+                  ? "bg-stella-green w-full flex justify-center items-center text-white text-xs rounded-md h-full p-1 scale-110 transition-transform animate-pulse"
                   : "text-stone-500  flex flex-col justify-center items-center"
               )}
               onClick={() => onClick("isHidden", "true")}

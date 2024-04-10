@@ -41,7 +41,7 @@ const SortFilter: React.FC<SortFilterProps> = ({ data, valueKey }) => {
           <p
             className={cn(
               isLowToHighSelected
-                ? "bg-green-200 w-full p-1 rounded-xl h-full font-bold text-black scale-110 transition-transform animate-pulse "
+                ? "bg-stella-green w-full flex justify-center items-center text-white text-xs rounded-md h-full p-1 scale-110 transition-transform animate-pulse"
                 : "text-stone-500"
             )}
             onClick={() => onClick("low-to-high")}
@@ -55,7 +55,7 @@ const SortFilter: React.FC<SortFilterProps> = ({ data, valueKey }) => {
           <p
             className={cn(
               isHighToLowSelected
-                ? "bg-green-200 w-full p-1 rounded-xl h-full font-bold text-black scale-110 transition-transform animate-pulse "
+                ? "bg-stella-green w-full flex justify-center items-center text-white text-xs rounded-md h-full p-1 scale-110 transition-transform animate-pulse"
                 : "text-stone-500"
             )}
             onClick={() => onClick("high-to-low")}
