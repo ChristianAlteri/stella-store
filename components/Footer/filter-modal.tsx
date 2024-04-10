@@ -76,7 +76,7 @@ const FilterModal: React.FC<FilterModalProps> = ({
             <span className="underline text-md">Filter by</span>
             <GoFilter className="ml-2" size={20} />
           </div>
-          <SaleCharityFilter/>
+          {/* <SaleCharityFilter/> */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             <div className="h-full overflow-y-auto bg-white">
               <FilterButtons valueKey="sizeId" name="Sizes" data={sizes} />

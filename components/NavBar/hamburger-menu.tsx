@@ -9,6 +9,7 @@ import { Drawer } from "@material-tailwind/react";
 
 import { CiMenuBurger } from "react-icons/ci";
 import QuickLinks from "./quick-links";
+import useParamsUtil from "@/utils/useParamsUtil";
 
 interface HamburgerMenuProps {
   designers?: Designer[];
@@ -32,19 +33,7 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
     closeDrawer();
   }, [pathname]);
 
-  const isSellerSelected = (sellerId: string) => {
-    const { sellerId: currentSellerId } = useParams();
-    return currentSellerId === sellerId;
-  };
-  const isDesignerSelected = (designerId: string) => {
-    const { designerId: currentDesignerId } = useParams();
-    return currentDesignerId === designerId;
-  };
-  const isCategorySelected = (categoryId: string) => {
-    const { categoryId: currentCategoryId } = useParams();
-    return currentCategoryId === categoryId;
-  };
-
+  const { isSellerSelected, isDesignerSelected, isCategorySelected } = useParamsUtil();
 
   return (
     <>

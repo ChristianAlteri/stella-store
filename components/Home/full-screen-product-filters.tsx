@@ -7,6 +7,7 @@ import SortFilter from "@/components/SideBars/sort-filter";
 import { Category, Gender, Product } from "@/types";
 import { useState } from "react";
 import { TfiMore } from "react-icons/tfi";
+import AllSortFilters from "../Filters/all-sort-filters";
 
 interface FullscreenProductFiltersProps {
   categoryData?: Category;
@@ -51,13 +52,17 @@ const FullscreenProductFilters: React.FC<FullscreenProductFiltersProps> = ({
           <TfiMore className="flex flex-row mt-2" size={17} />
         </div>
         {filtersOpen && (
-          <div className="grid grid-rows-2 justify-center items-center w-full p-2">
-            <div className="row-span-1 w-full">
+          <div className="flex flex-row gap-12 justify-between items-between w-full p-1">
+            <AllSortFilters
+              data={productData}
+            />
+
+            {/* <div className="row-spa w-full">
               <SortFilter valueKey="sort" data={productData} />
             </div>
-            <div className="row-span-1 w-full">
+            <div className="row-spa w-full">
               <SaleCharityFilter />
-            </div>
+            </div> */}
           </div>
         )}
       </div>

@@ -47,7 +47,7 @@ const SortFilter: React.FC<SortFilterProps> = ({ data, valueKey }) => {
             onClick={() => onClick("low-to-high")}
           >
             <div className="flex flex-col justify-center items-center">
-              <FiArrowDown size={20} /> Low to high
+              <FiArrowDown size={20} /> Low
             </div>
           </p>
         </div>
@@ -61,7 +61,7 @@ const SortFilter: React.FC<SortFilterProps> = ({ data, valueKey }) => {
             onClick={() => onClick("high-to-low")}
           >
             <div className="flex flex-col justify-center items-center">
-              <FiArrowUp size={20} />High to low
+              <FiArrowUp size={20} />High
             </div>
           </p>
         </div>

@@ -23,6 +23,7 @@ import { cn } from "@/lib/utils";
 
 import { FiArrowDown, FiArrowUp } from "react-icons/fi";
 import { TfiMore } from "react-icons/tfi";
+import AllSortFilters from "../Filters/all-sort-filters";
 
 interface FooterSortProps {
   products: Product[] | undefined;
@@ -40,15 +41,15 @@ interface FooterSortProps {
 
 const FooterSort: React.FC<FooterSortProps> = ({
   products,
-  colors,
-  designers,
-  categories,
-  sellers,
-  sizes,
-  conditions,
-  materials,
-  genders,
-  subcategories,
+  // colors,
+  // designers,
+  // categories,
+  // sellers,
+  // sizes,
+  // conditions,
+  // materials,
+  // genders,
+  // subcategories,
   valueKey,
 }) => {
   const searchParams = useSearchParams();
@@ -95,7 +96,7 @@ const FooterSort: React.FC<FooterSortProps> = ({
         placeholder={undefined}
         size={70}
       >
-        <div className="h-full absolute text-xs flex flex-col items-center justify-center col-span-3 w-full  min-h-[55px] mb-4 shadow-top bg-white">
+        <div className="h-full absolute text-xs flex flex-col items-center justify-center  w-full  min-h-[55px] mb-4 shadow-top bg-white">
           <div className="flex flex-row w-full justify-center items-center gap-8">
             {/* <div className="flex flex-col justify-center items-center text-center">
               <div
@@ -111,7 +112,7 @@ const FooterSort: React.FC<FooterSortProps> = ({
               </div>
             </div> */}
 
-            <div className="flex flex-col justify-center items-center text-center w-full">
+            {/* <div className="flex flex-col justify-center items-center text-center w-full">
               <div
                 key="low-to-high"
                 className={cn(
@@ -137,10 +138,13 @@ const FooterSort: React.FC<FooterSortProps> = ({
               >
                  <div className="flex justify-center items-center"><FiArrowUp size={25}/></div>Highest Price
               </div>
-            </div>
+            </div> */}
+            <AllSortFilters 
+             data={products}
+            />
 
-            <div className="flex flex-row text-stone-700 h-full scale-90 w-full">
-              <MegaSearch
+            {/* <div className="flex flex-row text-stone-700 h-full scale-90 w-full"> */}
+              {/* <MegaSearch
                 sellers={sellers}
                 designers={designers}
                 categories={categories}
@@ -152,8 +156,8 @@ const FooterSort: React.FC<FooterSortProps> = ({
                 genders={genders}
                 subcategories={subcategories}
                 icon={<TfiMore size={25} />}
-              />
-            </div>
+              /> */}
+            {/* </div> */}
           </div>
         </div>
       </Drawer>

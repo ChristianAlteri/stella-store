@@ -12,6 +12,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import SortFilter from "./sort-filter";
+import useParamsUtil from "@/utils/useParamsUtil";
 
 interface LeftSideProps {
   productData?: Product[];
@@ -28,22 +29,7 @@ const LeftSidebar: React.FC<LeftSideProps> = ({
   categories,
   sellers,
 }) => {
-  const pathname = usePathname();
-  const params = useParams();
-  const searchParams = useSearchParams();
-
-  const isSellerSelected = (sellerId: string) => {
-    const { sellerId: currentSellerId } = useParams();
-    return currentSellerId === sellerId;
-  };
-  const isDesignerSelected = (designerId: string) => {
-    const { designerId: currentDesignerId } = useParams();
-    return currentDesignerId === designerId;
-  };
-  const isCategorySelected = (categoryId: string) => {
-    const { categoryId: currentCategoryId } = useParams();
-    return currentCategoryId === categoryId;
-  };
+  const { isSellerSelected, isDesignerSelected, isCategorySelected } = useParamsUtil();
 
   return (
     <aside className="h-full fixed p-4 z-40">
