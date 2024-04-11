@@ -1,8 +1,7 @@
 "use client";
 
 import React from "react";
-import { useSearchParams } from "next/navigation";
-import { useRouter } from "next/navigation";
+
 import {
   Category,
   Color,
@@ -15,66 +14,24 @@ import {
   Size,
   Subcategory,
 } from "@/types";
-import qs from "query-string";
-import { CiSliderHorizontal } from "react-icons/ci";
-import MegaSearch from "../Search/mega-search";
-import { Drawer } from "@material-tailwind/react";
-import { cn } from "@/lib/utils";
 
-import { FiArrowDown, FiArrowUp } from "react-icons/fi";
-import { TfiMore } from "react-icons/tfi";
+import { CiSliderHorizontal } from "react-icons/ci";
+
+import { Drawer } from "@material-tailwind/react";
+
 import AllSortFilters from "../Filters/all-sort-filters";
 
 interface FooterSortProps {
   products: Product[] | undefined;
-  colors: Color[] | undefined;
-  designers?: Designer[];
-  categories?: Category[];
-  sellers?: Seller[];
-  sizes?: Size[];
-  conditions?: Condition[];
-  materials?: Material[];
-  genders?: Gender[];
-  subcategories?: Subcategory[];
-  valueKey: string;
 }
 
 const FooterSort: React.FC<FooterSortProps> = ({
   products,
-  // colors,
-  // designers,
-  // categories,
-  // sellers,
-  // sizes,
-  // conditions,
-  // materials,
-  // genders,
-  // subcategories,
-  valueKey,
 }) => {
-  const searchParams = useSearchParams();
-  const router = useRouter();
   const [open, setOpen] = React.useState(false);
   const openDrawer = () => setOpen(true);
   const closeDrawer = () => setOpen(false);
 
-  const onClick = (id: string | undefined) => {
-    const current = qs.parse(searchParams.toString());
-    const query = { ...current, [valueKey]: id };
-    if (current[valueKey] === id) {
-      query[valueKey] = null;
-    }
-    const url = qs.stringifyUrl(
-      { url: window.location.href, query },
-      { skipNull: true }
-    );
-    console.log("url", url);
-    router.push(url);
-  };
-
-  const isLowToHighSelected = searchParams.get("sort") === "low-to-high";
-  const isHighToLowSelected = searchParams.get("sort") === "high-to-low";
-  const isLatest = searchParams.get("sort") === "latest";
 
   return (
     <>
@@ -98,66 +55,11 @@ const FooterSort: React.FC<FooterSortProps> = ({
       >
         <div className="h-full absolute text-xs flex flex-col items-center justify-center  w-full  min-h-[55px] mb-4 shadow-top bg-white">
           <div className="flex flex-row w-full justify-center items-center gap-8">
-            {/* <div className="flex flex-col justify-center items-center text-center">
-              <div
-                className={cn(
-                  isLatest
-                    ? " bg-stella-green w-4/5 p-2  rounded-xl h-full font-bold text-black scale-110 transition-transform animate-pulse "
-                    : "text-stone-700 w-4/5 h-full scale-90"
-                )}
-                key="latest"
-                onClick={() => onClick("latest")}
-              >
-                <div className="flex justify-center items-center"><FaRegHandPeace size={25}/></div>Latest
-              </div>
-            </div> */}
 
-            {/* <div className="flex flex-col justify-center items-center text-center w-full">
-              <div
-                key="low-to-high"
-                className={cn(
-                  isLowToHighSelected
-                    ? "bg-stella-green w-4/5 p-2 rounded-xl h-full font-bold text-black scale-110 transition-transform animate-pulse "
-                    : "text-stone-700 w-4/5 h-full scale-90"
-                )}
-                onClick={() => onClick("low-to-high")}
-              >
-                <div className="flex justify-center items-center"><FiArrowDown size={25}/></div>Lowest Price
-              </div>
-            </div>
-
-            <div className="flex flex-col justify-center items-center text-center w-full">
-              <div
-                key="high-to-low"
-                className={cn(
-                  isHighToLowSelected
-                    ? "bg-stella-green w-4/5 p-2 rounded-xl h-full font-bold text-black scale-110 transition-transform animate-pulse "
-                    : "text-stone-700 w-4/5 h-full scale-90"
-                )}
-                onClick={() => onClick("high-to-low")}
-              >
-                 <div className="flex justify-center items-center"><FiArrowUp size={25}/></div>Highest Price
-              </div>
-            </div> */}
             <AllSortFilters 
              data={products}
             />
 
-            {/* <div className="flex flex-row text-stone-700 h-full scale-90 w-full"> */}
-              {/* <MegaSearch
-                sellers={sellers}
-                designers={designers}
-                categories={categories}
-                sizes={sizes}
-                colors={colors}
-                products={products}
-                materials={materials}
-                conditions={conditions}
-                genders={genders}
-                subcategories={subcategories}
-                icon={<TfiMore size={25} />}
-              /> */}
-            {/* </div> */}
           </div>
         </div>
       </Drawer>

@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation";
 import qs from "query-string";
 import { cn } from "@/lib/utils";
 import { Gender } from "@/types";
-import { Tooltip } from "@material-tailwind/react";
 
 interface GenderFilterProps {
   gender: Gender | undefined;

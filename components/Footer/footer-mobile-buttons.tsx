@@ -50,17 +50,7 @@ const FooterMobileButtons: React.FC<FooterMobileButtonsProps> = ({
     <div
         className="flex flex-col items-center justify-center col-span-1 w-full min-h-[55px] text-xs">
         <FooterSort
-          valueKey="sort"
           products={products}
-          colors={colors}
-          sizes={sizes}
-          conditions={conditions}
-          designers={designers}
-          sellers={sellers}
-          categories={categories}
-          materials={materials}
-          genders={genders}
-          subcategories={subcategories}
         />Sort by
       </div>
       <div className="text-xs flex items-center justify-center col-span-1 w-full min-h-[55px] z-35 flex-col">

@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import Link from "next/link";
 
@@ -7,31 +7,92 @@ import { IoMdTrendingUp } from "react-icons/io";
 import { TbPlaneArrival } from "react-icons/tb";
 import { RiHome5Line } from "react-icons/ri";
 
+import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
+
 const QuickLinks = () => {
-    return ( 
-        <>
-            <Link href="/top-likes" className="flex flex-col text-xs justify-center items-center rounded-xl w-full h-2/3 hover:underline">
-            <CiHeart size={20}/>
-              Top Liked
-            </Link>
-            <Link href="/most-viewed" className="flex flex-col text-xs justify-center items-center rounded-xl w-full h-2/3 hover:underline">
-              <IoMdTrendingUp size={20}/>
-              Trending
-            </Link>
-            <Link href="/for-you" className="flex flex-col text-xs justify-center items-center rounded-xl w-full h-2/3 hover:underline">
-              <RiHome5Line size={20}/>
-              For You
-            </Link>
-            <Link href="/" className="flex flex-col text-xs justify-center items-center rounded-xl w-full h-2/3 hover:underline">
-              <TbPlaneArrival size={20}/>
-              New Arrivals
-            </Link>
-            <Link href="/sale" className="flex flex-col text-xs justify-center items-center rounded-xl w-full h-2/3 hover:underline">
-            <CiCoinInsert size={20}/>
-              Sale
-            </Link>
-        </>
-     );
-}
- 
+  const pathname = usePathname();
+  const isRouteSelected = (route: string) => pathname === route;
+
+  return (
+    <>
+      <Link
+        href="/top-likes"
+        className="flex flex-col text-xs justify-center items-center rounded-xl w-full h-2/3 hover:underline"
+      >
+        <div
+          className={cn(
+            isRouteSelected("/top-likes")
+              ? "bg-stella-green w-full flex flex-col justify-center items-center text-white text-xs rounded-md h-full p-1 scale-110 transition-transform animate-pulse"
+              : "text-stone-300 flex flex-col justify-center items-center"
+          )}
+        >
+          <CiHeart size={20} />
+          Top Liked
+        </div>
+      </Link>
+      <Link
+        href="/most-viewed"
+        className="flex flex-col text-xs justify-center items-center rounded-xl w-full h-2/3 hover:underline"
+      >
+        <div
+          className={cn(
+            isRouteSelected("/most-viewed")
+              ? "bg-stella-green w-full flex flex-col justify-center items-center text-white text-xs rounded-md h-full p-1 scale-110 transition-transform animate-pulse"
+              : "text-stone-300 flex flex-col justify-center items-center"
+          )}
+        >
+          <IoMdTrendingUp size={20} />
+          Trending
+        </div>
+      </Link>
+      <Link
+        href="/for-you"
+        className="flex flex-col text-xs justify-center items-center rounded-xl w-full h-2/3 hover:underline"
+      >
+        <div
+          className={cn(
+            isRouteSelected("/for-you")
+              ? "bg-stella-green w-full flex flex-col justify-center items-center text-white text-xs rounded-md h-full p-1 scale-110 transition-transform animate-pulse"
+              : "text-stone-300 flex flex-col justify-center items-center"
+          )}
+        >
+          <RiHome5Line size={20} />
+          For You
+        </div>
+      </Link>
+      <Link
+        href="/"
+        className="flex flex-col text-xs justify-center items-center rounded-xl w-full h-2/3 hover:underline"
+      >
+        <div
+          className={cn(
+            isRouteSelected("/")
+              ? "bg-stella-green w-full flex flex-col justify-center items-center text-white text-xs rounded-md h-full p-1 scale-110 transition-transform animate-pulse"
+              : "text-stone-300 flex flex-col justify-center items-center"
+          )}
+        >
+          <TbPlaneArrival size={20} />
+          New Arrivals
+        </div>
+      </Link>
+      <Link
+        href="/sale"
+        className="flex flex-col text-xs justify-center items-center rounded-xl w-full h-2/3 hover:underline"
+      >
+        <div
+          className={cn(
+            isRouteSelected("/sale")
+              ? "bg-stella-green w-full flex flex-col justify-center items-center text-white text-xs rounded-md h-full p-1 scale-110 transition-transform animate-pulse"
+              : "text-stone-300"
+          )}
+        >
+          <CiCoinInsert size={20} />
+          Sale
+        </div>
+      </Link>
+    </>
+  );
+};
+
 export default QuickLinks;

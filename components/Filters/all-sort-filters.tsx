@@ -44,7 +44,7 @@ const AllSortFilters: React.FC<AllSortFiltersProps> = ({ data }) => {
     <>
       <div className="flex flex-row justify-center items-center m-2 p-1 gap-2 w-full overflow-auto">
         <div className="flex flex-col justify-center gap-1 items-center text-center text-xs text-stone-300  hover:cursor-pointer w-full">
-          <p
+          <div
             className={cn(
               isLowToHighSelected
                 ? "bg-stella-green w-full flex justify-center items-center text-white text-xs rounded-md h-full p-1 scale-110 transition-transform animate-pulse"
@@ -55,10 +55,10 @@ const AllSortFilters: React.FC<AllSortFiltersProps> = ({ data }) => {
             <div className="flex flex-col justify-center items-center">
               <FiArrowDown size={20} /> Price
             </div>
-          </p>
+          </div>
         </div>
         <div className="flex flex-col justify-center gap-1 items-center text-center text-xs text-stone-300 hover:underline hover:cursor-pointer w-full">
-          <p
+          <div
             className={cn(
               isHighToLowSelected
                 ? "bg-stella-green w-full flex justify-center items-center text-white text-xs rounded-md h-full p-1 scale-110 transition-transform animate-pulse"
@@ -70,7 +70,7 @@ const AllSortFilters: React.FC<AllSortFiltersProps> = ({ data }) => {
               <FiArrowUp size={20} />
               Price
             </div>
-          </p>
+          </div>
         </div>
         <div className="flex flex-col justify-center gap-1 items-center text-center text-xs text-stone-300 hover:cursor-pointer w-full">
           <div

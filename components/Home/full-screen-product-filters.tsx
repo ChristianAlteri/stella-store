@@ -1,9 +1,7 @@
 "use client";
 
 import GenderFilter from "@/components/Footer/gender-filter";
-import SaleCharityFilter from "@/components/Home/sale-charity-filter";
 import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
-import SortFilter from "@/components/SideBars/sort-filter";
 import { Category, Gender, Product } from "@/types";
 import { useState } from "react";
 import { TfiMore } from "react-icons/tfi";
@@ -51,18 +49,12 @@ const FullscreenProductFilters: React.FC<FullscreenProductFiltersProps> = ({
         >
           <TfiMore className="flex flex-row mt-2" size={17} />
         </div>
+
         {filtersOpen && (
           <div className="flex flex-row gap-12 justify-between items-between w-full p-1">
             <AllSortFilters
               data={productData}
             />
-
-            {/* <div className="row-spa w-full">
-              <SortFilter valueKey="sort" data={productData} />
-            </div>
-            <div className="row-spa w-full">
-              <SaleCharityFilter />
-            </div> */}
           </div>
         )}
       </div>

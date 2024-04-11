@@ -19,7 +19,6 @@ import { GoFilter } from "react-icons/go";
 
 import {  IoChevronForwardOutline } from "react-icons/io5";
 import MiniProductCard from "../Product/mini-product-card";
-import SaleCharityFilter from "../Home/sale-charity-filter";
 
 interface FilterModalProps {
   colors: Color[] | undefined;
@@ -36,10 +35,6 @@ interface FilterModalProps {
 
 const FilterModal: React.FC<FilterModalProps> = ({
   colors,
-  designers,
-  categories,
-  sellers,
-  genders,
   sizes,
   conditions,
   materials,
@@ -71,12 +66,11 @@ const FilterModal: React.FC<FilterModalProps> = ({
       >
         <div className="grid grid-cols-1 gap-4 p-4">
           
-        
           <div className="flex flex-row items-center justify-center text-black mb-4">
             <span className="underline text-md">Filter by</span>
             <GoFilter className="ml-2" size={20} />
           </div>
-          {/* <SaleCharityFilter/> */}
+
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             <div className="h-full overflow-y-auto bg-white">
               <FilterButtons valueKey="sizeId" name="Sizes" data={sizes} />
@@ -105,11 +99,13 @@ const FilterModal: React.FC<FilterModalProps> = ({
                 data={subcategories}
               />
             </div>
+
             <div className="flex flex-col bg-white">
               {onSaleProducts && (
                 <MiniProductCard miniProductRoute="/sale" miniProductTitle="On Sale" data={onSaleProducts} />
               )}
             </div>
+
             <button
             className="flex flex-row justify-end"
             onClick={closeDrawer}
