@@ -36,7 +36,7 @@ const LeftSidebar: React.FC<LeftSideProps> = ({
 
       <div className="grid grid-rows-3 h-1/2 justify-start items-start">
         <div className="row-span-1 h-full justify-start">
-          <Link className="hover:underline underline bg-white" href={`/sellers`}>
+          <Link className="underline bg-white" href={`/sellers`}>
             Sellers
           </Link>
           <div className="ml-1 row-span-1 h-full overflow-y-auto bg-white ">
@@ -57,7 +57,7 @@ const LeftSidebar: React.FC<LeftSideProps> = ({
           </div>
         </div>
         <div className="row-span-1 h-full">
-          <Link className="hover:underline underline bg-white" href={`/designers`}>
+          <Link className="underline bg-white" href={`/designers`}>
             Designers
           </Link>
           <div className="ml-1 row-span-1 h-full overflow-y-auto bg-white ">
@@ -78,7 +78,7 @@ const LeftSidebar: React.FC<LeftSideProps> = ({
           </div>
         </div>
         <div className="row-span-1 h-full">
-          <Link className="hover:underline underline bg-white" href={`/categories`}>
+          <Link className="underline bg-white" href={`/categories`}>
             Categories
           </Link>
           <div className="ml-1 row-span-1 h-full overflow-y-auto bg-white ">

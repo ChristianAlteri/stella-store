@@ -17,7 +17,7 @@ import {
 import FilterButtons from "./filter-buttons";
 import { randomiseData } from "../../utils/sortdata";
 import MiniProductCard from "../Product/mini-product-card";
-
+import ProductFilter from "../Filters/product-filter";
 
 interface RightSideProps {
   sizes?: Size[];
@@ -41,45 +41,57 @@ const RightSidebar: React.FC<RightSideProps> = ({
   productData,
   miniProductTitle,
 }) => {
-
-  const [randomisedProductData, setRandomisedProductData] = useState(productData!);
+  const [randomisedProductData, setRandomisedProductData] = useState(
+    productData!
+  );
 
   useEffect(() => {
     setRandomisedProductData(randomiseData(productData));
   }, [productData]);
 
-
   return (
     <aside className="h-full fixed p-4 z-50">
-      <div className="flex text-xs gap-2 justify-center items-center text-stone-600 hover:text-stone-900 hover:cursor-pointer mb-4">
-        Filter by
-        <GoFilter className="flex flex-row" size={17} />
-      </div>
-      <div className="grid grid-rows-6 h-1/2 justify-start items-start">
-        <div className="ml-1 row-span-1 h-full overflow-y-auto bg-white ">
-            <FilterButtons valueKey="sizeId" name="Sizes" data={sizes} />
+      <div className="grid grid-rows-8 h-full w-full justify-end items-end flex-col">
+
+        <div className="row-span-1 h-full overflow-y-auto bg-white">
+          <ProductFilter valueKey="sizeId" name="Sizes" data={sizes} />
         </div>
-        <div className="ml-1 row-span-1 h-full overflow-y-auto bg-white ">
-            <FilterButtons valueKey="colorId" name="Colors" data={colors} />
+        <div className="row-span-1 h-full overflow-y-auto bg-white">
+          <ProductFilter valueKey="colorId" name="Colors" data={colors} />
         </div>
-        <div className="ml-1 row-span-1 h-full overflow-y-auto bg-white ">
-            <FilterButtons valueKey="conditionId" name="Conditions" data={conditions}/>
+        <div className=" row-span-1 h-full overflow-y-auto bg-white">
+          <ProductFilter
+            valueKey="conditionId"
+            name="Conditions"
+            data={conditions}
+          />
         </div>
-        <div className="ml-1 row-span-1 h-full overflow-y-auto bg-white ">
-            <FilterButtons valueKey="materialId" name="Materials" data={materials}/>
+        <div className=" row-span-1 h-full overflow-y-auto bg-white">
+          <ProductFilter
+            valueKey="materialId"
+            name="Materials"
+            data={materials}
+          />
         </div>
-        <div className="ml-1 row-span-1 h-full overflow-y-auto bg-white ">
-            <FilterButtons valueKey="subcategoryId" name="Sub-Category" data={subcategories}/>
+        <div className=" row-span-1 h-full overflow-y-auto bg-white">
+          <ProductFilter
+            valueKey="subcategoryId"
+            name="Sub-Category"
+            data={subcategories}
+          />
         </div>
-        <div className="flex flex-col  bg-white">
-          { randomisedProductData?.length > 0 ? 
-            <MiniProductCard 
-            miniProductTitle={miniProductTitle}
-            miniProductRoute="/featured"
-            data={randomisedProductData} 
-            /> : null 
-          }
+        
+        <div className="flex flex-col row-span-2 bg-white">
+          {randomisedProductData?.length > 0 ? (
+            <MiniProductCard
+              miniProductTitle={miniProductTitle}
+              miniProductRoute="/featured"
+              data={randomisedProductData}
+            />
+          ) : null}
         </div>
+
+        <div className="row-span-1"></div>
       </div>
     </aside>
   );

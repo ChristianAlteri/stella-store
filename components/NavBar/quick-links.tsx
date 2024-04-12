@@ -47,21 +47,6 @@ const QuickLinks = () => {
         </div>
       </Link>
       <Link
-        href="/for-you"
-        className="flex flex-col text-xs justify-center items-center rounded-xl w-full h-2/3 hover:underline"
-      >
-        <div
-          className={cn(
-            isRouteSelected("/for-you")
-              ? "bg-stella-green w-full flex flex-col justify-center items-center text-white text-xs rounded-md h-full p-1 scale-110 transition-transform animate-pulse"
-              : "text-stone-300 flex flex-col justify-center items-center"
-          )}
-        >
-          <RiHome5Line size={20} />
-          For You
-        </div>
-      </Link>
-      <Link
         href="/"
         className="flex flex-col text-xs justify-center items-center rounded-xl w-full h-2/3 hover:underline"
       >
@@ -74,6 +59,21 @@ const QuickLinks = () => {
         >
           <TbPlaneArrival size={20} />
           New Arrivals
+        </div>
+      </Link>
+      <Link
+        href="/for-you"
+        className="flex flex-col text-xs justify-center items-center rounded-xl w-full h-2/3 hover:underline"
+      >
+        <div
+          className={cn(
+            isRouteSelected("/for-you")
+              ? "bg-stella-green w-full flex flex-col justify-center items-center text-white text-xs rounded-md h-full p-1 scale-110 transition-transform animate-pulse"
+              : "text-stone-300 flex flex-col justify-center items-center"
+          )}
+        >
+          <RiHome5Line size={20} />
+          For You
         </div>
       </Link>
       <Link

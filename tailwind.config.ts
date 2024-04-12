@@ -23,7 +23,8 @@ const config: Config = withMT({
         top: "0 -3px 5px -1px rgba(115,115,115,0.5)",
       },
       colors: {
-        'stella-green': '#1ca330',
+        "stella-green": "#1ca330",
+        "light-font": "#485942",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -68,15 +69,20 @@ const config: Config = withMT({
           from: { height: "0" },
           to: { height: "var(--radix-accordion-content-height)" },
         },
-        "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: "0" },
+        'loop-scroll': {
+          '0%': { transform: 'translateX(100%)' },
+          '100%': { transform: 'translateX(-100%)' },
         },
       },
-      animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
+      "accordion-up": {
+        from: { height: "var(--radix-accordion-content-height)" },
+        to: { height: "0" },
       },
+    },
+    animation: {
+      "accordion-down": "accordion-down 0.2s ease-out",
+      "accordion-up": "accordion-up 0.2s ease-out",
+      'loop-scroll': 'loop-scroll 10s linear infinite',
     },
   },
   plugins: [require("tailwindcss-animate")],
