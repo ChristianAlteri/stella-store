@@ -15,8 +15,9 @@ import {
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import qs from "query-string";
+import { useState } from "react";
 
-interface ProductFilterProps {
+interface MobileProductFilterProps {
   data:
     | (
         | Size
@@ -35,7 +36,7 @@ interface ProductFilterProps {
   onClose?: () => void;
 }
 
-const ProductFilter: React.FC<ProductFilterProps> = ({
+const MobileProductFilter: React.FC<MobileProductFilterProps> = ({
   data,
   name,
   valueKey,
@@ -43,6 +44,7 @@ const ProductFilter: React.FC<ProductFilterProps> = ({
   const searchParams = useSearchParams();
   const router = useRouter();
   const selectedValue = searchParams.get(valueKey);
+  const [isVisible, setIsVisible] = useState(false);
 
   const onClick = (id: string | undefined) => {
     const current = qs.parse(searchParams.toString());
@@ -59,31 +61,43 @@ const ProductFilter: React.FC<ProductFilterProps> = ({
 
   const isSelected = (filterId: string) => selectedValue === filterId;
 
+  const toggleVisibility = () => {
+    setIsVisible(!isVisible);
+  };
+
   return (
     <>
-      <div className="flex flex-col underline bg-white justify-start items-start text-lg font-medium">
+    <div className="flex flex-row justify-between w-full h-full"
+    onClick={toggleVisibility}
+    >
+      <div className="flex flex-col underline bg-white justify-start items-start text-sm font-medium">
         <div>{name}</div>
       </div>
-      <div className="row-span-1 h-full">
+      <div>
+        +
+      </div>
+    </div>
+      {isVisible && (
+         <div className="grid grid-cols-4 w-full h-full p-1 gap-2">
           {data?.map((filterItem) => (
-            <div
-              key={filterItem.id}>
-                <div
-                  className={cn(
-                    "ml-2 flex justify-start text-sm font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer",
-                    isSelected(filterItem.id)
-                      ? " bg-stella-green p-1 rounded-md flex justify-center items-center text-white transition-transform animate-pulse"
-                      : "text-light-font"
-                  )}
-                  onClick={() => onClick(filterItem?.id)}
-                >
-                  {filterItem.name}
-                </div>
+            <div key={filterItem.id}>
+              <div
+                className={cn(
+                  "bg-light-backround ml-2 gap-2 flex flex-row justify-center text-sm font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer",
+                  isSelected(filterItem.id)
+                    ? " bg-stella-green p-1 rounded-md flex justify-center items-center text-white transition-transform animate-pulse"
+                    : "text-light-font"
+                )}
+                onClick={() => onClick(filterItem?.id)}
+              >
+                {filterItem.name}
+              </div>
             </div>
           ))}
-      </div>
+        </div>
+      )}
     </>
   );
 };
 
-export default ProductFilter;
+export default MobileProductFilter;

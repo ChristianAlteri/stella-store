@@ -44,7 +44,7 @@ const FooterMobileButtons: React.FC<FooterMobileButtonsProps> = ({
   subcategories,
   onSaleProducts,
 }) => {
-
+  
   return (
     <div className="flex col-span-4 flex-row w-full h-full justify-center items-center shadow-top p-1">
     <div

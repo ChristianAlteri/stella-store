@@ -44,11 +44,14 @@ export interface Product {
   color: Color;
   condition: Condition;
   material: Material;
+  gender: Gender;
+  subcategory: Subcategory;
   images: Image[];
   isFeatured: boolean;
   isArchived: boolean;
   isOnSale: boolean;
   isCharity: boolean;
+  isHidden: boolean;
 
   likes: number | null | undefined;
   clicks: number | null | undefined;

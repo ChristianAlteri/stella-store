@@ -136,8 +136,8 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
               alt={item.name}
               priority
               className={`rounded-md transition-opacity duration-200 ease-in-out ${
-                item.isCharity ? "blur-xl" : ""
-              }`} //TODO: chnage to isHidden
+                item.isHidden ? "blur-xl" : ""
+              }`}
             />
           </div>
           {/* Hover Image - only visible on hover */}

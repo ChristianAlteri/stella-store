@@ -134,8 +134,8 @@ const MiniProductCard: React.FC<MiniProductCardProps> = ({
                 width={70}
                 height={70}
                 className={` transition-opacity duration-200 ease-in-out ${
-                  currentProduct?.isCharity ? "blur-xl" : ""
-                }`} //TODO: chnage to isHidden
+                  currentProduct?.isHidden ? "blur-xl" : ""
+                }`}
               />
               <div
                 className="absolute top-0 left-0 w-full h-full flex items-center justify-center transition-opacity duration-300 "

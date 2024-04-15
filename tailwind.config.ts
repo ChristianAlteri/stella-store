@@ -25,6 +25,7 @@ const config: Config = withMT({
       colors: {
         "stella-green": "#1ca330",
         "light-font": "#485942",
+        "light-backround": "#f2ffed",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
