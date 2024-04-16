@@ -1,10 +1,8 @@
 "use client";
-
 import { Billboard } from "@/types";
-import Image from "next/image";
 import React from "react";
 import { useEffect, useState } from "react";
-import ReactPlayer from "react-player";
+
 
 interface BillboardProps {
   data: Billboard;
@@ -12,6 +10,7 @@ interface BillboardProps {
 
 const Billboard: React.FC<BillboardProps> = ({ data }) => {
   const [isMounted, setIsMounted] = useState(false);
+
   useEffect(() => {
     setIsMounted(true);
   }, []);
@@ -20,9 +19,8 @@ const Billboard: React.FC<BillboardProps> = ({ data }) => {
     return null;
   }
 
-  // console.log('bill',data.imageUrl);
   if (!data || !data.imageUrl) {
-    return <div>Sorry, no billboard working.</div>; 
+    return <div>Sorry, no billboard working.</div>;
   }
 
   return (
@@ -40,14 +38,15 @@ const Billboard: React.FC<BillboardProps> = ({ data }) => {
       )}
       {/* Cloudinary use /video in the url */}
       {data?.imageUrl.match(/https:\/\/.*\/video.*/) && (
-        <ReactPlayer
-          url={data?.imageUrl}
-          style={{ width: "100%", height: "100%" }}
-          // controls
-          loop={true}
-          playing={true}
-          muted={true}
-        />
+        <div className="flex w-full h-full">
+          <video
+            muted
+            autoPlay
+            loop
+            src={`${data?.imageUrl}`}
+            className="flex justify-center items-center rounded-xl overflow-hidden bg-cover"
+          ></video>
+        </div>
       )}
     </div>
   );

@@ -23,7 +23,7 @@ const QuickLinks = () => {
         <div
           className={cn(
             isRouteSelected("/top-likes")
-              ? "bg-stella-green w-full flex flex-col justify-center items-center text-white text-xs rounded-md h-full p-1 scale-110 transition-transform animate-pulse"
+              ? "bg-light-backround w-full flex flex-col justify-center items-center text-light-font text-xs rounded-md h-full p-1 scale-110 transition-transform animate-pulse"
               : "text-stone-300 flex flex-col justify-center items-center"
           )}
         >
@@ -38,7 +38,7 @@ const QuickLinks = () => {
         <div
           className={cn(
             isRouteSelected("/most-viewed")
-              ? "bg-stella-green w-full flex flex-col justify-center items-center text-white text-xs rounded-md h-full p-1 scale-110 transition-transform animate-pulse"
+              ? "bg-light-backround w-full flex flex-col justify-center items-center text-light-font text-xs rounded-md h-full p-1 scale-110 transition-transform animate-pulse"
               : "text-stone-300 flex flex-col justify-center items-center"
           )}
         >
@@ -53,7 +53,7 @@ const QuickLinks = () => {
         <div
           className={cn(
             isRouteSelected("/")
-              ? "bg-stella-green w-full flex flex-col justify-center items-center text-white text-xs rounded-md h-full p-1 scale-110 transition-transform animate-pulse"
+              ? "bg-light-backround w-full flex flex-col justify-center items-center text-light-font text-xs rounded-md h-full p-1 scale-110 transition-transform animate-pulse"
               : "text-stone-300 flex flex-col justify-center items-center"
           )}
         >
@@ -68,7 +68,7 @@ const QuickLinks = () => {
         <div
           className={cn(
             isRouteSelected("/for-you")
-              ? "bg-stella-green w-full flex flex-col justify-center items-center text-white text-xs rounded-md h-full p-1 scale-110 transition-transform animate-pulse"
+              ? "bg-light-backround w-full flex flex-col justify-center items-center text-light-font text-xs rounded-md h-full p-1 scale-110 transition-transform animate-pulse"
               : "text-stone-300 flex flex-col justify-center items-center"
           )}
         >
@@ -83,7 +83,7 @@ const QuickLinks = () => {
         <div
           className={cn(
             isRouteSelected("/sale")
-              ? "bg-stella-green w-full flex flex-col justify-center items-center text-white text-xs rounded-md h-full p-1 scale-110 transition-transform animate-pulse"
+              ? "bg-light-backround w-full flex flex-col justify-center items-center text-light-font text-xs rounded-md h-full p-1 scale-110 transition-transform animate-pulse"
               : "text-stone-300"
           )}
         >

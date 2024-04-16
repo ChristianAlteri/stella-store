@@ -9,7 +9,7 @@ import IconButton from "./icon-button";
 import { IoCloseOutline } from "react-icons/io5";
 
 interface ClientAdvisorProps {
-  products: Product[];
+  products: Product[] | undefined;
 }
 
 const ClientAdvisor: React.FC<ClientAdvisorProps> = ({ products }) => {
@@ -26,7 +26,7 @@ const ClientAdvisor: React.FC<ClientAdvisorProps> = ({ products }) => {
     setUserInput(e.target.value);
   };
 
-  const formattedProducts = products
+  const formattedProducts = products!
     .map((product) => {
       return `${product.name} by ${product.designer.name} size ${product.size.name} in ${product.color.name} for $${product.ourPrice}`;
     })

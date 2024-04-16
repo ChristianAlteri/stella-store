@@ -16,6 +16,7 @@ import getConditions from "@/actions/get-conditions";
 import getMaterials from "@/actions/get-materials";
 import getGenders from "@/actions/get-genders";
 import getSubcategories from "@/actions/get-sub-categories";
+import dynamic from "next/dynamic";
 
 export const revalidate = 0;
 
@@ -71,6 +72,7 @@ const CategoryNamePage: React.FC<CategoryNamePageProps> = async ({
   const materials = await getMaterials();
   const genders = await getGenders();
   const subcategories = await getSubcategories();
+  const allProducts = await getProducts({all: true});
 
   return (
     <>
@@ -113,6 +115,9 @@ const CategoryNamePage: React.FC<CategoryNamePageProps> = async ({
             materials={materials}
             subcategories={subcategories}
             productData={featuredProducts}
+            genders={genders}
+            categoryData={categoryData}
+            allProducts={allProducts}
             miniProductTitle="Our top picks"
           />
         </div>

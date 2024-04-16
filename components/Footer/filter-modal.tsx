@@ -19,6 +19,8 @@ import { GoFilter } from "react-icons/go";
 import MiniProductCard from "../Product/mini-product-card";
 import MobileProductFilter from "../Filters/mobile-product-filter";
 import Link from "next/link";
+import { IoChevronBackCircle } from "react-icons/io5";
+import NavbarScrollingBanner from "../NavBar/navbar-scrolling-banner";
 
 interface FilterModalProps {
   colors: Color[] | undefined;
@@ -173,58 +175,54 @@ const FilterModal: React.FC<FilterModalProps> = ({
         placeholder={undefined}
         size={500}
       >
-        
         <div className="grid grid-rows-10 h-full flex-row p-6 justify-center items-center">
 
-        <div className="row-span-1 bg-white flex-row justify-end items-end w-full p-4">
-          <div className="animate-loop-scroll whitespace-nowrap">
-            Enjoy a 20% discount on your first purchase by 
-            {" "}
-            <Link
-              className="underline"
-              href="/register">
-                creating an account.
-            </Link>
+          <div className="row-span-1 w-full">
+            <NavbarScrollingBanner
+              text="Enjoy a 20% off your first purchase by"
+              underlinedText="creating an account."
+              link="/register"
+            />
           </div>
-        </div>
 
           <div className="row-span-4 p-4 overflow-y-auto h-full flex-row justify-center items-center shadow-2xl rounded-md border w-full">
-
-
-              <div className="flex flex-col h-full w-full justify-start items-start overflow-y-auto gap-2">
-                <div className="flex flex-col bg-white w-full justify-center items-center">
-                  <MobileProductFilter valueKey="sizeId" name="Sizes" data={sizes} />
-                </div>
-                <div className="flex flex-col bg-white w-full justify-center items-center">
-                  <MobileProductFilter
-                    valueKey="colorId"
-                    name="Colors"
-                    data={colors}
-                  />
-                </div>
-                <div className="flex flex-col bg-white w-full justify-center items-center">
-                  <MobileProductFilter
-                    valueKey="conditionId"
-                    name="Conditions"
-                    data={conditions}
-                  />
-                </div>
-                <div className="flex flex-col bg-white w-full justify-center items-center">
-                  <MobileProductFilter
-                    valueKey="materialId"
-                    name="Materials"
-                    data={materials}
-                  />
-                </div>
-                <div className="flex flex-col bg-white w-full justify-center items-center">
-                  <MobileProductFilter
-                    valueKey="subcategoryId"
-                    name="Sub-Category"
-                    data={subcategories}
-                  />
-                </div>
+            <div className="flex flex-col h-full w-full justify-start items-start overflow-y-auto gap-2">
+              <div className="flex flex-col bg-white w-full justify-center items-center">
+                <MobileProductFilter
+                  valueKey="sizeId"
+                  name="Sizes"
+                  data={sizes}
+                />
               </div>
-
+              <div className="flex flex-col bg-white w-full justify-center items-center">
+                <MobileProductFilter
+                  valueKey="colorId"
+                  name="Colors"
+                  data={colors}
+                />
+              </div>
+              <div className="flex flex-col bg-white w-full justify-center items-center">
+                <MobileProductFilter
+                  valueKey="conditionId"
+                  name="Conditions"
+                  data={conditions}
+                />
+              </div>
+              <div className="flex flex-col bg-white w-full justify-center items-center">
+                <MobileProductFilter
+                  valueKey="materialId"
+                  name="Materials"
+                  data={materials}
+                />
+              </div>
+              <div className="flex flex-col bg-white w-full justify-center items-center">
+                <MobileProductFilter
+                  valueKey="subcategoryId"
+                  name="Sub-Category"
+                  data={subcategories}
+                />
+              </div>
+            </div>
           </div>
 
           <div className="row-span-4 p-4 mt-4 overflow-y-auto h-full">
@@ -239,8 +237,11 @@ const FilterModal: React.FC<FilterModalProps> = ({
             </div>
           </div>
 
-          <div className="row-span-1 bg-white flex-row justify-end items-end w-full p-4">
-            <div onClick={closeDrawer} className="p-4 border bg-light-backround">
+          <div className="row-span-1 bg-white flex-row justify-end items-end w-full p-3">
+            <div
+              onClick={closeDrawer}
+              className="p-4 border bg-light-backround rounded-md"
+            >
               Show results
             </div>
           </div>

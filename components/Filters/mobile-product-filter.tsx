@@ -70,7 +70,7 @@ const MobileProductFilter: React.FC<MobileProductFilterProps> = ({
     <div className="flex flex-row justify-between w-full h-full"
     onClick={toggleVisibility}
     >
-      <div className="flex flex-col underline bg-white justify-start items-start text-sm font-medium">
+      <div className="flex flex-col underline bg-white justify-start items-start text-sm font-medium hover:underline hover:cursor-pointer">
         <div>{name}</div>
       </div>
       <div>
@@ -78,12 +78,12 @@ const MobileProductFilter: React.FC<MobileProductFilterProps> = ({
       </div>
     </div>
       {isVisible && (
-         <div className="grid grid-cols-4 w-full h-full p-1 gap-2">
+         <div className="grid grid-cols-4 w-full h-full p-2 gap-2">
           {data?.map((filterItem) => (
             <div key={filterItem.id}>
               <div
                 className={cn(
-                  "bg-light-backround ml-2 gap-2 flex flex-row justify-center text-sm font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer",
+                  "bg-light-backround ml-2 gap-2 flex flex-row justify-center text-sm font-medium transition-colors hover:underline hover:cursor-pointer",
                   isSelected(filterItem.id)
                     ? " bg-stella-green p-1 rounded-md flex justify-center items-center text-white transition-transform animate-pulse"
                     : "text-light-font"

@@ -1,5 +1,5 @@
 import SuggestedContainer from "@/components/ui/SuggestedContainer";
-import Gallery from "@/components/Gallery/single-product-gallery";
+import Gallery from "@/components/Product/Gallery/single-product-gallery";
 import DetailsCard from "@/components/Product/DetailsCard";
 import BuyNowCard from "@/components/Product/BuyNowCard";
 
@@ -7,6 +7,8 @@ import getSingleProduct from "@/actions/get-single-product";
 import getProducts from "@/actions/get-products";
 
 import { sortByMostLiked, sortByMostViewed, sortPriceLowToHigh } from "@/utils/sortdata";
+
+import MiniProductCard from "@/components/Product/mini-product-card";
 
 interface IndividualProductPageProps {
   params: {
@@ -71,14 +73,19 @@ const IndividualProductPage: React.FC<IndividualProductPageProps> = async ({
 
       {/* Suggestions */}
       <div className="flex justify-center p-2 gap-4">
-        {sortedProductsBasedOnSeller.length > 0 && (
+        {/* {sortedProductsBasedOnSeller.length > 0 && (
           <SuggestedContainer
             route={`sellers/${product?.seller?.id}`}
-            header="MORE FROM"
+            header="sortedProductsBasedOnSeller"
             title={product?.seller?.instagramHandle}
             data={sortedProductsBasedOnSeller}
           />
-        )}
+        )} */}
+        <MiniProductCard
+          miniProductRoute={`/${product?.seller?.id}`}
+          miniProductTitle={`MORE FROM ${product?.seller?.instagramHandle.toUpperCase()}`}
+          data={sortedProductsBasedOnSeller}
+        />
       </div>
       {sortedProductsBasedOnCategory.length > 0 && ( //most clicked
         <SuggestedContainer

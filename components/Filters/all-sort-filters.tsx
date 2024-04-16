@@ -42,7 +42,7 @@ const AllSortFilters: React.FC<AllSortFiltersProps> = ({ data }) => {
 
   return (
     <>
-      <div className="flex flex-row justify-center items-center m-2 p-1 gap-2 w-full overflow-auto">
+      <div className="flex md:flex-col md:justify-start flex-row justify-center items-center m-2 p-1 gap-2 w-full overflow-auto">
         <div className="flex flex-col justify-center gap-1 items-center text-center text-xs text-stone-300  hover:cursor-pointer w-full">
           <div
             className={cn(
