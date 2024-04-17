@@ -1,4 +1,4 @@
-import SuggestedContainer from '@/components/ui/SuggestedContainer';
+import SuggestedContainer from '@/components/Suggested/SuggestedContainer';
 import getProducts from '@/actions/get-products';
 import CartPage from './components/cart-page';
 

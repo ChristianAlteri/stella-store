@@ -7,7 +7,7 @@ import useCart from '@/hooks/use-cart';
 
 import Summary from './summary'
 import CartItem from './cart-item';
-import SuggestedContainer from '@/components/ui/SuggestedContainer';
+import SuggestedContainer from '@/components/Suggested/SuggestedContainer';
 import getProducts from '@/actions/get-products';
 import { Product } from '@/types';
 

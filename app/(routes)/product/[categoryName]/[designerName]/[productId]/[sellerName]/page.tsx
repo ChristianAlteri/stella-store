@@ -1,4 +1,4 @@
-import SuggestedContainer from "@/components/ui/SuggestedContainer";
+import SuggestedContainer from "@/components/Suggested/SuggestedContainer";
 import Gallery from "@/components/Product/Gallery/single-product-gallery";
 import DetailsCard from "@/components/Product/DetailsCard";
 import BuyNowCard from "@/components/Product/BuyNowCard";
@@ -65,29 +65,33 @@ const IndividualProductPage: React.FC<IndividualProductPageProps> = async ({
           <div className="flex flex-col text-left justify-center items-start mt-1">
             <DetailsCard data={product} />
           </div>
-          {/* <div className="flex flex-col text-right justify-center items-start">
-            <BuyNowCard data={product} />
-          </div> */}
         <hr className="w-full"/>
         </div>
       </div>
 
       {/* Suggestions */}
       <div className="flex justify-center p-2 gap-4">
-        {/* {sortedProductsBasedOnSeller.length > 0 && (
-          <SuggestedContainer
+        {sortedProductsBasedOnSeller.length > 0 && (
+        <>
+          <div className="md:hidden flex">
+            <MiniProductCard
+              miniProductRoute={`/${product?.seller?.id}`}
+              miniProductTitle={`MORE FROM ${product?.seller?.instagramHandle.toUpperCase()}`}
+              data={sortedProductsBasedOnSeller}
+            />
+          </div>
+          <div className="hidden md:flex">
+            <SuggestedContainer
             route={`sellers/${product?.seller?.id}`}
-            header="sortedProductsBasedOnSeller"
-            title={product?.seller?.instagramHandle}
+            header={`MORE FROM`}
+            title={product?.seller?.instagramHandle.toUpperCase()} 
             data={sortedProductsBasedOnSeller}
-          />
-        )} */}
-        <MiniProductCard
-          miniProductRoute={`/${product?.seller?.id}`}
-          miniProductTitle={`MORE FROM ${product?.seller?.instagramHandle.toUpperCase()}`}
-          data={sortedProductsBasedOnSeller}
-        />
+            />
+          </div>
+        </>
+        )}
       </div>
+
       {sortedProductsBasedOnCategory.length > 0 && ( //most clicked
         <SuggestedContainer
           route={`categories/${product?.category?.id}`}

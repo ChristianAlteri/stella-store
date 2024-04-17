@@ -1,7 +1,7 @@
 import getCategories from "@/actions/get-categories";
 import getProducts from "@/actions/get-products";
 
-import SuggestedContainer from "@/components/ui/SuggestedContainer";
+import SuggestedContainer from "@/components/Suggested/SuggestedContainer";
 import HomepageForSellerDesignerCategory from "@/components/Home/HomepageForSellerDesignerCategory";
 
 const CategoryPage = async () => {

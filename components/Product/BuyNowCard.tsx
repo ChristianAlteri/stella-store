@@ -62,7 +62,7 @@ const BuyNowCard: React.FC<BuyNowCardProps> = ({ data }) => {
         <button className="bg-light-background rounded-sm text-light-font border border-darker-background font-semibold p-2 w-2/3 hover:bg-darker-background hover:text-white ">
           Buy Now
         </button>
-        <div className="p-3 flex flex-row justify-center items-center text-center gap-3">
+        <div className="p-3 flex flex-row justify-center items-center text-center gap-5">
           <ProductCardButton
             icon={<CiHeart />}
             onClick={(event) => onAddToLikes(event)}

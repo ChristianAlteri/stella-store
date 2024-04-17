@@ -31,8 +31,8 @@ const Gallery: React.FC<GalleryProps> = ({
           <Tab.Panel className="hover:cursor-pointer" key={image.id} onClick={() => window.open(`${image.url}`, '_blank')}>
             <div className="h-full w-full">
               <NextImage
-                height={300}
-                width={300}
+                height={250}
+                width={250}
                 src={image.url}
                 alt="Image"
 

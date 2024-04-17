@@ -59,13 +59,47 @@ const DetailsCard: React.FC<DetailsCardProps> = ({ data }) => {
               <h1 className="md:text-xs text-sm">Sold By </h1>
               <Link
                 href={`/sellers/${data?.seller?.id}`}
-                className="md:text-xs text-sm hover:underline hover:cursor-pointer underline"
+                className="md:text-xs font-semibold text-sm hover:underline hover:cursor-pointer underline"
               >
                 {" "}
                 {data?.seller?.instagramHandle.toUpperCase()}
               </Link>
             </div>
-            <div className="p-1">
+            {data?.isCharity && (
+                  <>
+                    <div className="flex flex-row w-full">
+                      <h1 className="text-super-small flex flex-row w-full justify-start gap-1 items-center">
+                        A percentage of proceeds from this sale will go to charity{" "}
+                        <p className="text-green-500">
+                            <CiBadgeDollar size={20} />
+                        </p>
+                      </h1>
+                    </div>
+                  </>
+                )}
+
+            <div className="flex flex-row justify-between w-full gap-1 mt-2">
+              <div>
+                <h1 className="md:text-xs text-sm underline">Description: </h1>
+                <h1 className="md:text-xs text-sm ml-1">{descriptionElements}</h1>
+              </div>
+
+              <div>
+                <h1 className="md:text-xs text-sm underline">Specs </h1>
+                <div className="p-1">
+                  <h1 className="md:text-xs text-sm">Material: {data?.material?.name}</h1>
+                  <div className="flex flex-row gap-2">
+                    <h1 className="md:text-xs text-sm">Colour: {" "}</h1>
+                    <div
+                      className="h-5 w-5 rounded-sm border border-white"
+                      style={{ backgroundColor: data?.color?.value }}
+                    ></div>
+                  </div>
+                </div>
+            </div>
+              </div>
+
+            <div className="flex-col flex w-full justify-center items-center">
               <h1 className="md:text-xs text-sm ">In {data?.condition?.name} condition</h1>
               <h1 className="md:text-xs text-sm ">Part of the {" "}
                 <Link
@@ -77,39 +111,13 @@ const DetailsCard: React.FC<DetailsCardProps> = ({ data }) => {
               {" "} collection
               </h1>
             </div>
+
           </div>
 
           </div>
       </div>
 
-      <div className="flex flex-col gap-1 m-2 ">
-        <h1 className="md:text-xs text-sm">Description </h1>
-        <h1 className="md:text-xs text-sm p-1">{descriptionElements}</h1>
-        <h1 className="md:text-xs text-sm">Specs </h1>
-        <div className="p-1">
-          <h1 className="md:text-xs text-sm">Material: {data?.material?.name}</h1>
-          <div className="flex flex-row gap-2">
-            <h1 className="md:text-xs text-sm">Colour: </h1>
-            <div
-              className="h-4 w-4 rounded-sm border border-stone-300"
-              style={{ backgroundColor: data?.color?.value }}
-            ></div>
-          </div>
-        </div>
-        {data?.isCharity && (
-          <>
-            <br />
-            <div className="flex flex-row p-1">
-              <h1 className=" md:text-xs text-sm">
-                A percentage of proceeds from this sale will go to charity
-                <p className="text-green-500">
-                    <CiBadgeDollar size={20} />
-                </p>
-              </h1>
-            </div>
-          </>
-        )}
-      </div>
+      
     </>
   );
 };
