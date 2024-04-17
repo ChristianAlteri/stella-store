@@ -19,13 +19,17 @@ const config: Config = withMT({
       },
     },
     extend: {
+      fontSize: {
+        'super-small': '10px',
+      },
       boxShadow: {
         top: "0 -3px 5px -1px rgba(115,115,115,0.5)",
       },
       colors: {
         "stella-green": "#1ca330",
         "light-font": "#485942",
-        "light-backround": "#f2ffed",
+        "light-background": "#f2ffed",
+        "darker-background": "#c6edb7",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

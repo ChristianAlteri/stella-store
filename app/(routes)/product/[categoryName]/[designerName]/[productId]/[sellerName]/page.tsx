@@ -47,28 +47,29 @@ const IndividualProductPage: React.FC<IndividualProductPageProps> = async ({
 
   return (
     <>
-      <div className="flex flex-row w-full gap-3 bg-white">
-        {/* First column */}
-        <aside className="flex flex-col w-2/6 text-left p-3 justify-center items-start">
-          <DetailsCard data={product} />
-        </aside>
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-3 w-full bg-white p-6">
 
-        {/* Second column */}
-        <div className="w-full gird grid-cols-1 overflow-auto">
+        {/* Left */}
+        <div className="col-span-2 overflow-auto">
           <div
             className={`flex flex-col w-full h-full items-center text-center justify-center ${
-              product.isCharity ? "blur-xl" : ""
+              product.isHidden ? "blur-xl" : ""
             }`}
           >
             <Gallery images={product.images} />
           </div>
         </div>
 
-        {/* Third column */}
-
-        <aside className="flex flex-col w-2/6 text-right p-3 justify-center items-end">
-          <BuyNowCard data={product} />
-        </aside>
+        {/* Right */}
+        <div className="flex flex-col">
+          <div className="flex flex-col text-left justify-center items-start mt-1">
+            <DetailsCard data={product} />
+          </div>
+          {/* <div className="flex flex-col text-right justify-center items-start">
+            <BuyNowCard data={product} />
+          </div> */}
+        <hr className="w-full"/>
+        </div>
       </div>
 
       {/* Suggestions */}

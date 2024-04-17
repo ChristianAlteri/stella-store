@@ -4,6 +4,7 @@ import { Product } from "@/types";
 import Link from "next/link";
 import React from "react";
 import { CiBadgeDollar } from "react-icons/ci";
+import BuyNowCard from "./BuyNowCard";
 
 interface DetailsCardProps {
   data: Product;
@@ -26,49 +27,69 @@ const DetailsCard: React.FC<DetailsCardProps> = ({ data }) => {
     ));
 
   return (
-    <div className="flex flex-col m-5">
-      <div className="m-2">
-        <Link
-          href={`/designers/${data?.designer?.id}`}
-          className="text-sm hover:underline hover:cursor-pointer underline"
-        >
-          {data?.designer?.name.toUpperCase()}{" "}
-        </Link>
-        <h1 className="text-xs p-1">{data?.name}</h1>
-      </div>
-      <div className="m-2">
-        <div className="flex flex-row gap-1">
-          <h1 className="text-xs">Sold By </h1>
+    <>
+    <div className="flex flex-col w-full border-t border-light-font mt-3 mb-1">
+
+
+        <div className="mt-3 flex flex-col w-full">
           <Link
-            href={`/sellers/${data?.seller?.id}`}
-            className="text-xs hover:underline hover:cursor-pointer underline"
+            href={`/designers/${data?.designer?.id}`}
+            className="text-2xl font-bold hover:underline hover:cursor-pointer underline "
           >
-            {" "}
-            {data?.seller?.instagramHandle.toUpperCase()}
+            {data?.designer?.name.toUpperCase()}{" "}
           </Link>
+          <h1 className="md:text-sm text-md  font-semibold ">{data?.name}</h1>
+          <div className="ml-1 flex flex-col w-full">
+            <div className="flex flex-row justify-end w-full gap-1 mt-4">
+              <h1 className=" text-sm text-red-500 font-bold">£{data.ourPrice}</h1>
+              <h1 className=" text-sm">RRP</h1>
+              <h1 className=" text-sm line-through">£{data.retailPrice}</h1>
+            </div>
+              <h1 className="text-xs flex flex-row text-light-font justify-end w-full">Size {data?.size?.name.toLowerCase()}</h1>
+          </div>
         </div>
-        <div className="p-1">
-          <h1 className="text-xs ">In {data?.condition?.name} condition</h1>
-          <h1 className="text-xs ">Size {data?.size?.name}</h1>
-          <h1 className="text-xs ">Part of the {" "}
-            <Link
-            href={`/categories/${data?.category?.id}`}
-            className="text-xs hover:underline hover:cursor-pointer underline "
-          >
-             {data?.category?.name.toLowerCase()}
-          </Link>
-          {" "} collection
-          </h1>
-        </div>
+
+      <div className="border-t border-light-font mt-3 mb-1">
+        <BuyNowCard data={data} />
       </div>
+
+        <div className="border-t border-light-font mt-3 mb-1">
+          <div className="mt-3">
+            <div className="flex flex-row gap-1">
+              <h1 className="md:text-xs text-sm">Sold By </h1>
+              <Link
+                href={`/sellers/${data?.seller?.id}`}
+                className="md:text-xs text-sm hover:underline hover:cursor-pointer underline"
+              >
+                {" "}
+                {data?.seller?.instagramHandle.toUpperCase()}
+              </Link>
+            </div>
+            <div className="p-1">
+              <h1 className="md:text-xs text-sm ">In {data?.condition?.name} condition</h1>
+              <h1 className="md:text-xs text-sm ">Part of the {" "}
+                <Link
+                href={`/categories/${data?.category?.id}`}
+                className="md:text-xs text-sm hover:underline hover:cursor-pointer underline "
+              >
+                {data?.category?.name.toLowerCase()}
+              </Link>
+              {" "} collection
+              </h1>
+            </div>
+          </div>
+
+          </div>
+      </div>
+
       <div className="flex flex-col gap-1 m-2 ">
-        <h1 className="text-xs">Description </h1>
-        <h1 className="text-xs p-1">{descriptionElements}</h1>
-        <h1 className="text-xs">Specs </h1>
+        <h1 className="md:text-xs text-sm">Description </h1>
+        <h1 className="md:text-xs text-sm p-1">{descriptionElements}</h1>
+        <h1 className="md:text-xs text-sm">Specs </h1>
         <div className="p-1">
-          <h1 className="text-xs">Material: {data?.material?.name}</h1>
+          <h1 className="md:text-xs text-sm">Material: {data?.material?.name}</h1>
           <div className="flex flex-row gap-2">
-            <h1 className="text-xs">Colour: </h1>
+            <h1 className="md:text-xs text-sm">Colour: </h1>
             <div
               className="h-4 w-4 rounded-sm border border-stone-300"
               style={{ backgroundColor: data?.color?.value }}
@@ -79,7 +100,7 @@ const DetailsCard: React.FC<DetailsCardProps> = ({ data }) => {
           <>
             <br />
             <div className="flex flex-row p-1">
-              <h1 className=" text-xs">
+              <h1 className=" md:text-xs text-sm">
                 A percentage of proceeds from this sale will go to charity
                 <p className="text-green-500">
                     <CiBadgeDollar size={20} />
@@ -89,7 +110,7 @@ const DetailsCard: React.FC<DetailsCardProps> = ({ data }) => {
           </>
         )}
       </div>
-    </div>
+    </>
   );
 };
 

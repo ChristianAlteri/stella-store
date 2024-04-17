@@ -46,25 +46,23 @@ const BuyNowCard: React.FC<BuyNowCardProps> = ({ data }) => {
     ));
 
   return (
-    <div className="flex flex-col gap-3 p-5 w-full">
-      <div className="flex flex-row gap-1">
-        <h1 className="text-xs text-red-500">£{data.ourPrice}</h1>
-        <h1 className="text-xs ">RRP</h1>
-        <h1 className="text-xs line-through">£{data.retailPrice}</h1>
-      </div>
-      <h1 className="flex text-xs  text-stone-300">Shipping included</h1>
-      <div className="flex flex-col justify-center items-center text-center">
-        <h1 className="flex text-xs">{data?.likes} people liked this</h1>
-        <h1 className="flex flex-row text-xs">
+    <div className="flex flex-col gap-3 w-full mt-3">
+      <div className="flex flex-col justify-start items-start text-start w-full">
+        {data?.likes === 1 ? (
+          <h1 className="flex text-super-small">{data?.likes} person has liked this</h1>
+        ) : (
+          <h1 className="flex text-super-small">{data?.likes} people have liked this</h1>
+        )}
+        <h1 className="flex flex-row text-super-small">
           {data?.clicks} have viewed this product
         </h1>
       </div>
-      <div className="flex flex-row items-center ">
-        <button className="bg-stone-900  rounded-sm text-white p-2 w-2/3">
+
+      <div className="flex flex-row items-center w-full justify-between">
+        <button className="bg-light-background rounded-sm text-light-font border border-darker-background font-semibold p-2 w-2/3 hover:bg-darker-background hover:text-white ">
           Buy Now
         </button>
-        {/* <div className="w-1/3 "><CiHeart/></div> */}
-        <div className="w-1/3 flex flex-col justify-center items-center text-center gap-1">
+        <div className="p-3 flex flex-row justify-center items-center text-center gap-3">
           <ProductCardButton
             icon={<CiHeart />}
             onClick={(event) => onAddToLikes(event)}
@@ -73,6 +71,11 @@ const BuyNowCard: React.FC<BuyNowCardProps> = ({ data }) => {
             url={`${process.env.NEXT_PUBLIC_SITE_URL}/product/${data?.category?.id}/${data?.designer?.id}/${data?.id}/${data?.seller?.id}`}
           />
         </div>
+
+      </div>
+
+      <div className="flex flex-row w-full">
+        <h1 className="flex text-super-small justify-center items-center text-stone-300">Shipping details at checkout</h1>
       </div>
     </div>
   );

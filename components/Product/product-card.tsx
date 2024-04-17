@@ -14,6 +14,8 @@ import axios from "axios";
 import ReactPlayer from "react-player";
 import ShareButton from "./share-button";
 
+
+
 interface ProductListProps {
   item: Product;
 }
@@ -175,6 +177,10 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
         </div>
         {/* large screens */}
         <div className="lg:flex flex-col hidden m-5">
+        <div className="flex flex-row justify-between items-start text-light-font text-super-small w-full">
+                <h3>{item?.likes} likes</h3>
+                <h3>{item?.clicks} views</h3>
+        </div>
           <div className="flex justify-between text-left mt-3">
             <Link
               href={`/designers/${item?.designer?.id}`}
@@ -212,17 +218,17 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
         <div className="flex flex-col justify-center items-center lg:hidden m-5">
           <Link
             href={`/designers/${item?.designer?.id}`}
-            className="text-xs hover:underline underline text-black hover:text-stone-700"
+            className="text-xs hover:underline underline text-black"
           >
             {item.designer?.name.toUpperCase()}
           </Link>
           <h3
             onClick={handleProductClick}
-            className="text-xs hover:underline text-black hover:text-stone-700 hover:cursor-pointer"
+            className="text-xs hover:underline text-light-font hover:cursor-pointer"
           >
             {item.name}
           </h3>
-          <div className="text-xs text-stone-300 hover:text-stone-700 ">
+          <div className="text-xs text-light-font ">
             {item?.size?.name}
           </div>
           <div className="flex flex-row gap-1">
@@ -236,6 +242,10 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
             >
               £{item.retailPrice}
             </h6>
+          </div>
+            <div className="flex flex-row justify-between items-start text-black text-super-small w-3/4">
+              <h3>{item?.likes} likes</h3>
+              <h3>{item?.clicks} views</h3>
           </div>
         </div>
       </div>

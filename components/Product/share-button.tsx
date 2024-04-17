@@ -16,6 +16,7 @@ import { useState } from "react";
 import { Dialog } from "@headlessui/react";
 import toast from "react-hot-toast";
 import { TbFaceId } from "react-icons/tb";
+import { PiPaperPlaneTiltThin } from "react-icons/pi";
 
 interface ShareButtonProps {
   url: string;
@@ -43,7 +44,8 @@ const ShareButton: React.FC<ShareButtonProps> = ({ url }) => {
   };
   return (
     <>
-      <ProductCardButton icon={<CiShare2 />} onClick={onOpen} />
+      {/* <ProductCardButton icon={<CiShare2 />} onClick={onOpen} /> */}
+      <ProductCardButton icon={<PiPaperPlaneTiltThin />} onClick={onOpen} />
       <Dialog open={open} as="div" className="relative z-50" onClose={onClose}>
         <div className="fixed inset-0 bg-black bg-opacity-45"></div>
         <div className="fixed inset-0 z-50 flex justify-center items-center">

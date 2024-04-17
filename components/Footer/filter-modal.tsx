@@ -240,7 +240,7 @@ const FilterModal: React.FC<FilterModalProps> = ({
           <div className="row-span-1 bg-white flex-row justify-end items-end w-full p-3">
             <div
               onClick={closeDrawer}
-              className="p-4 border bg-light-backround rounded-md"
+              className="p-4 border bg-light-background rounded-md"
             >
               Show results
             </div>
