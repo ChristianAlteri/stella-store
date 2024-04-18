@@ -5,13 +5,14 @@ import Link from "next/link";
 import React from "react";
 import { CiBadgeDollar } from "react-icons/ci";
 import BuyNowCard from "./BuyNowCard";
+import MiniProductCard from "./mini-product-card";
 
 interface DetailsCardProps {
   data: Product;
+  products?: Product[];
 }
 
-const DetailsCard: React.FC<DetailsCardProps> = ({ data }) => {
-  console.log(data);
+const DetailsCard: React.FC<DetailsCardProps> = ({ data, products }) => {
   const descriptionElements = data.description
     .split("- ") // Split the description by the hyphen
     .filter((item) => item.trim() !== "") // Remove any empty strings
@@ -115,9 +116,20 @@ const DetailsCard: React.FC<DetailsCardProps> = ({ data }) => {
           </div>
 
           </div>
+      <div className="border-t border-light-font mt-3 mb-1 justify-center items-center w-full">
+        <div className="flex flex-col w-2/3 justify-center items-center">
+          {(products && products.length > 0) && 
+            <MiniProductCard 
+              data={products} 
+              miniProductRoute="/most-viewed"
+              miniProductTitle="Most Viewed"
+            /> 
+          }
+        </div>
       </div>
 
-      
+    </div>
+
     </>
   );
 };

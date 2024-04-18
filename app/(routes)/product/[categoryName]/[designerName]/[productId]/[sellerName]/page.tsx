@@ -1,14 +1,14 @@
 import SuggestedContainer from "@/components/Suggested/SuggestedContainer";
 import Gallery from "@/components/Product/Gallery/single-product-gallery";
 import DetailsCard from "@/components/Product/DetailsCard";
-import BuyNowCard from "@/components/Product/BuyNowCard";
+
 
 import getSingleProduct from "@/actions/get-single-product";
 import getProducts from "@/actions/get-products";
+import getMostViewed from "@/actions/get-most-viewed";
 
 import { sortByMostLiked, sortByMostViewed, sortPriceLowToHigh } from "@/utils/sortdata";
 
-import MiniProductCard from "@/components/Product/mini-product-card";
 
 interface IndividualProductPageProps {
   params: {
@@ -33,6 +33,7 @@ const IndividualProductPage: React.FC<IndividualProductPageProps> = async ({
   const suggestedProductsBasedOnDesigner = await getProducts({
     designerId: product?.designer?.id,
   });
+  const mostViewedProducts = await getMostViewed({all: true});
 
   //sorted data
   const sortedProductsBasedOnSeller = sortPriceLowToHigh(
@@ -44,6 +45,7 @@ const IndividualProductPage: React.FC<IndividualProductPageProps> = async ({
   const sortedProductsBasedOnDesigner = sortByMostLiked(
     suggestedProductsBasedOnDesigner
   );
+  
 
   return (
     <>
@@ -63,7 +65,7 @@ const IndividualProductPage: React.FC<IndividualProductPageProps> = async ({
         {/* Right */}
         <div className="flex flex-col">
           <div className="flex flex-col text-left justify-center items-start mt-1">
-            <DetailsCard data={product} />
+            <DetailsCard data={product} products={mostViewedProducts}/>
           </div>
         <hr className="w-full"/>
         </div>

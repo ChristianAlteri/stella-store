@@ -28,8 +28,8 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
   const [isMounted, setIsMounted] = useState(false);
   const [open, setOpen] = useState(false);
 
-  const onOpen = () => setOpen(true);
-  const onClose = () => setOpen(false);
+
+
 
   useEffect(() => {
     setIsMounted(true);
@@ -77,17 +77,10 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
     );
   };
 
-  const imageFiles = item?.images?.filter(
-    (image) => !image.url.match(/https:\/\/.*\/video.*/)
-  );
-  const images = item?.images?.filter(img => !/https?:\/\/.*\.(mp4|mov)/.test(img.url));
-  const videos = item?.images?.filter(img => /https?:\/\/.*\.(mp4|mov)/.test(img.url));
-
-
   return (
     <>
       <div
-        className="bg-white rounded-md mt-2 mb-2 p-5 col-span-1 w-full "
+        className="bg-white rounded-md col-span-1 w-full "
         onClick={() => onClickButton(item)}
       >
         <div className="gap-1 flex-row flex w-full mb-2 justify-center md:justify-between">
@@ -121,40 +114,99 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
         
 
         <div className="relative h-full w-full rounded-md flex justify-center items-center z-30">
-          {/* Base Image or Video */}
+
           <div className="inset-0 w-full h-full flex justify-center items-center hover:cursor-pointer">
             {/* If item is marked hidden, we blur it. Used for unreleased products */}
-            {
-            item?.images[0]?.url?.match(/https:\/\/.*\/video.*$|^.*\.mp4/)
+            {item?.images[0]?.url?.match(/https:\/\/.*\/video.*$|^.*\.mp4/)
             ? (
               <ReactPlayer
+                key={item?.images?.[0]?.id}
                 url={item?.images[0].url}
-                objectFit="cover"
+                width={"100%"}
                 loop={true}
                 playing={true}
                 muted={true}
+                alt={`${item.name} from ${item.seller?.instagramHandle} by ${item.designer?.name} in size ${item.size?.name} for £${item.ourPrice} (RRP £${item.retailPrice})`}
                 className={`rounded-md transition-opacity duration-200 ease-in-out ${
                   item.isHidden ? "blur-xl" : ""
                 }`}
               />
             ) : (
-              <Image
-                onClick={handleProductClick}
-                height={300}
-                width={150}
-                src={item?.images[0]?.url}
-                alt={item.name}
-                priority
-                className={`rounded-md transition-opacity duration-200 ease-in-out ${
-                  item.isHidden ? "blur-xl" : ""
-                }`}
-              />
-              // <div>TODO:</div>
+              <>
+              <div className="lg:flex hidden">
+                <Image
+                  key={item?.images?.[0]?.id}
+                  onClick={handleProductClick}
+                  height={0}
+                  width={220}
+                  src={item!.images[0]!.url}
+                  alt={`${item.name} from ${item.seller?.instagramHandle} by ${item.designer?.name} in size ${item.size?.name} for £${item.ourPrice} (RRP £${item.retailPrice})`}
+                  priority
+                  className={`rounded-md transition-opacity duration-200 ease-in-out 
+                    ${item.isHidden ? "blur-xl" : ""}`}
+                />
+              </div>
+              <div className="flex lg:hidden">
+                <Image
+                  key={item?.images?.[0]?.id}
+                  onClick={handleProductClick}
+                  height={0}
+                  width={120}
+                  src={item!.images[0]!.url}
+                  alt={`${item.name} from ${item.seller?.instagramHandle} by ${item.designer?.name} in size ${item.size?.name} for £${item.ourPrice} (RRP £${item.retailPrice})`}
+                  priority
+                  className={`rounded-md transition-opacity duration-200 ease-in-out 
+                    ${item.isHidden ? "blur-xl" : ""}`}
+                />
+              </div>
+              </>
             )}
-          </div>
-
-          
+          </div>          
           {/* Hover Image or Video */}
+          {item?.images[1] && (
+            <div className="absolute inset-0 flex justify-center items-center hover:opacity-100 hover:cursor-pointer opacity-0 transition-opacity duration-200 ease-in-out">
+              {(item?.images?.[1]?.url?.match(/https:\/\/.*\/video.*$|^.*\.mp4/) ? (
+                <ReactPlayer
+                  key={item?.images?.[1]?.id}
+                  onClick={handleProductClick}
+                  url={item?.images?.[1]?.url}
+                  width="100%"
+                  loop
+                  playing
+                  muted
+                  alt={`${item.name} video from ${item.seller?.instagramHandle} by ${item.designer?.name} in size ${item.size?.name} for £${item.ourPrice} (RRP £${item.retailPrice})`}
+                  className={`rounded-md transition-opacity duration-200 ease-in-out ${item.isHidden ? "blur-xl" : ""}`}
+                />
+              ) : (
+                <>
+                  <div className="lg:flex hidden">
+                    <Image
+                      key={item?.images?.[1]?.id}
+                      onClick={handleProductClick}
+                      height={0}
+                      width={220}
+                      src={item?.images?.[1]?.url}
+                      alt={`Image of ${item.name} from ${item.seller?.instagramHandle} by ${item.designer?.name} in size ${item.size?.name} for £${item.ourPrice} (RRP £${item.retailPrice})`}
+                      priority
+                      className={`rounded-md transition-opacity duration-200 ease-in-out ${item.isHidden ? "blur-xl" : ""}`}
+                    />
+                  </div>
+                  <div className="flex lg:hidden">
+                    <Image
+                      key={item?.images?.[1]?.id}
+                      onClick={handleProductClick}
+                      height={0}
+                      width={120}
+                      src={item?.images?.[1]?.url}
+                      alt={`Image of ${item.name} from ${item.seller?.instagramHandle} by ${item.designer?.name} in size ${item.size?.name} for £${item.ourPrice} (RRP £${item.retailPrice})`}
+                      priority
+                      className={`rounded-md transition-opacity duration-200 ease-in-out ${item.isHidden ? "blur-xl" : ""}`}
+                    />
+                  </div>
+                </>
+              ))}
+            </div>
+          )}
         </div>
 
         
@@ -208,11 +260,11 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
           </Link>
           <h3
             onClick={handleProductClick}
-            className="text-xs hover:underline text-light-font hover:cursor-pointer"
+            className="text-xs hover:underline text-black hover:cursor-pointer"
           >
             {item.name}
           </h3>
-          <div className="text-xs text-light-font ">
+          <div className="text-super-small text-black ">
             {item?.size?.name}
           </div>
           <div className="flex flex-row gap-1">
@@ -227,7 +279,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
               £{item.retailPrice}
             </h6>
           </div>
-            <div className="flex flex-row justify-between items-start text-black text-super-small w-full m-1">
+            <div className="flex flex-row justify-between items-start text-black text-super-small w-full m-1 underline">
               <h3>{item?.likes} likes</h3>
               <h3>{item?.clicks} views</h3>
           </div>
@@ -249,7 +301,6 @@ export default ProductCard;
 //     ? (
 //       <ReactPlayer
 //         url={item?.images[1].url}
-//         objectFit="cover"
 //         loop={true}
 //         playing={true}
 //         muted={true}

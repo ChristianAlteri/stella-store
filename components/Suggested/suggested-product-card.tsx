@@ -19,7 +19,7 @@ const SuggestedProductCard:React.FC<SuggestedProductCardProps> = ({item}) => {
 
         <div className="cols-span-1">
             <div className="relative">
-                <Image
+                {/* <Image
                 src={item!.images[0].url}
                 alt={item!.name}
                 width={100}
@@ -27,7 +27,8 @@ const SuggestedProductCard:React.FC<SuggestedProductCardProps> = ({item}) => {
                 className={` transition-opacity duration-200 ease-in-out ${
                     item?.isHidden ? "blur-xl" : ""
                 }`}
-                />
+                /> */}
+                <div>TODO:</div>
                 <div
                 className="absolute top-0 left-0 w-full h-full flex items-center justify-center"
                 >
