@@ -177,6 +177,7 @@ const FilterModal: React.FC<FilterModalProps> = ({
       >
         <div className="grid grid-rows-10 h-full flex-row p-6 justify-center items-center">
 
+        {open && (
           <div className="row-span-1 w-full">
             <NavbarScrollingBanner
               text="Enjoy a 20% off your first purchase by"
@@ -184,6 +185,7 @@ const FilterModal: React.FC<FilterModalProps> = ({
               link="/register"
             />
           </div>
+        )}
 
           <div className="row-span-4 p-4 overflow-y-auto h-full flex-row justify-center items-center shadow-2xl rounded-md border w-full">
             <div className="flex flex-col h-full w-full justify-start items-start overflow-y-auto gap-2">

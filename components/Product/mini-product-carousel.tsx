@@ -32,7 +32,8 @@ const MiniProductCarousel: React.FC<MiniProductCarouselProps> = ({ data, miniPro
           {data?.slice(index, index + 3).map((product, i) => (
             <div key={i} className={`relative h-full w-full transition-opacity duration-200 ease-in-out ${product?.isCharity ? "blur-xl" : ""}`}>
               <div className="relative">
-                <Image src={product.images[0].url} alt={product.name} width={70} height={70} />
+                {/* <Image src={product.images[0].url} alt={product.name} width={70} height={70} /> */}
+                <div>TODO:</div>
                 <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
                   <div className="flex flex-col justify-center items-center m-5">
                     <a href={`/designers/${product?.designer?.id}`} className="text-xs hover:underline underline text-black hover:text-stone-700 bg-stone-200 bg-opacity-60">

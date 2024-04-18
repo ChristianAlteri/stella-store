@@ -128,7 +128,7 @@ const MiniProductCard: React.FC<MiniProductCardProps> = ({
             className="flex justify-center items-center hover:cursor-pointer"
           >
             <div className="relative">
-              <Image
+              {/* <Image
                 src={currentProduct.images[0].url}
                 alt={currentProduct.name}
                 width={70}
@@ -136,7 +136,8 @@ const MiniProductCard: React.FC<MiniProductCardProps> = ({
                 className={` transition-opacity duration-200 ease-in-out ${
                   currentProduct?.isHidden ? "blur-xl" : ""
                 }`}
-              />
+              /> */}
+              <div>TODO:</div>
               <div
                 className="absolute top-0 left-0 w-full h-full flex items-center justify-center transition-opacity duration-300 "
                 style={{ opacity }}

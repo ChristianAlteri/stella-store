@@ -19,12 +19,13 @@ const GalleryTab: React.FC<GalleryTabProps> = ({
       {({ selected }) => (
         <div>
           <span className="absolute h-full w-full aspect-square inset-0 overflow-hidden ">
-            <NextImage 
+            {/* <NextImage 
               fill 
               src={image.url} 
               alt={image.url} 
               className="object-cover object-center " 
-            />
+            /> */}
+            <div>TODO:</div>
           </span>
         </div>
       )}

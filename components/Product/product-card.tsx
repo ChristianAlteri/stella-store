@@ -80,14 +80,17 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
   const imageFiles = item?.images?.filter(
     (image) => !image.url.match(/https:\/\/.*\/video.*/)
   );
+  const images = item?.images?.filter(img => !/https?:\/\/.*\.(mp4|mov)/.test(img.url));
+  const videos = item?.images?.filter(img => /https?:\/\/.*\.(mp4|mov)/.test(img.url));
+
 
   return (
     <>
       <div
-        className="bg-white rounded-md mt-4 mb-4 p-2 col-span-1 w-full "
+        className="bg-white rounded-md mt-2 mb-2 p-5 col-span-1 w-full "
         onClick={() => onClickButton(item)}
       >
-        <div className="gap-1 flex-row flex w-full p-1 mb-2 justify-center md:justify-between">
+        <div className="gap-1 flex-row flex w-full mb-2 justify-center md:justify-between">
           {/* Likes */}
           <div className="flex w-full justify-center">
             <div className="text-stone-500 hover:scale-110 hover:cursor-pointer hover:text-black">
@@ -115,66 +118,47 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
             </div>
           </div>
         </div>
-        {/* Number of likes and people interested */}
-        {/* <div className="gap-1 flex-row flex w-full p-1 mb-2 justify-center md:justify-between">
-          <div className="text-xs text-stone-300 hover:text-stone-700 md:flex hidden hover:cursor-pointer  w-full justify-center">
-              {item?.likes}
-            </div>
-            <div className="text-xs text-stone-300 hover:text-stone-700 md:flex hidden hover:cursor-pointer  w-full justify-center">
-              {item?.clicks} 
-            </div>
-        </div> */}
+        
 
         <div className="relative h-full w-full rounded-md flex justify-center items-center z-30">
-          {/* Base Image - always visible */}
+          {/* Base Image or Video */}
           <div className="inset-0 w-full h-full flex justify-center items-center hover:cursor-pointer">
-            {/* If item is marked hidden we blur it. Used for unreleased products */}
-            <Image
-              onClick={handleProductClick}
-              height={300}
-              width={150}
-              // src={item?.images?.[0].url}
-              src={imageFiles[0].url}
-              alt={item.name}
-              priority
-              className={`rounded-md transition-opacity duration-200 ease-in-out ${
-                item.isHidden ? "blur-xl" : ""
-              }`}
-            />
-          </div>
-          {/* Hover Image - only visible on hover */}
-          {imageFiles[1] && (
-            <div className="absolute inset-0 flex justify-center items-center hover:opacity-100 hover:cursor-pointer opacity-0 transition-opacity duration-200 ease-in-out">
+            {/* If item is marked hidden, we blur it. Used for unreleased products */}
+            {
+            item?.images[0]?.url?.match(/https:\/\/.*\/video.*$|^.*\.mp4/)
+            ? (
+              <ReactPlayer
+                url={item?.images[0].url}
+                objectFit="cover"
+                loop={true}
+                playing={true}
+                muted={true}
+                className={`rounded-md transition-opacity duration-200 ease-in-out ${
+                  item.isHidden ? "blur-xl" : ""
+                }`}
+              />
+            ) : (
               <Image
                 onClick={handleProductClick}
-                height={150}
+                height={300}
                 width={150}
-                src={imageFiles[1].url}
+                src={item?.images[0]?.url}
                 alt={item.name}
-                className={`rounded-md ${item.isCharity ? "blur-xl" : ""}`}
-              />
-            </div>
-          )}
-          {/* Cloudinary use /video in the url */}
-          {item?.images?.map((image) =>
-            image.url.match(/https:\/\/.*\/video.*/) ? (
-              <div
-                key={image.id}
-                className={`z-50 absolute inset-0 flex justify-center  hover:opacity-100 hover:cursor-pointer opacity-0 transition-opacity duration-200 ease-in-out overflow-hidden ${
-                  item.isCharity ? "blur-xl" : ""
+                priority
+                className={`rounded-md transition-opacity duration-200 ease-in-out ${
+                  item.isHidden ? "blur-xl" : ""
                 }`}
-              >
-                <ReactPlayer
-                  url={image.url}
-                  objectFit="cover"
-                  loop={true}
-                  playing={true}
-                  muted={true}
-                />
-              </div>
-            ) : null
-          )}
+              />
+              // <div>TODO:</div>
+            )}
+          </div>
+
+          
+          {/* Hover Image or Video */}
         </div>
+
+        
+
         {/* large screens */}
         <div className="lg:flex flex-col hidden m-5">
         <div className="flex flex-row justify-between items-start text-light-font text-super-small w-full">
@@ -215,7 +199,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
           </div>
         </div>
         {/* mobile screens */}
-        <div className="flex flex-col justify-center items-center lg:hidden m-5">
+        <div className="flex flex-col justify-center items-center lg:hidden m-4">
           <Link
             href={`/designers/${item?.designer?.id}`}
             className="text-xs hover:underline underline text-black"
@@ -243,7 +227,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
               £{item.retailPrice}
             </h6>
           </div>
-            <div className="flex flex-row justify-between items-start text-black text-super-small w-3/4">
+            <div className="flex flex-row justify-between items-start text-black text-super-small w-full m-1">
               <h3>{item?.likes} likes</h3>
               <h3>{item?.clicks} views</h3>
           </div>
@@ -254,3 +238,32 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
 };
 
 export default ProductCard;
+
+
+{/* Hover Image or Video */}
+// {item?.images[1] && (
+//   <div className="absolute inset-0 flex justify-center items-center hover:opacity-100 hover:cursor-pointer opacity-0 transition-opacity duration-200 ease-in-out">
+//     {
+//     item?.images[0]?.url?.match(/https:\/\/.*\/video\.*/) ||
+//     item?.images[0]?.url?.match(/.*\.mp4\.*/)
+//     ? (
+//       <ReactPlayer
+//         url={item?.images[1].url}
+//         objectFit="cover"
+//         loop={true}
+//         playing={true}
+//         muted={true}
+//         className={`rounded-md ${item.isHidden ? "blur-xl" : ""}`}
+//       />
+//     ) : (
+//       <Image
+//         onClick={handleProductClick}
+//         height={150}
+//         width={150}
+//         src={item?.images[1].url}
+//         alt={item.name}
+//         className={`rounded-md ${item.isHidden ? "blur-xl" : ""}`}
+//       />
+//     )}
+//   </div>
+// )}

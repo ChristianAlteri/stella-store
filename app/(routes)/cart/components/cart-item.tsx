@@ -33,12 +33,13 @@ const CartItem: React.FC<CartItemProps> = ({
   return ( 
     <div className="group flex py-6 border-b w-full">
       <div className="relative overflow-hidden">
-        <Image
+        {/* <Image
           height={50}
           width={50}
           src={data.images[0].url}
           alt=""
-        />
+        /> */}
+        <div>TODO:</div>
       </div>
       <div className="relative flex flex-1 flex-col justify-between ">
         <div className="absolute z-10 right-0 top-0">

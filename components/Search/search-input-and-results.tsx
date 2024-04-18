@@ -214,14 +214,15 @@ const SearchInputAndResults: React.FC<SearchInputAndResultsProps> = ({
                       >
                         {product.name}
                       </p>
-                      <Image
+                      {/* <Image
                         className="hover:cursor-pointer"
                         onClick={() => handleProductClick(product)}
                         height={50}
                         width={50}
                         src={product.images[0].url}
                         alt=""
-                      />
+                      /> */}
+                      <div>TODO:</div>
                     </div>
                   </div>
                 ))}

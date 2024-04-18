@@ -23,7 +23,7 @@ const LargeSuggestedProductCard: React.FC<LargeSuggestedProductCardProps> = ({
     <>
       <div className="w-1/2 flex">
         <div className="relative">
-          <Image
+          {/* <Image
             src={item!.images[0].url}
             alt={item!.name}
             width={120}
@@ -31,7 +31,8 @@ const LargeSuggestedProductCard: React.FC<LargeSuggestedProductCardProps> = ({
             className={` transition-opacity duration-200 ease-in-out ${
               item?.isHidden ? "blur-xl" : ""
             }`}
-          />
+          /> */}
+          <div>TODO:</div>
           <div className="flex flex-col justify-center items-center m-5">
             <Link
               href={`/designers/${item?.designer?.id}`}

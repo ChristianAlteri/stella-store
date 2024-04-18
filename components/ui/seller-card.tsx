@@ -17,13 +17,14 @@ const SellerCard: React.FC<SellerCardProps> = ({ data, route }) => {
           {data?.instagramHandle.toUpperCase()}
         </p>
         {data?.billboard?.imageUrl.match(/https:\/\/.*\/image.*/) && (
-          <Image
-            height={900}
-            width={500}
-            src={data?.billboard?.imageUrl}
-            alt={data?.name}
-            className="rounded-md w-full h-full object-cover"
-          />
+          // <Image
+          //   height={900}
+          //   width={500}
+          //   src={data?.billboard?.imageUrl}
+          //   alt={data?.name}
+          //   className="rounded-md w-full h-full object-cover"
+          // />
+          <div>TODO:</div>
         )}
         {data?.billboard?.imageUrl.match(/https:\/\/.*\/video.*/) && (
           <video

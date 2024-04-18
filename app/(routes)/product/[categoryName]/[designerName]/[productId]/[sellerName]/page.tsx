@@ -74,10 +74,16 @@ const IndividualProductPage: React.FC<IndividualProductPageProps> = async ({
         {sortedProductsBasedOnSeller.length > 0 && (
         <>
           <div className="md:hidden flex">
-            <MiniProductCard
+            {/* <MiniProductCard
               miniProductRoute={`/${product?.seller?.id}`}
               miniProductTitle={`MORE FROM ${product?.seller?.instagramHandle.toUpperCase()}`}
               data={sortedProductsBasedOnSeller}
+            /> */}
+            <SuggestedContainer
+            route={`sellers/${product?.seller?.id}`}
+            header={`MORE FROM`}
+            title={product?.seller?.instagramHandle.toUpperCase()} 
+            data={sortedProductsBasedOnSeller}
             />
           </div>
           <div className="hidden md:flex">

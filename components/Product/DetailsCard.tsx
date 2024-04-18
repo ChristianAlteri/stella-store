@@ -100,11 +100,11 @@ const DetailsCard: React.FC<DetailsCardProps> = ({ data }) => {
               </div>
 
             <div className="flex-col flex w-full justify-center items-center">
-              <h1 className="md:text-xs text-sm ">In {data?.condition?.name} condition</h1>
-              <h1 className="md:text-xs text-sm ">Part of the {" "}
+              <h1 className="text-xs">In {data?.condition?.name} condition</h1>
+              <h1 className="text-xs">Part of the {" "}
                 <Link
                 href={`/categories/${data?.category?.id}`}
-                className="md:text-xs text-sm hover:underline hover:cursor-pointer underline "
+                className="text-xs  hover:underline hover:cursor-pointer underline"
               >
                 {data?.category?.name.toLowerCase()}
               </Link>
