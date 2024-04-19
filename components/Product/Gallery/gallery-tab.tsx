@@ -12,7 +12,7 @@ interface GalleryTabProps {
 
 const GalleryTab: React.FC<GalleryTabProps> = ({ image }) => {
   return (
-    <Tab className="rounded-md relative flex aspect-square cursor-pointer items-center justify-center bg-white">
+    <Tab className="rounded-md relative flex aspect-square cursor-pointer items-center justify-center bg-white ">
       {({ selected }) => (
         <div>
           <span className="absolute h-full w-full aspect-square inset-0 overflow-hidden ">
@@ -34,6 +34,7 @@ const GalleryTab: React.FC<GalleryTabProps> = ({ image }) => {
                 alt={`Image from ${image.url}`}
                 width={120}
                 height={0}
+                loading="lazy"
                 className="rounded-md transition-opacity duration-200 ease-in-out"
               />
             )}

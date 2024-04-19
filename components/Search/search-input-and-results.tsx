@@ -207,22 +207,45 @@ const SearchInputAndResults: React.FC<SearchInputAndResultsProps> = ({
                     className="flex rounded-md flex-col items-start justify-start leading-normal p-2"
                     style={{ width: "100px", height: "100px" }}
                   >
-                    <div className="flex flex-col w-full leading-normal">
+                    <div className="absolute flex-col w-full leading-normal">
                       <p
-                        className="text-xs hover:underline"
+                        className="text-xs hover:underline bg-light-background text-light-font hover:cursor-pointer"
                         onClick={() => handleProductClick(product)}
                       >
                         {product.name}
                       </p>
-                      {/* <Image
-                        className="hover:cursor-pointer"
-                        onClick={() => handleProductClick(product)}
-                        height={50}
-                        width={50}
-                        src={product.images[0].url}
-                        alt=""
-                      /> */}
-                      <div>TODO:</div>
+
+                      <div className="inset-0 w-full h-full flex justify-center items-center hover:cursor-pointer">
+                        {(product?.images?.[0]?.url?.match(/https:\/\/.*\/video.*$|^.*\.mp4/) ? (
+                          <ReactPlayer
+                            key={product?.images?.[0]?.id}
+                            onClick={() => handleProductClick(product)}
+                            url={product?.images?.[0]?.url}
+                            width="50%"
+                            height="100%"
+                            loop
+                            playing
+                            muted
+                            alt={`${product.name} video from ${product.seller?.instagramHandle} by ${product.designer?.name} in size ${product.size?.name} for £${product.ourPrice} (RRP £${product.retailPrice})`}
+                            className={`flex h-full fle-col items-center justify-center rounded-md transition-opacity duration-200 ease-in-out ${product.isHidden ? "blur-xl" : ""}`}
+                          />
+                        ) : (
+                          <>
+                          <div className="flex">
+                            <Image
+                              key={product?.images?.[0]?.id}
+                              onClick={() => handleProductClick(product)}
+                              height={0}
+                              width={50}
+                              src={product?.images?.[0]?.url}
+                              alt={`Image of ${product.name} from ${product.seller?.instagramHandle} by ${product.designer?.name} in size ${product.size?.name} for £${product.ourPrice} (RRP £${product.retailPrice})`}
+                              priority
+                              className={`rounded-md transition-opacity duration-200 ease-in-out ${product.isHidden ? "blur-xl" : ""}`}
+                            />
+                          </div>
+                          </>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 ))}

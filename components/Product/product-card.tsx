@@ -26,10 +26,6 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
   const likes = useLike();
 
   const [isMounted, setIsMounted] = useState(false);
-  const [open, setOpen] = useState(false);
-
-
-
 
   useEffect(() => {
     setIsMounted(true);
@@ -290,31 +286,3 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
 };
 
 export default ProductCard;
-
-
-{/* Hover Image or Video */}
-// {item?.images[1] && (
-//   <div className="absolute inset-0 flex justify-center items-center hover:opacity-100 hover:cursor-pointer opacity-0 transition-opacity duration-200 ease-in-out">
-//     {
-//     item?.images[0]?.url?.match(/https:\/\/.*\/video\.*/) ||
-//     item?.images[0]?.url?.match(/.*\.mp4\.*/)
-//     ? (
-//       <ReactPlayer
-//         url={item?.images[1].url}
-//         loop={true}
-//         playing={true}
-//         muted={true}
-//         className={`rounded-md ${item.isHidden ? "blur-xl" : ""}`}
-//       />
-//     ) : (
-//       <Image
-//         onClick={handleProductClick}
-//         height={150}
-//         width={150}
-//         src={item?.images[1].url}
-//         alt={item.name}
-//         className={`rounded-md ${item.isHidden ? "blur-xl" : ""}`}
-//       />
-//     )}
-//   </div>
-// )}

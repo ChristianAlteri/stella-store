@@ -2,13 +2,15 @@ import SuggestedContainer from "@/components/Suggested/SuggestedContainer";
 import Gallery from "@/components/Product/Gallery/single-product-gallery";
 import DetailsCard from "@/components/Product/DetailsCard";
 
-
 import getSingleProduct from "@/actions/get-single-product";
 import getProducts from "@/actions/get-products";
 import getMostViewed from "@/actions/get-most-viewed";
 
-import { sortByMostLiked, sortByMostViewed, sortPriceLowToHigh } from "@/utils/sortdata";
-
+import {
+  sortByMostLiked,
+  sortByMostViewed,
+  sortPriceLowToHigh,
+} from "@/utils/sortdata";
 
 interface IndividualProductPageProps {
   params: {
@@ -33,7 +35,8 @@ const IndividualProductPage: React.FC<IndividualProductPageProps> = async ({
   const suggestedProductsBasedOnDesigner = await getProducts({
     designerId: product?.designer?.id,
   });
-  const mostViewedProducts = await getMostViewed({all: true});
+  const mostViewedProducts = await getMostViewed({ all: true });
+  const featuredProducts = await getProducts({ isFeatured: true });
 
   //sorted data
   const sortedProductsBasedOnSeller = sortPriceLowToHigh(
@@ -45,12 +48,10 @@ const IndividualProductPage: React.FC<IndividualProductPageProps> = async ({
   const sortedProductsBasedOnDesigner = sortByMostLiked(
     suggestedProductsBasedOnDesigner
   );
-  
 
   return (
     <>
       <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-3 w-full bg-white p-6">
-
         {/* Left */}
         <div className="col-span-2 overflow-auto">
           <div
@@ -65,46 +66,49 @@ const IndividualProductPage: React.FC<IndividualProductPageProps> = async ({
         {/* Right */}
         <div className="flex flex-col">
           <div className="flex flex-col text-left justify-center items-start mt-1">
-            <DetailsCard data={product} products={mostViewedProducts}/>
+            <DetailsCard data={product} products={featuredProducts} />
           </div>
-        <hr className="w-full"/>
+          <hr className="w-full" />
         </div>
       </div>
 
       {/* Suggestions */}
-      <div className="flex justify-center p-2 gap-4">
-        {sortedProductsBasedOnSeller.length > 0 && (
-        <>
-          <div className="md:hidden flex">
-            {/* <MiniProductCard
-              miniProductRoute={`/${product?.seller?.id}`}
-              miniProductTitle={`MORE FROM ${product?.seller?.instagramHandle.toUpperCase()}`}
-              data={sortedProductsBasedOnSeller}
-            /> */}
-            <SuggestedContainer
-            route={`sellers/${product?.seller?.id}`}
-            header={`MORE FROM`}
-            title={product?.seller?.instagramHandle.toUpperCase()} 
-            data={sortedProductsBasedOnSeller}
-            />
-          </div>
-          <div className="hidden md:flex">
-            <SuggestedContainer
-            route={`sellers/${product?.seller?.id}`}
-            header={`MORE FROM`}
-            title={product?.seller?.instagramHandle.toUpperCase()} 
-            data={sortedProductsBasedOnSeller}
-            />
-          </div>
-        </>
-        )}
+      <div className="flex-row justify-center items-center w-full hidden md:flex">
+        <div className="flex justify-center h-full w-1/2 gap-2">
+          {sortedProductsBasedOnSeller.length > 0 && ( //same seller large screen
+            <>
+              <div className="flex border-t border-b ">
+                <SuggestedContainer
+                  route={`sellers/${product?.seller?.id}`}
+                  header={`MORE FROM`}
+                  title={product?.seller?.instagramHandle.toUpperCase()}
+                  data={sortedProductsBasedOnSeller}
+                />
+              </div>
+            </>
+          )}
+        </div>
       </div>
 
+      <div className="md:hidden flex bg-light-background">
+        {sortedProductsBasedOnSeller.length > 0 && ( //same seller small screen
+          <>
+            <div className="flex border-t border-b ">
+              <SuggestedContainer
+                route={`sellers/${product?.seller?.id}`}
+                header={`MORE FROM`}
+                title={product?.seller?.instagramHandle.toUpperCase()}
+                data={sortedProductsBasedOnSeller}
+              />
+            </div>
+          </>
+        )}
+      </div>
       {sortedProductsBasedOnCategory.length > 0 && ( //most clicked
         <SuggestedContainer
           route={`categories/${product?.category?.id}`}
           header="POPULAR IN"
-          title={product?.category?.name} 
+          title={product?.category?.name}
           data={sortedProductsBasedOnCategory}
         />
       )}

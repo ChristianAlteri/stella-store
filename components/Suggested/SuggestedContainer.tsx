@@ -23,19 +23,19 @@ const SuggestedContainer: React.FC<SuggestedContainerProps> = ({
 }) => {
 
   return (
-    <div className="p-6 ">
-      <h1 className="text-stone-900 flex flex-row gap-1 text-xs items-center p-1">
+    <div className="p-6">
+      <h1 className="text-black flex flex-row gap-1 text-xs md:text-sm items-center p-1 ">
         {header?.toUpperCase()}
         <Link
           href={`/${route}`}
-          className="flex hover:underline hover:cursor-pointer text-stone-900 flex-row justify-start items-start text-xs"
+          className="flex hover:underline hover:cursor-pointer text-black flex-row justify-start items-start text-xs md:text-sm"
         >
           {" "}
-          <p className="underline bg-light-background rounded-lg text-light-font">
+          <p className="underline bg-light-background rounded-lg text-light-font text-xs md:text-sm">
             {title?.toUpperCase()}{" "}
           </p> 
         </Link>
-        <MdOutlineChevronRight 
+        <MdOutlineChevronRight size={20}
         className="flex flex-row justify-center items-center animate-pulse text-xs hover:cursor-pointer hover:underline"
         />
       </h1>
@@ -46,11 +46,11 @@ const SuggestedContainer: React.FC<SuggestedContainerProps> = ({
       >
         {data?.map((item) => (
           <>
+            <div className="hidden md:flex col-span-1 flex-shrink-0 w-1/4 mx-2 snap-center">
+              <LargeSuggestedProductCard key={item.id} item={item} />
+            </div>
             <div className="md:hidden flex col-span-1 flex-shrink-0 w-1/2 md:w-auto mx-2 snap-center">
               <SuggestedProductCard key={item.id} item={item} />
-            </div>
-            <div className="hidden md:flex col-span-1 flex-shrink-0 w-1/3 mx-2 snap-center">
-              <LargeSuggestedProductCard key={item.id} item={item} />
             </div>
           </>
         ))}

@@ -10,6 +10,7 @@ import { Drawer } from "@material-tailwind/react";
 import { CiMenuBurger } from "react-icons/ci";
 import QuickLinks from "./quick-links";
 import useParamsUtil from "@/utils/useParamsUtil";
+import MiniProductCard from "../Product/mini-product-card";
 
 interface HamburgerMenuProps {
   designers?: Designer[];
@@ -129,14 +130,21 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
           
 
           <div className="row-span-3 bg-stone-200 flex items-center justify-center ">
-            <div className="top-0">
-                <MiniProductCarousel
-                  // TODO: only top ten products
+            {/* <MiniProductCarousel
+              // TODO: only top ten products
+              data={topTen}
+              miniProductTitle="Most Viewed"
+              miniProductRoute="/most-viewed"
+            /> */}
+            <aside className="flex flex-col w-2/3 justify-center items-center top-0 ">
+              {topTen && topTen.length > 0 && (
+                <MiniProductCard
                   data={topTen}
-                  miniProductTitle="Most Viewed"
                   miniProductRoute="/most-viewed"
+                  miniProductTitle="Most Viewed"
                 />
-            </div>
+              )}
+            </aside>
           </div>
         </div>
       </Drawer>

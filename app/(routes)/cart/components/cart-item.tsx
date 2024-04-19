@@ -1,7 +1,5 @@
 import Image from "next/image";
 
-
-
 import IconButton from "@/components/ui/icon-button";
 
 import useCart from "@/hooks/use-cart";
@@ -9,16 +7,13 @@ import { Product } from "@/types";
 
 import { useRouter } from "next/navigation";
 import { CiCircleRemove } from "react-icons/ci";
-
-
+import ReactPlayer from "react-player";
 
 interface CartItemProps {
   data: Product;
 }
 
-const CartItem: React.FC<CartItemProps> = ({
-  data
-}) => {
+const CartItem: React.FC<CartItemProps> = ({ data }) => {
   const cart = useCart();
   const router = useRouter();
 
@@ -27,48 +22,84 @@ const CartItem: React.FC<CartItemProps> = ({
   };
 
   const handleProductClick = () => {
-    router.push(`/product/${data?.category?.id}/${data?.designer?.name}/${data?.id}/${data?.seller?.instagramHandle}`);
-}
+    router.push(
+      `/product/${data?.category?.id}/${data?.designer?.name}/${data?.id}/${data?.seller?.instagramHandle}`
+    );
+  };
 
-  return ( 
-    <div className="group flex py-6 border-b w-full">
-      <div className="relative overflow-hidden">
-        {/* <Image
-          height={50}
-          width={50}
-          src={data.images[0].url}
-          alt=""
-        /> */}
-        <div>TODO:</div>
-      </div>
-      <div className="relative flex flex-1 flex-col justify-between ">
-        <div className="absolute z-10 right-0 top-0">
-          <IconButton onClick={onRemove} icon={<CiCircleRemove  size={20} />} />
-        </div>
-        <div className="relative pr-9 w-full">
-          <div className="flex justify-between">
-            <div className="flex flex-col">
-              <p className="text-sm ml-4  text-black hover:underline hover:cursor-pointer"
-              onClick={handleProductClick}
-              >
-                {data.name}
-              </p>
-              <p className="ml-4 text-xs text-stone-900">{data.designer.name}</p>
-              <p className="ml-4 text-xs mt-2 text-stone-900">sold by {data.seller.instagramHandle}</p>
-            </div>
-              <p className="ml-4 pl-4 text-sm text-stone-900"> £{data.ourPrice} </p>
-          </div>
-          <div className="flex flex-row">
-            <div className="flex flex-row justify-center items-center">
-                <p className="pl-4 text-xs  text-stone-500">{data.size.name}</p>
+  return (
+    <div className="group py-6 border-b w-full">
+      <div className="flex flex-row ">
 
+        <div className="relative overflow-hidden">
+          {/* If item is marked hidden, we blur it. Used for unreleased products */}
+          {data?.images[0]?.url?.match(/https:\/\/.*\/video.*$|^.*\.mp4/) ? (
+            <video
+              height={70}
+              width={70}
+              muted
+              autoPlay
+              loop
+              key={data?.images?.[0]?.id}
+              src={data?.images[0].url}
+              className={`rounded-md transition-opacity duration-200 ease-in-out ${
+                data.isHidden ? "blur-xl" : ""
+              }`}
+            ></video>
+          ) : (
+            <>
+              <div className="flex">
+                <Image
+                  key={data?.images?.[0]?.id}
+                  onClick={handleProductClick}
+                  height={0}
+                  width={50}
+                  src={data!.images[0]!.url}
+                  alt={`${data.name} from ${data.seller?.instagramHandle} by ${data.designer?.name} in size ${data.size?.name} for £${data.ourPrice} (RRP £${data.retailPrice})`}
+                  priority
+                  className={`rounded-md transition-opacity duration-200 ease-in-out 
+                      ${data.isHidden ? "blur-xl" : ""}`}
+                />
               </div>
-          </div>
+            </>
+          )}
+        </div>
 
+        <div className="relative flex flex-1 flex-col justify-between ">
+          <div className="absolute z-10 right-0 top-0">
+            <IconButton onClick={onRemove} icon={<CiCircleRemove size={20} />} />
+          </div>
+          <div className="relative pr-9 w-full">
+            <div className="flex justify-between">
+              <div className="flex flex-col">
+                <p
+                  className="text-sm ml-4  text-black hover:underline hover:cursor-pointer"
+                  onClick={handleProductClick}
+                >
+                  {data.name}
+                </p>
+                <p className="ml-4 text-xs text-stone-900">
+                  {data.designer.name}
+                </p>
+                <p className="ml-4 text-xs mt-2 text-stone-900">
+                  sold by {data.seller.instagramHandle}
+                </p>
+              </div>
+              <p className="ml-4 pl-4 text-sm text-stone-900">
+                {" "}
+                £{data.ourPrice}{" "}
+              </p>
+            </div>
+            <div className="flex flex-row">
+              <div className="flex flex-row justify-center items-center">
+                <p className="pl-4 text-xs  text-stone-500">{data.size.name}</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   );
-}
- 
+};
+
 export default CartItem;

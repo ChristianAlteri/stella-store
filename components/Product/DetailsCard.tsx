@@ -29,9 +29,7 @@ const DetailsCard: React.FC<DetailsCardProps> = ({ data, products }) => {
 
   return (
     <>
-    <div className="flex flex-col w-full border-t border-light-font mt-3 mb-1">
-
-
+      <div className="flex flex-col w-full border-t border-light-font mt-3 mb-1">
         <div className="mt-3 flex flex-col w-full">
           <Link
             href={`/designers/${data?.designer?.id}`}
@@ -42,17 +40,21 @@ const DetailsCard: React.FC<DetailsCardProps> = ({ data, products }) => {
           <h1 className="md:text-sm text-md  font-semibold ">{data?.name}</h1>
           <div className="ml-1 flex flex-col w-full">
             <div className="flex flex-row justify-end w-full gap-1 mt-4">
-              <h1 className=" text-sm text-red-500 font-bold">£{data.ourPrice}</h1>
+              <h1 className=" text-sm text-red-500 font-bold">
+                £{data.ourPrice}
+              </h1>
               <h1 className=" text-sm">RRP</h1>
               <h1 className=" text-sm line-through">£{data.retailPrice}</h1>
             </div>
-              <h1 className="text-xs flex flex-row text-light-font justify-end w-full">Size {data?.size?.name.toLowerCase()}</h1>
+            <h1 className="text-xs flex flex-row text-light-font justify-end w-full">
+              Size {data?.size?.name.toLowerCase()}
+            </h1>
           </div>
         </div>
 
-      <div className="border-t border-light-font mt-3 mb-1">
-        <BuyNowCard data={data} />
-      </div>
+        <div className="border-t border-light-font mt-3 mb-1">
+          <BuyNowCard data={data} />
+        </div>
 
         <div className="border-t border-light-font mt-3 mb-1">
           <div className="mt-3">
@@ -67,69 +69,69 @@ const DetailsCard: React.FC<DetailsCardProps> = ({ data, products }) => {
               </Link>
             </div>
             {data?.isCharity && (
-                  <>
-                    <div className="flex flex-row w-full">
-                      <h1 className="text-super-small flex flex-row w-full justify-start gap-1 items-center">
-                        A percentage of proceeds from this sale will go to charity{" "}
-                        <p className="text-green-500">
-                            <CiBadgeDollar size={20} />
-                        </p>
-                      </h1>
-                    </div>
-                  </>
-                )}
+              <>
+                <div className="flex flex-row w-full">
+                  <h1 className="text-super-small flex flex-row w-full justify-start gap-1 items-center">
+                    A percentage of proceeds from this sale will go to charity{" "}
+                    <p className="text-green-500">
+                      <CiBadgeDollar size={20} />
+                    </p>
+                  </h1>
+                </div>
+              </>
+            )}
 
             <div className="flex flex-row justify-between w-full gap-1 mt-2">
               <div>
                 <h1 className="md:text-xs text-sm underline">Description: </h1>
-                <h1 className="md:text-xs text-sm ml-1">{descriptionElements}</h1>
+                <h1 className="md:text-xs text-sm ml-1">
+                  {descriptionElements}
+                </h1>
               </div>
 
               <div>
                 <h1 className="md:text-xs text-sm underline">Specs </h1>
                 <div className="p-1">
-                  <h1 className="md:text-xs text-sm">Material: {data?.material?.name}</h1>
+                  <h1 className="md:text-xs text-sm">
+                    Material: {data?.material?.name}
+                  </h1>
                   <div className="flex flex-row gap-2">
-                    <h1 className="md:text-xs text-sm">Colour: {" "}</h1>
+                    <h1 className="md:text-xs text-sm">Colour: </h1>
                     <div
                       className="h-5 w-5 rounded-sm border border-white"
                       style={{ backgroundColor: data?.color?.value }}
                     ></div>
                   </div>
                 </div>
-            </div>
               </div>
+            </div>
 
             <div className="flex-col flex w-full justify-center items-center">
               <h1 className="text-xs">In {data?.condition?.name} condition</h1>
-              <h1 className="text-xs">Part of the {" "}
+              <h1 className="text-xs">
+                Part of the{" "}
                 <Link
-                href={`/categories/${data?.category?.id}`}
-                className="text-xs  hover:underline hover:cursor-pointer underline"
-              >
-                {data?.category?.name.toLowerCase()}
-              </Link>
-              {" "} collection
+                  href={`/categories/${data?.category?.id}`}
+                  className="text-xs  hover:underline hover:cursor-pointer underline"
+                >
+                  {data?.category?.name.toLowerCase()}
+                </Link>{" "}
+                collection
               </h1>
             </div>
-
           </div>
-
-          </div>
-      <div className="border-t border-light-font mt-3 mb-1 justify-center items-center w-full">
-        <div className="flex flex-col w-2/3 justify-center items-center">
-          {(products && products.length > 0) && 
-            <MiniProductCard 
-              data={products} 
-              miniProductRoute="/most-viewed"
-              miniProductTitle="Most Viewed"
-            /> 
-          }
         </div>
+        <div className="border-t border-light-font mt-3 mb-1 justify-center items-center w-full"></div>
+        <aside className="flex flex-col w-full justify-center items-center p-4">
+          {products && products.length > 0 && (
+            <MiniProductCard
+              data={products}
+              miniProductRoute="/featured"
+              miniProductTitle="Our Picks"
+            />
+          )}
+        </aside>
       </div>
-
-    </div>
-
     </>
   );
 };

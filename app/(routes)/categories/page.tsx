@@ -7,7 +7,6 @@ import HomepageForSellerDesignerCategory from "@/components/Home/HomepageForSell
 const CategoryPage = async () => {
 
   const categoryData = await getCategories();
-  const newArrivalsProducts = await getProducts({all: true});
   const onSaleProducts = await getProducts({isOnSale: true});
 
   // TODO: can we do by most sold?
@@ -33,7 +32,6 @@ const CategoryPage = async () => {
         data={sortByMostPopular}
         />
         {onSaleProducts.length > 0 && (<SuggestedContainer route="sale" title="ON SALE" data={onSaleProducts}/>)}
-        {newArrivalsProducts.length > 0 && (<SuggestedContainer route="/" title="NEW ARRIVALS" data={newArrivalsProducts}/>)}
       </div>
     </>
   );

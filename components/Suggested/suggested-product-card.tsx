@@ -1,65 +1,135 @@
-'use client'
+"use client";
 import { Product } from "@/types";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
+import ReactPlayer from "react-player";
 
 interface SuggestedProductCardProps {
-    item?: Product;
-  }
+  item?: Product;
+}
 
-const SuggestedProductCard:React.FC<SuggestedProductCardProps> = ({item}) => {
-    const router = useRouter();
-    const handleProductClick = () => {
-        router.push(
-        `/product/${item?.category?.id}/${item?.designer?.id}/${item?.id}/${item?.seller?.id}`
-        );
-    };
+const SuggestedProductCard: React.FC<SuggestedProductCardProps> = ({
+  item,
+}) => {
+  const router = useRouter();
+  const handleProductClick = () => {
+    router.push(
+      `/product/${item?.category?.id}/${item?.designer?.id}/${item?.id}/${item?.seller?.id}`
+    );
+  };
 
-    return ( 
-
-        <div className="cols-span-1">
-            <div className="relative">
-                {/* <Image
-                src={item!.images[0].url}
-                alt={item!.name}
-                width={100}
-                height={100}
-                className={` transition-opacity duration-200 ease-in-out ${
-                    item?.isHidden ? "blur-xl" : ""
+  return (
+    <div className="w-full justify-center items-center flex">
+      <div className="relative h-full w-full rounded-md flex justify-center items-center z-30">
+        <div className="inset-0 w-full h-full flex justify-center items-center hover:cursor-pointer">
+          {item?.images[0]?.url?.match(/https:\/\/.*\/video.*$|^.*\.mp4/) ? (
+            <ReactPlayer
+              key={item?.images?.[0]?.id}
+              url={item?.images[0].url}
+              width={"100%"}
+              loop={true}
+              playing={true}
+              muted={true}
+              alt={`${item?.name} from ${item?.seller?.instagramHandle} by ${item?.designer?.name} in size ${item?.size?.name} for £${item?.ourPrice} (RRP £${item?.retailPrice})`}
+              className={`rounded-md transition-opacity duration-200 ease-in-out ${
+                item?.isHidden ? "blur-xl" : ""
+              }`}
+            />
+          ) : (
+            <>
+              <div className="flex">
+                <Image
+                  key={item?.images?.[0]?.id}
+                  onClick={handleProductClick}
+                  height={0}
+                  width={150}
+                  src={item!.images[0]!.url}
+                  alt={`${item?.name} from ${item?.seller?.instagramHandle} by ${item?.designer?.name} in size ${item?.size?.name} for £${item?.ourPrice} (RRP £${item?.retailPrice})`}
+                  priority
+                  className={`rounded-md transition-opacity duration-200 ease-in-out 
+                    ${item?.isHidden ? "blur-xl" : ""}`}
+                />
+              </div>
+            </>
+          )}
+        </div>
+        {/* Hover Image or Video */}
+        {item?.images[1] && (
+          <div className="absolute inset-0 flex justify-center items-center hover:opacity-100 hover:cursor-pointer opacity-0 transition-opacity duration-200 ease-in-out">
+            {item?.images?.[1]?.url?.match(
+              /https:\/\/.*\/video.*$|^.*\.mp4/
+            ) ? (
+              <ReactPlayer
+                key={item?.images?.[1]?.id}
+                onClick={handleProductClick}
+                url={item?.images?.[1]?.url}
+                width="100%"
+                loop
+                playing
+                muted
+                alt={`${item.name} video from ${item.seller?.instagramHandle} by ${item.designer?.name} in size ${item.size?.name} for £${item.ourPrice} (RRP £${item.retailPrice})`}
+                className={`rounded-md transition-opacity duration-200 ease-in-out ${
+                  item.isHidden ? "blur-xl" : ""
                 }`}
-                /> */}
-                <div>TODO:</div>
-                <div
-                className="absolute top-0 left-0 w-full h-full flex items-center justify-center"
-                >
-                <div className="flex flex-col justify-center items-center m-5 ">
-                    <a
-                    href={`/designers/${item?.designer?.id}`}
-                    className="text-xs hover:underline underline text-black hover:text-stone-700 bg-stone-200 bg-opacity-60"
-                    >
-                    {item?.designer?.name.toUpperCase()}
-                    </a>
-                    <h3
+              />
+            ) : (
+              <>
+                <div className="flex ">
+                  <Image
+                    key={item?.images?.[1]?.id}
                     onClick={handleProductClick}
-                    className="text-xs hover:underline text-black hover:text-stone-700 hover:cursor-pointer bg-stone-200 bg-opacity-60"
-                    >
-                    {item?.name}
-                    </h3>
-                    <div className="text-xs text-white  bg-stone-200 bg-opacity-60">
-                    {item?.size?.name}
-                    </div>
-                    <div className="flex flex-row gap-1 bg-stone-200 bg-opacity-60">
-                    <h6 className="text-xs text-red-500">£{item?.ourPrice}</h6>
-                    <h6 className="text-xs text-stone-400">RRP</h6>
-                    <h6 className="text-xs text-stone-800 line-through">
-                        £{item?.retailPrice}
-                    </h6>
-                    </div>
+                    height={0}
+                    width={150}
+                    src={item?.images?.[1]?.url}
+                    alt={`Image of ${item.name} from ${item.seller?.instagramHandle} by ${item.designer?.name} in size ${item.size?.name} for £${item.ourPrice} (RRP £${item.retailPrice})`}
+                    priority
+                    className={`rounded-md transition-opacity duration-200 ease-in-out ${
+                      item.isHidden ? "blur-xl" : ""
+                    }`}
+                  />
                 </div>
+              </>
+            )}
+          </div>
+        )}
+
+        <div className="absolute flex-col justify-center items-center m-5">
+            <div className="flex flex-col justify-center items-center  w-full">
+                <Link
+                href={`/designers/${item?.designer?.id}`}
+                className="text-xs hover:underline underline text-black bg-light-background"
+                >
+                {item?.designer?.name.toUpperCase()}
+                </Link>
+                <h3
+                onClick={handleProductClick}
+                className="text-super-small hover:underline text-light-font bg-light-background hover:cursor-pointer"
+                >
+                {item?.name}
+                </h3>
+                <div className="text-super-small text-black bg-light-background">{item?.size?.name}</div>
+                <div className="flex flex-row gap-1 bg-light-background">
+                <h6 onClick={handleProductClick} className="text-xs text-red-500">
+                    £{item?.ourPrice}
+                </h6>
+                <h6 className="text-xs text-stone-400">RRP</h6>
+                <h6
+                    onClick={handleProductClick}
+                    className="text-xs text-stone-800 line-through"
+                >
+                    £{item?.retailPrice}
+                </h6>
+                </div>
+                <div className="flex flex-row justify-between items-start text-black text-super-small w-full bg-light-background">
+                <h3>{item?.likes} likes</h3>
+                <h3>{item?.clicks} views</h3>
                 </div>
             </div>
+            </div>
         </div>
-     );
-}
- 
+    </div>
+  );
+};
+
 export default SuggestedProductCard;

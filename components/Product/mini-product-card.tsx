@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useEffect, useState, useRef } from "react";
 import { Product } from "@/types";
 import Image from "next/image";
@@ -6,6 +7,7 @@ import Link from "next/link";
 import { CiSquareChevLeft, CiSquareChevRight } from "react-icons/ci";
 import { useRouter } from "next/navigation";
 import { Tooltip } from "@material-tailwind/react";
+import ReactPlayer from "react-player";
 
 interface MiniProductCardProps {
   data: Product[] | undefined;
@@ -100,7 +102,7 @@ const MiniProductCard: React.FC<MiniProductCardProps> = ({
       <div>
         <Link
           href={miniProductRoute || "/"}
-          className="flex justify-center text-sm font-medium transition-colors border shadow-md rounded-md p-1 hover:text-stone-900 hover:underline hover:cursor-pointer"
+          className="flex justify-center text-sm font-medium  transition-colors border shadow-md rounded-md p-1 hover:text-stone-900 hover:underline hover:cursor-pointer"
         >
           <Tooltip
             className="flex flex-row p-2 z-50 text-xs bg-transparent text-stone-600 "
@@ -111,7 +113,9 @@ const MiniProductCard: React.FC<MiniProductCardProps> = ({
             }}
             content={`Click to browse ${miniProductTitle} for a limited time`}
           >
-            {miniProductTitle}
+            <p className="bg-light-background text-light-font">
+              {miniProductTitle}
+            </p>
           </Tooltip>
         </Link>
         <div className="flex flex-row w-full justify-between p-2 mt-2">
@@ -128,16 +132,36 @@ const MiniProductCard: React.FC<MiniProductCardProps> = ({
             className="flex justify-center items-center hover:cursor-pointer"
           >
             <div className="relative">
-              {/* <Image
-                src={currentProduct.images[0].url}
-                alt={currentProduct.name}
-                width={70}
-                height={70}
-                className={` transition-opacity duration-200 ease-in-out ${
-                  currentProduct?.isHidden ? "blur-xl" : ""
-                }`}
-              /> */}
-              <div>TODO:</div>
+              {currentProduct?.images[0]?.url?.match(/https:\/\/.*\/video.*$|^.*\.mp4/)
+              ? (
+                <ReactPlayer
+                  key={currentProduct?.images?.[0]?.id}
+                  url={currentProduct?.images[0].url}
+                  width={"100%"}
+                  loop={true}
+                  playing={true}
+                  muted={true}
+                  alt={`${currentProduct.name} from ${currentProduct.seller?.instagramHandle} by ${currentProduct.designer?.name} in size ${currentProduct.size?.name} for £${currentProduct.ourPrice} (RRP £${currentProduct.retailPrice})`}
+                  className={`rounded-md transition-opacity duration-200 ease-in-out ${
+                    currentProduct.isHidden ? "blur-xl" : ""
+                  }`}
+                />
+              ) : (
+                <div className="flex">
+                  <Image
+                    key={currentProduct?.images?.[0]?.id}
+                    onClick={handleProductClick}
+                    height={0}
+                    width={120}
+                    loading="lazy"
+                    src={currentProduct!.images[0]!.url}
+                    alt={`${currentProduct.name} from ${currentProduct.seller?.instagramHandle} by ${currentProduct.designer?.name} in size ${currentProduct.size?.name} for £${currentProduct.ourPrice} (RRP £${currentProduct.retailPrice})`}
+                    className={`rounded-md transition-opacity duration-200 ease-in-out 
+                      ${currentProduct.isHidden ? "blur-xl" : ""}`}
+                  />
+                </div>
+              )}
+
               <div
                 className="absolute top-0 left-0 w-full h-full flex items-center justify-center transition-opacity duration-300 "
                 style={{ opacity }}

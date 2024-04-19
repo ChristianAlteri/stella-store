@@ -51,6 +51,7 @@ const Gallery: React.FC<GalleryProps> = ({ images = [] }) => {
                   alt={`Image from ${image.url}`}
                   width={250}
                   height={0}
+                  loading="lazy"
                   className="rounded-md transition-opacity duration-200 ease-in-out"
                 />
               )}

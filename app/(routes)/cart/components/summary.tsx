@@ -81,7 +81,7 @@ const toastError = (message: string) => {
          <h1 className="text-xs text-stone-400">at checkout</h1>
         </div>
       </div>
-      <Button onClick={onCheckout} disabled={items.length === 0} className="w-full mt-6 border text-xs rounded-md bg-black text-white p-1">
+      <Button onClick={onCheckout} disabled={items.length === 0} className="m-2 bg-light-background rounded-sm text-light-font border border-darker-background font-semibold p-2 w-full hover:bg-darker-background hover:text-white">
         Checkout
       </Button>
     </div>
