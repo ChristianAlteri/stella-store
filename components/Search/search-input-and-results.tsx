@@ -216,7 +216,7 @@ const SearchInputAndResults: React.FC<SearchInputAndResultsProps> = ({
                       </p>
 
                       <div className="inset-0 w-full h-full flex justify-center items-center hover:cursor-pointer">
-                        {(product?.images?.[0]?.url?.match(/https:\/\/.*\/video.*$|^.*\.mp4/) ? (
+                        {(product?.images?.[0]?.url?.match(/https:\/\/.*\.(video|mp4|MP4|mov).*/) ? (
                           <ReactPlayer
                             key={product?.images?.[0]?.id}
                             onClick={() => handleProductClick(product)}

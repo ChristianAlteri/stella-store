@@ -61,7 +61,7 @@ const Navbar: React.FC<NavbarProps> = ({
         data={navBarBillboard}
       />
 
-      <div className="sticky bg-white w-full top-0 z-40 shadow-md">
+      <div className="sticky bg-white w-full top-0 z-40 shadow-md border-b">
 
         <div className="grid md:grid-rows-2 grid-rows-1 min-h-[55px] p-1">
           <div className="row-span-1 w-full">

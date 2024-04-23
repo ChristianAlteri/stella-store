@@ -85,7 +85,7 @@ const MobileProductFilter: React.FC<MobileProductFilterProps> = ({
                 className={cn(
                   "bg-light-background ml-2 gap-2 flex flex-row justify-center text-sm font-medium transition-colors hover:underline hover:cursor-pointer",
                   isSelected(filterItem.id)
-                    ? " bg-stella-green p-1 rounded-md flex justify-center items-center text-white transition-transform animate-pulse"
+                    ? " bg-light-background p-1 rounded-md flex justify-center items-center text-white transition-transform animate-pulse"
                     : "text-light-font"
                 )}
                 onClick={() => onClick(filterItem?.id)}

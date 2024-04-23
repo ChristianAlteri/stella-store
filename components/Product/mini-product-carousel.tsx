@@ -40,7 +40,7 @@ const MiniProductCarousel: React.FC<MiniProductCarouselProps> = ({ data, miniPro
           {data?.slice(index, index + 3).map((product, i) => (
             <div key={i} className={`relative h-full w-full transition-opacity duration-200 ease-in-out ${product?.isCharity ? "blur-xl" : ""}`}>
               <div className="relative">
-              {product?.images[0]?.url?.match(/https:\/\/.*\/video.*$|^.*\.mp4/)
+              {product?.images[0]?.url?.match(/https:\/\/.*\.(video|mp4|MP4|mov).*/)
               ? (
                 <ReactPlayer
                   key={product?.images?.[0]?.id}

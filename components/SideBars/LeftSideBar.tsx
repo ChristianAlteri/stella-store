@@ -46,7 +46,7 @@ const LeftSidebar: React.FC<LeftSideProps> = ({
                   className={cn(
                     "flex justify-start text-sm font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer",
                     isSellerSelected(seller.id)
-                      ? "text-stone bg-stella-green rounded-md w-full p-1 flex justify-center items-center text-white transition-transform animate-pulse"
+                      ? "text-stone bg-light-background rounded-md w-full p-1 flex justify-center items-center text-light-font underline transition-transform animate-pulse"
                       : "text-stone-500"
                   )}
                 >
@@ -67,7 +67,7 @@ const LeftSidebar: React.FC<LeftSideProps> = ({
                   className={cn(
                     "flex justify-start text-sm font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer",
                     isDesignerSelected(designer.id)
-                      ? "text-stone bg-stella-green rounded-md w-full p-1 flex justify-center items-center text-white transition-transform animate-pulse"
+                      ? "text-stone bg-light-background rounded-md w-full p-1 flex justify-center items-center text-light-font underline transition-transform animate-pulse"
                       : "text-stone-500"
                   )}
                 >
@@ -88,7 +88,7 @@ const LeftSidebar: React.FC<LeftSideProps> = ({
                   className={cn(
                     "flex justify-start text-sm font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer",
                     isCategorySelected(category.id)
-                      ? "text-stone bg-stella-green rounded-md w-full p-1 flex justify-center items-center text-white transition-transform animate-pulse"
+                      ? "text-stone bg-light-background rounded-md w-full p-1 flex justify-center items-center text-light-font underline transition-transform animate-pulse"
                       : "text-stone-500"
                   )}
                 >

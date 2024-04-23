@@ -23,7 +23,7 @@ const SuggestedProductCard: React.FC<SuggestedProductCardProps> = ({
     <div className="w-full justify-center items-center flex">
       <div className="relative h-full w-full rounded-md flex justify-center items-center z-30">
         <div className="inset-0 w-full h-full flex justify-center items-center hover:cursor-pointer">
-          {item?.images[0]?.url?.match(/https:\/\/.*\/video.*$|^.*\.mp4/) ? (
+          {item?.images[0]?.url?.match(/https:\/\/.*\.(video|mp4|MP4|mov).*/) ? (
             <ReactPlayer
               key={item?.images?.[0]?.id}
               url={item?.images[0].url}
@@ -58,7 +58,7 @@ const SuggestedProductCard: React.FC<SuggestedProductCardProps> = ({
         {item?.images[1] && (
           <div className="absolute inset-0 flex justify-center items-center hover:opacity-100 hover:cursor-pointer opacity-0 transition-opacity duration-200 ease-in-out">
             {item?.images?.[1]?.url?.match(
-              /https:\/\/.*\.(video|mp4|MP4).*/
+              /https:\/\/.*\.(video|mp4|MP4|mov).*/
             ) ? (
               <ReactPlayer
                 key={item?.images?.[1]?.id}

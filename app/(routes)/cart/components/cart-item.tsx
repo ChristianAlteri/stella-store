@@ -33,7 +33,7 @@ const CartItem: React.FC<CartItemProps> = ({ data }) => {
 
         <div className="relative overflow-hidden">
           {/* If item is marked hidden, we blur it. Used for unreleased products */}
-          {data?.images[0]?.url?.match(/https:\/\/.*\.(video|mp4|MP4).*/) ? (
+          {data?.images[0]?.url?.match(/https:\/\/.*\.(video|mp4|MP4|mov).*/) ? (
             <video
               height={70}
               width={70}
