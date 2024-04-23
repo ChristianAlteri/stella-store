@@ -28,6 +28,11 @@ const nextConfig = {
           hostname: 'res.cloudinary.com',
           pathname: '**',
         },
+        {
+          protocol: "https",
+          hostname: "stella-ecomm-media-bucket.s3.amazonaws.com",
+          pathname: "**"
+        }
       ],
     },
   // webpack: (config, options) => {

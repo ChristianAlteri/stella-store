@@ -113,7 +113,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
 
           <div className="inset-0 w-full h-full flex justify-center items-center hover:cursor-pointer">
             {/* If item is marked hidden, we blur it. Used for unreleased products */}
-            {item?.images[0]?.url?.match(/https:\/\/.*\/video.*$|^.*\.mp4/)
+            {item?.images[0]?.url?.match(/https:\/\/.*\.(video|mp4|MP4).*/)
             ? (
               <ReactPlayer
                 key={item?.images?.[0]?.id}
@@ -161,7 +161,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
           {/* Hover Image or Video */}
           {item?.images[1] && (
             <div className="absolute inset-0 flex justify-center items-center hover:opacity-100 hover:cursor-pointer opacity-0 transition-opacity duration-200 ease-in-out">
-              {(item?.images?.[1]?.url?.match(/https:\/\/.*\/video.*$|^.*\.mp4/) ? (
+              {(item?.images?.[1]?.url?.match(/https:\/\/.*\.(video|mp4|MP4).*/) ? (
                 <ReactPlayer
                   key={item?.images?.[1]?.id}
                   onClick={handleProductClick}

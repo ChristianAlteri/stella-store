@@ -16,7 +16,7 @@ const GalleryTab: React.FC<GalleryTabProps> = ({ image }) => {
       {({ selected }) => (
         <div>
           <span className="absolute h-full w-full aspect-square inset-0 overflow-hidden ">
-            {image?.url?.match(/https:\/\/.*\/video.*$|^.*\.mp4/) ? (
+            {image?.url?.match(/https:\/\/.*\.(video|mp4|MP4).*/) ? (
               <ReactPlayer
                 key={image.id}
                 url={image.url}

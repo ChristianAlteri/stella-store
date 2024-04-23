@@ -132,7 +132,7 @@ const MiniProductCard: React.FC<MiniProductCardProps> = ({
             className="flex justify-center items-center hover:cursor-pointer"
           >
             <div className="relative">
-              {currentProduct?.images[0]?.url?.match(/https:\/\/.*\/video.*$|^.*\.mp4/)
+              {currentProduct?.images[0]?.url?.match(/https:\/\/.*\.(video|mp4|MP4).*/)
               ? (
                 <ReactPlayer
                   key={currentProduct?.images?.[0]?.id}

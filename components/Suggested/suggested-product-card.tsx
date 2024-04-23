@@ -58,7 +58,7 @@ const SuggestedProductCard: React.FC<SuggestedProductCardProps> = ({
         {item?.images[1] && (
           <div className="absolute inset-0 flex justify-center items-center hover:opacity-100 hover:cursor-pointer opacity-0 transition-opacity duration-200 ease-in-out">
             {item?.images?.[1]?.url?.match(
-              /https:\/\/.*\/video.*$|^.*\.mp4/
+              /https:\/\/.*\.(video|mp4|MP4).*/
             ) ? (
               <ReactPlayer
                 key={item?.images?.[1]?.id}

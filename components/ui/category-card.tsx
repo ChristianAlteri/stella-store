@@ -26,7 +26,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({ data, route }) => {
             className="rounded-md w-full h-full object-cover"
           />
         )}
-        {data?.billboard?.imageUrl.match(/https:\/\/.*\/video.*$|^.*\.mp4/) && (
+        {data?.billboard?.imageUrl.match(/https:\/\/.*\.(video|mp4|MP4).*/) && (
           <video
             muted
             autoPlay

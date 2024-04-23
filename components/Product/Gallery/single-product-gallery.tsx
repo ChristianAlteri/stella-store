@@ -33,7 +33,7 @@ const Gallery: React.FC<GalleryProps> = ({ images = [] }) => {
             onClick={() => window.open(`${image.url}`, "_blank")}
           >
             <div className="h-full w-full">
-              {image?.url?.match(/https:\/\/.*\/video.*$|^.*\.mp4/) ? (
+              {image?.url?.match(/https:\/\/.*\.(video|mp4|MP4).*/) ? (
                 <ReactPlayer
                   key={image.id}
                   url={image.url}

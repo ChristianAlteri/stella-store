@@ -25,7 +25,7 @@ const LargeSuggestedProductCard: React.FC<LargeSuggestedProductCardProps> = ({
       <div className="w-full justify-center items-center flex">
         <div className="relative h-full w-full rounded-md flex justify-center items-center z-30">
           <div className="inset-0 w-full h-full flex justify-center items-center hover:cursor-pointer">
-            {item?.images[0]?.url?.match(/https:\/\/.*\/video.*$|^.*\.mp4/) ? (
+            {item?.images[0]?.url?.match(/https:\/\/.*\.(video|mp4|MP4).*/) ? (
               <ReactPlayer
                 key={item?.images?.[0]?.id}
                 url={item?.images[0].url}
