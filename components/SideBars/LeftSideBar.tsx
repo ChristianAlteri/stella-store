@@ -4,27 +4,18 @@ import React from "react";
 
 import { cn } from "@/lib/utils";
 
-import { Category, Color, Designer, Product, Seller, Size } from "@/types";
-import { useParams } from "next/navigation";
-import { useSearchParams } from "next/navigation";
-import { useRouter } from "next/navigation";
+import { Category, Designer, Seller } from "@/types";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import SortFilter from "./sort-filter";
 import useParamsUtil from "@/utils/useParamsUtil";
 
 interface LeftSideProps {
-  productData?: Product[];
-  sizes?: Size[];
   designers?: Designer[];
   categories?: Category[];
   sellers?: Seller[];
-  colors?: Color[];
 }
 
 const LeftSidebar: React.FC<LeftSideProps> = ({
-  productData,
   designers,
   categories,
   sellers,

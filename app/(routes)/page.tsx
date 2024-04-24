@@ -38,8 +38,6 @@ const Homepage = async () => {
           designers={designers}
           categories={categories}
           sellers={sellers}
-          colors={colors}
-          sizes={sizes}
         />
 
         {/* Second column */}

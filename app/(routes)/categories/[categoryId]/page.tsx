@@ -73,7 +73,7 @@ const CategoryNamePage: React.FC<CategoryNamePageProps> = async ({
   const materials = await getMaterials();
   const genders = await getGenders();
   const subcategories = await getSubcategories();
-  const allProducts = await getProducts({all: true});
+
 
   return (
     <>
@@ -84,9 +84,6 @@ const CategoryNamePage: React.FC<CategoryNamePageProps> = async ({
             designers={designers}
             categories={categories}
             sellers={sellers}
-            colors={colors}
-            sizes={sizes}
-            productData={productData}
           />
         </div>
 
@@ -95,7 +92,6 @@ const CategoryNamePage: React.FC<CategoryNamePageProps> = async ({
           <Billboard data={categoryData?.billboard} />
 
             <FullscreenProductFilters 
-              categoryData={categoryData}
               productData={productData}
               genders={genders}
             />
@@ -116,9 +112,6 @@ const CategoryNamePage: React.FC<CategoryNamePageProps> = async ({
             materials={materials}
             subcategories={subcategories}
             productData={featuredProducts}
-            genders={genders}
-            categoryData={categoryData}
-            allProducts={allProducts}
             miniProductTitle="Our top picks"
           />
         </div>

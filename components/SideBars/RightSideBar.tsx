@@ -30,12 +30,9 @@ interface RightSideProps {
   colors?: Color[];
   conditions?: Condition[];
   materials?: Material[];
-  genders?: Gender[];
   subcategories?: Subcategory[];
   productData?: Product[];
-  allProducts?: Product[] | undefined;
   designers?: Designer[];
-  categoryData?: Category;
   sellers?: Seller[];
   miniProductTitle?: string;
 }
@@ -48,9 +45,6 @@ const RightSidebar: React.FC<RightSideProps> = ({
   subcategories,
   productData,
   miniProductTitle,
-  allProducts,
-  categoryData,
-  genders,
 }) => {
   const [randomisedProductData, setRandomisedProductData] = useState(
     productData!

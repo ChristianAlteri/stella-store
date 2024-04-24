@@ -35,7 +35,7 @@ const IndividualProductPage: React.FC<IndividualProductPageProps> = async ({
   const suggestedProductsBasedOnDesigner = await getProducts({
     designerId: product?.designer?.id,
   });
-  const mostViewedProducts = await getMostViewed({ all: true });
+  // const mostViewedProducts = await getMostViewed({all: true});
   const featuredProducts = await getProducts({ isFeatured: true });
 
   //sorted data

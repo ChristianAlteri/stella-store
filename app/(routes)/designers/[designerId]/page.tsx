@@ -84,9 +84,6 @@ const DesignerNamePage: React.FC<DesignerNamePageProps> = async ({
             designers={designers}
             categories={categories}
             sellers={sellers}
-            colors={colors}
-            sizes={sizes}
-            productData={productData}
           />
         </div>
           
@@ -96,7 +93,6 @@ const DesignerNamePage: React.FC<DesignerNamePageProps> = async ({
         <Billboard data={designerData?.billboard} />
 
             <FullscreenProductFilters 
-              categoryData={designerData}
               productData={productData}
               genders={genders}
             />
@@ -117,9 +113,6 @@ const DesignerNamePage: React.FC<DesignerNamePageProps> = async ({
             materials={materials}
             subcategories={subcategories}
             productData={featuredProducts}
-            genders={genders}
-            categoryData={designerData}
-            allProducts={allProducts}
             miniProductTitle="Our top picks"
           />
         </div>

@@ -8,13 +8,11 @@ import { TfiMore } from "react-icons/tfi";
 import AllSortFilters from "../Filters/all-sort-filters";
 
 interface FullscreenProductFiltersProps {
-  categoryData?: Category;
   productData?: Product[];
   genders?: Gender[];
 }
 
 const FullscreenProductFilters: React.FC<FullscreenProductFiltersProps> = ({
-  categoryData,
   productData,
   genders,
 }) => {
