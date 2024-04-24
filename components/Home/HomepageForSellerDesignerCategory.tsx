@@ -2,9 +2,10 @@
 
 import { useState } from "react";
 import CategoryCard from "../ui/category-card";
-import { Category, Designer, Seller } from "@/types";
+import { Category, Designer, Product, Seller } from "@/types";
 import { CiSearch } from "react-icons/ci";
 import Link from "next/link";
+import SuggestedContainer from "../Suggested/SuggestedContainer";
 
 interface HomepageForSellerDesignerCategoryProps {
   data: Category[] | Seller[] | Designer[];
@@ -35,7 +36,6 @@ const HomepageForSellerDesignerCategory: React.FC<
     }
   };
   
-
   const sortMostPopular = () => {
     const localFiltered = [...filteredData].sort((a, b) => {
       const totalLikesA = a.products.reduce(
@@ -134,7 +134,7 @@ const HomepageForSellerDesignerCategory: React.FC<
                 />
               </div>
               <div className="flex flex-row text-xs justify-center items-center text-center gap-3 mt-4">
-                <h1 className="flex flex-row justify-center hover:underline hover:cursor-pointer bg-light-background">
+                <h1 className="flex flex-row justify-center bg-light-background">
                   Sort by:{" "}
                 </h1>
                 <div

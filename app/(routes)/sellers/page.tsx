@@ -31,7 +31,8 @@ const SellerPage = async () => {
         route="sellers"
         routeOne="designers"
         routeTwo="categories"
-        data={sortByMostPopular} />
+        data={sortByMostPopular} 
+        /> 
         {onSaleProducts.length > 0 && (
           <SuggestedContainer
             route="sale"
