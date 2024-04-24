@@ -16,7 +16,6 @@ import getConditions from "@/actions/get-conditions";
 import getMaterials from "@/actions/get-materials";
 import getGenders from "@/actions/get-genders";
 import getSubcategories from "@/actions/get-sub-categories";
-import dynamic from "next/dynamic";
 
 export const revalidate = 0;
 
@@ -38,6 +37,7 @@ interface CategoryNamePageProps {
     isFeatured: boolean;
     isOnSale: boolean;
     isCharity: boolean;
+    isHidden: boolean;
   };
 }
 
@@ -56,6 +56,7 @@ const CategoryNamePage: React.FC<CategoryNamePageProps> = async ({
     subcategoryId: searchParams.subcategoryId,
     isOnSale: searchParams.isOnSale,
     isCharity: searchParams.isCharity,
+    isHidden: searchParams.isHidden,
     isFeatured: searchParams.isFeatured,
     designerId: searchParams.designerId,
     sellerId: searchParams.sellerId,

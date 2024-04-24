@@ -13,6 +13,9 @@ import getSizes from "@/actions/get-sizes";
 import getConditions from "@/actions/get-conditions";
 import getMaterials from "@/actions/get-materials";
 import getSingleDesigner from "@/actions/get-single-designer";
+import getGenders from "@/actions/get-genders";
+import getSubcategories from "@/actions/get-sub-categories";
+import FullscreenProductFilters from "@/components/Home/full-screen-product-filters";
 
 export const revalidate = 0;
 
@@ -25,12 +28,16 @@ interface DesignerNamePageProps {
     colorId: string;
     conditionId: string;
     materialId: string;
+    genderId: string;
+    subcategoryId: string;
     categoryId: string;
     designerId: string;
     sellerId: string;
     sort: string;
     isFeatured: boolean;
     isOnSale: boolean;
+    isCharity: boolean;
+    isHidden: boolean;
   };
 }
 
@@ -45,12 +52,17 @@ const DesignerNamePage: React.FC<DesignerNamePageProps> = async ({
     colorId: searchParams.colorId,
     conditionId: searchParams.conditionId,
     materialId: searchParams.materialId,
+    genderId: searchParams.genderId,
+    subcategoryId: searchParams.subcategoryId,
     isOnSale: searchParams.isOnSale,
+    isCharity: searchParams.isCharity,
+    isHidden: searchParams.isHidden,
     isFeatured: searchParams.isFeatured,
     categoryId: searchParams.categoryId,
     sellerId: searchParams.sellerId,
   });
   const designerData = await getSingleDesigner(params.designerId);
+  const featuredProducts = await getProducts({ isFeatured: true });
 
   const sizes = await getSizes();
   const colors = await getColors();
@@ -59,12 +71,15 @@ const DesignerNamePage: React.FC<DesignerNamePageProps> = async ({
   const sellers = await getSellers();
   const categories = await getCategories();
   const materials = await getMaterials();
+  const genders = await getGenders();
+  const subcategories = await getSubcategories();
+  const allProducts = await getProducts({all: true});
 
   return (
     <>
-      <div className="grid grid-cols-8 gap-4 bg-white">
+      <div className="justify-center items-center md:grid flex grid-cols-8 gap-4 bg-white">
         {/* First column */}
-        <div className="col-span-1 justify-start items-start w-1/6 p-6 hidden sticky z-50 h-full md:flex">
+        <div className="col-span-1 justify-start items-start w-full p-6 hidden sticky z-50 h-full md:grid" style={{ width: '100%' }}>
           <LeftSidebar
             designers={designers}
             categories={categories}
@@ -74,10 +89,18 @@ const DesignerNamePage: React.FC<DesignerNamePageProps> = async ({
             productData={productData}
           />
         </div>
+          
 
         {/* Second column */}
-        <div className="col-span-6 flex flex-col items-center w-full">
-          <Billboard data={designerData?.billboard} />
+        <div className="col-span-6 flex flex-col justify-center items-center w-full">
+        <Billboard data={designerData?.billboard} />
+
+            <FullscreenProductFilters 
+              categoryData={designerData}
+              productData={productData}
+              genders={genders}
+            />
+
           <ProductGrid>
             {productData?.map((item) => (
               <ProductCard key={item.id} item={item} />
@@ -87,11 +110,17 @@ const DesignerNamePage: React.FC<DesignerNamePageProps> = async ({
 
         {/* Third column */}
         <div className="col-span-1 justify-start items-start w-1/6 p-6 hidden sticky z-50 h-full md:flex">
-          <RightSidebar
+        <RightSidebar
             colors={colors}
             sizes={sizes}
             conditions={conditions}
             materials={materials}
+            subcategories={subcategories}
+            productData={featuredProducts}
+            genders={genders}
+            categoryData={designerData}
+            allProducts={allProducts}
+            miniProductTitle="Our top picks"
           />
         </div>
       </div>

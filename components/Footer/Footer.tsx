@@ -26,6 +26,7 @@ interface FooterProps {
     isFeatured: boolean;
     isOnSale: boolean;
     isCharity: boolean;
+    isHidden: boolean;
   };
 }
 
@@ -41,6 +42,7 @@ const Footer: React.FC<FooterProps> = async ({ searchParams }) => {
     materialId: searchParams.materialId,
     isOnSale: searchParams.isOnSale,
     isCharity: searchParams.isCharity,
+    isHidden: searchParams.isHidden,
     isFeatured: searchParams.isFeatured,
     subcategoryId: searchParams.subcategoryId,
     genderId: searchParams.genderId,

@@ -84,6 +84,7 @@ export default async function RootLayout({
             isFeatured: false,
             isOnSale: false,
             isCharity: false,
+            isHidden: false,
           }}
         />
       </body>
