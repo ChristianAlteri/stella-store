@@ -25,11 +25,11 @@ const ShoppingCartButton = () => {
 
   return ( 
     <div className="">
-      <Button onClick={() => router.push('/cart')} className="flex ">
-      <CiShoppingCart size={"24px"} className="hover:cursor-pointer hover:text-stone-900 hover:underline"/>
-        <span className="p-1 text-xs text-green-800">
+      <Button onClick={() => router.push('/cart')} className="flex flex-row items-center justify-center">
+        <span className="p-1 text-super-small text-green-800">
           {cart.items.length}
         </span>
+      <CiShoppingCart size={"27px"} className="flex flex-row justify-center absolute hover:cursor-pointer hover:text-stone-900 hover:underline"/>
       </Button>
     </div>
   );

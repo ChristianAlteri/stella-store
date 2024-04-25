@@ -1,61 +1,119 @@
-import HomeContainer from "@/components/ui/HomeContainer";
-// import LeftSidebar from "../../components/Home/LeftSidebar";
-// import RightSidebar from "../../components/Home/RightSidebar";
-import ProductGrid from "../../components/Home/ProductGrid";
-import Billboard from "@/components/Billboard/Billboard";
+import ProductGrid from "@/components/Home/ProductGrid";
 import ProductCard from "@/components/Product/product-card";
-import ProductList from "@/components/Home/product-list";
+import LeftSidebar from "@/components/SideBars/LeftSideBar";
+import Billboard from "@/components/Billboard/Billboard";
+import RightSidebar from "@/components/SideBars/RightSideBar";
+import FullscreenProductFilters from "@/components/Home/full-screen-product-filters";
 
 import getDesigners from "@/actions/get-designers";
 import getCategories from "@/actions/get-categories";
 import getProducts from "@/actions/get-products";
 import getSellers from "@/actions/get-sellers";
-import getBillboardByName from "@/actions/get-billboard-by-name";
-import LeftSidebar from "@/components/SideBars/LeftSideBar";
 import getColors from "@/actions/get-colors";
 import getSizes from "@/actions/get-sizes";
-import ClientAdvisor from "@/components/ui/ClientAdvisor";
+import getConditions from "@/actions/get-conditions";
+import getMaterials from "@/actions/get-materials";
+import getGenders from "@/actions/get-genders";
+import getSubcategories from "@/actions/get-sub-categories";
+import getTopLikes from "@/actions/get-top-likes";
+import getBillboardByName from "@/actions/get-billboard-by-name";
 
 export const revalidate = 0;
 
-const Homepage = async () => {
-  const designers = await getDesigners();
-  const categories = await getCategories();
-  const sellers = await getSellers();
-  const products = await getProducts({ all: true });
-  const colors = await getColors();
+interface HomepageProps {
+  searchParams: {
+    sizeId: string;
+    colorId: string;
+    conditionId: string;
+    materialId: string;
+    genderId: string;
+    subcategoryId: string;
+    categoryId: string;
+    designerId: string;
+    sellerId: string;
+    sort: string;
+    isFeatured: boolean;
+    isOnSale: boolean;
+    isCharity: boolean;
+    isHidden: boolean;
+  };
+}
+
+const Homepage: React.FC<HomepageProps> = async ({ searchParams }) => {
+  const products = await getProducts({
+    categoryId: searchParams.categoryId,
+    sort: searchParams.sort,
+    sizeId: searchParams.sizeId,
+    colorId: searchParams.colorId,
+    conditionId: searchParams.conditionId,
+    materialId: searchParams.materialId,
+    genderId: searchParams.genderId,
+    subcategoryId: searchParams.subcategoryId,
+    isOnSale: searchParams.isOnSale,
+    isCharity: searchParams.isCharity,
+    isHidden: searchParams.isHidden,
+    isFeatured: searchParams.isFeatured,
+    designerId: searchParams.designerId,
+    sellerId: searchParams.sellerId,
+    all: true,
+  });
+  const featuredProducts = await getProducts({ isFeatured: true });
+  const homePageBillboard = await getBillboardByName("homePage");
+  // console.log(homePageBillboard);
+
   const sizes = await getSizes();
-  const billboard = await getBillboardByName("homePage");
+  const colors = await getColors();
+  const conditions = await getConditions();
+  const designers = await getDesigners();
+  const sellers = await getSellers();
+  const categories = await getCategories();
+  const materials = await getMaterials();
+  const genders = await getGenders();
+  const subcategories = await getSubcategories();
 
-
-  
   return (
     <>
-      {/* TODO: if logged in re route to 'for-you' page */}
-      <div className="flex flex-row w-full h-full gap-4 bg-white">
+      <div className="justify-center items-center md:grid flex grid-cols-8 gap-4 bg-white h-full">
         {/* First column */}
-        <LeftSidebar
-          designers={designers}
-          categories={categories}
-          sellers={sellers}
-        />
+        <div
+          className="col-span-1 justify-start items-start w-full p-6 hidden sticky z-50 h-full md:grid"
+          style={{ width: "100%" }}
+        >
+          <LeftSidebar
+            designers={designers}
+            categories={categories}
+            sellers={sellers}
+          />
+        </div>
 
         {/* Second column */}
-        <HomeContainer>
-          {/* <Billboard data={billboardData} /> */}
-          <ClientAdvisor 
-            products={products}
-          />
+        <div className="col-span-6 flex flex-col justify-center items-center w-full">
+          {/* <Billboard data={homePageBillboard} /> */}
+
+          <FullscreenProductFilters productData={products} genders={genders} />
+
           <ProductGrid>
             {products.map((item) => (
               <ProductCard key={item.id} item={item} />
             ))}
           </ProductGrid>
-        </HomeContainer>
+        </div>
 
-        {/* Third column
-
-                    <RightSidebar title="Sellers" data={sellerData}/> */}
+        {/* Third column */}
+        <div
+          className="col-span-1 justify-start items-start w-full p-6 hidden sticky z-50 h-full md:grid"
+          style={{ width: "100%" }}
+        >
+          <RightSidebar
+            colors={colors}
+            sizes={sizes}
+            conditions={conditions}
+            materials={materials}
+            subcategories={subcategories}
+            productData={featuredProducts}
+            miniProductTitle="Our top picks"
+          />
+        </div>
       </div>
     </>
   );

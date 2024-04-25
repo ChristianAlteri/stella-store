@@ -23,13 +23,13 @@ const HeartButton = () => {
     return null;
   }
 
-  return ( 
+  return (
     <div className="">
-      <Button onClick={() => router.push('/likes')} className="flex ">
-      <CiHeart size={"24px"} className="hover:cursor-pointer hover:text-stone-900 hover:underline"/>
-        <span className="p-1 text-xs text-green-800">
+      <Button onClick={() => router.push('/likes')} className="flex  flex-row items-center justify-center">
+        <span className="p-1 text-super-small text-green-800">
           {likes.items.length}
         </span>
+        <CiHeart size={"27px"} className="flex flex-row justify-center absolute hover:cursor-pointer hover:text-stone-900 hover:underline" />
       </Button>
     </div>
   );

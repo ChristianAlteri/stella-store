@@ -15,7 +15,6 @@ import getConditions from "@/actions/get-conditions";
 import getMaterials from "@/actions/get-materials";
 import getGenders from "@/actions/get-genders";
 import getSubcategories from "@/actions/get-sub-categories";
-import getTopLikes from "@/actions/get-top-likes";
 import getMostViewed from "@/actions/get-most-viewed";
 
 export const revalidate = 0;
@@ -70,7 +69,7 @@ const MostViewedPage: React.FC<MostViewedPageProps> = async ({ searchParams }) =
 
   return (
     <>
-      <div className="justify-center items-center md:grid flex grid-cols-8 gap-4 bg-white">
+      <div className="justify-center items-center md:grid flex grid-cols-8 gap-4 bg-white h-full">
         {/* First column */}
         <div
           className="col-span-1 justify-start items-start w-full p-6 hidden sticky z-50 h-full md:grid"
@@ -86,12 +85,12 @@ const MostViewedPage: React.FC<MostViewedPageProps> = async ({ searchParams }) =
         {/* Second column */}
         <div className="col-span-6 flex flex-col justify-center items-center w-full">
 
-          <div className="bg-light-background rounded-lg shadow-md p-6 justify-center items-center text-center mt-6">
-            <h2 className="text-2xl font-mono text-brown-800 mt-6 mb-2">
-                🔥 TRENDING PRODUCTS 🔥
+          <div className="p-2 justify-center items-center text-center ">
+            <h2 className="text-4xl font-bold text-black mt-2 mb-2 bg-light-background">
+                 TRENDING PRODUCTS 
             </h2>
             <p className="text-base font-cursive text-light-font">
-            These products are hot right now! Do not miss out on the latest trends and must-haves. 🌟
+            These products are hot right now! Do not miss out on the latest trends and must-haves.
             </p>
           </div>
 

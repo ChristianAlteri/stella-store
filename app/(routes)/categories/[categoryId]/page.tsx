@@ -77,7 +77,7 @@ const CategoryNamePage: React.FC<CategoryNamePageProps> = async ({
 
   return (
     <>
-      <div className="justify-center items-center md:grid flex grid-cols-8 gap-4 bg-white">
+      <div className="justify-center items-center md:grid flex grid-cols-8 gap-4 bg-white h-full">
         {/* First column */}
         <div className="col-span-1 justify-start items-start w-full p-6 hidden sticky z-50 h-full md:grid" style={{ width: '100%' }}>
           <LeftSidebar

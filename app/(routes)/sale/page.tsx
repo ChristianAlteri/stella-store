@@ -82,16 +82,17 @@ const SalePage: React.FC<SalePageProps> = async ({ searchParams }) => {
         </div>
 
         {/* Second column */}
-        <div className="col-span-6 flex flex-col justify-center items-center w-full">
-
-            <div className="bg-light-background rounded-lg shadow-md p-6 justify-center items-center text-center mt-6">
-                <h2 className="text-2xl font-mono text-brown-800 mt-6 mb-2">
-                    🈹 SALE! 🈹
-                </h2>
-                <p className="text-base font-cursive text-light-font">
-                These carefully curated items are on sale just for you! We have handpicked the best deals to help you save big and treat yourself to something special. 💰💚
-                </p>
-            </div>
+        <div className="col-span-6 flex flex-col justify-center items-center w-full h-full">
+          <div className="p-2 justify-center items-center text-center ">
+            <h2 className="text-4xl font-bold text-black mt-2 mb-2 bg-light-background">
+              SALE!
+            </h2>
+            <p className="text-base font-cursive text-light-font">
+              These carefully curated items are on sale just for you! We have
+              handpicked the best deals to help you save big and treat yourself
+              to something special.
+            </p>
+          </div>
 
           <FullscreenProductFilters
             productData={onSaleItems}

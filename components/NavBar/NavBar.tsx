@@ -5,6 +5,7 @@ import Link from "next/link";
 import MegaSearch from "../Search/mega-search";
 import ShoppingCartButton from "./ShoppingCartButton";
 import HeartButton from "./HeartButton";
+import ProfileButton from "./ProfileButton";
 import HamburgerMenu from "./hamburger-menu";
 import BannerBillboard from "../Billboard/BannerBillboard";
 import ClientAdvisor from "../ui/ClientAdvisor";
@@ -24,6 +25,8 @@ import {
   Subcategory,
 } from "@/types";
 import QuickLinks from "./quick-links";
+import { useState } from "react";
+
 
 interface NavbarProps {
   sellers: Seller[];
@@ -54,6 +57,8 @@ const Navbar: React.FC<NavbarProps> = ({
   navBarBillboard,
   topTen
 }) => {
+  const [loggedIn, setLoggedIn] = useState(true);
+
   return (
     <>
       <BannerBillboard
@@ -106,11 +111,12 @@ const Navbar: React.FC<NavbarProps> = ({
               <div className="w-full flex flex-row justify-end items-center gap-3 p-2">
                 <HeartButton />
                 <ShoppingCartButton />
+                {(loggedIn ? <ProfileButton /> : null)}
               </div>
             </div>
           </div>
 
-          <div className="row-span-1 w-full md:flex hidden p-2">
+          <div className="row-span-1 w-full md:flex hidden mt-1">
             <div className="flex-col w-full justify-center items-center ">
               <div className="flex flex-col items-center justify-center w-full ">
                 <div className="flex items-center text-center w-2/3 text-xs md:text-sm text-stone-700 gap-2 justify-between">
