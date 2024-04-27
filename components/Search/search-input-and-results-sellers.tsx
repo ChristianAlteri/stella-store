@@ -20,176 +20,186 @@ import Link from "next/link";
 import { CiSliderHorizontal } from "react-icons/ci";
 import ProductList from "../Home/product-list";
 import SearchProductImage from "./components/search-product-image";
-
-interface SearchResultItem {
-  id: number | string;
-  name: string;
-  images: { url: string }[];
-}
+import NavbarScrollingBanner from "../NavBar/navbar-scrolling-banner";
 
 export interface SearchInputAndResultsSellersProps {
-  sizes?: Size[];
-  colors?: Color[];
-  designers?: Designer[];
-  categories?: Category[];
-  sellers?: Seller[];
   label: string;
   children?: React.ReactNode;
 }
 
-const SearchInputAndResultsSellers: React.FC<SearchInputAndResultsSellersProps> = ({
-  sizes,
-  colors,
-  designers,
-  categories,
-  sellers,
-  label,
-  children,
-}) => {
-  const URL = `${process.env.NEXT_PUBLIC_API_URL}/products`;
-  const [modalOpen, setModalOpen] = React.useState(true);
-  const inputRef = React.useRef<HTMLInputElement>(null);
-  const [searchQuery, setSearchQuery] = React.useState("");
-  const router = useRouter();
-
-  const [searchResults, setSearchResults] = React.useState<SearchResultItem[]>([]);
+const SearchInputAndResultsSellers: React.FC<
+  SearchInputAndResultsSellersProps
+> = ({ label, children }) => {
+  const [showAllProducts, setShowAllProducts] = React.useState<{
+    [key: string]: boolean;
+  }>({});
   const [filteredSellers, setFilteredSellers] = React.useState<Seller[] | undefined>([]);
+  const SELLER_URL = `${process.env.NEXT_PUBLIC_API_URL}/sellers`;
+  const inputRef = React.useRef<HTMLInputElement>(null);
+  const [searchedSellers, setSearchedSellers] = React.useState<Seller[] | undefined>([]);
+  const [debounceTimeout, setDebounceTimeout] = React.useState<ReturnType<typeof setTimeout> | null>(null);
 
-  console.log("filteredSellers", filteredSellers);
+
   //try to filter sellers by the price of their products
   const filteredSellersByPrice = (sellers: Seller[]) => {
-    const filteredSellers = sellers.map((seller) => {
-      // Sort products by ourPrice
-      const sortedProducts = seller.products.sort(
-        (a, b) => parseFloat(a.ourPrice) - parseFloat(b.ourPrice)
-      );
-      // Calculate total price
-      const totalPrice = sortedProducts.reduce(
-        (acc, product) => acc + parseFloat(product.ourPrice),
-        0
-      );
-      // Calculate average price (totalPrice divided by the number of products)
-      const averagePrice = sortedProducts.length > 0 ? totalPrice / sortedProducts.length : 0;
-      // Log average price for each seller
-      console.log(`Average price for seller ${seller.name}: ${averagePrice.toFixed(2)}`);
-      return {
-        ...seller,
-        products: sortedProducts,
-        averagePrice // Store the average price with each seller
-      };
-    }).sort((a, b) => b.averagePrice - a.averagePrice); // Sort sellers by average price in descending order
-  
-    console.log("filteredSellersByAveragePrice", filteredSellers);
+    const filteredSellers = sellers
+      .map((seller) => {
+        // Sort products by ourPrice
+        const sortedProducts = seller.products.sort(
+          (a, b) => parseFloat(a.ourPrice) - parseFloat(b.ourPrice)
+        );
+        // Calculate total price
+        const totalPrice = sortedProducts.reduce(
+          (acc, product) => acc + parseFloat(product.ourPrice),
+          0
+        );
+        // Calculate average price (totalPrice divided by the number of products)
+        const averagePrice =
+          sortedProducts.length > 0 ? totalPrice / sortedProducts.length : 0;
+        // Log average price for each seller
+        console.log(
+          `Average price for seller ${seller.name}: ${averagePrice.toFixed(2)}`
+        );
+        return {
+          ...seller,
+          products: sortedProducts,
+          averagePrice, // Store the average price with each seller
+        };
+      })
+      .sort((a, b) => b.averagePrice - a.averagePrice); // Sort sellers by average price in descending order
+
     setFilteredSellers(filteredSellers); // Update the state to re-render the UI
     return filteredSellers; // You may not need to return this for React, but kept for consistency
   };
 
-  const handleSearch = () => {
-    setSearchQuery(inputRef.current?.value || "");
-  };
+  const handleSearch = React.useCallback(() => {
+    if (debounceTimeout) {
+      clearTimeout(debounceTimeout);
+    }
 
-  // TODO: Add category, designer, and seller search front end
+    const timeout = setTimeout(async () => {
+      try {
+        const response = await axios.get(`${SELLER_URL}`, {
+          params: { name: inputRef.current?.value || "" },
+        });
+        setSearchedSellers(response.data);
+      } catch (error) {
+        console.error("Error fetching search results:", error);
+        setSearchedSellers([]);
+      }
+    }, 300);
 
-  const handleProductClick = (product: any) => {
-    router.push(
-      `/product/${product?.category?.id}/${product?.designer?.name}/${product?.id}/${product?.seller?.instagramHandle}`
-    );
-  };
+    setDebounceTimeout(timeout);
+  }, [URL, debounceTimeout]);
 
   React.useEffect(() => {
     if (inputRef.current) {
       inputRef.current.focus();
     }
-    if (searchQuery) {
-      // Search sellers
-      setFilteredSellers(
-        sellers?.filter((seller) =>
-          seller.instagramHandle.toLowerCase().includes(searchQuery.toLowerCase())
-        )
-      );
-      
-      // const fetchData = async () => {
-      //   try {
-      //     const response = await axios.get(`${URL}`, {
-      //       params: {
-      //         productName: searchQuery,
-      //       },
-      //     });
-      //     setSearchResults(response.data);
-      //   } catch (error) {
-      //     console.error("Error fetching search results:", error);
-      //     setSearchResults([]);
-      //   }
-      // };
-      // fetchData();
-    }
-  }, [searchQuery, sellers, URL]);
+  }, []);
 
   return (
     <>
-      <input
-        ref={inputRef}
-        placeholder={label}
-        onChange={handleSearch}
-        className="w-full h-7 text-xs focus:outline-none focus:ring-2 focus:ring-light-font focus:border-transparent rounded-md"
-      />
+      <div className="h-[50vh] flex flex-col relative">
+        <input
+          ref={inputRef}
+          placeholder={label}
+          onChange={handleSearch}
+          className="w-full h-7 border text-xs focus:outline-none focus:ring-2 focus:ring-light-font focus:border-transparent rounded-md p-3"
+        />
 
-      <>
-        {filteredSellers && filteredSellers.length >= 1 && (
-          <div className="bg-white rounded-md flex flex-col overflow-hidden w-full mt-5">
-            <div className="flex flex-row justify-between items-center text-center gap-2 m-1">
-              <p className="text-xs ">SELLERS</p>
-              <div className="text-xs">
-                <Menu autoSelect={true} isLazy>
-                  <MenuButton
-                    className="flex flex-row justify-between"
-                    transition="all 0.2s"
-                    flexDirection={"row"}
-                  >
-                    <CiSliderHorizontal
-                      className=" flex flex-row w-4 h-4"
-                      size={15}
-                    />
-                  </MenuButton>
-                  <MenuList background={"white"}>
-                    <MenuItem className="hover:underline hover:cursor-pointer"
-
-                    >
-                      High-Low
-                    </MenuItem>
-                    <MenuItem className="hover:underline hover:cursor-pointer"
-                    onClick={() => setFilteredSellers(filteredSellersByPrice(filteredSellers))}
-                    >
-                      Low-High
-                    </MenuItem>
-                  </MenuList>
-                </Menu>
+        <div className="flex flex-col flex-grow">
+          {searchedSellers && searchedSellers.length >= 1 && (
+            <div className="grid bg-white rounded-md mt-3">
+              <div className=" flex-row justify-between items-center text-center gap-2 m-1">
+                <p className="text-xs">SELLERS</p>
               </div>
-            </div>
-            {filteredSellers?.map((seller, index) => (
-              <>
-                <div className="flex flex-row justify-center gap-3 m-1" >
-                  <Link href={`/sellers/${seller?.id}`}>
-                    {" "}
-                    <p className="text-xs hover:underline hover:cursor-pointer">
-                      {seller.instagramHandle.toUpperCase()}
-                    </p>
-                  </Link>
-                </div>
-                <div
-                  className="grid grid-flow-col w-full overflow-x-auto m-1"
-                  key={seller.id}
-                >
-                  {seller.products.map((product) => (
-                    <SearchProductImage key={product.id} product={product} />
-                  ))}
-                </div>
-              </>
-            ))}
-          </div>
-        )}
-      </>
 
+              {searchedSellers?.map((seller, index) => (
+                <>
+                  <div
+                    key={seller?.id}
+                    className="flex-row justify-center gap-3 m-1"
+                  >
+                    <Link href={`/sellers/${seller?.id}`}>
+                      {" "}
+                      <p className="text-xs hover:underline hover:cursor-pointer">
+                        {seller.instagramHandle.toUpperCase()}
+                      </p>
+                    </Link>
+                    <div
+                      className="w-full justify-between flex rounded-md p-1 bg-light-background text-light-font text-super-small hover:underline hover:cursor-pointer"
+                      onClick={() =>
+                        setShowAllProducts({
+                          ...showAllProducts,
+                          [seller.id]: true,
+                        })
+                      }
+                    >
+                      Show all products
+                      <div className="text-xs">
+                        <Menu autoSelect={true} isLazy>
+                          <MenuButton
+                            className="flex flex-row justify-between"
+                            transition="all 0.2s"
+                            flexDirection={"row"}
+                          >
+                            <CiSliderHorizontal
+                              className=" flex flex-row w-4 h-4"
+                              size={15}
+                            />
+                          </MenuButton>
+                          <MenuList background={"white"}>
+                            <MenuItem className="hover:underline hover:cursor-pointer">
+                              High-Low
+                            </MenuItem>
+                            <MenuItem
+                              className="hover:underline hover:cursor-pointer"
+                              onClick={() =>
+                                setFilteredSellers(
+                                  filteredSellersByPrice(searchedSellers)
+                                )
+                              }
+                            >
+                              Low-High
+                            </MenuItem>
+                          </MenuList>
+                        </Menu>
+                      </div>
+                    </div>
+                    <div
+                      className="grid md:grid-cols-3 grid-cols-2 bg-white rounded-md mt-3"
+                      key={seller.id}
+                    >
+                      {seller.products.map((product, index) => {
+                        if (!showAllProducts[seller.id] && index >= 3) {
+                          return null;
+                        }
+
+                        return (
+                          <div key={product.id} className="w-full h-full p-1">
+                            <SearchProductImage
+                              key={product.id}
+                              product={product}
+                            />
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+      <div className="bottom-0 w-full p-1 bg-white">
+        <NavbarScrollingBanner
+          text="Enjoy a 20% off your first purchase by"
+          underlinedText="creating an account."
+          link="/register"
+        />
+      </div>
     </>
   );
 };

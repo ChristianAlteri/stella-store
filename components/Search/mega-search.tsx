@@ -129,12 +129,7 @@ const MegaSearch: React.FC<MegaSearchProps> = ({
                     />
                   ) : (
                     <SearchInputAndResultsSellers
-                      label="Search by Seller, Designer or Category..."
-                      sizes={sizes}
-                      colors={colors}
-                      designers={designers}
-                      categories={categories}
-                      sellers={sellers}
+                      label="Search by Seller..."
                     />
                   )}
                 </div>

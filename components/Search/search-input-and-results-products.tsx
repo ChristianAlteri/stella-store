@@ -19,6 +19,7 @@ const SearchInputAndResultsProducts: React.FC<
   const [debounceTimeout, setDebounceTimeout] = React.useState<ReturnType<
     typeof setTimeout
   > | null>(null);
+  
   const handleSearch = React.useCallback(() => {
     if (debounceTimeout) {
       clearTimeout(debounceTimeout);
