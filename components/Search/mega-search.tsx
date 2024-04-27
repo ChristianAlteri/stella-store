@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { Dialog } from "@headlessui/react";
 
@@ -19,14 +19,14 @@ import {
   Subcategory,
 } from "@/types";
 
-import FilterButtons from "@/components/SideBars/filter-buttons";
 import IconButton from "../ui/icon-button";
-
-
-import SearchInputAndResults from "./search-input-and-results";
-
 import ShoppingCartButton from "../NavBar/ShoppingCartButton";
-import Link from "next/link";
+
+
+import SearchQuickLinks from "./search-quick-links";
+import SearchInputAndResultsSellers from "./search-input-and-results-sellers";
+import SearchInputAndResultsProducts from "./search-input-and-results-products";
+import { usePathname } from "next/navigation";
 
 interface MegaSearchProps {
   products: Product[] | undefined;
@@ -56,7 +56,12 @@ const MegaSearch: React.FC<MegaSearchProps> = ({
   icon,
 }) => {
   const [open, setOpen] = useState(false);
-  
+  const [searchBy, setSearchBy] = useState('Product');
+  const pathname = usePathname();
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
 
   const onOpen = () => setOpen(true);
   const onClose = () => setOpen(false);
@@ -72,71 +77,67 @@ const MegaSearch: React.FC<MegaSearchProps> = ({
         </Button>
       </div>
 
-      <Dialog open={open} as="div" className="relative z-40 " onClose={onClose}>
+      <Dialog open={open} as="div" className="relative z-50 " onClose={onClose}>
         {/* Background color and opacity */}
-        <div className="fixed inset-0 bg-black bg-opacity-45" />
+        <div className="fixed inset-0 bg-light-background bg-opacity-85" />
 
         {/* Dialog position */}
         <div className="fixed justify-center items-center inset-0 z-40 flex">
-          <Dialog.Panel className="flex rounded-sm flex-col h-2/3 w-2/3 overflow-y-auto bg-white py-4 pb-6 shadow-xl">
-            <div className="flex flex-col w-full items-center justify-center ">
-              <div className="flex flex-row justify-between w-full p-2 top-0 items-center text-center lg:w-1/2 md:w-1/2">
+          <Dialog.Panel className="flex rounded-sm flex-col h-2/3 w-2/3 overflow-y-auto bg-white shadow-xl border border-light-font">
+            <div className="flex flex-col w-full h-full items-center justify-center ">
+
+              <div className="flex flex-row justify-between w-full p-2 top-0 items-center text-center ">
                 <div className="">
                   <IconButton
-                    icon={<IoCloseOutline size={20} />}
+                    icon={<IoCloseOutline size={17} />}
                     onClick={onClose}
                   />
                 </div>
                 {/* Cart */}
                 <div className="">
-                  <ShoppingCartButton />
+                  <ShoppingCartButton
+                  size="17px"
+                  />
                 </div>
               </div>
+
+              <div className="border-t border-light-font justify-center items-center w-full"></div>
+              
               {/* Quick links that redirect to pages */}
-              <div className="flex gap-2 flex-row text-xs lg:w-1/2 md:w-1/2 justify-between items-center mb-4">
-                <Link href={`/top-likes`}>
-                  <p
-                    className="hover:underline hover:cursor-pointer"
-                    onClick={onClose}
-                  >
-                    Top liked
-                  </p>
-                </Link>
-                <Link href={`/most-viewed`}>
-                  <p
-                    className="hover:underline hover:cursor-pointer"
-                    onClick={onClose}
-                  >
-                    Most viewed
-                  </p>
-                </Link>
-                <Link href={`/`}>
-                  <p
-                    className="hover:underline hover:cursor-pointer"
-                    onClick={onClose}
-                  >
-                    New arrivals
-                  </p>
-                </Link>
-                <Link href={`/sale`}>
-                  <p
-                    className="hover:underline hover:cursor-pointer"
-                    onClick={onClose}
-                  >
-                    Sale
-                  </p>
-                </Link>
+              <div className="flex flex-row w-full justify-between items-center p-2 text-super-small">
+                <SearchQuickLinks />
               </div>
-              <div className="flex flex-col w-1/2 justify-center items-center">
+
+              <div className="border-t border-light-font justify-center items-center w-full"></div>
+
+              <div className="grid grid-cols-1 w-2/3 justify-start items-start mt-2 h-full">
                 {/* Search Bar */}
-                <SearchInputAndResults
-                  label="Search store..."
-                  sizes={sizes}
-                  colors={colors}
-                  designers={designers}
-                  categories={categories}
-                  sellers={sellers}
-                />
+                <div className="h-full">
+                  <select
+                    className="flex flex-col justify-center items- text-xs p-3"
+                    name="searchBy"
+                    id="searchBy"
+                    value={searchBy}
+                    onChange={(e) => setSearchBy(e.target.value)}
+                  >
+                    <option value="Product">Search by: Product</option>
+                    <option value="Other">Search by: Seller, Designer or Category</option>
+                  </select>
+                  {searchBy === 'Product' ? (
+                    <SearchInputAndResultsProducts
+                      label="Search entire store..."
+                    />
+                  ) : (
+                    <SearchInputAndResultsSellers
+                      label="Search by Seller, Designer or Category..."
+                      sizes={sizes}
+                      colors={colors}
+                      designers={designers}
+                      categories={categories}
+                      sellers={sellers}
+                    />
+                  )}
+                </div>
               </div>
             </div>
 

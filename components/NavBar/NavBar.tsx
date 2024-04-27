@@ -110,7 +110,9 @@ const Navbar: React.FC<NavbarProps> = ({
 
               <div className="w-full flex flex-row justify-end items-center gap-3 p-2">
                 <HeartButton />
-                <ShoppingCartButton />
+                <ShoppingCartButton
+                size="27px" 
+                />
                 {(loggedIn ? <ProfileButton /> : null)}
               </div>
             </div>
