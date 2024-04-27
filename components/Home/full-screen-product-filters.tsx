@@ -20,8 +20,8 @@ const FullscreenProductFilters: React.FC<FullscreenProductFiltersProps> = ({
   const [filtersOpen, setFiltersOpen] = useState(false);
 
   return (
-    <div className="flex-col justify-center items-center p-2 shadow-2xl rounded-md w-1/4  h-full border hidden md:flex">
-      <div className="flex flex-col items-center p-4 shadow-lg rounded-md w-full h-full">
+    <div className="flex-col justify-center items-center p-2 shadow-2xl rounded-md w-1/4  h-full border hidden md:flex bg-light-background">
+      <div className="flex flex-col items-center p-4 shadow-lg rounded-md w-full h-full bg-white">
         {/* {categoryData?.name && <h1>{categoryData.name}</h1>} */}
         <div className="flex flex-row justify-center items-center w-full">
           {genders?.[0] && (

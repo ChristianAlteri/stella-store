@@ -19,9 +19,9 @@ const Billboard: React.FC<BillboardProps> = ({ data }) => {
   }
 
   console.log("data", data);
-  // if (!data || !data.imageUrl) {
-  //   return <div>Sorry, no billboard working.</div>;
-  // }
+  if (!data || !data.imageUrl) {
+    return <div>Sorry, no billboard working.</div>;
+  }
 
   return (
     <div className="p-3 sm:p-4 lg:p-6 rounded-xl overflow-hidden justify-center items-center">

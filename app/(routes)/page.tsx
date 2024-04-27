@@ -18,6 +18,7 @@ import getSubcategories from "@/actions/get-sub-categories";
 import getTopLikes from "@/actions/get-top-likes";
 import getBillboardByName from "@/actions/get-billboard-by-name";
 
+
 export const revalidate = 0;
 
 interface HomepageProps {
@@ -59,7 +60,9 @@ const Homepage: React.FC<HomepageProps> = async ({ searchParams }) => {
   });
   const featuredProducts = await getProducts({ isFeatured: true });
   const homePageBillboard = await getBillboardByName("homePage");
-  // console.log(homePageBillboard);
+     
+    
+
 
   const sizes = await getSizes();
   const colors = await getColors();
@@ -73,7 +76,7 @@ const Homepage: React.FC<HomepageProps> = async ({ searchParams }) => {
 
   return (
     <>
-      <div className="justify-center items-center md:grid flex grid-cols-8 gap-4 bg-white h-full">
+      <div className="justify-center items-center md:grid flex grid-cols-8 gap-4 bg-white ">
         {/* First column */}
         <div
           className="col-span-1 justify-start items-start w-full p-6 hidden sticky z-50 h-full md:grid"
@@ -87,10 +90,19 @@ const Homepage: React.FC<HomepageProps> = async ({ searchParams }) => {
         </div>
 
         {/* Second column */}
-        <div className="col-span-6 flex flex-col justify-center items-center w-full">
-          {/* <Billboard data={homePageBillboard} /> */}
-
-          <FullscreenProductFilters productData={products} genders={genders} />
+        <div className="col-span-6 flex flex-col justify-center items-center w-full h-full">
+          {/* <HomePageBillboard data={[homePageBillboard]} /> */}
+          <div className="flex flex-row h-1/3 w-full p-2">
+            <div className="w-full">
+              <h2 className="text-4xl font-bold text-black mt-2 mb-2">
+                Latest arrivals!
+              </h2>
+              <p className="text-base font-cursive text-light-font">
+                Shop all the latest products from our entire store
+              </p>
+            </div>
+              <FullscreenProductFilters productData={products} genders={genders} />
+          </div>
 
           <ProductGrid>
             {products.map((item) => (

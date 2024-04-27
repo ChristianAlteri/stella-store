@@ -68,7 +68,7 @@ const SalePage: React.FC<SalePageProps> = async ({ searchParams }) => {
 
   return (
     <>
-      <div className="justify-center items-center md:grid flex grid-cols-8 gap-4 bg-white">
+      <div className="justify-center items-center md:grid flex grid-cols-8 gap-4 bg-white ">
         {/* First column */}
         <div
           className="col-span-1 justify-start items-start w-full p-6 hidden sticky z-50 h-full md:grid"
@@ -83,21 +83,21 @@ const SalePage: React.FC<SalePageProps> = async ({ searchParams }) => {
 
         {/* Second column */}
         <div className="col-span-6 flex flex-col justify-center items-center w-full h-full">
-          <div className="p-2 justify-center items-center text-center ">
-            <h2 className="text-4xl font-bold text-black mt-2 mb-2 bg-light-background">
-              SALE!
-            </h2>
-            <p className="text-base font-cursive text-light-font">
-              These carefully curated items are on sale just for you! We have
-              handpicked the best deals to help you save big and treat yourself
-              to something special.
-            </p>
-          </div>
+          <div className="flex flex-row h-1/3 w-full p-2">
+            <div className="w-full">
+              <h2 className="text-4xl font-bold text-black mt-2 mb-2">SALE!</h2>
+              <p className="text-base font-cursive text-light-font">
+                These carefully curated items are on sale just for you! We have
+                handpicked the best deals to help you save big and treat
+                yourself to something special.
+              </p>
+            </div>
 
-          <FullscreenProductFilters
-            productData={onSaleItems}
-            genders={genders}
-          />
+            <FullscreenProductFilters
+              productData={onSaleItems}
+              genders={genders}
+            />
+          </div>
 
           <ProductGrid>
             {onSaleItems.map((item) => (

@@ -69,7 +69,7 @@ const TopLikesPage: React.FC<TopLikesPageProps> = async ({ searchParams }) => {
 
   return (
     <>
-      <div className="justify-center items-center md:grid flex grid-cols-8 gap-4 bg-white h-full">
+      <div className="justify-center items-center md:grid flex grid-cols-8 gap-4 bg-white ">
         {/* First column */}
         <div
           className="col-span-1 justify-start items-start w-full p-6 hidden sticky z-50 h-full md:grid"
@@ -83,22 +83,23 @@ const TopLikesPage: React.FC<TopLikesPageProps> = async ({ searchParams }) => {
         </div>
 
         {/* Second column */}
-        <div className="col-span-6 flex flex-col justify-center items-center w-full">
-
-          <div className="p-2 justify-center items-center text-center ">
-              <h2 className="text-4xl font-bold text-black mt-2 mb-2 bg-light-background">
-                TOP LIKED PRODUCTS! 
+        <div className="col-span-6 flex flex-col justify-center items-center w-full h-full">
+          <div className="flex flex-row h-1/3 w-full p-2">
+            <div className="w-full">
+              <h2 className="text-4xl font-bold text-black mt-2 mb-2">
+                TOP LIKED PRODUCTS!
               </h2>
-          <p className="text-base font-cursive text-light-font">
-            These are all the top liked products from users around the world,
-            handpicked with love! 
-          </p>
-          </div>
+              <p className="text-base font-cursive text-light-font">
+                These are all the top liked products from users around the
+                world, handpicked with love!
+              </p>
+            </div>
 
-          <FullscreenProductFilters
-            productData={topLikedProducts}
-            genders={genders}
-          />
+            <FullscreenProductFilters
+              productData={topLikedProducts}
+              genders={genders}
+            />
+          </div>
 
           <ProductGrid>
             {topLikedProducts.map((item) => (

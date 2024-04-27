@@ -67,11 +67,11 @@ const ForYouPage: React.FC<ForYouPageProps> = async ({ searchParams }) => {
   const genders = await getGenders();
   const subcategories = await getSubcategories();
   // TODO: remove after testing
-  let loggedIn = false;
+  let loggedIn = true;
 
   return (
     <>
-      <div className="justify-center items-center md:grid flex grid-cols-8 gap-4 bg-white h-full">
+      <div className="justify-center items-center md:grid flex grid-cols-8 gap-4 bg-white">
         {/* First column */}
         <div
           className="col-span-1 justify-start items-start w-full p-6 hidden sticky z-50 h-full md:grid"
@@ -88,8 +88,9 @@ const ForYouPage: React.FC<ForYouPageProps> = async ({ searchParams }) => {
         <div className="col-span-6 flex flex-col justify-center items-center w-full h-full">
           {loggedIn ? (
             <>
-              <div className="p-2 justify-center items-center text-center ">
-                <h2 className="text-4xl font-bold text-black mt-2 mb-2 bg-light-background">
+              <div className="flex flex-row h-1/3 w-full p-2">
+                <div className="w-full">
+                <h2 className="text-4xl font-bold text-black mt-2 mb-2">
                   Welcome back, [user name]
                 </h2>
                 <p className="text-base font-cursive text-light-font">
@@ -97,11 +98,12 @@ const ForYouPage: React.FC<ForYouPageProps> = async ({ searchParams }) => {
                   app the more we will show you some products you might like
                 </p>
               </div>
-
               <FullscreenProductFilters
                 productData={featuredProducts}
                 genders={genders}
               />
+              </div>
+
 
               <ProductGrid>
                 {featuredProducts.map((item) => (
