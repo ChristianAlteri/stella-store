@@ -1,24 +1,16 @@
 import * as React from "react";
 import axios from "axios"; // Make sure to import axios
-import { Category, Color, Designer, Seller, Size } from "@/types";
+import { Category, Designer, Seller } from "@/types";
 
 import {
   Menu,
   MenuButton,
   MenuList,
   MenuItem,
-  MenuItemOption,
-  MenuGroup,
-  MenuOptionGroup,
-  MenuDivider,
 } from "@chakra-ui/react";
-import { useRouter } from "next/navigation";
-import Image from "next/image";
-import ReactPlayer from "react-player";
 import Link from "next/link";
 
 import { CiSliderHorizontal } from "react-icons/ci";
-import ProductList from "../Home/product-list";
 import SearchProductImage from "./components/search-product-image";
 import NavbarScrollingBanner from "../NavBar/navbar-scrolling-banner";
 
@@ -33,7 +25,7 @@ const SearchInputAndResultsSellers: React.FC<
   const [showAllProducts, setShowAllProducts] = React.useState<{
     [key: string]: boolean;
   }>({});
-  const [filteredSellers, setFilteredSellers] = React.useState<Seller[] | undefined>([]);
+  const [filteredData, setFilteredData] = React.useState<Seller[] | Category[] | Designer[] | undefined>([]);
   const SELLER_URL = `${process.env.NEXT_PUBLIC_API_URL}/sellers`;
   const inputRef = React.useRef<HTMLInputElement>(null);
   const [searchedSellers, setSearchedSellers] = React.useState<Seller[] | undefined>([]);
@@ -41,11 +33,11 @@ const SearchInputAndResultsSellers: React.FC<
 
 
   //try to filter sellers by the price of their products
-  const filteredSellersByPrice = (sellers: Seller[]) => {
-    const filteredSellers = sellers
-      .map((seller) => {
+  const filteredDataByPrice = (data: Seller[] | Category[] | Designer[]) => {
+    const filteredData = data
+      .map((item) => {
         // Sort products by ourPrice
-        const sortedProducts = seller.products.sort(
+        const sortedProducts = item.products.sort(
           (a, b) => parseFloat(a.ourPrice) - parseFloat(b.ourPrice)
         );
         // Calculate total price
@@ -57,26 +49,26 @@ const SearchInputAndResultsSellers: React.FC<
         const averagePrice =
           sortedProducts.length > 0 ? totalPrice / sortedProducts.length : 0;
         // Log average price for each seller
+        alert(`Average price for ${item.name}: ${averagePrice.toFixed(2)}`);  
         console.log(
-          `Average price for seller ${seller.name}: ${averagePrice.toFixed(2)}`
+          `Average price for ${item.name}: ${averagePrice.toFixed(2)}`
         );
         return {
-          ...seller,
+          ...item,
           products: sortedProducts,
           averagePrice, // Store the average price with each seller
         };
       })
       .sort((a, b) => b.averagePrice - a.averagePrice); // Sort sellers by average price in descending order
 
-    setFilteredSellers(filteredSellers); // Update the state to re-render the UI
-    return filteredSellers; // You may not need to return this for React, but kept for consistency
+    setFilteredData(filteredData); // Update the state to re-render the UI
+    return filteredData; // You may not need to return this for React, but kept for consistency
   };
 
   const handleSearch = React.useCallback(() => {
     if (debounceTimeout) {
       clearTimeout(debounceTimeout);
     }
-
     const timeout = setTimeout(async () => {
       try {
         const response = await axios.get(`${SELLER_URL}`, {
@@ -118,9 +110,7 @@ const SearchInputAndResultsSellers: React.FC<
               {searchedSellers?.map((seller, index) => (
                 <>
                   <div
-                    key={seller?.id}
-                    className="flex-row justify-center gap-3 m-1"
-                  >
+                    key={seller?.id} className="flex-row justify-center gap-3 m-1">
                     <Link href={`/sellers/${seller?.id}`}>
                       {" "}
                       <p className="text-xs hover:underline hover:cursor-pointer">
@@ -156,8 +146,8 @@ const SearchInputAndResultsSellers: React.FC<
                             <MenuItem
                               className="hover:underline hover:cursor-pointer"
                               onClick={() =>
-                                setFilteredSellers(
-                                  filteredSellersByPrice(searchedSellers)
+                                setFilteredData(
+                                  filteredDataByPrice(searchedSellers)
                                 )
                               }
                             >

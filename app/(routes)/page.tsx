@@ -1,7 +1,6 @@
 import ProductGrid from "@/components/Home/ProductGrid";
 import ProductCard from "@/components/Product/product-card";
 import LeftSidebar from "@/components/SideBars/LeftSideBar";
-import Billboard from "@/components/Billboard/Billboard";
 import RightSidebar from "@/components/SideBars/RightSideBar";
 import FullscreenProductFilters from "@/components/Home/full-screen-product-filters";
 
@@ -15,8 +14,6 @@ import getConditions from "@/actions/get-conditions";
 import getMaterials from "@/actions/get-materials";
 import getGenders from "@/actions/get-genders";
 import getSubcategories from "@/actions/get-sub-categories";
-import getTopLikes from "@/actions/get-top-likes";
-import getBillboardByName from "@/actions/get-billboard-by-name";
 
 
 export const revalidate = 0;
@@ -59,11 +56,7 @@ const Homepage: React.FC<HomepageProps> = async ({ searchParams }) => {
     all: true,
   });
   const featuredProducts = await getProducts({ isFeatured: true });
-  const homePageBillboard = await getBillboardByName("homePage");
      
-    
-
-
   const sizes = await getSizes();
   const colors = await getColors();
   const conditions = await getConditions();
