@@ -74,7 +74,7 @@ const FilterModal: React.FC<FilterModalProps> = ({
             <NavbarScrollingBanner
               text="Enjoy a 20% off your first purchase by"
               underlinedText="creating an account."
-              link="/register"
+              link="/for-you"
             />
           </div>
         )}

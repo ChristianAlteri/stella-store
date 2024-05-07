@@ -10,6 +10,7 @@ import getConditions from "@/actions/get-conditions";
 import getMaterials from "@/actions/get-materials";
 import getGenders from "@/actions/get-genders";
 import getSubcategories from "@/actions/get-sub-categories";
+import FullscreenProductFiltersFooter from "../Home/full-screen-product-filters-footer";
 
 interface FooterProps {
   searchParams: {
@@ -79,7 +80,11 @@ const Footer: React.FC<FooterProps> = async ({ searchParams }) => {
       </footer>
       {/* This footer will only render on screens larger than an iPad (larger than 768px) */}
       <footer className="hidden md:block bg-white border-t bottom-0 sticky inset-x-0 lg:relative">
-        <div className="mx-auto py-10">
+        <div className="mx-auto py-10 w-full justify-center items-center">
+            {/* <FullscreenProductFiltersFooter 
+              productData={productData}
+              genders={genders}
+            /> */}
           <p className="text-center text-xs text-stone-600">
             &copy; 2024 Aviva, Inc. All rights reserved.
           </p>

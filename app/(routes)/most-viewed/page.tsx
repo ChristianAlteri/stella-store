@@ -15,6 +15,7 @@ import getMaterials from "@/actions/get-materials";
 import getGenders from "@/actions/get-genders";
 import getSubcategories from "@/actions/get-sub-categories";
 import getMostViewed from "@/actions/get-most-viewed";
+import FullscreenProductFiltersFooter from "@/components/Home/full-screen-product-filters-footer";
 
 export const revalidate = 0;
 
@@ -95,11 +96,6 @@ const MostViewedPage: React.FC<MostViewedPageProps> = async ({
                 trends and must-haves.
               </p>
             </div>
-
-            <FullscreenProductFilters
-              productData={mostViewedProducts}
-              genders={genders}
-            />
           </div>
 
           <ProductGrid>
@@ -107,6 +103,12 @@ const MostViewedPage: React.FC<MostViewedPageProps> = async ({
               <ProductCard key={item.id} item={item} />
             ))}
           </ProductGrid>
+          <div className="fixed bottom-0 p-7 w-1/3 z-50">
+            <FullscreenProductFiltersFooter
+              productData={mostViewedProducts}
+              genders={genders}
+            />
+          </div>
         </div>
 
         {/* Third column */}

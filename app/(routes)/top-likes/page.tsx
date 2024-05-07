@@ -15,6 +15,7 @@ import getMaterials from "@/actions/get-materials";
 import getGenders from "@/actions/get-genders";
 import getSubcategories from "@/actions/get-sub-categories";
 import getTopLikes from "@/actions/get-top-likes";
+import FullscreenProductFiltersFooter from "@/components/Home/full-screen-product-filters-footer";
 
 export const revalidate = 0;
 
@@ -94,10 +95,6 @@ const TopLikesPage: React.FC<TopLikesPageProps> = async ({ searchParams }) => {
               </p>
             </div>
 
-            <FullscreenProductFilters
-              productData={topLikedProducts}
-              genders={genders}
-            />
           </div>
 
           <ProductGrid>
@@ -105,6 +102,12 @@ const TopLikesPage: React.FC<TopLikesPageProps> = async ({ searchParams }) => {
               <ProductCard key={item.id} item={item} />
             ))}
           </ProductGrid>
+            <div className="fixed bottom-0 p-7 w-1/3 z-50">
+              <FullscreenProductFiltersFooter 
+                productData={topLikedProducts}
+                genders={genders}
+              />
+            </div>
         </div>
 
         {/* Third column */}

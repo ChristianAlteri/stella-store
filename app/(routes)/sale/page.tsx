@@ -14,6 +14,7 @@ import getConditions from "@/actions/get-conditions";
 import getMaterials from "@/actions/get-materials";
 import getGenders from "@/actions/get-genders";
 import getSubcategories from "@/actions/get-sub-categories";
+import FullscreenProductFiltersFooter from "@/components/Home/full-screen-product-filters-footer";
 
 export const revalidate = 0;
 
@@ -92,10 +93,6 @@ const SalePage: React.FC<SalePageProps> = async ({ searchParams }) => {
               </p>
             </div>
 
-            <FullscreenProductFilters
-              productData={onSaleItems}
-              genders={genders}
-            />
           </div>
 
           <ProductGrid>
@@ -103,6 +100,12 @@ const SalePage: React.FC<SalePageProps> = async ({ searchParams }) => {
               <ProductCard key={item.id} item={item} />
             ))}
           </ProductGrid>
+          <div className="fixed bottom-0 p-7 w-1/3 z-50">
+            <FullscreenProductFiltersFooter 
+              productData={onSaleItems}
+              genders={genders}
+            />
+          </div>
         </div>
 
         {/* Third column */}

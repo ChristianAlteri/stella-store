@@ -2,6 +2,7 @@ import ProductGrid from "@/components/Home/ProductGrid";
 import HomeContainer from "@/components/ui/HomeContainer";
 import ProductCard from "@/components/Product/product-card";
 import getProducts from "@/actions/get-products";
+import FullscreenProductFiltersFooter from "@/components/Home/full-screen-product-filters-footer";
 
 
 
@@ -29,6 +30,12 @@ const FeaturedPage = async () => {
                                 
                              ))}
                     </ProductGrid>
+                    <div className="fixed bottom-0 p-7 w-1/3 z-50">
+            {/* <FullscreenProductFiltersFooter 
+              productData={productData}
+              genders={genders}
+            /> */}
+          </div>
                 </HomeContainer>
 
                 {/* Third column */}

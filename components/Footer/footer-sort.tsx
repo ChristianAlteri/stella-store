@@ -1,18 +1,8 @@
 "use client";
 
 import React from "react";
-
 import {
-  Category,
-  Color,
-  Condition,
-  Designer,
-  Gender,
-  Material,
   Product,
-  Seller,
-  Size,
-  Subcategory,
 } from "@/types";
 
 import { CiSliderHorizontal } from "react-icons/ci";

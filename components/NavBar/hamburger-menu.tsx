@@ -59,12 +59,12 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
         size={500}
         placeholder={undefined}
       >
-        <div className="grid grid-rows-7 h-full">
-        <div className="row-span-1 bg-stone-100 flex items-center justify-around text-xs text-stone-700 shadow-md">
+        <div className="grid grid-rows-8 h-full">
+        <div className="row-span-1 bg-stone-100 flex items-center justify-around text-xs text-stone-700 shadow-md h-full">
             <QuickLinks />
           </div>
 
-          <div className="row-span-3 p-4 overflow-y-auto">
+          <div className="row-span-4 p-4 overflow-y-auto">
             <div className="grid grid-cols-3 gap-4">
 
               <div className="border-r p-2 m-1 w-full">
@@ -127,16 +127,8 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
             </div>
           </div>
 
-          
-
           <div className="row-span-3 bg-stone-200 flex items-center justify-center ">
-            {/* <MiniProductCarousel
-              // TODO: only top ten products
-              data={topTen}
-              miniProductTitle="Most Viewed"
-              miniProductRoute="/most-viewed"
-            /> */}
-            <aside className="flex flex-col w-2/3 justify-center items-center top-0 ">
+            <aside className="flex flex-col w-2/3 justify-center items-center top-0 h-2/3">
               {topTen && topTen.length > 0 && (
                 <MiniProductCard
                   data={topTen}

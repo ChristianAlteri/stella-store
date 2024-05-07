@@ -5,7 +5,6 @@ import CartPage from './components/cart-page';
 
 
 const CartPageServer = async () => {
-
   const products = await getProducts({all: true});
 
   return (

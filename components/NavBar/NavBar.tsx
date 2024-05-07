@@ -27,7 +27,6 @@ import {
 import QuickLinks from "./quick-links";
 import { useState } from "react";
 
-
 interface NavbarProps {
   sellers: Seller[];
   designers: Designer[];
@@ -47,15 +46,8 @@ const Navbar: React.FC<NavbarProps> = ({
   sellers,
   designers,
   categories,
-  sizes,
-  colors,
-  materials,
-  conditions,
-  genders,
-  subcategories,
-  products,
   navBarBillboard,
-  topTen
+  topTen,
 }) => {
   const [loggedIn, setLoggedIn] = useState(true);
 
@@ -67,38 +59,28 @@ const Navbar: React.FC<NavbarProps> = ({
       />
 
       <div className="sticky bg-white w-full top-0 z-40 shadow-md border-b">
-
         <div className="grid md:grid-rows-2 grid-rows-1 min-h-[55px] p-1">
           <div className="row-span-1 w-full">
-
             <div className="flex flex-row w-full">
-              <div className="w-full flex flex-row justify-center items-center gap-3 p-2">
+              <div className="w-full flex flex-row md:justify-start md:items-start justify-center items-center gap-3 p-2">
                 <HamburgerMenu
                   designers={designers}
                   categories={categories}
                   sellers={sellers}
                   topTen={topTen}
                 />
-
-                <MegaSearch
-                  sellers={sellers}
-                  designers={designers}
-                  categories={categories}
-                  sizes={sizes}
-                  colors={colors}
-                  products={products}
-                  materials={materials}
-                  conditions={conditions}
-                  genders={genders}
-                  subcategories={subcategories}
-                  icon={
-                    <Input
-                      className="bg-white z-40 w-full hover:cursor-pointer "
-                      placeholder="Search store..."
-                    />
-                  }
-                />
-                <ClientAdvisor products={products} />
+                {/* <div className="hidden md:flex"> */}
+                  <MegaSearch
+                    icon={
+                      <Input
+                        flag="navbar"
+                        className="bg-white z-40 w-full hover:cursor-pointer "
+                        placeholder="Search store..."
+                      />
+                    }
+                  />
+                {/* </div> */}
+                {/* <ClientAdvisor products={products} /> */}
               </div>
 
               <div className="w-full flex flex-row justify-center items-center gap-3 p-2">
@@ -108,12 +90,10 @@ const Navbar: React.FC<NavbarProps> = ({
                 </Link>
               </div>
 
-              <div className="w-full flex flex-row justify-end items-center gap-3 p-2">
+              <div className="w-full flex flex-row justify-end items-center gap-5 p-2">
                 <HeartButton />
-                <ShoppingCartButton
-                size="27px" 
-                />
-                {(loggedIn ? <ProfileButton /> : null)}
+                <ShoppingCartButton size="27px" />
+                {loggedIn ? <ProfileButton /> : null}
               </div>
             </div>
           </div>
@@ -127,7 +107,6 @@ const Navbar: React.FC<NavbarProps> = ({
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </>

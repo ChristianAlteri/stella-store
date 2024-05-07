@@ -16,6 +16,7 @@ import getConditions from "@/actions/get-conditions";
 import getMaterials from "@/actions/get-materials";
 import getGenders from "@/actions/get-genders";
 import getSubcategories from "@/actions/get-sub-categories";
+import FullscreenProductFiltersFooter from "@/components/Home/full-screen-product-filters-footer";
 
 export const revalidate = 0;
 
@@ -77,7 +78,7 @@ const CategoryNamePage: React.FC<CategoryNamePageProps> = async ({
 
   return (
     <>
-      <div className="justify-center items-center md:grid flex grid-cols-8 gap-4 bg-white h-full">
+      <div className="justify-center items-center md:grid flex grid-cols-8 gap-4 bg-white">
         {/* First column */}
         <div className="col-span-1 justify-start items-start w-full p-6 hidden sticky z-50 h-full md:grid" style={{ width: '100%' }}>
           <LeftSidebar
@@ -91,16 +92,18 @@ const CategoryNamePage: React.FC<CategoryNamePageProps> = async ({
         <div className="col-span-6 flex flex-col justify-center items-center w-full">
           <Billboard data={categoryData?.billboard} />
 
-            <FullscreenProductFilters 
-              productData={productData}
-              genders={genders}
-            />
-
           <ProductGrid>
             {productData?.map((item) => (
               <ProductCard key={item.id} item={item} />
             ))}
           </ProductGrid>
+
+          <div className="fixed bottom-0 p-7 w-1/3 z-50">
+            <FullscreenProductFiltersFooter 
+              productData={productData}
+              genders={genders}
+            />
+          </div>
         </div>
 
         {/* Third column */}

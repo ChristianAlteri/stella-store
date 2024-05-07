@@ -29,30 +29,10 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
 interface MegaSearchProps {
-  products: Product[] | undefined;
-  colors: Color[] | undefined;
-  designers?: Designer[];
-  categories?: Category[];
-  sellers?: Seller[];
-  sizes?: Size[];
-  conditions?: Condition[];
-  materials?: Material[];
-  genders?: Gender[];
-  subcategories?: Subcategory[];
   icon?: React.ReactNode;
 }
 
 const MegaSearch: React.FC<MegaSearchProps> = ({
-  products,
-  colors,
-  designers,
-  categories,
-  sellers,
-  sizes,
-  conditions,
-  materials,
-  genders,
-  subcategories,
   icon,
 }) => {
   const [open, setOpen] = useState(false);

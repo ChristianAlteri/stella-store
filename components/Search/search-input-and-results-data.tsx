@@ -27,7 +27,7 @@ const SearchInputAndResultsData: React.FC<SearchInputAndResultsDataProps> = ({
   const [filteredData, setFilteredData] = React.useState<
     Seller[] | Category[] | Designer[] | undefined
   >([]);
-  const SELLER_URL = `${process.env.NEXT_PUBLIC_API_URL}${route}`;
+  const URL = `${process.env.NEXT_PUBLIC_API_URL}${route}`;
   const inputRef = React.useRef<HTMLInputElement>(null);
   const [searchedData, setSearchedData] = React.useState<
     Seller[] | Category[] | Designer[] | undefined
@@ -85,7 +85,7 @@ const SearchInputAndResultsData: React.FC<SearchInputAndResultsDataProps> = ({
     }
     const timeout = setTimeout(async () => {
       try {
-        const response = await axios.get(`${SELLER_URL}`, {
+        const response = await axios.get(`${URL}`, {
           params: { name: inputRef.current?.value || "" },
         });
         setSearchedData(response.data);
@@ -96,7 +96,7 @@ const SearchInputAndResultsData: React.FC<SearchInputAndResultsDataProps> = ({
     }, 300);
 
     setDebounceTimeout(timeout);
-  }, [SELLER_URL, debounceTimeout]);
+  }, [URL, debounceTimeout]);
 
   React.useEffect(() => {
     if (inputRef.current) {
@@ -116,14 +116,14 @@ const SearchInputAndResultsData: React.FC<SearchInputAndResultsDataProps> = ({
 
         <div className="flex flex-col flex-grow">
           {searchedData && searchedData.length > 0 && (
-            <div className="grid bg-white rounded-md mt-3">
+            <div className="grid bg-white rounded-md ">
               <div className="flex flex-row justify-center items-center text-center gap-2 m-1">
-                <p className="text-xs">{name}</p>
+                <p className="text-xs p-1">{name}</p>
               </div>
 
               {searchedData.map((parentData, index) => (
                 <React.Fragment key={parentData.id}>
-                  <div className="flex flex-col justify-center gap-3 m-1">
+                  <div className="flex flex-col justify-center gap-1 m-1">
                     <div>
                       <Link href={`${route}/${parentData.id}`}>
                         <p className="text-xs hover:underline hover:cursor-pointer">
@@ -185,7 +185,7 @@ const SearchInputAndResultsData: React.FC<SearchInputAndResultsDataProps> = ({
                         </Menu>
                       </div>
                     </div>
-                    <div className="grid md:grid-cols-3 grid-cols-2 bg-white rounded-md mt-3">
+                    <div className="grid md:grid-cols-3 grid-cols-2 bg-white rounded-md">
                       {showAllProducts
                         ? parentData.products.map((item, index) => (
                             <div key={item.id} className="w-full h-full p-1">
@@ -205,13 +205,15 @@ const SearchInputAndResultsData: React.FC<SearchInputAndResultsDataProps> = ({
           )}
         </div>
       </div>
+      {!showAllProducts ?
       <div className="bottom-0 w-full p-1 bg-white">
         <NavbarScrollingBanner
           text="Enjoy a 20% off your first purchase by"
           underlinedText="creating an account."
-          link="/register"
+          link="/for-you"
         />
       </div>
+      : null}
     </>
   );
 };

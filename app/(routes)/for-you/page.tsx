@@ -16,6 +16,7 @@ import getGenders from "@/actions/get-genders";
 import getSubcategories from "@/actions/get-sub-categories";
 import getTopLikes from "@/actions/get-top-likes";
 import LogInAndSignUp from "@/components/LoginSignup/log-in-and-sign-up";
+import FullscreenProductFiltersFooter from "@/components/Home/full-screen-product-filters-footer";
 
 export const revalidate = 0;
 
@@ -97,10 +98,6 @@ const ForYouPage: React.FC<ForYouPageProps> = async ({ searchParams }) => {
                   app the more we will show you some products you might like
                 </p>
               </div>
-              <FullscreenProductFilters
-                productData={featuredProducts}
-                genders={genders}
-              />
               </div>
 
 
@@ -109,6 +106,12 @@ const ForYouPage: React.FC<ForYouPageProps> = async ({ searchParams }) => {
                   <ProductCard key={item.id} item={item} />
                 ))}
               </ProductGrid>
+              <div className="fixed bottom-0 p-7 w-1/3 z-50">
+              <FullscreenProductFiltersFooter 
+                productData={featuredProducts}
+                genders={genders}
+            />
+          </div>
             </>
           ) : (
             <LogInAndSignUp />

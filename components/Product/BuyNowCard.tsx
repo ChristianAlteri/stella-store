@@ -7,6 +7,8 @@ import ProductCardButton from "./ProductCardButton";
 import ShareButton from "./share-button";
 import axios from "axios";
 import useLike from "@/hooks/use-like";
+import useCart from "@/hooks/use-cart";
+import { useRouter } from "next/navigation";
 
 interface BuyNowCardProps {
   data: Product;
@@ -14,6 +16,8 @@ interface BuyNowCardProps {
 
 const BuyNowCard: React.FC<BuyNowCardProps> = ({ data }) => {
   const likes = useLike();
+  const cart = useCart();
+  const router = useRouter();
 
   const onLikeButton = async (item: any) => {
     try {
@@ -26,24 +30,17 @@ const BuyNowCard: React.FC<BuyNowCardProps> = ({ data }) => {
     }
   };
 
+  const onAddToCart: MouseEventHandler<HTMLButtonElement> = (event) => {
+    event.stopPropagation();
+    cart.addItem(data);
+    router.push("/cart");
+  };
+
   const onAddToLikes: MouseEventHandler<HTMLButtonElement> = async (event) => {
     event.stopPropagation();
     likes.addItem(data);
     onLikeButton(data);
   };
-
-  const descriptionElements = data.description
-    .split("- ")
-    .map((item, index) => (
-      <React.Fragment key={index}>
-        {index > 0 && (
-          <React.Fragment>
-            <br />
-          </React.Fragment>
-        )}
-        {item}
-      </React.Fragment>
-    ));
 
   return (
     <div className="flex flex-col gap-3 w-full mt-3">
@@ -59,7 +56,10 @@ const BuyNowCard: React.FC<BuyNowCardProps> = ({ data }) => {
       </div>
 
       <div className="flex flex-row items-center w-full justify-between">
-        <button className="bg-light-background rounded-sm text-light-font border border-darker-background font-semibold p-2 w-2/3 hover:bg-darker-background hover:text-white ">
+        <button 
+        className="bg-light-background rounded-sm text-light-font border border-darker-background font-semibold p-2 w-2/3 hover:bg-darker-background hover:text-white "
+        onClick={(event) => onAddToCart(event)}
+        >
           Buy Now
         </button>
         <div className="p-3 flex flex-row justify-center items-center text-center gap-5">
