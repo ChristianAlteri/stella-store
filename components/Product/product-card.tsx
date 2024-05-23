@@ -4,7 +4,7 @@ import { Product } from "@/types";
 import Image from "next/image";
 
 import ProductCardButton from "./ProductCardButton";
-import { CiHeart, CiShoppingCart } from "react-icons/ci";
+import { CiBadgeDollar, CiHeart, CiShoppingCart } from "react-icons/ci";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { MouseEventHandler, useEffect, useState } from "react";
@@ -218,20 +218,32 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
               href={`/designers/${item?.designer?.id}`}
               className="text-xs hover:underline text-black hover:text-stone-700"
             >
-              {item.designer?.name.toUpperCase()}
+              {item.seller?.instagramHandle.toUpperCase()}
             </Link>
             <h3
               onClick={handleProductClick}
-              className="text-xs hover:underline text-black hover:text-stone-700 hover:cursor-pointer"
+              className="text-xs font-bold hover:underline text-black hover:text-stone-700 hover:cursor-pointer"
             >
-              {item.name}
+              {item.designer?.name}
             </h3>
           </div>
 
-          <div className="flex justify-between text-left mt-1">
+          <div className="flex justify-end text-left mt-3">
             <div className="text-xs text-stone-300 hover:text-stone-700 ">
-              size {item?.size?.name}
+              {item?.size?.name}
             </div>
+          </div>
+
+          <div className="flex justify-between">
+            {item?.isCharity && (
+                <div className="flex flex-row gap-1">
+                  <div className="flex flex-row w-full">
+                      <p className="text-green-500">
+                        <CiBadgeDollar size={20} />
+                      </p>
+                  </div>
+                </div>
+              )}
             <div className="flex flex-row gap-1">
               <h6 onClick={handleProductClick} className="text-xs text-red-500">
                 £{item.ourPrice}
@@ -246,6 +258,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
             </div>
           </div>
         </div>
+
         {/* mobile screens */}
         <div className="flex flex-col justify-center items-center lg:hidden m-4">
           <Link

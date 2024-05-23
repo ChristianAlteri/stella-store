@@ -84,7 +84,7 @@ const TopLikesPage: React.FC<TopLikesPageProps> = async ({ searchParams }) => {
 
         {/* Second column */}
         <div className="col-span-6 flex flex-col justify-center items-center w-full h-full">
-          <div className="flex flex-row h-1/3 w-full p-2">
+          {/* <div className="flex flex-row h-1/3 w-full p-2">
             <div className="w-full">
               <h2 className="text-4xl font-bold text-black mt-2 mb-2">
                 TOP LIKED PRODUCTS!
@@ -95,7 +95,7 @@ const TopLikesPage: React.FC<TopLikesPageProps> = async ({ searchParams }) => {
               </p>
             </div>
 
-          </div>
+          </div> */}
 
           <ProductGrid>
             {topLikedProducts.map((item) => (

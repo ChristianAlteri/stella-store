@@ -45,14 +45,14 @@ const SuggestedContainer: React.FC<SuggestedContainerProps> = ({
         style={{ scrollSnapType: "x mandatory", scrollPadding: "1rem" }}
       >
         {data?.map((item) => (
-          <>
+          <React.Fragment key={item.id}>
             <div className="hidden md:flex col-span-1 flex-shrink-0 w-1/4 mx-2 snap-center">
               <LargeSuggestedProductCard key={item.id} item={item} />
             </div>
             <div className="md:hidden flex col-span-1 flex-shrink-0 w-1/2 md:w-auto mx-2 snap-center">
               <SuggestedProductCard key={item.id} item={item} />
             </div>
-          </>
+          </React.Fragment>
         ))}
       </div>
     </div>

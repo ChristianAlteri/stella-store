@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Arimo } from "next/font/google";
+import { Arimo, Roboto, Roboto_Condensed } from "next/font/google";
 import "./globals.css";
 
 import Footer from "@/components/Footer/Footer";
@@ -21,10 +21,10 @@ import getTopTen from "@/actions/get-top-ten";
 
 
 
-const font = Arimo({
-  weight: "400",
-
+const font = Roboto({
+  weight: "300",
   subsets: ["latin"],
+  fallback: ["sans-serif"],
 });
 
 export const metadata: Metadata = {

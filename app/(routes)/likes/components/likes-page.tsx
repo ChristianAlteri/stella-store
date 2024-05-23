@@ -2,18 +2,15 @@
 
 import { useEffect, useState } from "react";
 
-import useCart from "@/hooks/use-cart";
-import Summary from "./summary";
-import CartItem from "./cart-item";
-
-
-interface CartPageProps {}
+import LikeItem from "./liked-item";
+import useLike from "@/hooks/use-like";
+import Summary from "../../cart/components/summary";
 
 export const revalidate = 0;
 
-const CartPage: React.FC<CartPageProps> = ({}) => {
+const LikesPage = () => {
   const [isMounted, setIsMounted] = useState(false);
-  const cart = useCart();
+  const likes = useLike();
 
   useEffect(() => {
     setIsMounted(true);
@@ -26,21 +23,21 @@ const CartPage: React.FC<CartPageProps> = ({}) => {
   return (
     <div className="flex flex-row md:w-1/2 w-full bg-white justify-center items-center p-1">
       <div className="w-2/3 p-4">
-        <h1 className="text-sm font-bold text-black">Shopping Cart</h1>
-        {cart.items.length === 0 && (
-          <p className="text-neutral-500">No items added to cart.</p>
+        <h1 className="text-sm font-bold text-black">Your likes</h1>
+        {likes.items.length === 0 && (
+          <p className="text-neutral-500">No items in your likes.</p>
         )}
         <div>
-          {cart.items.map((item) => (
-            <CartItem key={item.id} data={item} />
+          {likes.items.map((item) => (
+            <LikeItem key={item.id} data={item} />
           ))}
         </div>
       </div>
       <div className="flex justify-center items-center w-1/3">
-        <Summary />
+
       </div>
     </div>
   );
 };
 
-export default CartPage;
+export default LikesPage;

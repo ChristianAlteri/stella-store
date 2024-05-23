@@ -1,13 +1,14 @@
 import Image from "next/image";
-import { toast } from "react-hot-toast";
-import { X } from "lucide-react";
 
 import IconButton from "@/components/ui/icon-button";
-// import Currency from "@/components/ui/currency";
-import useCart from "@/hooks/use-cart";
 import { Product } from "@/types";
-import { IoCloseOutline } from "react-icons/io5";
 import useLike from "@/hooks/use-like";
+import useCart from "@/hooks/use-cart";
+import { useRouter } from "next/navigation";
+import { CiCircleRemove, CiShoppingCart } from "react-icons/ci";
+import Link from "next/link";
+import { MouseEventHandler } from "react";
+import ProductCardButton from "@/components/Product/ProductCardButton";
 
 
 interface LikedItemProps {
@@ -18,41 +19,105 @@ const LikedItem: React.FC<LikedItemProps> = ({
   data
 }) => {
   const likes = useLike();
+  const cart = useCart();
+  const router = useRouter();
 
   const onRemove = () => {
     likes.removeItem(data.id);
   };
 
-  return ( 
-    <li className="flex py-6 border-b">
-      <div className="relative h-24 w-24 rounded-md overflow-hidden sm:h-48 sm:w-48">
-        <Image
-          fill
-          src={data.images[0].url}
-          alt=""
-          className="object-cover object-center"
-        />
-      </div>
-      <div className="relative ml-4 flex flex-1 flex-col justify-between sm:ml-6">
-        <div className="absolute z-10 right-0 top-0">
-          <IconButton onClick={onRemove} icon={<IoCloseOutline size={15} />} />
-        </div>
-        <div className="relative pr-9 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:pr-0">
-          <div className="flex justify-between">
-            <p className=" text-lg font-semibold text-black">
-              {data.name}
-            </p>
-          </div>
+  const handleProductClick = () => {
+    router.push(
+      `/product/${data?.category?.id}/${data?.designer?.name}/${data?.id}/${data?.seller?.instagramHandle}`
+    );
+  };
 
-          <div className="mt-1 flex text-sm">
-            <p className="text-gray-500">{data.color.name}</p>
-            <p className="ml-4 border-l border-gray-200 pl-4 text-gray-500">{data.size.name}</p>
+  const onAddToCart: MouseEventHandler<HTMLButtonElement> = (event) => {
+    event.stopPropagation();
+    cart.addItem(data);
+  };
+
+  return (
+    <div className="group py-6 border-b w-full">
+      <div className="flex flex-row ">
+
+        <div className="relative overflow-hidden">
+          {/* If item is marked hidden, we blur it. Used for unreleased products */}
+          {data?.images[0]?.url?.match(/https:\/\/.*\.(video|mp4|MP4|mov).*/) ? (
+            <video
+              height={70}
+              width={70}
+              muted
+              autoPlay
+              loop
+              key={data?.images?.[0]?.id}
+              src={data?.images[0].url}
+              className={`rounded-md transition-opacity duration-200 ease-in-out ${
+                data.isHidden ? "blur-xl" : ""
+              }`}
+            ></video>
+          ) : (
+            <>
+              <div className="flex">
+                <Image
+                  key={data?.images?.[0]?.id}
+                  onClick={handleProductClick}
+                  height={0}
+                  width={50}
+                  src={data!.images[0]!.url}
+                  alt={`${data.name} from ${data.seller?.instagramHandle} by ${data.designer?.name} in size ${data.size?.name} for £${data.ourPrice} (RRP £${data.retailPrice})`}
+                  priority
+                  className={`rounded-md transition-opacity duration-200 ease-in-out 
+                      ${data.isHidden ? "blur-xl" : ""}`}
+                />
+              </div>
+            </>
+          )}
+        </div>
+
+        <div className="relative flex flex-1 flex-col justify-between ">
+          <div className="absolute z-10 right-0 top-0">
+            <IconButton onClick={onRemove} icon={<CiCircleRemove size={20} />} />
           </div>
-          <h1> £{data.ourPrice} </h1>
+          <div className="relative pr-9 w-full">
+            <div className="flex justify-between">
+              <div className="flex flex-col">
+                <p
+                  className="text-sm ml-4  text-black hover:underline hover:cursor-pointer"
+                  onClick={handleProductClick}
+                >
+                  {data.name}
+                </p>
+                <Link href={`/designers/${data.designer.id}`} className="ml-4 text-xs text-stone-900 hover:underline hover:cursor-pointer">
+                  {data.designer.name}
+                </Link>
+                <Link href={`/sellers/${data.seller.id}`} className="ml-4 text-xs mt-2 text-stone-900 hover:underline hover:cursor-pointer">
+                  sold by {data.seller.instagramHandle}
+                </Link>
+              </div>
+              <p className="ml-4 pl-4 text-sm text-stone-900">
+                <div className="flex w-full justify-center">
+                  <ProductCardButton
+                    icon={<CiShoppingCart size={20}/>}
+                    onClick={(event) => onAddToCart(event)}
+                  />
+                </div>
+              </p>
+            </div>
+            <div className="flex flex-row">
+              <div className="flex flex-row justify-center items-center">
+                <p className="pl-4 text-xs text-stone-500">{data.size.name}</p>
+                <p className="p-2 text-xs text-stone-900 text-red-500">
+                  {" "}
+                  £{data.ourPrice}{" "}
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </li>
+    </div>
   );
-}
+};
  
 export default LikedItem;

@@ -38,15 +38,16 @@ const getMostViewed = async (query: Query): Promise<Product[]> => {
         sellerId: query.sellerId,
         all: query.all,
         categoryId: query.categoryId,
-        sort: query.sort,
         conditionId: query.conditionId,
         genderId: query.genderId,
         subcategoryId: query.subcategoryId,
         isCharity: query.isCharity,
         isHidden: query.isHidden,
+        sort: query.sort,
       },
     });
     const response = await axios.get(url);
+    // console.log(url);
 
     // console.log("response from get-MostViewed", response.data);
     return response.data;

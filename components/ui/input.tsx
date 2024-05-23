@@ -12,7 +12,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
    return (
      <>
        <div className="flex w-full flex-row text-center justify-center items-center h-6 gap-1">
-         <CiSearch size={20} className="flex flex-row justify-center" />
+         <CiSearch size={24} className="flex flex-row justify-center" />
          {flag === "navbar" ? (
            <div className="hidden md:flex">
              <input

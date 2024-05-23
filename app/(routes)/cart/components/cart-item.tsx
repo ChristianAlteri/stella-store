@@ -1,13 +1,11 @@
 import Image from "next/image";
 
 import IconButton from "@/components/ui/icon-button";
-
 import useCart from "@/hooks/use-cart";
 import { Product } from "@/types";
-
 import { useRouter } from "next/navigation";
 import { CiCircleRemove } from "react-icons/ci";
-import ReactPlayer from "react-player";
+import Link from "next/link";
 
 interface CartItemProps {
   data: Product;
@@ -78,12 +76,12 @@ const CartItem: React.FC<CartItemProps> = ({ data }) => {
                 >
                   {data.name}
                 </p>
-                <p className="ml-4 text-xs text-stone-900">
+                <Link href={`/designers/${data.designer.id}`} className="ml-4 text-xs text-stone-900 hover:underline hover:cursor-pointer">
                   {data.designer.name}
-                </p>
-                <p className="ml-4 text-xs mt-2 text-stone-900">
+                </Link>
+                <Link href={`/sellers/${data.seller.id}`} className="ml-4 text-xs mt-2 text-stone-900 hover:underline hover:cursor-pointer">
                   sold by {data.seller.instagramHandle}
-                </p>
+                </Link>
               </div>
               <p className="ml-4 pl-4 text-sm text-stone-900">
                 {" "}
