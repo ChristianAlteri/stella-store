@@ -9,6 +9,7 @@ const CartPageServer = async () => {
       <div className="flex flex-col bg-white ">
         <div className="flex justify-center ">
           <CartPage />
+          deng
         </div>
           <SuggestedContainer route="recommended" title="NEW ARRIVALS" data={products}/>
       </div>
