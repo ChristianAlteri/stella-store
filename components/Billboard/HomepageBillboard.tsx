@@ -5,11 +5,11 @@ import React from "react";
 import { useEffect, useState } from "react";
 
 
-interface BannerBillboardProps {
+interface HomepageBillboardProps {
   data: Billboard[];
 }
 
-const BannerBillboard: React.FC<BannerBillboardProps> = ({ data }) => {
+const HomepageBillboard: React.FC<HomepageBillboardProps> = ({ data }) => {
   const [isMounted, setIsMounted] = useState(false);
   useEffect(() => {
     setIsMounted(true);
@@ -27,7 +27,7 @@ const BannerBillboard: React.FC<BannerBillboardProps> = ({ data }) => {
         <div
           key={index}
           className="flex w-full justify-center items-center"
-          style={{ width: "100%", height: "25px", overflow: "hidden" }}
+          style={{ width: "100%", height: "50%", overflow: "hidden" }}
         >
           <video
             muted
@@ -42,7 +42,7 @@ const BannerBillboard: React.FC<BannerBillboardProps> = ({ data }) => {
   );
 };
 
-export default BannerBillboard;
+export default HomepageBillboard;
 
 {
   /* <ReactPlayer

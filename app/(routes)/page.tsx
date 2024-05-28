@@ -2,7 +2,7 @@ import ProductGrid from "@/components/Home/ProductGrid";
 import ProductCard from "@/components/Product/product-card";
 import LeftSidebar from "@/components/SideBars/LeftSideBar";
 import RightSidebar from "@/components/SideBars/RightSideBar";
-import FullscreenProductFilters from "@/components/Home/full-screen-product-filters";
+
 
 import getDesigners from "@/actions/get-designers";
 import getCategories from "@/actions/get-categories";
@@ -14,7 +14,10 @@ import getConditions from "@/actions/get-conditions";
 import getMaterials from "@/actions/get-materials";
 import getGenders from "@/actions/get-genders";
 import getSubcategories from "@/actions/get-sub-categories";
+import getBillboardByName from "@/actions/get-billboard-by-name";
+
 import FullscreenProductFiltersFooter from "@/components/Home/full-screen-product-filters-footer";
+import HomepageBillboard from "@/components/Billboard/HomepageBillboard";
 
 
 export const revalidate = 0;
@@ -67,6 +70,7 @@ const Homepage: React.FC<HomepageProps> = async ({ searchParams }) => {
   const materials = await getMaterials();
   const genders = await getGenders();
   const subcategories = await getSubcategories();
+  const navBarBillboard = await getBillboardByName("navBarBillboard");
 
   return (
     <>
@@ -86,12 +90,16 @@ const Homepage: React.FC<HomepageProps> = async ({ searchParams }) => {
         {/* Second column */}
         <div className="col-span-6 flex flex-col justify-center items-center w-full h-full">
           {/* <HomePageBillboard data={[homePageBillboard]} /> */}
+          <HomepageBillboard
+            //@ts-ignore
+            data={navBarBillboard}
+          />
           <div className="flex flex-row h-1/3 w-full p-2">
-            <div className="w-full">
-              <h2 className="text-4xl font-bold text-black mt-2 mb-2">
-                Latest arrivals!
+            <div className="w-full justify-center text-center">
+              <h2 className="text-2xl font-bold text-black mt-2 ">
+                New arrivals
               </h2>
-              <p className="text-base font-cursive text-light-font">
+              <p className="text-sm font-cursive text-light-font">
                 Shop all the latest products from our entire store
               </p>
             </div>

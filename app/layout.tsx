@@ -22,7 +22,7 @@ import getTopTen from "@/actions/get-top-ten";
 
 
 const font = Roboto({
-  weight: "300",
+  weight: "400",
   subsets: ["latin"],
   fallback: ["sans-serif"],
 });
@@ -48,6 +48,7 @@ export default async function RootLayout({
   const subcategories = await getSubcategories();
   const products = await getProducts({ all: true });
   const topTen = await getTopTen({ all: true }, "most-viewed");
+  
   const navBarBillboard = await getBillboardByName("navBarBillboard");
 
   return (
