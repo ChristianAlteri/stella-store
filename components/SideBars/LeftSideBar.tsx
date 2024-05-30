@@ -27,18 +27,18 @@ const LeftSidebar: React.FC<LeftSideProps> = ({
 
       <div className="grid grid-rows-3 h-1/2 justify-start items-start">
         <div className="row-span-1 h-full justify-start">
-          <Link className="underline bg-white" href={`/sellers`}>
-            Sellers
+          <Link className="font-bold text-lg bg-white" href={`/top-sellers`}>
+            SELLERS
           </Link>
           <div className="ml-1 row-span-1 h-full overflow-y-auto bg-white ">
             {sellers?.map((seller, index) => (
               <Link href={`/sellers/${seller.id}`} key={seller.instagramHandle}>
                 <p
                   className={cn(
-                    "flex justify-start text-sm font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer",
+                    "flex justify-start text-sm font-medium text-light-font transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer",
                     isSellerSelected(seller.id)
-                      ? "text-stone bg-light-background rounded-md w-full p-1 flex justify-center items-center text-light-font underline transition-transform animate-pulse"
-                      : "text-stone-500"
+                      ? "rounded-md w-full flex text-black underline transition-transform animate-pulse"
+                      : "text-light-font"
                   )}
                 >
                   {seller.instagramHandle.toUpperCase()}
@@ -48,8 +48,8 @@ const LeftSidebar: React.FC<LeftSideProps> = ({
           </div>
         </div>
         <div className="row-span-1 h-full">
-          <Link className="underline bg-white" href={`/designers`}>
-            Designers
+          <Link className="font-bold text-lg bg-white" href={`/designers`}>
+            DESIGNERS
           </Link>
           <div className="ml-1 row-span-1 h-full overflow-y-auto bg-white ">
             {designers?.map((designer, index) => (
@@ -58,8 +58,8 @@ const LeftSidebar: React.FC<LeftSideProps> = ({
                   className={cn(
                     "flex justify-start text-sm font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer",
                     isDesignerSelected(designer.id)
-                      ? "text-stone bg-light-background rounded-md w-full p-1 flex justify-center items-center text-light-font underline transition-transform animate-pulse"
-                      : "text-stone-500"
+                      ? "rounded-md w-full flex text-black underline transition-transform animate-pulse"
+                      : "text-light-font"
                   )}
                 >
                   {designer.name}
@@ -69,8 +69,8 @@ const LeftSidebar: React.FC<LeftSideProps> = ({
           </div>
         </div>
         <div className="row-span-1 h-full">
-          <Link className="underline bg-white" href={`/categories`}>
-            Categories
+          <Link className="font-bold text-lg bg-white" href={`/categories`}>
+            CATEGORIES
           </Link>
           <div className="ml-1 row-span-1 h-full overflow-y-auto bg-white ">
             {categories?.map((category, index) => (
@@ -79,8 +79,8 @@ const LeftSidebar: React.FC<LeftSideProps> = ({
                   className={cn(
                     "flex justify-start text-sm font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer",
                     isCategorySelected(category.id)
-                      ? "text-stone bg-light-background rounded-md w-full p-1 flex justify-center items-center text-light-font underline transition-transform animate-pulse"
-                      : "text-stone-500"
+                      ? "rounded-md w-full flex text-black underline transition-transform animate-pulse"
+                      : "text-light-font"
                   )}
                 >
                   {category.name}

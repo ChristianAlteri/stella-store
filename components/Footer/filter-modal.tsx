@@ -95,13 +95,13 @@ const FilterModal: React.FC<FilterModalProps> = ({
                   data={colors}
                 />
               </div>
-              <div className="flex flex-col bg-white w-full justify-center items-center">
+              {/* <div className="flex flex-col bg-white w-full justify-center items-center">
                 <MobileProductFilter
                   valueKey="conditionId"
                   name="Conditions"
                   data={conditions}
                 />
-              </div>
+              </div> */}
               <div className="flex flex-col bg-white w-full justify-center items-center">
                 <MobileProductFilter
                   valueKey="materialId"

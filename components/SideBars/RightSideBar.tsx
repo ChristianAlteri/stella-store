@@ -76,13 +76,13 @@ const RightSidebar: React.FC<RightSideProps> = ({
           <div className="flex flex-col bg-white w-full justify-center items-center">
             <MobileProductFilter valueKey="colorId" name="Colors" data={colors} />
           </div>
-          <div className="flex flex-col bg-white w-full justify-center items-center">
+          {/* <div className="flex flex-col bg-white w-full justify-center items-center">
             <MobileProductFilter
               valueKey="conditionId"
               name="Conditions"
               data={conditions}
             />
-          </div>
+          </div> */}
           <div className="flex flex-col bg-white w-full justify-center items-center">
             <MobileProductFilter
               valueKey="materialId"

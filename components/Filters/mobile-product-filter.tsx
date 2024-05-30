@@ -67,30 +67,31 @@ const MobileProductFilter: React.FC<MobileProductFilterProps> = ({
 
   return (
     <>
-    <div className="flex flex-row justify-between w-full h-full"
+    <div className="flex flex-row justify-between items-center w-full h-full mb-2"
     onClick={toggleVisibility}
     >
-      <div className="flex flex-col underline bg-white justify-start items-start text-sm font-medium hover:underline hover:cursor-pointer">
+      <div className="flex flex-col bg-white justify-start items-start text-sm font-bold hover:underline hover:cursor-pointer">
         <div>{name}</div>
       </div>
-      <div>
+      <div className="hover:cursor-pointer">
         +
       </div>
     </div>
       {isVisible && (
-         <div className="grid grid-cols-4 w-full h-full p-2 gap-2">
+         <div className="grid grid-cols-4 md:grid-cols-2 w-full h-full mb-2">
           {data?.map((filterItem) => (
             <div key={filterItem.id}>
               <div
                 className={cn(
-                  "bg-light-background ml-2 gap-2 flex flex-row justify-center text-sm font-medium transition-colors hover:underline hover:cursor-pointer",
+                  "flex flex-row justify-between text-xs font-medium transition-colors hover:underline hover:cursor-pointer",
                   isSelected(filterItem.id)
-                    ? " bg-light-background p-1 rounded-md flex justify-center items-center text-light-font transition-transform animate-pulse"
+                    ? "flex justify-center items-center text-black underline transition-transform animate-pulse"
                     : "text-light-font"
                 )}
                 onClick={() => onClick(filterItem?.id)}
               >
-                {filterItem.name}
+                {filterItem.name.charAt(0).toUpperCase() +
+                filterItem.name.slice(1)}
               </div>
             </div>
           ))}

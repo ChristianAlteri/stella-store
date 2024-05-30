@@ -65,39 +65,44 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
           </div>
 
           <div className="row-span-4 p-4 overflow-y-auto">
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-3">
 
-              <div className="border-r p-2 m-1 w-full">
-                <Link href="/sellers" className="underline">Sellers</Link>
-                  <div className="mt-2 flex flex-col gap-2">
+              <div className="flex flex-col items-center border-r w-full p-4">
+                <Link className="font-bold text-sm bg-white" href={`/sellers`}>
+                  SELLERS
+                </Link>
+                <div className="flex flex-col items-center row-span-1 h-full overflow-y-auto bg-white">
                     {sellers?.map((seller) => (
                       <Link
                         href={`/sellers/${seller.id}`}
                         key={seller.instagramHandle}
                         className={cn(
-                          "flex justify-start text-sm font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer",
+                          "flex justify-start text-xs font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer",
                           isSellerSelected(seller.id)
-                            ? "text-stone bg-light-background underline rounded-md w-full p-1 flex justify-center items-center text-light-font transition-transform animate-pulse"
-                            : "text-stone-500"
+                          ? "rounded-md w-full flex text-black underline transition-transform animate-pulse"
+                          : "text-light-font"
                         )}
                       >
-                        {seller.instagramHandle}
+                         {seller.instagramHandle.toUpperCase()}
                       </Link>
                     ))}
                   </div>
               </div>
-              <div className="p-2 m-1 w-full">
-                <Link href="/designers" className="underline">Designers</Link>
-                <div className="mt-2 flex flex-col gap-2 ">
+
+              <div className="flex flex-col items-center border-r w-full p-4">
+              <Link className="font-bold text-sm bg-white" href={`/designers`}>
+                DESIGNERS
+              </Link>
+                <div className="flex flex-col items-center row-span-1 h-full overflow-y-auto bg-white">
                   {designers?.map((designer) => (
                     <Link
                       href={`/designers/${designer.id}`}
                       key={designer.name}
                       className={cn(
-                        "flex justify-start text-sm font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer",
+                        "flex justify-start text-xs font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer",
                         isDesignerSelected(designer.id)
-                          ? "text-stone bg-light-background underline rounded-md w-full p-1 flex justify-center items-center text-light-font transition-transform animate-pulse"
-                          : "text-stone-500"
+                        ? "rounded-md w-full flex text-black underline transition-transform animate-pulse"
+                        : "text-light-font"
                       )}
                     >
                       {designer.name}
@@ -105,18 +110,20 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
                   ))}
                 </div>
               </div>
-              <div className="border-l p-2 m-1 w-full">
-                <Link href="/categories" className="underline">Categories</Link>
-                <div className="mt-2 flex flex-col gap-2 ">
+              <div className="flex flex-col items-center w-full p-4">
+              <Link className="font-bold text-sm bg-white" href={`/categories`}>
+                CATEGORIES
+              </Link>
+                <div className="flex flex-col items-center row-span-1 h-full overflow-y-auto bg-white">
                   {categories?.map((category) => (
                     <Link
                       href={`/categories/${category.id}`}
                       key={category.name}
                       className={cn(
-                        "flex justify-start text-sm font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer",
+                        "flex justify-start text-xs font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer",
                         isCategorySelected(category.id)
-                          ? "text-stone bg-light-background underline rounded-md w-full p-1 flex justify-center items-center text-light-font transition-transform animate-pulse"
-                          : "text-stone-500"
+                        ? "rounded-md w-full flex text-black underline transition-transform animate-pulse"
+                        : "text-light-font"
                       )}
                     >
                       {category.name}

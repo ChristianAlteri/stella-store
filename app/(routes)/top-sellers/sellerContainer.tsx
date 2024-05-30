@@ -1,23 +1,16 @@
 "use client";
 
 import { useState } from "react";
-import { Category, Designer, Product, Seller } from "@/types";
+import { Seller } from "@/types";
 import { CiSearch } from "react-icons/ci";
-import Link from "next/link";
-import SuggestedContainer from "../Suggested/SuggestedContainer";
-import CategoryCard from "../ui/cateory-card";
+import SellerCard from "./single-seller-card";
 
-interface HomepageForSellerDesignerCategoryProps {
-  data: Category[] | Designer[];
-  route: string;
-  routeOne: string;
-  routeTwo: string;
+interface SellerContainerProps {
+  sellerData: Seller[];
 }
 
-const HomepageForSellerDesignerCategory: React.FC<
-  HomepageForSellerDesignerCategoryProps
-> = ({ data, route, routeOne, routeTwo }) => {
-  const [filteredData, setFilteredData] = useState(data);
+const SellerContainer: React.FC<SellerContainerProps> = ({ sellerData }) => {
+  const [filteredData, setFilteredData] = useState(sellerData);
   const [search, setSearch] = useState("");
 
   const handleSearch = (e: any) => {
@@ -25,17 +18,15 @@ const HomepageForSellerDesignerCategory: React.FC<
     setSearch(value);
 
     if (value.trim() === "") {
-      // If search is empty, reset to the original data
-      setFilteredData(data);
+      setFilteredData(sellerData);
     } else {
-      // Otherwise, filter categories based on the search term
-      const localFiltered = data.filter((category) =>
-        category.name.toLowerCase().includes(value.toLowerCase())
+      const localFiltered = sellerData.filter((data) =>
+        data.instagramHandle.toLowerCase().includes(value.toLowerCase())
       );
       setFilteredData(localFiltered);
     }
   };
-  
+
   const sortMostPopular = () => {
     const localFiltered = [...filteredData].sort((a, b) => {
       const totalLikesA = a.products.reduce(
@@ -94,35 +85,24 @@ const HomepageForSellerDesignerCategory: React.FC<
   return (
     <>
       <div
-        className="flex flex-col items-center justify-center text-center w-full p-1 min-h-screen"
-        style={{
-          backgroundImage: filteredData && filteredData.length > 0 && filteredData[0].billboard && filteredData[0].billboard.imageUrl
-          ? `url(${filteredData[0].billboard.imageUrl})`
-          : "none",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-        }}
+        className="flex flex-col items-center justify-center text-center p-1 col-span-4 w-full "
+        // style={{
+        //   backgroundImage:
+        //     filteredData &&
+        //     filteredData.length > 0 &&
+        //     filteredData[0].billboard &&
+        //     filteredData[0].billboard.imageUrl
+        //       ? `url(${filteredData[0].billboard.imageUrl})`
+        //       : "none",
+        //   backgroundSize: "cover",
+        //   backgroundPosition: "center",
+        //   backgroundRepeat: "no-repeat",
+        // }}
       >
-        <div className="flex flex-col w-full justify-center items-center">
-          <h1 className="flex flex-row text-xl w-2/3 justify-center items-center text-center mt-8 border p-3 text-light-font bg-light-background rounded-md">
-            {route.toUpperCase()}
-          </h1>
-          <div className="w-1/2 flex flex-row justify-between items-center text-sm mt-3 text-light-font">
-            <Link
-                href={`${routeOne}`}
-                className="p-1 hover:underline hover:cursor-pointer bg-light-background"
-              >{routeOne.toUpperCase()}
-            </Link>
-            <Link
-                href={`${routeTwo}`}
-                className="p-1 hover:underline hover:cursor-pointer bg-light-background"
-              >{routeTwo.toUpperCase()}
-            </Link>
-          </div>
-        </div>
         <div className="flex flex-col items-center justify-center text-center w-full p-1">
           <div className="grid row-span-4">
+
+            {/* search and filter */}
             <div className="flex justify-center items-center text-center flex-col row-span-1 gap-2 p-5">
               <div className="flex flex-row gap-1 justify-center items-center">
                 <CiSearch />
@@ -134,23 +114,23 @@ const HomepageForSellerDesignerCategory: React.FC<
                 />
               </div>
               <div className="flex flex-row text-xs justify-center items-center text-center gap-3 mt-4">
-                <h1 className="flex flex-row justify-center bg-light-background">
+                <h1 className="flex flex-row justify-center">
                   Sort by:{" "}
                 </h1>
-                <div
-                  className="flex flex-row justify-center hover:underline hover:cursor-pointer bg-light-background"
+                {/* <div
+                  className="flex flex-row justify-center hover:underline hover:cursor-pointer"
                   onClick={sortMostPopular}
                 >
                   Most Popular
-                </div>
+                </div> */}
                 <div
-                  className="flex flex-row justify-center hover:underline hover:cursor-pointer bg-light-background"
+                  className="flex flex-row justify-center hover:underline hover:cursor-pointer"
                   onClick={sortAverageLowestPrice}
                 >
                   Lowest Prices
                 </div>
                 <div
-                  className="flex flex-row justify-center hover:underline hover:cursor-pointer bg-light-background"
+                  className="flex flex-row justify-center hover:underline hover:cursor-pointer"
                   onClick={sortAverageHighestPrice}
                 >
                   Highest Prices
@@ -161,8 +141,7 @@ const HomepageForSellerDesignerCategory: React.FC<
             <div className="row-span-3">
               <div className="md:grid-cols-2 w-full gap-4 grid items-center text-center justify-center">
                 {filteredData.map((data) => (
-                  <CategoryCard
-                    route={route}
+                  <SellerCard
                     key={data.name}
                     id={data.id}
                     data={data}
@@ -177,4 +156,4 @@ const HomepageForSellerDesignerCategory: React.FC<
   );
 };
 
-export default HomepageForSellerDesignerCategory;
+export default SellerContainer;
