@@ -23,7 +23,7 @@ const LeftSidebar: React.FC<LeftSideProps> = ({
   const { isSellerSelected, isDesignerSelected, isCategorySelected } = useParamsUtil();
 
   return (
-    <aside className="h-full fixed p-4 z-40">
+    <aside className="h-full z-35">
 
       <div className="grid grid-rows-3 h-1/2 justify-start items-start">
         <div className="row-span-1 h-full justify-start">
@@ -41,7 +41,7 @@ const LeftSidebar: React.FC<LeftSideProps> = ({
                       : "text-stone-500"
                   )}
                 >
-                  {seller.instagramHandle}
+                  {seller.instagramHandle.toUpperCase()}
                 </p>
               </Link>
             ))}

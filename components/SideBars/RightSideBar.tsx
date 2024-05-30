@@ -55,7 +55,7 @@ const RightSidebar: React.FC<RightSideProps> = ({
   }, [productData]);
 
   return (
-    <aside className="h-full fixed p-4 z-50">
+    <aside className="h-full z-35">
       <div className="grid grid-rows-3 h-full w-full justify-end items-end flex-col">
         {/* <div className="row-span-1 h-full w-full"> */}
           {/* <SideBarProductSort

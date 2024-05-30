@@ -58,7 +58,7 @@ const Navbar: React.FC<NavbarProps> = ({
         data={navBarBillboard}
       /> */}
 
-      <div className="sticky bg-white w-full top-0 z-40 ">
+      <div className="sticky bg-white w-full top-0 z-40 p-4">
         <div className="grid md:grid-rows-2 grid-rows-1 min-h-[55px] p-1">
           <div className="row-span-1 w-full">
             <div className="flex flex-row w-full">
@@ -83,14 +83,14 @@ const Navbar: React.FC<NavbarProps> = ({
                 {/* <ClientAdvisor products={products} /> */}
               </div>
 
-              <div className="w-full flex flex-row justify-center items-center gap-3 p-2">
+              <div className="w-full flex flex-row justify-center items-center gap-3 ">
                 <Link href="/" className="flex">
-                  <h1 className="font-bold text-xl animate-spin">@</h1>
-                  <h1 className="font-bold text-xl">ANONDROBE</h1>
+                  <h1 className="font-bold text-2xl md:text-4xl">@</h1>
+                  <h1 className="font-bold text-2xl md:text-4xl">NONDROBE</h1>
                 </Link>
               </div>
 
-              <div className="w-full flex flex-row justify-end items-center gap-5 p-2">
+              <div className="w-full flex flex-row justify-end items-center gap-4 md:gap-8 p-2">
                 <HeartButton />
                 <ShoppingCartButton size="27px" />
                 {loggedIn ? <ProfileButton /> : null}
@@ -98,10 +98,10 @@ const Navbar: React.FC<NavbarProps> = ({
             </div>
           </div>
 
-          <div className="row-span-1 w-full md:flex hidden mt-1">
+          <div className="row-span-1 w-full md:flex hidden mt-2">
             <div className="flex-col w-full justify-center items-center ">
               <div className="flex flex-col items-center justify-center w-full ">
-                <div className="flex items-center text-center w-2/3 text-xs md:text-sm text-stone-700 gap-2 justify-between">
+                <div className="flex items-center text-center w-1/2 text-xs md:text-sm text-stone-700 gap-2 justify-between">
                   <QuickLinks />
                 </div>
               </div>

@@ -18,13 +18,13 @@ const QuickLinks = () => {
     <>
       <Link
         href="/top-likes"
-        className="flex flex-col text-xs justify-center items-center rounded-xl w-full h-2/3 hover:underline"
+        className="hover:bg-light-background flex flex-col text-xs justify-center items-center rounded-xl w-2/3 h-full hover:underline p-1"
       >
         <div
           className={cn(
             isRouteSelected("/top-likes")
-              ? "bg-light-background w-full flex flex-col justify-center items-center text-light-font text-xs rounded-md h-full p-1 scale-110 transition-transform animate-pulse"
-              : "text-stone-300 flex flex-col justify-center items-center"
+              ? "bg-light-background w-full flex flex-col justify-center items-center text-light-font text-xs rounded-md h-full p-1 transition-transform animate-pulse"
+              : "text-stone-300 flex flex-col justify-center items-center w-2/3"
           )}
         >
           <CiHeart size={20} />
@@ -33,12 +33,12 @@ const QuickLinks = () => {
       </Link>
       <Link
         href="/most-viewed"
-        className="flex flex-col text-xs justify-center items-center rounded-xl w-full h-2/3 hover:underline"
+        className="hover:bg-light-background flex flex-col text-xs justify-center items-center rounded-xl w-2/3 h-full hover:underline p-1"
       >
         <div
           className={cn(
             isRouteSelected("/most-viewed")
-              ? "bg-light-background w-full flex flex-col justify-center items-center text-light-font text-xs rounded-md h-full p-1 scale-110 transition-transform animate-pulse"
+              ? "bg-light-background w-full flex flex-col justify-center items-center text-light-font text-xs rounded-md h-full p-1 transition-transform animate-pulse"
               : "text-stone-300 flex flex-col justify-center items-center"
           )}
         >
@@ -48,12 +48,12 @@ const QuickLinks = () => {
       </Link>
       <Link
         href="/"
-        className="flex flex-col text-xs justify-center items-center rounded-xl w-full h-2/3 hover:underline"
+        className="hover:bg-light-background flex flex-col text-xs justify-center items-center rounded-xl w-2/3 h-full hover:underline p-1"
       >
         <div
           className={cn(
             isRouteSelected("/")
-              ? "bg-light-background w-full flex flex-col justify-center items-center text-light-font text-xs rounded-md h-full p-1 scale-110 transition-transform animate-pulse"
+              ? "bg-light-background w-full flex flex-col justify-center items-center text-light-font text-xs rounded-md h-full p-1 transition-transform animate-pulse"
               : "text-stone-300 flex flex-col justify-center items-center"
           )}
         >
@@ -63,12 +63,12 @@ const QuickLinks = () => {
       </Link>
       <Link
         href="/for-you"
-        className="flex flex-col text-xs justify-center items-center rounded-xl w-full h-2/3 hover:underline"
+        className="hover:bg-light-background flex flex-col text-xs justify-center items-center rounded-xl w-2/3 h-full hover:underline p-1"
       >
         <div
           className={cn(
             isRouteSelected("/for-you")
-              ? "bg-light-background w-full flex flex-col justify-center items-center text-light-font text-xs rounded-md h-full p-1 scale-110 transition-transform animate-pulse"
+              ? "bg-light-background w-full flex flex-col justify-center items-center text-light-font text-xs rounded-md h-full p-1 transition-transform animate-pulse"
               : "text-stone-300 flex flex-col justify-center items-center"
           )}
         >
@@ -78,13 +78,13 @@ const QuickLinks = () => {
       </Link>
       <Link
         href="/sale"
-        className="flex flex-col text-xs justify-center items-center rounded-xl w-full h-2/3 hover:underline"
+        className="hover:bg-light-background flex flex-col text-xs justify-center items-center rounded-xl w-2/3 h-full hover:underline p-1"
       >
         <div
           className={cn(
             isRouteSelected("/sale")
-              ? "bg-light-background w-full flex flex-col justify-center items-center text-light-font text-xs rounded-md h-full p-1 scale-110 transition-transform animate-pulse"
-              : "text-stone-300"
+              ? "bg-light-background w-full flex flex-col justify-center items-center text-light-font text-xs rounded-md h-full p-1 transition-transform animate-pulse"
+              : "text-stone-300 flex flex-col justify-center items-center"
           )}
         >
           <CiCoinInsert size={20} />

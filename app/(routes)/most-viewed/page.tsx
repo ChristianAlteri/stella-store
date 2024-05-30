@@ -71,12 +71,21 @@ const MostViewedPage: React.FC<MostViewedPageProps> = async ({
 
   return (
     <>
+        <div className="flex flex-col w-full justify-center items-center text-center">
+          <div className="w-full justify-center text-center">
+            <h2 className="text-2xl font-bold text-black mt-2">
+            TRENDING PRODUCTS
+            </h2>
+            <p className="text-sm font-cursive text-light-font">
+            These products are hot right now! Do not miss out on the latest
+                trends and must-haves.
+            </p>
+        </div>
+        </div>
+
       <div className="justify-center items-center md:grid flex grid-cols-8 gap-4 bg-white">
         {/* First column */}
-        <div
-          className="col-span-1 justify-start items-start w-full p-6 hidden sticky z-50 h-full md:grid"
-          style={{ width: "100%" }}
-        >
+        <div className="col-span-1 justify-start items-start w-full hidden sticky z-50 h-full md:grid ml-4">
           <LeftSidebar
             designers={designers}
             categories={categories}
@@ -86,18 +95,6 @@ const MostViewedPage: React.FC<MostViewedPageProps> = async ({
 
         {/* Second column */}
         <div className="col-span-6 flex flex-col justify-center items-center w-full h-full">
-          <div className="flex flex-row h-1/3 w-full p-2">
-            <div className="w-full">
-              <h2 className="text-4xl font-bold text-black mt-2 mb-2">
-                TRENDING PRODUCTS
-              </h2>
-              <p className="text-base font-cursive text-light-font">
-                These products are hot right now! Do not miss out on the latest
-                trends and must-haves.
-              </p>
-            </div>
-          </div>
-
           <ProductGrid>
             {mostViewedProducts.map((item) => (
               <ProductCard key={item.id} item={item} />
@@ -112,10 +109,7 @@ const MostViewedPage: React.FC<MostViewedPageProps> = async ({
         </div>
 
         {/* Third column */}
-        <div
-          className="col-span-1 justify-start items-start w-full p-6 hidden sticky z-50 h-full md:grid"
-          style={{ width: "100%" }}
-        >
+        <div className="col-span-1 justify-end items-end w-full hidden sticky z-50 h-full md:grid p-4">
           <RightSidebar
             colors={colors}
             sizes={sizes}

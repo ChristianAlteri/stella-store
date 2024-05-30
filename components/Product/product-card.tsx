@@ -111,7 +111,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
           </div>
         </div>
 
-        <div className="relative h-full w-full rounded-md flex justify-center items-center z-30">
+        <div className="relative h-full w-full rounded-md flex justify-center items-center z-30 p-2">
           <div className="inset-0 w-full h-full flex justify-center items-center hover:cursor-pointer">
             {/* If item is marked hidden, we blur it. Used for unreleased products */}
             {item?.images[0]?.url?.match(
@@ -135,8 +135,8 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
                   <Image
                     key={item?.images?.[0]?.id}
                     onClick={handleProductClick}
-                    height={0}
-                    width={220}
+                    width={1920}
+                    height={1080}
                     src={item!.images[0]!.url}
                     alt={`${item.name} from ${item.seller?.instagramHandle} by ${item.designer?.name} in size ${item.size?.name} for £${item.ourPrice} (RRP £${item.retailPrice})`}
                     priority
@@ -148,8 +148,8 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
                   <Image
                     key={item?.images?.[0]?.id}
                     onClick={handleProductClick}
-                    height={0}
-                    width={120}
+                    width={1920}
+                    height={1080}
                     src={item!.images[0]!.url}
                     alt={`${item.name} from ${item.seller?.instagramHandle} by ${item.designer?.name} in size ${item.size?.name} for £${item.ourPrice} (RRP £${item.retailPrice})`}
                     priority
@@ -185,8 +185,8 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
                     <Image
                       key={item?.images?.[1]?.id}
                       onClick={handleProductClick}
-                      height={0}
-                      width={220}
+                      width={1920}
+                      height={1080}
                       src={item?.images?.[1]?.url}
                       alt={`Image of ${item.name} from ${item.seller?.instagramHandle} by ${item.designer?.name} in size ${item.size?.name} for £${item.ourPrice} (RRP £${item.retailPrice})`}
                       priority
@@ -199,8 +199,8 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
                     <Image
                       key={item?.images?.[1]?.id}
                       onClick={handleProductClick}
-                      height={0}
-                      width={120}
+                      width={1920}
+                      height={1080}
                       src={item?.images?.[1]?.url}
                       alt={`Image of ${item.name} from ${item.seller?.instagramHandle} by ${item.designer?.name} in size ${item.size?.name} for £${item.ourPrice} (RRP £${item.retailPrice})`}
                       priority
@@ -216,7 +216,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
         </div>
 
         {/* large screens */}
-        <div className="lg:flex flex-col hidden m-5">
+        <div className="lg:flex flex-col hidden p-1 m-1">
           <div className="flex flex-row justify-between items-start text-light-font text-super-small w-full p-1">
             <h3>{item?.likes} likes</h3>
             <h3>{item?.clicks} views</h3>
@@ -292,7 +292,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
         </div>
 
         {/* mobile screens */}
-        <div className="flex flex-col justify-center items-center lg:hidden m-4">
+        <div className="flex flex-col justify-center items-center lg:hidden p-1 m-1">
           <div className="flex flex-row justify-between items-start text-gray-500 text-super-small w-full  p-1">
             <h3>{item?.likes} likes</h3>
             <h3>{item?.clicks} views</h3>

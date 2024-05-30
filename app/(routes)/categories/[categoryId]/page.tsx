@@ -75,12 +75,22 @@ const CategoryNamePage: React.FC<CategoryNamePageProps> = async ({
   const genders = await getGenders();
   const subcategories = await getSubcategories();
 
-
   return (
     <>
+      <div className="flex flex-row p-7 w-full justify-center items-center text-center mb-2">
+        {/* <div className="rounded-full">
+            <Billboard data={categoryData?.billboard} />
+          </div> */}
+        <div className="w-full justify-center text-center">
+          <h2 className="text-2xl font-bold text-black mt-2 ">
+            {categoryData?.name.toUpperCase()}
+          </h2>
+        </div>
+      </div>
+
       <div className="justify-center items-center md:grid flex grid-cols-8 gap-4 bg-white">
         {/* First column */}
-        <div className="col-span-1 justify-start items-start w-full p-6 hidden sticky z-50 h-full md:grid" style={{ width: '100%' }}>
+        <div className="col-span-1 justify-start items-start w-full hidden sticky z-50 h-full md:grid ml-4">
           <LeftSidebar
             designers={designers}
             categories={categories}
@@ -89,8 +99,9 @@ const CategoryNamePage: React.FC<CategoryNamePageProps> = async ({
         </div>
 
         {/* Second column */}
-        <div className="col-span-6 flex flex-col justify-center items-center w-full">
-          <Billboard data={categoryData?.billboard} />
+        <div className="col-span-6 flex flex-col justify-center items-center w-full h-full">
+          {/* <Billboard data={categoryData?.billboard} /> */}
+          
 
           <ProductGrid>
             {productData?.map((item) => (
@@ -99,7 +110,7 @@ const CategoryNamePage: React.FC<CategoryNamePageProps> = async ({
           </ProductGrid>
 
           <div className="fixed bottom-0 p-7 w-1/3 z-50">
-            <FullscreenProductFiltersFooter 
+            <FullscreenProductFiltersFooter
               productData={productData}
               genders={genders}
             />
@@ -107,7 +118,7 @@ const CategoryNamePage: React.FC<CategoryNamePageProps> = async ({
         </div>
 
         {/* Third column */}
-        <div className="col-span-1 justify-start items-start w-full p-6 hidden sticky z-50 h-full md:grid" style={{ width: '100%' }}>
+        <div className="col-span-1 justify-end items-end w-full hidden sticky z-50 h-full md:grid p-4">
           <RightSidebar
             colors={colors}
             sizes={sizes}

@@ -1,5 +1,5 @@
 "use client";
-import { Billboard } from "@/types";
+import type { Billboard } from "@/types";
 import React from "react";
 import { useEffect, useState } from "react";
 

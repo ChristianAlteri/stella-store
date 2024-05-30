@@ -18,6 +18,7 @@ import getBillboardByName from "@/actions/get-billboard-by-name";
 
 import FullscreenProductFiltersFooter from "@/components/Home/full-screen-product-filters-footer";
 import HomepageBillboard from "@/components/Billboard/HomepageBillboard";
+import HomepageBillboardMobile from "@/components/Billboard/HomepageBillboardMobile";
 
 
 export const revalidate = 0;
@@ -70,16 +71,46 @@ const Homepage: React.FC<HomepageProps> = async ({ searchParams }) => {
   const materials = await getMaterials();
   const genders = await getGenders();
   const subcategories = await getSubcategories();
-  const navBarBillboard = await getBillboardByName("navBarBillboard");
+
+  const Billboard = await getBillboardByName("HomePageFullScreen");
+  const BillboardMobile = await getBillboardByName("HomePageMobile");
+
+  // console.log("Billboard", Billboard);
+  // console.log("BillboardMobile", BillboardMobile);
 
   return (
     <>
-      <div className="justify-center items-center md:grid flex grid-cols-8 gap-4 bg-white ">
+        {/* Large screen Billboard */}
+        <div className="flex-row pl-7 pr-7 h-full lg:flex hidden">
+          <HomepageBillboard
+            // @ts-ignore
+            data={Billboard}
+          />
+        </div>
+        {/* Mobile screen Billboard */}
+        <div className="flex-row pl-7 pr-7 h-2/3 flex lg:hidden">
+          {/* TODO: make sure we upload the correct size */}
+          <HomepageBillboardMobile
+            // @ts-ignore
+            data={BillboardMobile}
+          />
+        </div>
+
+        <div className="flex flex-row w-full justify-center items-center text-center mt-7">
+          <div className="w-full justify-center text-center">
+            <h2 className="text-2xl font-bold text-black mt-2">
+              NEW ARRIVALS
+            </h2>
+            <p className="text-sm font-cursive text-light-font">
+              Shop all the latest products from our entire store
+            </p>
+          </div>
+        </div>
+
+      <div className="justify-center items-center md:grid flex grid-cols-8 gap-4 bg-white mt-7">
+
         {/* First column */}
-        <div
-          className="col-span-1 justify-start items-start w-full p-6 hidden sticky z-50 h-full md:grid"
-          style={{ width: "100%" }}
-        >
+        <div className="col-span-1 justify-start items-start w-full hidden sticky z-50 h-full md:grid ml-4">
           <LeftSidebar
             designers={designers}
             categories={categories}
@@ -89,40 +120,23 @@ const Homepage: React.FC<HomepageProps> = async ({ searchParams }) => {
 
         {/* Second column */}
         <div className="col-span-6 flex flex-col justify-center items-center w-full h-full">
-          {/* <HomePageBillboard data={[homePageBillboard]} /> */}
-          <HomepageBillboard
-            //@ts-ignore
-            data={navBarBillboard}
-          />
-          <div className="flex flex-row h-1/3 w-full p-2">
-            <div className="w-full justify-center text-center">
-              <h2 className="text-2xl font-bold text-black mt-2 ">
-                New arrivals
-              </h2>
-              <p className="text-sm font-cursive text-light-font">
-                Shop all the latest products from our entire store
-              </p>
+
+            <ProductGrid>
+              {products.map((item) => (
+                <ProductCard key={item.id} item={item} />
+              ))}
+            </ProductGrid>
+            <div className="fixed bottom-0 p-7 w-1/3 z-50">
+              <FullscreenProductFiltersFooter 
+                productData={products}
+                genders={genders}
+              />
             </div>
           </div>
 
-          <ProductGrid>
-            {products.map((item) => (
-              <ProductCard key={item.id} item={item} />
-            ))}
-          </ProductGrid>
-          <div className="fixed bottom-0 p-7 w-1/3 z-50">
-            <FullscreenProductFiltersFooter 
-              productData={products}
-              genders={genders}
-            />
-          </div>
-        </div>
 
         {/* Third column */}
-        <div
-          className="col-span-1 justify-start items-start w-full p-6 hidden sticky z-50 h-full md:grid"
-          style={{ width: "100%" }}
-        >
+        <div className="col-span-1 justify-end items-end w-full hidden sticky z-50 h-full md:grid p-4">
           <RightSidebar
             colors={colors}
             sizes={sizes}

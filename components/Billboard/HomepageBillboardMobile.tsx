@@ -20,7 +20,6 @@ const HomepageBillboard: React.FC<HomepageBillboardProps> = ({ data }) => {
     return null;
   }
 
-
   return (
     <>
       {data?.map((billboard, index) => (
@@ -56,5 +55,7 @@ const HomepageBillboard: React.FC<HomepageBillboardProps> = ({ data }) => {
       ))}
     </>
   );
-}
+};
+
 export default HomepageBillboard;
+
