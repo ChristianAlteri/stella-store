@@ -139,8 +139,8 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
                   <Image
                     key={item?.images?.[0]?.id}
                     onClick={handleProductClick}
-                    width={1920}
-                    height={1080}
+                    width={1080}
+                    height={1350}
                     src={item!.images[0]!.url}
                     alt={`${item.name} from ${item.seller?.instagramHandle} by ${item.designer?.name} in size ${item.size?.name} for £${item.ourPrice} (RRP £${item.retailPrice})`}
                     priority
@@ -152,8 +152,8 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
                   <Image
                     key={item?.images?.[0]?.id}
                     onClick={handleProductClick}
-                    width={1920}
-                    height={1080}
+                    width={1080}
+                    height={1350}
                     src={item!.images[0]!.url}
                     alt={`${item.name} from ${item.seller?.instagramHandle} by ${item.designer?.name} in size ${item.size?.name} for £${item.ourPrice} (RRP £${item.retailPrice})`}
                     priority
@@ -189,8 +189,8 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
                     <Image
                       key={item?.images?.[1]?.id}
                       onClick={handleProductClick}
-                      width={1920}
-                      height={1080}
+                      width={1080}
+                      height={1350}
                       src={item?.images?.[1]?.url}
                       alt={`Image of ${item.name} from ${item.seller?.instagramHandle} by ${item.designer?.name} in size ${item.size?.name} for £${item.ourPrice} (RRP £${item.retailPrice})`}
                       priority
@@ -203,8 +203,8 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
                     <Image
                       key={item?.images?.[1]?.id}
                       onClick={handleProductClick}
-                      width={1920}
-                      height={1080}
+                      width={1080}
+                      height={1350}
                       src={item?.images?.[1]?.url}
                       alt={`Image of ${item.name} from ${item.seller?.instagramHandle} by ${item.designer?.name} in size ${item.size?.name} for £${item.ourPrice} (RRP £${item.retailPrice})`}
                       priority

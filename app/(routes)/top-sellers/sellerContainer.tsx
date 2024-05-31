@@ -27,23 +27,6 @@ const SellerContainer: React.FC<SellerContainerProps> = ({ sellerData }) => {
     }
   };
 
-  const sortMostPopular = () => {
-    const localFiltered = [...filteredData].sort((a, b) => {
-      const totalLikesA = a.products.reduce(
-        //@ts-ignore
-        (acc, product) => acc + product.likes,
-        0
-      );
-      const totalLikesB = b.products.reduce(
-        //@ts-ignore
-        (acc, product) => acc + product.likes,
-        0
-      );
-      return totalLikesB - totalLikesA;
-    });
-    setFilteredData(localFiltered);
-  };
-
   const sortAverageLowestPrice = () => {
     const localFiltered = [...filteredData].sort((a, b) => {
       const avgLowestPriceA =
@@ -85,7 +68,7 @@ const SellerContainer: React.FC<SellerContainerProps> = ({ sellerData }) => {
   return (
     <>
       <div
-        className="flex flex-col items-center justify-center text-center p-1 col-span-4 w-full "
+        className="flex flex-col items-center justify-center text-center col-span-4 w-full"
         // style={{
         //   backgroundImage:
         //     filteredData &&
@@ -99,21 +82,20 @@ const SellerContainer: React.FC<SellerContainerProps> = ({ sellerData }) => {
         //   backgroundRepeat: "no-repeat",
         // }}
       >
-        <div className="flex flex-col items-center justify-center text-center w-full p-1">
-          <div className="grid row-span-4">
+
 
             {/* search and filter */}
-            <div className="flex justify-center items-center text-center flex-col row-span-1 gap-2 p-5">
-              <div className="flex flex-row gap-1 justify-center items-center">
+            <div className="flex justify-center items-center text-center flex-col row-span-1 gap-2 ">
+              <div className="flex flex-row gap-1 justify-center items-center border rounded-md mt-1">
                 <CiSearch />
                 <input
                   type="text"
-                  placeholder="Search..."
+                  placeholder="Search sellers..."
                   className="w-2/3"
                   onChange={handleSearch}
                 />
               </div>
-              <div className="flex flex-row text-xs justify-center items-center text-center gap-3 mt-4">
+              <div className="flex flex-row text-xs justify-center items-center text-center gap-3 mt-1">
                 <h1 className="flex flex-row justify-center">
                   Sort by:{" "}
                 </h1>
@@ -138,20 +120,18 @@ const SellerContainer: React.FC<SellerContainerProps> = ({ sellerData }) => {
               </div>
             </div>
 
-            <div className="row-span-3">
-              <div className="md:grid-cols-2 w-full gap-4 grid items-center text-center justify-center">
+
+                <div className="md:grid-cols-2 w-full gap-2 grid items-center text-center justify-center mt-4">
                 {filteredData.map((data) => (
-                  <SellerCard
+                    <SellerCard
                     key={data.name}
                     id={data.id}
                     data={data}
-                  />
+                    />
                 ))}
-              </div>
             </div>
           </div>
-        </div>
-      </div>
+
     </>
   );
 };

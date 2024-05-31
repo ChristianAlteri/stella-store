@@ -39,6 +39,7 @@ const MiniProductSellerCard: React.FC<MiniProductSellerCardProps> = ({
     };
   }, [data]);
 
+
   // fade in opacity of description
   useEffect(() => {
     const opacityInterval = setInterval(() => {
@@ -68,8 +69,7 @@ const MiniProductSellerCard: React.FC<MiniProductSellerCardProps> = ({
   };
 
   return (
-    <div className="flex flex-col">
-      <div>
+    <div className="flex flex-col w-full">
 
         <div className="flex flex-col p-1 justify-center items-center" key={currentProduct.id}>
           <div
@@ -82,8 +82,8 @@ const MiniProductSellerCard: React.FC<MiniProductSellerCardProps> = ({
                 <ReactPlayer
                   key={currentProduct?.images?.[0]?.id}
                   url={currentProduct?.images[0].url}
-                  width={1920}
-                  height={1080}
+                  width={1080}
+                  height={1350}
                   loop={true}
                   playing={true}
                   muted={true}
@@ -93,8 +93,8 @@ const MiniProductSellerCard: React.FC<MiniProductSellerCardProps> = ({
                   }`}
                   style={{
                     objectFit: "cover",
-                    width: "80%",
-                    height: "80%",
+                    width: "100%",
+                    height: "100%",
                     borderRadius: "0.375rem",
                   }}
                 />
@@ -103,14 +103,14 @@ const MiniProductSellerCard: React.FC<MiniProductSellerCardProps> = ({
                   <Image
                     key={currentProduct?.images?.[0]?.id}
                     onClick={handleProductClick}
-                    width={1920}
-                    height={1080}
+                    width={1080}
+                    height={1350}
                     loading="lazy"
                     src={currentProduct!.images[0]!.url}
                     style={{
                       objectFit: "cover",
-                      width: "80%",
-                      height: "80%",
+                      width: "100%",
+                      height: "100%",
                       borderRadius: "0.375rem",
                     }}
                     alt={`${currentProduct.name} from ${currentProduct.seller?.instagramHandle} by ${currentProduct.designer?.name} in size ${currentProduct.size?.name} for £${currentProduct.ourPrice} (RRP £${currentProduct.retailPrice})`}
@@ -153,7 +153,6 @@ const MiniProductSellerCard: React.FC<MiniProductSellerCardProps> = ({
             </div>
           </div>
         </div>
-      </div>
     </div>
   );
 };

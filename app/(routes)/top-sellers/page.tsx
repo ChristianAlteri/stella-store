@@ -17,6 +17,7 @@ import getSubcategories from "@/actions/get-sub-categories";
 import getTopLikes from "@/actions/get-top-likes";
 import FullscreenProductFiltersFooter from "@/components/Home/full-screen-product-filters-footer";
 import SellerContainer from "./sellerContainer";
+import getTopSellers from "@/actions/get-top-sellers";
 
 export const revalidate = 0;
 
@@ -69,19 +70,17 @@ const TopSellers: React.FC<TopSellersProps> = async ({ searchParams }) => {
   const subcategories = await getSubcategories();
 
   // TODO: make this a backend query to sort by most popular
-  const sellerData = await getSellers();
+  // const sellerData = await getSellers();
+  const sellerData = await getTopSellers();
 
   return (
     <>
       <div className="flex flex-row w-full justify-center items-center text-center">
         <div className="w-full justify-center text-center">
           <h2 className="text-2xl font-bold text-black mt-2">TOP SELLERS!</h2>
-          <p className="text-sm font-cursive text-light-font">
-            These are all our the top sellers!
-          </p>
         </div>
       </div>
-      <div className="justify-center items-center md:grid flex grid-cols-8 gap-4 bg-white ">
+      <div className="justify-center items-center md:grid flex grid-cols-8 gap-4 bg-white">
         {/* First column */}
         <div className="col-span-1 justify-start items-start w-full hidden sticky z-50 h-full md:grid ml-4">
           <LeftSidebar
@@ -100,12 +99,12 @@ const TopSellers: React.FC<TopSellersProps> = async ({ searchParams }) => {
             <SellerContainer sellerData={sellerData} />
           </ProductGrid>
 
-          <div className="fixed bottom-0 p-7 w-1/3 z-50">
+          {/* <div className="fixed bottom-0 p-7 w-1/3 z-50">
             <FullscreenProductFiltersFooter
               productData={topLikedProducts}
               genders={genders}
             />
-          </div>
+          </div> */}
         </div>
 
         {/* Third column */}
