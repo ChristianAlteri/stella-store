@@ -19,6 +19,7 @@ import getBillboardByName from "@/actions/get-billboard-by-name";
 import FullscreenProductFiltersFooter from "@/components/Filters/full-screen-product-filters-footer";
 import HomepageBillboard from "@/components/Billboard/HomepageBillboard";
 import HomepageBillboardMobile from "@/components/Billboard/HomepageBillboardMobile";
+import getTopLikes from "@/actions/get-top-likes";
 
 
 export const revalidate = 0;
@@ -64,7 +65,25 @@ const Homepage: React.FC<HomepageProps> = async ({ searchParams }) => {
     minPrice: searchParams.minPrice,
     maxPrice: searchParams.maxPrice,
   });
-  const featuredProducts = await getProducts({ isFeatured: true });
+  // const featuredProducts = await getProducts({ isFeatured: true });
+  // const featuredProducts = await getTopLikes({
+  //   categoryId: searchParams.categoryId,
+  //   sort: searchParams.sort,
+  //   sizeId: searchParams.sizeId,
+  //   colorId: searchParams.colorId,
+  //   conditionId: searchParams.conditionId,
+  //   materialId: searchParams.materialId,
+  //   genderId: searchParams.genderId,
+  //   subcategoryId: searchParams.subcategoryId,
+  //   isOnSale: searchParams.isOnSale,
+  //   isCharity: searchParams.isCharity,
+  //   isHidden: searchParams.isHidden,
+  //   isFeatured: searchParams.isFeatured,
+  //   designerId: searchParams.designerId,
+  //   sellerId: searchParams.sellerId,
+  //   minPrice: searchParams.minPrice,
+  //   maxPrice: searchParams.maxPrice,
+  // });
      
   const sizes = await getSizes();
   const colors = await getColors();
@@ -147,7 +166,7 @@ const Homepage: React.FC<HomepageProps> = async ({ searchParams }) => {
             conditions={conditions}
             materials={materials}
             subcategories={subcategories}
-            productData={featuredProducts}
+            // productData={featuredProducts}
             miniProductTitle="Our top picks"
           />
         </div>

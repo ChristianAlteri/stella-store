@@ -77,7 +77,7 @@ const RightSidebar: React.FC<RightSideProps> = ({
           </div>
         </div>
 
-        <div className="flex flex-col bg-white row-span-2 h-full w-full ">
+        {/* <div className="flex flex-col bg-white row-span-2 h-full w-full ">
           {randomisedProductData?.length > 0 ? (
             <MiniProductCard
               miniProductTitle={miniProductTitle}
@@ -85,7 +85,7 @@ const RightSidebar: React.FC<RightSideProps> = ({
               data={randomisedProductData}
             />
           ) : null}
-        </div>
+        </div> */}
 
       </div>
     </aside>
