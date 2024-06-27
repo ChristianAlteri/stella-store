@@ -42,6 +42,8 @@ interface SellerNamePageProps {
     isOnSale: boolean;
     isCharity: boolean;
     isHidden: boolean;
+    minPrice: number;
+    maxPrice: number;
   };
 }
 
@@ -64,6 +66,8 @@ const SellerNamePage: React.FC<SellerNamePageProps> = async ({
     isFeatured: searchParams.isFeatured,
     designerId: searchParams.designerId,
     categoryId: searchParams.categoryId,
+    minPrice: searchParams.minPrice,
+    maxPrice: searchParams.maxPrice,
   });
   const sellerData = await getSingleSeller(params.sellerId);
   const featuredProducts = await getProducts({ isFeatured: true });

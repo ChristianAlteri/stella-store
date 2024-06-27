@@ -11,10 +11,18 @@ interface Query {
   sellerId?: string;
   colorId?: string;
   sizeId?: string;
+  conditionId?: string;
+  genderId?: string;
+  subcategoryId?: string;
+  sort?: string;
+  materialId?: string;
   isFeatured?: boolean;
   isOnSale?: boolean;
-  materialId?: string;
+  isHidden?: boolean;
+  isCharity?: boolean;
   all?: boolean;
+  minPrice?: number;
+  maxPrice?: number;
 }
 
 const getOnSale = async (query: Query): Promise<Product[]> => {
@@ -22,15 +30,24 @@ const getOnSale = async (query: Query): Promise<Product[]> => {
     const url = qs.stringifyUrl({
       url: URL,
       query: { 
+        all: query.all,
+        sellerId: query.sellerId,
+        designerId: query.designerId,
+        categoryId: query.categoryId,
         colorId: query.colorId,
         sizeId: query.sizeId,
+        conditionId: query.conditionId,
         categoryName: query.categoryId,
         materialId: query.materialId,
+        genderId: query.genderId,
+        subcategoryId: query.subcategoryId,
         isFeatured: query.isFeatured,
         isOnSale: query.isOnSale,
-        designerId: query.designerId,
-        sellerId: query.sellerId,
-        all: query.all,
+        isCharity: query.isCharity,
+        isHidden: query.isHidden,
+        sort: query.sort,
+        minPrice: query.minPrice,
+        maxPrice: query.maxPrice,
       },
     });
     const response = await axios.get(url);

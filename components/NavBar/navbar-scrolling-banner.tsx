@@ -15,7 +15,7 @@ const NavbarScrollingBanner: React.FC<NavbarScrollingBannerProps> = ({
 }) => {
   return (
     <>
-     <div className=" bg-white flex-row justify-end items-end w-full">
+     <div className="h-1/2 top-0 bg-white flex-row justify-end items-end w-full">
         <div className="animate-loop-scroll ">
         {text}{" "}
             <Link className="underline" href={`${link}`}>

@@ -35,6 +35,8 @@ interface TopLikesPageProps {
     isOnSale: boolean;
     isCharity: boolean;
     isHidden: boolean;
+    minPrice: number;
+    maxPrice: number;
   };
 }
 
@@ -54,6 +56,8 @@ const TopLikesPage: React.FC<TopLikesPageProps> = async ({ searchParams }) => {
     isFeatured: searchParams.isFeatured,
     designerId: searchParams.designerId,
     sellerId: searchParams.sellerId,
+    minPrice: searchParams.minPrice,
+    maxPrice: searchParams.maxPrice,
   });
   const featuredProducts = await getProducts({ isFeatured: true });
 

@@ -21,6 +21,8 @@ interface Query {
   isCharity: boolean;
   isHidden: boolean;
   all?: boolean;
+  minPrice?: number;
+  maxPrice?: number;
 }
 
 const getTopLikes = async (query: Query): Promise<Product[]> => {
@@ -44,6 +46,8 @@ const getTopLikes = async (query: Query): Promise<Product[]> => {
         subcategoryId: query.subcategoryId,
         isCharity: query.isCharity,
         isHidden: query.isHidden,
+        minPrice: query.minPrice,
+        maxPrice: query.maxPrice,
       },
     });
     const response = await axios.get(url);

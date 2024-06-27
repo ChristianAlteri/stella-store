@@ -39,6 +39,8 @@ interface HomepageProps {
     isOnSale: boolean;
     isCharity: boolean;
     isHidden: boolean;
+    minPrice: number;
+    maxPrice: number;
   };
 }
 
@@ -59,6 +61,8 @@ const Homepage: React.FC<HomepageProps> = async ({ searchParams }) => {
     designerId: searchParams.designerId,
     sellerId: searchParams.sellerId,
     all: true,
+    minPrice: searchParams.minPrice,
+    maxPrice: searchParams.maxPrice,
   });
   const featuredProducts = await getProducts({ isFeatured: true });
      

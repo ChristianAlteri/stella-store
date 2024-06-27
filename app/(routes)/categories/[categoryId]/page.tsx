@@ -39,6 +39,8 @@ interface CategoryNamePageProps {
     isOnSale: boolean;
     isCharity: boolean;
     isHidden: boolean;
+    minPrice: number;
+    maxPrice: number;
   };
 }
 
@@ -61,6 +63,8 @@ const CategoryNamePage: React.FC<CategoryNamePageProps> = async ({
     isFeatured: searchParams.isFeatured,
     designerId: searchParams.designerId,
     sellerId: searchParams.sellerId,
+    minPrice: searchParams.minPrice,
+    maxPrice: searchParams.maxPrice,
   });
   const categoryData = await getSingleCategory(params.categoryId);
   const featuredProducts = await getProducts({ isFeatured: true });

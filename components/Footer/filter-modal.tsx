@@ -66,7 +66,7 @@ const FilterModal: React.FC<FilterModalProps> = ({
         placeholder={undefined}
         size={500}
       >
-        <div className="grid grid-rows-10 h-full flex-row p-6 justify-center items-center">
+        <div className="grid grid-rows-10 h-full flex-row p-6 justify-center items-center w-full">
           {open && (
             <div className="row-span-1 w-full">
               <NavbarScrollingBanner
@@ -126,7 +126,7 @@ const FilterModal: React.FC<FilterModalProps> = ({
             </div>
           </div>
 
-          <div className="row-span-1 flex bg-transparent flex-row justify-between w-full p-3 text-center items-center">
+          <div className="row-span-1 flex bg-transparent flex-row justify-between w-full p-1 text-center items-center h-1/3">
             <MdArrowBackIos
               className="hover:cursor-pointer"
               onClick={closeDrawer}
