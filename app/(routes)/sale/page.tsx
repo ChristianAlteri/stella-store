@@ -49,16 +49,17 @@ const SalePage: React.FC<SalePageProps> = async ({ searchParams }) => {
     materialId: searchParams.materialId,
     genderId: searchParams.genderId,
     subcategoryId: searchParams.subcategoryId,
-    isOnSale: true,
+    isOnSale: searchParams.isOnSale,
     isCharity: searchParams.isCharity,
     isHidden: searchParams.isHidden,
     isFeatured: searchParams.isFeatured,
     designerId: searchParams.designerId,
     sellerId: searchParams.sellerId,
+    all: true,
     minPrice: searchParams.minPrice,
     maxPrice: searchParams.maxPrice,
   });
-  const featuredProducts = await getProducts({ isFeatured: true });
+  // const featuredProducts = await getProducts({ isFeatured: true });
 
   const sizes = await getSizes();
   const colors = await getColors();
@@ -69,6 +70,8 @@ const SalePage: React.FC<SalePageProps> = async ({ searchParams }) => {
   const materials = await getMaterials();
   const genders = await getGenders();
   const subcategories = await getSubcategories();
+
+  const onlySaleItems = onSaleItems.filter(product => product.isOnSale);
 
   return (
     <>
@@ -98,7 +101,7 @@ const SalePage: React.FC<SalePageProps> = async ({ searchParams }) => {
         <div className="col-span-6 flex flex-col justify-center items-center w-full h-full">
 
           <ProductGrid>
-            {onSaleItems.map((item) => (
+            {onlySaleItems.map((item) => (
               <ProductCard key={item.id} item={item} />
             ))}
           </ProductGrid>
@@ -111,14 +114,14 @@ const SalePage: React.FC<SalePageProps> = async ({ searchParams }) => {
         </div>
 
         {/* Third column */}
-        <div className="col-span-1 justify-end items-end w-full hidden sticky z-50 h-full md:grid p-4">
+        <div className="col-span-1 justify-end items-end w-full hidden sticky z-50 h-full md:grid">
           <RightSidebar
             colors={colors}
             sizes={sizes}
             conditions={conditions}
             materials={materials}
             subcategories={subcategories}
-            productData={featuredProducts}
+            // productData={featuredProducts}
             miniProductTitle="Our top picks"
           />
         </div>

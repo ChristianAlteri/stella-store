@@ -16,16 +16,17 @@ interface Query {
   subcategoryId?: string;
   sort?: string;
   materialId?: string;
-  isFeatured?: boolean;
-  isOnSale?: boolean;
-  isHidden?: boolean;
-  isCharity?: boolean;
+  isFeatured?: boolean | undefined;
+  isOnSale?: boolean | undefined;
+  isHidden?: boolean | undefined;
+  isCharity?: boolean | undefined;
   all?: boolean;
   minPrice?: number;
   maxPrice?: number;
 }
 
 const getProducts = async (query: Query): Promise<Product[]> => {
+  console.log("query from get-products", query);
   try {
     const url = qs.stringifyUrl({
       url: URL,

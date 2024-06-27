@@ -7,8 +7,6 @@ import ShoppingCartButton from "./ShoppingCartButton";
 import HeartButton from "./HeartButton";
 import ProfileButton from "./ProfileButton";
 import HamburgerMenu from "./hamburger-menu";
-import BannerBillboard from "../Billboard/BannerBillboard";
-import ClientAdvisor from "../ui/ClientAdvisor";
 import { Input } from "../ui/input";
 
 import {

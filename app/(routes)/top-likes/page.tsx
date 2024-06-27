@@ -16,6 +16,8 @@ import getGenders from "@/actions/get-genders";
 import getSubcategories from "@/actions/get-sub-categories";
 import getTopLikes from "@/actions/get-top-likes";
 import FullscreenProductFiltersFooter from "@/components/Filters/full-screen-product-filters-footer";
+import ClientSideProductGrid from "@/components/Home/client-side-product-grid";
+import ViewsLikesFilter from "./filter-views-and-likes";
 
 export const revalidate = 0;
 
@@ -59,7 +61,7 @@ const TopLikesPage: React.FC<TopLikesPageProps> = async ({ searchParams }) => {
     minPrice: searchParams.minPrice,
     maxPrice: searchParams.maxPrice,
   });
-  const featuredProducts = await getProducts({ isFeatured: true });
+  // const featuredProducts = await getProducts({ isFeatured: true });
 
   const sizes = await getSizes();
   const colors = await getColors();
@@ -71,6 +73,8 @@ const TopLikesPage: React.FC<TopLikesPageProps> = async ({ searchParams }) => {
   const genders = await getGenders();
   const subcategories = await getSubcategories();
 
+
+
   return (
     <>
       <div className="flex flex-row w-full justify-center items-center text-center">
@@ -78,10 +82,9 @@ const TopLikesPage: React.FC<TopLikesPageProps> = async ({ searchParams }) => {
             <h2 className="text-2xl font-bold text-black mt-2">
               TRENDING ITEMS
             </h2>
-            <p className="text-sm font-cursive text-light-font">
-              These are all the top liked items from users around the
-              world.
-            </p>
+            <ViewsLikesFilter 
+              data={topLikedProducts}
+            />
           </div>
         </div>
       <div className="justify-center items-center md:grid flex grid-cols-8 gap-4 bg-white ">
@@ -98,6 +101,9 @@ const TopLikesPage: React.FC<TopLikesPageProps> = async ({ searchParams }) => {
         <div className="col-span-6 flex flex-col justify-center items-center w-full h-full">
 
           <ProductGrid>
+            {/* <ClientSideProductGrid 
+              productData={topLikedProducts}
+            /> */}
             {topLikedProducts.map((item) => (
               <ProductCard key={item.id} item={item} />
             ))}
@@ -111,14 +117,14 @@ const TopLikesPage: React.FC<TopLikesPageProps> = async ({ searchParams }) => {
         </div>
 
         {/* Third column */}
-        <div className="col-span-1 justify-end items-end w-full hidden sticky z-50 h-full md:grid p-4">
+        <div className="col-span-1 justify-end items-end w-full hidden sticky z-50 h-full md:grid">
           <RightSidebar
             colors={colors}
             sizes={sizes}
             conditions={conditions}
             materials={materials}
             subcategories={subcategories}
-            productData={featuredProducts}
+            // productData={featuredProducts}
             miniProductTitle="Our top picks"
           />
         </div>

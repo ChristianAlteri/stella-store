@@ -91,7 +91,7 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
                         className={cn(
                           "flex justify-start text-xs font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer",
                           isSellerSelected(seller.id)
-                          ? "rounded-md w-full flex text-black underline transition-transform animate-pulse"
+                          ? "rounded-md w-full flex text-black underline"
                           : "text-light-font"
                         )}
                       >
@@ -112,7 +112,7 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
                       className={cn(
                         "flex justify-start text-xs font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer",
                         isDesignerSelected(designer.id)
-                        ? "rounded-md w-full flex text-black underline transition-transform animate-pulse"
+                        ? "rounded-md w-full flex text-black underline"
                         : "text-light-font"
                       )}
                     >
@@ -133,7 +133,7 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
                       className={cn(
                         "flex justify-start text-xs font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer",
                         isCategorySelected(category.id)
-                        ? "rounded-md w-full flex text-black underline transition-transform animate-pulse"
+                        ? "rounded-md w-full flex text-black underline"
                         : "text-light-font"
                       )}
                     >

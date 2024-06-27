@@ -36,16 +36,17 @@ interface HomepageProps {
     designerId: string;
     sellerId: string;
     sort: string;
-    isFeatured: boolean;
-    isOnSale: boolean;
-    isCharity: boolean;
-    isHidden: boolean;
+    isFeatured: boolean | undefined;
+    isOnSale: boolean | undefined;
+    isCharity: boolean | undefined;
+    isHidden: boolean | undefined;
     minPrice: number;
     maxPrice: number;
   };
 }
 
 const Homepage: React.FC<HomepageProps> = async ({ searchParams }) => {
+  console.log("Search params from page", searchParams);
   const products = await getProducts({
     categoryId: searchParams.categoryId,
     sort: searchParams.sort,
@@ -159,7 +160,7 @@ const Homepage: React.FC<HomepageProps> = async ({ searchParams }) => {
 
 
         {/* Third column */}
-        <div className="col-span-1 justify-end items-end w-full hidden sticky z-50 h-full md:grid p-4">
+        <div className="col-span-1 justify-end items-end w-full hidden sticky z-50 h-full md:grid">
           <RightSidebar
             colors={colors}
             sizes={sizes}

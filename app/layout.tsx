@@ -82,10 +82,10 @@ export default async function RootLayout({
             subcategoryId: "",
             genderId: "",
             sort: "",
-            isFeatured: false,
-            isOnSale: false,
-            isCharity: false,
-            isHidden: false,
+            isFeatured: undefined,
+            isOnSale: undefined,
+            isCharity: undefined ,
+            isHidden: undefined,
           }}
         />
       </body>

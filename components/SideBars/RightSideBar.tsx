@@ -46,14 +46,14 @@ const RightSidebar: React.FC<RightSideProps> = ({
   }, [productData]);
 
   return (
-    <aside className="h-full z-35">
+    <aside className="h-full z-35 mr-5 p-1">
       <div className="grid grid-rows-4 h-full w-full justify-end items-end flex-col">
 
-        <div className="flex flex-col row-span-1 justify-center items-center h-2/3 w-full">
+        <div className="flex flex-col row-span-1 justify-start items-center h-full w-full">
           <RangeSlider />
         </div>
 
-        <div className="row-span-1 h-full w-full">
+        <div className="row-span-3 h-full w-full">
           <div className="flex flex-col bg-white w-full justify-center items-center">
             <MobileProductFilter valueKey="sizeId" name="Sizes" data={sizes} />
           </div>

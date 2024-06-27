@@ -132,7 +132,7 @@ const SellerNamePage: React.FC<SellerNamePageProps> = async ({
         </div>
 
         {/* Third column */}
-        <div className="col-span-1 justify-end items-end w-full hidden sticky z-50 h-full md:grid p-4">
+        <div className="col-span-1 justify-end items-end w-full hidden sticky z-50 h-full md:grid">
           <RightSidebar
             colors={colors}
             sizes={sizes}

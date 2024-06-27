@@ -47,7 +47,7 @@ export default function RangeSlider() {
   return (
       // <Box sx={{ width: 150 }}>
       <Box className="w-[300px] sm:w-[150px]">
-        <button onClick={handleClick} className='text-sm flex flex-col row-span-1 justify-center items-center w-full hover:cursor-pointer hover:rounded-md p-2 hover:underline'>
+        <button onClick={handleClick} className='text-sm flex flex-col row-span-1 justify-start items-center w-full hover:cursor-pointer hover:rounded-md p-2 hover:underline'>
           Set price range:
         </button>
         <Slider

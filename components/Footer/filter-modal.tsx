@@ -116,13 +116,13 @@ const FilterModal: React.FC<FilterModalProps> = ({
 
           <div className="row-span-4 p-4 mt-3 overflow-y-auto h-full">
             <div className="flex flex-col bg-white">
-              {onSaleProducts && (
+              {/* {onSaleProducts && (
                 <MiniProductCard
                   miniProductRoute="/sale"
                   miniProductTitle="On Sale"
                   data={onSaleProducts}
                 />
-              )}
+              )} */}
             </div>
           </div>
 
