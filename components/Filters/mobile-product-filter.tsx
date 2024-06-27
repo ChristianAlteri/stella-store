@@ -71,7 +71,7 @@ const MobileProductFilter: React.FC<MobileProductFilterProps> = ({
     onClick={toggleVisibility}
     >
       <div className="flex flex-col bg-white justify-start items-start text-sm font-bold hover:underline hover:cursor-pointer">
-        <div>{name}</div>
+        <div>{name.toUpperCase()}</div>
       </div>
       <div className="hover:cursor-pointer">
         +
@@ -85,14 +85,15 @@ const MobileProductFilter: React.FC<MobileProductFilterProps> = ({
                 className={cn(
                   "flex flex-row justify-between text-xs font-medium transition-colors hover:underline hover:cursor-pointer",
                   isSelected(filterItem.id)
-                    ? "flex justify-center items-center text-black underline transition-transform animate-pulse"
+                    ? "flex flex-row justify-between items-center text-black underline transition-transform"
                     : "text-light-font"
                 )}
                 onClick={() => onClick(filterItem?.id)}
               >
-                {filterItem.name.charAt(0).toUpperCase() +
-                filterItem.name.slice(1)}
+                {filterItem.name.toUpperCase()}
               </div>
+                {/* {filterItem.name.charAt(0).toUpperCase() +
+                filterItem.name.slice(1)} */}
             </div>
           ))}
         </div>

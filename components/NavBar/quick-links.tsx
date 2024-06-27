@@ -2,14 +2,9 @@
 
 import Link from "next/link";
 
-import { CiCoinInsert, CiHeart } from "react-icons/ci";
-import { IoMdTrendingUp } from "react-icons/io";
-import { TbPlaneArrival } from "react-icons/tb";
-import { RiHome5Line } from "react-icons/ri";
-
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { IoPersonCircleOutline } from "react-icons/io5";
+
 
 const QuickLinks = () => {
   const pathname = usePathname();
@@ -28,7 +23,6 @@ const QuickLinks = () => {
               : "text-stone-300 flex flex-col justify-center items-center"
           )}
         >
-          {/* <TbPlaneArrival size={20} /> */}
           NEW ARRIVALS
         </div>
       </Link>
@@ -43,8 +37,6 @@ const QuickLinks = () => {
               : "text-stone-300 flex flex-col justify-center items-center w-full"
           )}
         >
-          {/* <CiHeart size={20} /> */}
-          {/* <IoPersonCircleOutline size={20} /> */}
           TOP SELLERS
         </div>
       </Link>
@@ -59,8 +51,7 @@ const QuickLinks = () => {
               : "text-stone-300 flex flex-col justify-center items-center w-2/3"
           )}
         >
-          {/* <CiHeart size={20} /> */}
-          TOP ITEMS
+          TRENDING ITEMS
         </div>
       </Link>
 
@@ -106,7 +97,6 @@ const QuickLinks = () => {
               : "text-red-500 flex flex-col justify-center items-center"
           )}
         >
-          {/* <CiCoinInsert size={20} /> */}
           SALE
         </div>
       </Link>

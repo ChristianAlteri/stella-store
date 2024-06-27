@@ -16,7 +16,7 @@ import getGenders from "@/actions/get-genders";
 import getSubcategories from "@/actions/get-sub-categories";
 import getTopLikes from "@/actions/get-top-likes";
 import LogInAndSignUp from "@/components/LoginSignup/log-in-and-sign-up";
-import FullscreenProductFiltersFooter from "@/components/Home/full-screen-product-filters-footer";
+import FullscreenProductFiltersFooter from "@/components/Filters/full-screen-product-filters-footer";
 
 export const revalidate = 0;
 
@@ -67,7 +67,7 @@ const ForYouPage: React.FC<ForYouPageProps> = async ({ searchParams }) => {
   const genders = await getGenders();
   const subcategories = await getSubcategories();
   // TODO: remove after testing
-  let loggedIn = true;
+  let loggedIn = false;
 
   return (
     <>

@@ -16,7 +16,7 @@ import getGenders from "@/actions/get-genders";
 import getSubcategories from "@/actions/get-sub-categories";
 import getBillboardByName from "@/actions/get-billboard-by-name";
 
-import FullscreenProductFiltersFooter from "@/components/Home/full-screen-product-filters-footer";
+import FullscreenProductFiltersFooter from "@/components/Filters/full-screen-product-filters-footer";
 import HomepageBillboard from "@/components/Billboard/HomepageBillboard";
 import HomepageBillboardMobile from "@/components/Billboard/HomepageBillboardMobile";
 

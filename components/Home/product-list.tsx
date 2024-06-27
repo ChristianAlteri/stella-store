@@ -1,6 +1,6 @@
 // import ProductCard from "@/components/ui/product-card";
 import { Product } from "@/types";
-import NoResults from "../ui/no-results";
+
 // import NoResults from "@/components/ui/no-results";
 
 interface ProductListProps {
@@ -15,13 +15,17 @@ const ProductList: React.FC<ProductListProps> = ({
   return (
     <div className="space-y-4">
       <h3 className="font-bold text-3xl">{title}</h3>
-      {data.length === 0 && <NoResults />}
+      {data.length === 0 && 
+        <div>
+          No results found
+        </div>
+      }
 
       <div className="flex">
         {data.map((item) => (
 
         //   <ProductCard key={item.id} data={item} />DO
-        <div  key={item.name}>{item.name}DOOOO</div>
+        <div  key={item.name}>{item.name}TODO:</div>
         ))}
       </div>
     </div>

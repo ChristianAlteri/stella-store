@@ -2,7 +2,7 @@ import ProductGrid from "@/components/Home/ProductGrid";
 import HomeContainer from "@/components/ui/HomeContainer";
 import ProductCard from "@/components/Product/product-card";
 import getProducts from "@/actions/get-products";
-import FullscreenProductFiltersFooter from "@/components/Home/full-screen-product-filters-footer";
+import FullscreenProductFiltersFooter from "@/components/Filters/full-screen-product-filters-footer";
 
 
 

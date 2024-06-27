@@ -17,78 +17,59 @@ const SearchQuickLinks = () => {
   return (
     <>
       <Link
-        href="/top-likes"
-        className="flex flex-col justify-center items-center rounded-xl w-full h-2/3 hover:underline"
-      >
-        <div
-          className={cn(
-            isRouteSelected("/top-likes")
-              ? "bg-light-background w-full flex flex-col justify-center items-center text-light-font rounded-md animate-pulse"
-              : "text-black flex flex-col justify-center items-center"
-          )}
-        >
-          <CiHeart size={14} />
-          Top Liked
-        </div>
-      </Link>
-      <Link
-        href="/most-viewed"
-        className="flex flex-col justify-center items-center rounded-xl w-full h-2/3 hover:underline"
-      >
-        <div
-          className={cn(
-            isRouteSelected("/most-viewed")
-              ? "bg-light-background w-full flex flex-col justify-center items-center text-light-font rounded-md animate-pulse"
-              : "text-black flex flex-col justify-center items-center"
-          )}
-        >
-          <IoMdTrendingUp size={14} />
-          Trending
-        </div>
-      </Link>
-      <Link
         href="/"
-        className="flex flex-col justify-center items-center rounded-xl w-full h-2/3 hover:underline"
+        className="flex flex-col lg:text-sm text-super-small justify-center items-center rounded-xl w-2/3 h-full hover:underline p-1"
       >
         <div
           className={cn(
             isRouteSelected("/")
-              ? "bg-light-background w-full flex flex-col justify-center items-center text-light-font rounded-md animate-pulse"
-              : "text-black flex flex-col justify-center items-center"
+              ? " underline w-full flex flex-col justify-center items-center text-light-font lg:text-sm text-super-small rounded-md h-full p-1 transition-transform animate-pulse"
+              : "text-stone-300 flex flex-col justify-center items-center"
           )}
         >
-          <TbPlaneArrival size={14} />
-          New 
+          NEW ARRIVALS
         </div>
       </Link>
       <Link
-        href="/for-you"
-        className="flex flex-col justify-center items-center rounded-xl w-full h-2/3 hover:underline"
+        href="/top-sellers"
+        className="flex flex-col lg:text-sm text-super-small justify-center items-center rounded-xl w-2/3 h-full hover:underline p-1"
       >
         <div
           className={cn(
-            isRouteSelected("/for-you")
-              ? "bg-light-background w-full flex flex-col justify-center items-center text-light-font rounded-md h-full p-1 scale-110 transition-transform animate-pulse"
-              : "text-black flex flex-col justify-center items-center"
+            isRouteSelected("/top-sellers")
+              ? "underline w-full flex flex-col justify-center items-center text-light-font lg:text-sm text-super-small rounded-md h-full p-1 transition-transform animate-pulse"
+              : "text-stone-300 flex flex-col justify-center items-center w-full"
           )}
         >
-          <RiHome5Line size={14} />
-          For You
+          TOP SELLERS
+        </div>
+      </Link>
+      <Link
+        href="/top-likes"
+        className="flex flex-col lg:text-sm text-super-small justify-center items-center rounded-xl w-2/3 h-full hover:underline p-1"
+      >
+        <div
+          className={cn(
+            isRouteSelected("/top-likes")
+              ? " underline w-full flex flex-col justify-center items-center text-light-font lg:text-sm text-super-small rounded-md h-full p-1 transition-transform animate-pulse"
+              : "text-stone-300 flex flex-col justify-center items-center w-2/3"
+          )}
+        >
+          TOP ITEMS
         </div>
       </Link>
       <Link
         href="/sale"
-        className="flex flex-col justify-center items-center rounded-xl w-full h-2/3 hover:underline"
+        className="flex flex-col lg:text-sm text-super-small justify-center items-center rounded-xl w-2/3 h-full hover:underline p-1"
       >
         <div
           className={cn(
             isRouteSelected("/sale")
-              ? "bg-light-background w-full flex flex-col justify-center items-center text-light-font rounded-md h-full p-1 scale-110 transition-transform animate-pulse"
-              : "text-black"
+              ? " underline w-full flex flex-col justify-center items-center text-red-500 lg:text-sm text-super-small rounded-md h-full p-1 transition-transform animate-pulse"
+              : "text-red-500 flex flex-col justify-center items-center"
           )}
         >
-          <CiCoinInsert size={14} />
-          Sale
+          SALE
         </div>
       </Link>
     </>

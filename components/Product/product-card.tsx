@@ -113,7 +113,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
             </div>
           </div>
         </div> */}
-        
+
         {/* images */}
         <div className="relative h-full w-full rounded-md flex justify-center items-center z-30 p-2">
           <div className="inset-0 w-full h-full flex justify-center items-center hover:cursor-pointer">
@@ -221,25 +221,19 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
 
         {/* large screens */}
         <div className="lg:flex flex-col hidden p-1 m-1">
-        <div className="flex flex-row justify-between text-gray-500 w-full ">
-            <div className="flex flex-row w-full gap-1 ">
-              <div className="text-stone-500 hover:scale-110 hover:cursor-pointer hover:text-black">
+          <div className="flex flex-row justify-between text-gray-500 w-full ">
+            <div className="flex flex-row w-full gap-1 items-center">
+              <div className="text-stone-500 hover:cursor-pointer hover:text-black text-xs">
                 <ProductCardButton
-                  icon={<CiHeart />}
+                  icon={<CiHeart size={18} />}
                   onClick={(event) => onAddToLikes(event)}
-                  />
+                />
               </div>
-              <h3
-              className="text-super-small"
-              >{item?.likes}</h3>
+              <h3 className="text-xs">{item?.likes}</h3>
             </div>
-            <div className="flex flex-row w-full gap-1 justify-end ">
-              <div className="text-stone-500 hover:scale-110 hover:cursor-pointer hover:text-black">
-                <CiRead />
-              </div>
-              <h3
-              className="text-super-small"
-              >{item?.clicks}</h3>
+            <div className="flex flex-row w-full gap-1 justify-end p-1 text-stone-500 items-center">
+              <CiRead size={18} />
+              <h3 className="text-xs">{item?.clicks}</h3>
             </div>
           </div>
 
@@ -315,26 +309,19 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
 
         {/* mobile screens */}
         <div className="flex flex-col justify-center items-center lg:hidden p-1 m-1">
-
-          <div className="flex flex-row justify-between  text-gray-500 w-full p-1">
-            <div className="flex flex-row w-full gap-1 ">
-              <div className="text-stone-500 hover:scale-110 hover:cursor-pointer hover:text-black">
+          <div className="flex flex-row justify-between text-gray-500 w-full ">
+            <div className="flex flex-row w-full gap-1 items-center">
+              <div className="text-stone-500 hover:cursor-pointer hover:text-black text-super-small">
                 <ProductCardButton
-                  icon={<CiHeart />}
+                  icon={<CiHeart size={18} />}
                   onClick={(event) => onAddToLikes(event)}
-                  />
+                />
               </div>
-              <h3
-              className="text-super-small"
-              >{item?.likes}</h3>
+              <h3 className="text-super-small">{item?.likes}</h3>
             </div>
-            <div className="flex flex-row w-full gap-1 justify-end ">
-              <div className="text-stone-500 hover:scale-110 hover:cursor-pointer hover:text-black">
-                <CiRead />
-              </div>
-              <h3
-              className="text-super-small"
-              >{item?.clicks}</h3>
+            <div className="flex flex-row w-full gap-1 justify-end p-1 text-stone-500 items-center">
+              <CiRead size={18} />
+              <h3 className="text-super-small">{item?.clicks}</h3>
             </div>
           </div>
 
@@ -349,7 +336,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
             className="text-xs hover:underline text-black hover:cursor-pointer"
           >
             {item.designer?.name.charAt(0).toUpperCase() +
-                item.designer?.name.slice(1)}
+              item.designer?.name.slice(1)}
           </h3>
           <div className="flex flex-row gap-1">
             <h6 onClick={handleProductClick} className="text-xs text-red-500">
@@ -396,7 +383,6 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
             <div className="flex flex-row gap-1 justify-end text-super-small text-black w-full items-center m-1">
               {item?.size?.name}
             </div>
-
           </div>
           {/* <div className="flex flex-row justify-between items-start text-black text-super-small w-full underline">
             <h3>{item?.likes} likes</h3>

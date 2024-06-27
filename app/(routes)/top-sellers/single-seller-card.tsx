@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { CiBadgeDollar } from "react-icons/ci";
 import MiniProductSellerCard from "./mini-seller-product-card";
-import SuggestedContainer from "@/components/Suggested/SuggestedContainer";
+import { CiInstagram } from "react-icons/ci";
 
 interface SellerCardProps {
   data: Seller;
@@ -14,16 +14,12 @@ interface SellerCardProps {
 }
 
 const SellerCard: React.FC<SellerCardProps> = ({ data }) => {
-
   const isCharity = true;
 
-
   return (
-    <div className="p-7 col-span-1 justify-center items-center rounded-sm overflow-hidden hover:cursor-pointer hover:underline">
+    <div className="p-2 col-span-1 justify-center items-center rounded-sm overflow-hidden ">
       <Link href={`/sellers/${data?.id}`}>
-
-        <div className="flex flex-row gap-4"> 
-        
+        <div className="flex flex-row gap-4">
           {/* Billboard */}
           {data?.billboard?.imageUrl.match(
             /https:\/\/.*\.(video|mp4|MP4|mov).*/
@@ -97,53 +93,46 @@ const SellerCard: React.FC<SellerCardProps> = ({ data }) => {
             </div>
           )}
 
-            
           {/* Mini product card */}
           {data.products.length > 0 && (
-            <MiniProductSellerCard
-              data={data.products}
-            />
+            <MiniProductSellerCard data={data.products} />
           )}
-        {/* <div className="flex-row justify-center items-center w-full hidden md:flex">
-          <div className="flex justify-center h-full w-1/2 gap-2">
-            {data.products.length > 0 && ( //same seller large screen
-              <>
-                <div className="flex border-t border-b ">
-                  <SuggestedContainer
-                    route={`sellers/${data?.id}`}
-                    header={`MORE FROM ${data?.instagramHandle.toUpperCase()}`}
-                    title={data?.instagramHandle.toUpperCase()}
-                    data={data.products}
-                  />
-                </div>
-              </>
-            )}
-          </div>
-        </div> */}
-
-        </div>
-
-
-        {/* Name */}
-        <div className="flex flex-row justify-center items-center gap-2 mt-4">
-          <h2 className="text-lg text-black">
-            @{data?.instagramHandle.toUpperCase()}
-          </h2>
-          {isCharity && (
-                <div className="flex flex-row text-xs">
-                  <Tooltip
-                    label="Charity"
-                    aria-label="A tooltip"
-                    placement="bottom"
-                  >
-                    <p className="text-green-500 text-xs">
-                      <CiBadgeDollar size={25} />
-                    </p>
-                  </Tooltip>
-                </div>
-              )}
         </div>
       </Link>
+
+      {/* Name */}
+      <div className="flex flex-col justify-center items-center mt-2">
+        <h2 className="text-sm text-black hover:cursor-pointer hover:underline">
+          <Link href={`/sellers/${data?.id}`}>
+            {data?.instagramHandle.toUpperCase()}
+          </Link>
+        </h2>
+      </div>
+
+      <div className="flex flex-row justify-center items-center gap-2">
+        <Link
+          href={`https://instagram.com/${data?.instagramHandle}`}
+          className="text-lg text-black"
+          target="_blank"
+        >
+          <p className="text-red-500 text-xs">
+            <CiInstagram size={20} />
+          </p>
+        </Link>
+        {isCharity && (
+          <div className="flex flex-row text-super-small">
+            <Tooltip
+              label="Charity"
+              aria-label="A charity tooltip"
+              placement="bottom"
+            >
+              <p className="text-green-500 text-super-small">
+                <CiBadgeDollar size={20} />
+              </p>
+            </Tooltip>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

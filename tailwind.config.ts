@@ -28,8 +28,8 @@ const config: Config = withMT({
       colors: {
         "stella-green": "#1ca330",
         "light-font": "#485942",
-        "light-background": "#f2ffed",
-        "darker-background": "#c6edb7",
+        "light-background": "#daffcc",
+        "darker-background": "#469c25",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

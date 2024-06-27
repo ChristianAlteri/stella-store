@@ -62,18 +62,17 @@ const MiniProductSellerCard: React.FC<MiniProductSellerCardProps> = ({
   }, [intervalId, opacityIntervalId, data]);
 
 
-  const handleProductClick = () => {
-    router.push(
-      `/product/${currentProduct?.category?.id}/${currentProduct?.designer?.id}/${currentProduct?.id}/${currentProduct?.seller?.id}`
-    );
-  };
+  // const handleProductClick = () => {
+  //   router.push(
+  //     `/product/${currentProduct?.category?.id}/${currentProduct?.designer?.id}/${currentProduct?.id}/${currentProduct?.seller?.id}`
+  //   );
+  // };
 
   return (
     <div className="flex flex-col w-full">
 
         <div className="flex flex-col p-1 justify-center items-center" key={currentProduct.id}>
           <div
-            onClick={handleProductClick}
             className="flex justify-center items-center hover:cursor-pointer"
           >
             <div className="relative">
@@ -102,7 +101,6 @@ const MiniProductSellerCard: React.FC<MiniProductSellerCardProps> = ({
                 <div className="flex">
                   <Image
                     key={currentProduct?.images?.[0]?.id}
-                    onClick={handleProductClick}
                     width={1080}
                     height={1350}
                     loading="lazy"
@@ -120,7 +118,7 @@ const MiniProductSellerCard: React.FC<MiniProductSellerCardProps> = ({
                 </div>
               )}
 
-              <div
+              {/* <div
                 className="absolute top-0 left-0 w-full h-full flex items-center justify-center transition-opacity duration-300 "
                 style={{ opacity }}>
                 <div className="flex flex-col justify-center items-center m-5 ">
@@ -131,7 +129,6 @@ const MiniProductSellerCard: React.FC<MiniProductSellerCardProps> = ({
                     {currentProduct.designer?.name.toUpperCase()}
                   </a>
                   <h3
-                    onClick={handleProductClick}
                     className="text-xs hover:underline text-black hover:text-stone-700 hover:cursor-pointer bg-stone-200 bg-opacity-60"
                   >
                     {currentProduct.name}
@@ -149,7 +146,7 @@ const MiniProductSellerCard: React.FC<MiniProductSellerCardProps> = ({
                     </h6>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

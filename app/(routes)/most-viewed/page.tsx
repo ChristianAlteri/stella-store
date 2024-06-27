@@ -15,7 +15,7 @@ import getMaterials from "@/actions/get-materials";
 import getGenders from "@/actions/get-genders";
 import getSubcategories from "@/actions/get-sub-categories";
 import getMostViewed from "@/actions/get-most-viewed";
-import FullscreenProductFiltersFooter from "@/components/Home/full-screen-product-filters-footer";
+import FullscreenProductFiltersFooter from "@/components/Filters/full-screen-product-filters-footer";
 
 export const revalidate = 0;
 

@@ -47,7 +47,7 @@ const LeftSidebar: React.FC<LeftSideProps> = ({
             ))}
           </div>
         </div>
-        <div className="row-span-1 h-full">
+        <div className="row-span-1 h-full p-1">
           <Link className="font-bold text-lg bg-white" href={`/designers`}>
             DESIGNERS
           </Link>
@@ -62,13 +62,13 @@ const LeftSidebar: React.FC<LeftSideProps> = ({
                       : "text-light-font"
                   )}
                 >
-                  {designer.name}
+                  {designer.name.toUpperCase()}
                 </p>
               </Link>
             ))}
           </div>
         </div>
-        <div className="row-span-1 h-full">
+        <div className="row-span-1 h-full p-1">
           <Link className="font-bold text-lg bg-white" href={`/categories`}>
             CATEGORIES
           </Link>
@@ -83,7 +83,7 @@ const LeftSidebar: React.FC<LeftSideProps> = ({
                       : "text-light-font"
                   )}
                 >
-                  {category.name}
+                  {category.name.toUpperCase()}
                 </p>
               </Link>
             ))}

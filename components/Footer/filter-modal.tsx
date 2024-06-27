@@ -18,9 +18,9 @@ import { GoFilter } from "react-icons/go";
 
 import MiniProductCard from "../Product/mini-product-card";
 import MobileProductFilter from "../Filters/mobile-product-filter";
-import Link from "next/link";
-import { IoChevronBackCircle } from "react-icons/io5";
 import NavbarScrollingBanner from "../NavBar/navbar-scrolling-banner";
+import { MdArrowBackIos } from "react-icons/md";
+import RangeSlider from "../Filters/range-slider";
 
 interface FilterModalProps {
   colors: Color[] | undefined;
@@ -38,7 +38,6 @@ interface FilterModalProps {
 const FilterModal: React.FC<FilterModalProps> = ({
   colors,
   sizes,
-  conditions,
   materials,
   subcategories,
   onSaleProducts,
@@ -68,16 +67,19 @@ const FilterModal: React.FC<FilterModalProps> = ({
         size={500}
       >
         <div className="grid grid-rows-10 h-full flex-row p-6 justify-center items-center">
+          {open && (
+            <div className="row-span-1 w-full">
+              <NavbarScrollingBanner
+                text="Enjoy a 20% off your first purchase by"
+                underlinedText="creating an account."
+                link="/for-you"
+              />
+            </div>
+          )}
 
-        {open && (
-          <div className="row-span-1 w-full">
-            <NavbarScrollingBanner
-              text="Enjoy a 20% off your first purchase by"
-              underlinedText="creating an account."
-              link="/for-you"
-            />
+          <div className="flex flex-col row-span-1 justify-center items-center h-1/3 w-full">
+            <RangeSlider />
           </div>
-        )}
 
           <div className="row-span-4 p-4 overflow-y-auto h-full flex-row justify-center items-center shadow-2xl rounded-md border w-full">
             <div className="flex flex-col h-full w-full justify-start items-start overflow-y-auto gap-2">
@@ -95,13 +97,6 @@ const FilterModal: React.FC<FilterModalProps> = ({
                   data={colors}
                 />
               </div>
-              {/* <div className="flex flex-col bg-white w-full justify-center items-center">
-                <MobileProductFilter
-                  valueKey="conditionId"
-                  name="Conditions"
-                  data={conditions}
-                />
-              </div> */}
               <div className="flex flex-col bg-white w-full justify-center items-center">
                 <MobileProductFilter
                   valueKey="materialId"
@@ -119,7 +114,7 @@ const FilterModal: React.FC<FilterModalProps> = ({
             </div>
           </div>
 
-          <div className="row-span-4 p-4 mt-4 overflow-y-auto h-full">
+          <div className="row-span-4 p-4 mt-3 overflow-y-auto h-full">
             <div className="flex flex-col bg-white">
               {onSaleProducts && (
                 <MiniProductCard
@@ -131,13 +126,12 @@ const FilterModal: React.FC<FilterModalProps> = ({
             </div>
           </div>
 
-          <div className="row-span-1 bg-white flex-row justify-end items-end w-full p-3">
-            <div
+          <div className="row-span-1 flex bg-transparent flex-row justify-between w-full p-3 text-center items-center">
+            <MdArrowBackIos
+              className="hover:cursor-pointer"
               onClick={closeDrawer}
-              className="p-4 border bg-light-background rounded-md"
-            >
-              Show results
-            </div>
+              size={20}
+            />
           </div>
         </div>
       </Drawer>

@@ -39,20 +39,38 @@ const DetailsCard: React.FC<DetailsCardProps> = ({ data, products }) => {
           </Link>
           <h1 className="md:text-sm text-md  font-semibold ">{data?.name}</h1>
           <div className="ml-1 flex flex-col w-full">
-            <div className="flex flex-row justify-end w-full gap-1 mt-4">
-              <h1 className=" text-sm text-red-500 font-bold">
-                £{data.ourPrice}
-              </h1>
-              <h1 className=" text-sm">RRP</h1>
-              <h1 className=" text-sm line-through">£{data.retailPrice}</h1>
-            </div>
-            <h1 className="text-xs flex flex-row text-light-font justify-end w-full">
-              Size {data?.size?.name.toLowerCase()}
+
+            <h1 className="text-xs flex flex-row text-light-font justify-start w-full">
+              size {data?.size?.name.toLowerCase()}
             </h1>
+
+             <div className="flex flex-col justify-end w-full gap-1 mt-4">
+
+            <div className="flex flex-row w-full justify-between">
+              <div className="flex flex-row items-center justify-start w-full gap-1 mt-4">
+                <h1 className=" text-sm text-red-500 font-bold">
+                  £{data.ourPrice}
+                </h1>
+                <h1 className=" text-sm">RRP</h1>
+                <h1 className=" text-sm line-through">£{data.retailPrice}</h1>
+              </div>
+
+              <div className="flex flex-col justify-end w-full gap-1 mt-4 mb-2">
+                {data?.likes === 1 ? (
+                    <h1 className="flex text-super-small w-full justify-end">{data?.likes} person has liked this</h1>
+                  ) : (
+                    <h1 className="flex text-super-small w-full justify-end">{data?.likes} people have liked this</h1>
+                  )}
+                  <h1 className="flex flex-row text-super-small w-full justify-end">
+                    {data?.clicks} have viewed this product
+                </h1>
+              </div>
+            </div>
+             </div>
           </div>
         </div>
 
-        <div className="border-t border-light-font mt-3 mb-1">
+        <div className="border-t border-light-font mb-1">
           <BuyNowCard data={data} />
         </div>
 

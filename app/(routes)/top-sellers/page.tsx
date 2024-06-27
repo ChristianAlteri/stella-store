@@ -15,7 +15,7 @@ import getMaterials from "@/actions/get-materials";
 import getGenders from "@/actions/get-genders";
 import getSubcategories from "@/actions/get-sub-categories";
 import getTopLikes from "@/actions/get-top-likes";
-import FullscreenProductFiltersFooter from "@/components/Home/full-screen-product-filters-footer";
+import FullscreenProductFiltersFooter from "@/components/Filters/full-screen-product-filters-footer";
 import SellerContainer from "./sellerContainer";
 import getTopSellers from "@/actions/get-top-sellers";
 
@@ -77,7 +77,7 @@ const TopSellers: React.FC<TopSellersProps> = async ({ searchParams }) => {
     <>
       <div className="flex flex-row w-full justify-center items-center text-center">
         <div className="w-full justify-center text-center">
-          <h2 className="text-2xl font-bold text-black mt-2">TOP SELLERS!</h2>
+          <h2 className="text-2xl font-bold text-black mt-2 p-2">TOP SELLERS</h2>
         </div>
       </div>
       <div className="justify-center items-center md:grid flex grid-cols-8 gap-4 bg-white">

@@ -11,6 +11,7 @@ import { CiMenuBurger } from "react-icons/ci";
 import QuickLinks from "./quick-links";
 import useParamsUtil from "@/utils/useParamsUtil";
 import MiniProductCard from "../Product/mini-product-card";
+import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
 
 interface HamburgerMenuProps {
   designers?: Designer[];
@@ -59,9 +60,20 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
         size={500}
         placeholder={undefined}
       >
-        <div className="grid grid-rows-8 h-full">
-        <div className="row-span-1 bg-stone-100 flex items-center justify-around text-xs text-stone-700 shadow-md h-full">
-            <QuickLinks />
+        <div className="grid grid-rows-9 h-full">
+
+
+        <div className="row-span-1 bg-stone-100 flex flex-col items-center justify-around text-xs text-stone-700 shadow-md h-full">
+            <div className="flex flex-col w-full">
+
+              <div className="flex flex-row justify-end text-center items-center hover:cursor-pointer w-full">
+                <MdArrowForwardIos  onClick={closeDrawer} size={17}/>
+              </div>
+
+              <div className="flex flex-row  w-full">
+              <QuickLinks />
+              </div>
+            </div>
           </div>
 
           <div className="row-span-4 p-4 overflow-y-auto">
@@ -88,7 +100,6 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
                     ))}
                   </div>
               </div>
-
               <div className="flex flex-col items-center border-r w-full p-4">
               <Link className="font-bold text-sm bg-white" href={`/designers`}>
                 DESIGNERS
@@ -134,13 +145,15 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
             </div>
           </div>
 
+          
+
           <div className="row-span-3 bg-stone-200 flex items-center justify-center ">
             <aside className="flex flex-col w-2/3 justify-center items-center top-0 h-2/3">
               {topTen && topTen.length > 0 && (
                 <MiniProductCard
-                  data={topTen}
-                  miniProductRoute="/most-viewed"
-                  miniProductTitle="Most Viewed"
+                data={topTen}
+                miniProductRoute="/most-viewed"
+                miniProductTitle="Most Viewed"
                 />
               )}
             </aside>

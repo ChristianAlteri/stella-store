@@ -63,76 +63,65 @@ const MegaSearch: React.FC<MegaSearchProps> = ({
         {/* Dialog position */}
         <div className="fixed justify-center items-center inset-0 z-40 flex">
           <Dialog.Panel className="flex rounded-sm flex-col h-2/3 w-2/3 overflow-y-auto bg-white shadow-xl border border-light-font">
-            <div className="flex flex-col w-full h-full items-center justify-center ">
-              {/* <div className="flex flex-row justify-between w-full p-2 top-0 items-center text-center ">
-                <div className="">
-                  <IconButton
-                    icon={<IoCloseOutline size={17} />}
-                    onClick={onClose}
-                  />
-                </div>
-
-                <div className="">
-                  <ShoppingCartButton size="17px" />
-                </div>
-              </div> */}
-
-              {/* <div className="border-t border-light-font justify-center items-center w-full"></div> */}
+            <div className="flex flex-col w-full h-full items-center justify-center p-1 mt-2 mb-2">
 
               {/* Quick links that redirect to pages */}
-              <div className="flex flex-row w-full justify-between items-center p-2 text-super-small">
+              <div className="flex flex-row w-full justify-between items-center p-1 text-super-small">
                 <SearchQuickLinks />
               </div>
 
               <div className="border-t border-light-font justify-center items-center w-full"></div>
 
-              <div className="grid grid-cols-1 w-2/3 justify-start items-start mt-2 h-full">
+              <div className="grid grid-cols-1 w-2/3 justify-start items-start mt-2 h-full mb-2">
                 {/* Search Bar */}
                 <div className="h-full w-full">
+                  <div className="flex justify-start text-xs font-medium transition-colors hover:text-stone-900 mt-2">
+                    SEARCH BY:
+                  </div>
                   <div className="flex flex-row w-full justify-between items-center">
                     <button
                       className={cn(
-                        "flex justify-start text-xs font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer",
+                        "flex justify-start text-xs font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer p-2",
                         searchBy === "Product"
-                          ? "text-stone bg-light-background rounded-md p-1 flex justify-center items-center text-light-font underline transition-transform animate-pulse"
+                          ? "text-stone  p-1 flex justify-center items-center underline transition-transform animate-pulse"
                           : "text-stone-500"
                       )}
                       onClick={() => setSearchBy("Product")}
                     >
-                    Product
+                    ITEMS
                     </button>
                     <button
                       className={cn(
-                        "flex justify-start text-xs font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer",
+                        "flex justify-start text-xs font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer p-2",
                         searchBy === "Seller"
-                          ? "text-stone bg-light-background rounded-md p-1 flex justify-center items-center text-light-font underline transition-transform animate-pulse"
+                          ? "text-stone  p-1 flex justify-center items-center underline transition-transform animate-pulse"
                           : "text-stone-500"
                       )}
                       onClick={() => setSearchBy("Seller")}
                     >
-                    Seller
+                    SELLERS
                     </button>
                     <button
                       className={cn(
-                        "flex justify-start text-xs font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer",
+                        "flex justify-start text-xs font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer p-2",
                         searchBy === "Category"
-                          ? "text-stone bg-light-background rounded-md p-1 flex justify-center items-center text-light-font underline transition-transform animate-pulse"
+                          ? "text-stone  p-1 flex justify-center items-center underline transition-transform animate-pulse"
                           : "text-stone-500"
                       )}
                       onClick={() => setSearchBy("Category")}
                     >
-                    Category
+                    CATEGORIES
                     </button>
                     <button
                       className={cn(
-                        "flex justify-start text-xs font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer",
+                        "flex justify-start text-xs font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer p-2",
                         searchBy === "Designer"
-                          ? "text-stone bg-light-background rounded-md p-1 flex justify-center items-center text-light-font underline transition-transform animate-pulse"
+                          ? "text-stone  p-1 flex justify-center items-center underline transition-transform animate-pulse"
                           : "text-stone-500"
                       )}
                       onClick={() => setSearchBy("Designer")}
                     >
-                    Designer
+                    DESIGNERS
                     </button>
                   </div>
 

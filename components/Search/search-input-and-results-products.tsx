@@ -67,13 +67,13 @@ const SearchInputAndResultsProducts: React.FC<
           )}
         </div>
       </div>
-      <div className="bottom-0 w-full p-1 bg-white">
+      {/* <div className="bottom-0 w-full p-1 bg-white">
         <NavbarScrollingBanner
           text="Enjoy a 20% off your first purchase by"
           underlinedText="creating an account."
           link="/for-you"
         />
-      </div>
+      </div> */}
     </>
   );
 };

@@ -17,8 +17,9 @@ import getMaterials from "@/actions/get-materials";
 import getSingleSeller from "@/actions/get-single-seller";
 import getGenders from "@/actions/get-genders";
 import getSubcategories from "@/actions/get-sub-categories";
-import FullscreenProductFiltersFooter from "@/components/Home/full-screen-product-filters-footer";
+import FullscreenProductFiltersFooter from "@/components/Filters/full-screen-product-filters-footer";
 import ProfileBillboard from "@/components/Billboard/ProfileBillboard";
+import Link from "next/link";
 
 export const revalidate = 0;
 
@@ -80,16 +81,22 @@ const SellerNamePage: React.FC<SellerNamePageProps> = async ({
 
   return (
     <>
+      <Link
+        href={`https://instagram.com/${sellerData?.instagramHandle}`}
+        className="text-lg text-black"
+        target="_blank"
+      >
       <div className="flex flex-col p-7 w-full justify-center items-center text-center mb-2">
-        <div className="flex justify-center items-center rounded-full overflow-hidden h-1/2 w-full">
+        <div className="flex justify-center items-center rounded-full overflow-hidden h-1/2 w-full hover:cursor-pointer">
           <ProfileBillboard data={sellerData?.billboard} />
         </div>
         <div className="w-full justify-center text-center">
-          <h2 className="text-2xl font-bold text-black mt-2">
-            @{sellerData?.instagramHandle.toUpperCase()}
-          </h2>
+            <h2 className="text-2xl font-bold text-black mt-2 hover:cursor-pointer hover:underline">
+              @{sellerData?.instagramHandle.toUpperCase()}
+            </h2>
         </div>
       </div>
+      </Link>
 
       <div className="justify-center items-center md:grid flex grid-cols-8 gap-4 bg-white">
         {/* First column */}

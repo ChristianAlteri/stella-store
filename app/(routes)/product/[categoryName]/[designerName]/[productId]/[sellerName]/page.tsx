@@ -73,37 +73,15 @@ const IndividualProductPage: React.FC<IndividualProductPageProps> = async ({
       </div>
 
       {/* Suggestions */}
-      <div className="flex-row justify-center items-center w-full hidden md:flex">
-        <div className="flex justify-center h-full w-1/2 gap-2">
-          {sortedProductsBasedOnSeller.length > 0 && ( //same seller large screen
-            <>
-              <div className="flex border-t border-b ">
-                <SuggestedContainer
-                  route={`sellers/${product?.seller?.id}`}
-                  header={`MORE FROM`}
-                  title={product?.seller?.instagramHandle.toUpperCase()}
-                  data={sortedProductsBasedOnSeller}
-                />
-              </div>
-            </>
-          )}
-        </div>
-      </div>
-
-      <div className="md:hidden flex bg-light-background">
-        {sortedProductsBasedOnSeller.length > 0 && ( //same seller small screen
-          <>
-            <div className="flex border-t border-b ">
-              <SuggestedContainer
-                route={`sellers/${product?.seller?.id}`}
-                header={`MORE FROM`}
-                title={product?.seller?.instagramHandle.toUpperCase()}
-                data={sortedProductsBasedOnSeller}
-              />
-            </div>
-          </>
-        )}
-      </div>
+      
+      {sortedProductsBasedOnSeller.length > 0 && ( //same seller large screen
+        <SuggestedContainer
+          route={`sellers/${product?.seller?.id}`}
+          header={`MORE FROM THIS`}
+          title={"DROBE"}
+          data={sortedProductsBasedOnSeller}
+        />
+      )}
       {sortedProductsBasedOnCategory.length > 0 && ( //most clicked
         <SuggestedContainer
           route={`categories/${product?.category?.id}`}

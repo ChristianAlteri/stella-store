@@ -16,7 +16,7 @@ import getSingleDesigner from "@/actions/get-single-designer";
 import getGenders from "@/actions/get-genders";
 import getSubcategories from "@/actions/get-sub-categories";
 import FullscreenProductFilters from "@/components/Home/full-screen-product-filters";
-import FullscreenProductFiltersFooter from "@/components/Home/full-screen-product-filters-footer";
+import FullscreenProductFiltersFooter from "@/components/Filters/full-screen-product-filters-footer";
 
 export const revalidate = 0;
 

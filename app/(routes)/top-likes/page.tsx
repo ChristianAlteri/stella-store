@@ -15,7 +15,7 @@ import getMaterials from "@/actions/get-materials";
 import getGenders from "@/actions/get-genders";
 import getSubcategories from "@/actions/get-sub-categories";
 import getTopLikes from "@/actions/get-top-likes";
-import FullscreenProductFiltersFooter from "@/components/Home/full-screen-product-filters-footer";
+import FullscreenProductFiltersFooter from "@/components/Filters/full-screen-product-filters-footer";
 
 export const revalidate = 0;
 
@@ -72,11 +72,11 @@ const TopLikesPage: React.FC<TopLikesPageProps> = async ({ searchParams }) => {
       <div className="flex flex-row w-full justify-center items-center text-center">
           <div className="w-full justify-center text-center">
             <h2 className="text-2xl font-bold text-black mt-2">
-              TOP LIKED PRODUCTS!
+              TRENDING ITEMS
             </h2>
             <p className="text-sm font-cursive text-light-font">
-              These are all the top liked products from users around the
-              world, handpicked with love!
+              These are all the top liked items from users around the
+              world.
             </p>
           </div>
         </div>

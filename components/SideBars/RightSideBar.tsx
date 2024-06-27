@@ -1,29 +1,21 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { GoFilter } from "react-icons/go";
 
 import {
-  Category,
   Color,
   Condition,
   Designer,
-  Gender,
   Material,
   Product,
   Seller,
   Size,
   Subcategory,
 } from "@/types";
-import FilterButtons from "./filter-buttons";
 import { randomiseData } from "../../utils/sortdata";
 import MiniProductCard from "../Product/mini-product-card";
-import ProductFilter from "../Filters/product-filter";
-import FullscreenProductFilters from "../Home/full-screen-product-filters";
-import SideBarProductSort from "./sidebar-product-sort";
 import MobileProductFilter from "../Filters/mobile-product-filter";
-import { BsPersonRaisedHand } from "react-icons/bs";
-import ClientAdvisor from "../ui/ClientAdvisor";
+import RangeSlider from "../Filters/range-slider";
 
 interface RightSideProps {
   sizes?: Size[];
@@ -40,7 +32,6 @@ interface RightSideProps {
 const RightSidebar: React.FC<RightSideProps> = ({
   sizes,
   colors,
-  conditions,
   materials,
   subcategories,
   productData,
@@ -56,18 +47,11 @@ const RightSidebar: React.FC<RightSideProps> = ({
 
   return (
     <aside className="h-full z-35">
-      <div className="grid grid-rows-3 h-full w-full justify-end items-end flex-col">
-        {/* <div className="row-span-1 h-full w-full"> */}
-          {/* <SideBarProductSort
-            categoryData={categoryData}
-            productData={productData}
-            genders={genders}
-          /> */}
-          {/* <div className="border w-full shadow-md">
-            <BsPersonRaisedHand />
-            <ClientAdvisor products={allProducts} />
-          </div>
-        </div> */}
+      <div className="grid grid-rows-4 h-full w-full justify-end items-end flex-col">
+
+        <div className="flex flex-col row-span-1 justify-center items-center h-2/3 w-full">
+          <RangeSlider />
+        </div>
 
         <div className="row-span-1 h-full w-full">
           <div className="flex flex-col bg-white w-full justify-center items-center">
@@ -76,13 +60,7 @@ const RightSidebar: React.FC<RightSideProps> = ({
           <div className="flex flex-col bg-white w-full justify-center items-center">
             <MobileProductFilter valueKey="colorId" name="Colors" data={colors} />
           </div>
-          {/* <div className="flex flex-col bg-white w-full justify-center items-center">
-            <MobileProductFilter
-              valueKey="conditionId"
-              name="Conditions"
-              data={conditions}
-            />
-          </div> */}
+
           <div className="flex flex-col bg-white w-full justify-center items-center">
             <MobileProductFilter
               valueKey="materialId"
@@ -90,7 +68,7 @@ const RightSidebar: React.FC<RightSideProps> = ({
               data={materials}
             />
           </div>
-          <div className="flex flex-col bg-white w-full justify-center items-center">
+          <div className="flex flex-col bg-white w-full justify-center items-center ">
             <MobileProductFilter
               valueKey="subcategoryId"
               name="Sub-Category"
@@ -98,35 +76,8 @@ const RightSidebar: React.FC<RightSideProps> = ({
             />
           </div>
         </div>
-        {/* <div className="row-span-1 h-full overflow-y-auto bg-white">
-          <ProductFilter valueKey="sizeId" name="Sizes" data={sizes} />
-        </div> */}
-        {/* <div className="row-span-1 h-full overflow-y-auto bg-white">
-          <ProductFilter valueKey="colorId" name="Colors" data={colors} />
-        </div>
-        <div className=" row-span-1 h-full overflow-y-auto bg-white">
-          <ProductFilter
-            valueKey="conditionId"
-            name="Conditions"
-            data={conditions}
-          />
-        </div>
-        <div className=" row-span-1 h-full overflow-y-auto bg-white">
-          <ProductFilter
-            valueKey="materialId"
-            name="Materials"
-            data={materials}
-          />
-        </div>
-        <div className=" row-span-1 h-full overflow-y-auto bg-white">
-          <ProductFilter
-            valueKey="subcategoryId"
-            name="Sub-Category"
-            data={subcategories}
-          />
-        </div> */}
 
-        <div className="flex flex-col bg-white row-span-2 h-full w-full">
+        <div className="flex flex-col bg-white row-span-2 h-full w-full ">
           {randomisedProductData?.length > 0 ? (
             <MiniProductCard
               miniProductTitle={miniProductTitle}

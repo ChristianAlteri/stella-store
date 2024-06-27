@@ -205,7 +205,7 @@ const SearchInputAndResultsData: React.FC<SearchInputAndResultsDataProps> = ({
           )}
         </div>
       </div>
-      {!showAllProducts ?
+      {/* {!showAllProducts ?
       <div className="bottom-0 w-full p-1 bg-white">
         <NavbarScrollingBanner
           text="Enjoy a 20% off your first purchase by"
@@ -213,7 +213,7 @@ const SearchInputAndResultsData: React.FC<SearchInputAndResultsDataProps> = ({
           link="/for-you"
         />
       </div>
-      : null}
+      : null} */}
     </>
   );
 };
