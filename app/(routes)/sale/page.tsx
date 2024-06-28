@@ -61,6 +61,7 @@ const SalePage: React.FC<SalePageProps> = async ({ searchParams }) => {
   });
   // const featuredProducts = await getProducts({ isFeatured: true });
 
+
   const sizes = await getSizes();
   const colors = await getColors();
   const conditions = await getConditions();

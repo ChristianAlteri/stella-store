@@ -14,8 +14,7 @@ import getConditions from "@/actions/get-conditions";
 import getMaterials from "@/actions/get-materials";
 import getGenders from "@/actions/get-genders";
 import getSubcategories from "@/actions/get-sub-categories";
-import getTopLikes from "@/actions/get-top-likes";
-import FullscreenProductFiltersFooter from "@/components/Filters/full-screen-product-filters-footer";
+import getTrending from "@/actions/get-trending";
 import SellerContainer from "./sellerContainer";
 import getTopSellers from "@/actions/get-top-sellers";
 
@@ -41,7 +40,7 @@ interface TopSellersProps {
 }
 
 const TopSellers: React.FC<TopSellersProps> = async ({ searchParams }) => {
-  const topLikedProducts = await getTopLikes({
+  const topLikedProducts = await getTrending({
     categoryId: searchParams.categoryId,
     sort: searchParams.sort,
     sizeId: searchParams.sizeId,
@@ -115,7 +114,7 @@ const TopSellers: React.FC<TopSellersProps> = async ({ searchParams }) => {
             conditions={conditions}
             materials={materials}
             subcategories={subcategories}
-            productData={featuredProducts}
+            // productData={featuredProducts}
             miniProductTitle="Our top picks"
           />
         </div>

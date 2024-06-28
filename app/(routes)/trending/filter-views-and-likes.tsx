@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import qs from "query-string";
 import { cn } from "@/lib/utils";
 import { Product } from "@/types";
+import { CiHeart, CiRead } from "react-icons/ci";
 
 interface ViewsLikesFilterProps {
   data: Product[] | undefined;
@@ -46,7 +47,7 @@ const ViewsLikesFilter: React.FC<ViewsLikesFilterProps> = ({ data }) => {
 
   return (
     <>
-      <div className="flex flex-row justify-center items-center m-2 p-1 gap-2 w-full overflow-auto">
+      <div className="flex flex-row justify-center items-center m-2 p-1 gap-2 w-full overflow-auto md:w-1/2">
         <div className="flex flex-col justify-center gap-1 items-center text-center text-xs text-stone-300 hover:cursor-pointer w-full">
           <div
             className={cn(
@@ -56,8 +57,9 @@ const ViewsLikesFilter: React.FC<ViewsLikesFilterProps> = ({ data }) => {
             )}
             onClick={() => handleClick("sort", "most-liked")}
           >
-            <div className="flex flex-col justify-center items-center">
+            <div className="flex flex-row justify-center items-center gap-1">
               TOP LIKED
+              <CiHeart size={17} />
             </div>
           </div>
         </div>
@@ -70,8 +72,9 @@ const ViewsLikesFilter: React.FC<ViewsLikesFilterProps> = ({ data }) => {
             )}
             onClick={() => handleClick("sort", "most-viewed")}
           >
-            <div className="flex flex-col justify-center items-center">
+            <div className="flex flex-row justify-center items-center gap-1">
               TOP VIEWED
+              <CiRead size={17}/>
             </div>
           </div>
         </div>

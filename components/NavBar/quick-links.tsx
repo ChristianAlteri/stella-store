@@ -41,12 +41,12 @@ const QuickLinks = () => {
         </div>
       </Link>
       <Link
-        href="/top-likes"
+        href="/trending"
         className="flex flex-col lg:text-sm text-super-small justify-center items-center rounded-xl w-full h-full hover:underline "
       >
         <div
           className={cn(
-            isRouteSelected("/top-likes")
+            isRouteSelected("/trending")
               ? " underline w-full flex flex-col justify-center items-center text-light-font lg:text-sm text-super-small rounded-md h-full"
               : "text-stone-300 flex flex-col justify-center items-center w-full"
           )}

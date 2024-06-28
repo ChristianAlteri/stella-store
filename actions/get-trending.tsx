@@ -3,7 +3,7 @@ import qs from "query-string"
 
 import { Product } from "@/types";
 
-const URL=`${process.env.NEXT_PUBLIC_API_URL}/top-likes`;
+const URL=`${process.env.NEXT_PUBLIC_API_URL}/trending`;
 
 interface Query {
   sizeId: string;
@@ -25,7 +25,7 @@ interface Query {
   maxPrice?: number;
 }
 
-const getTopLikes = async (query: Query): Promise<Product[]> => {
+const getTrending = async (query: Query): Promise<Product[]> => {
   try {
     const url = qs.stringifyUrl({
       url: URL,
@@ -52,13 +52,13 @@ const getTopLikes = async (query: Query): Promise<Product[]> => {
     });
     const response = await axios.get(url);
 
-    // console.log("response from get-toplikes", response.data);
+    // console.log("response from get-Trending", response.data);
     return response.data;
   } catch (error) {
 
-    console.error("Error fetching toplikes:", error);
+    console.error("Error fetching Trending:", error);
     throw error;
   }
 };
 
-export default getTopLikes;
+export default getTrending;

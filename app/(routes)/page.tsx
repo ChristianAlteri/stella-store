@@ -19,7 +19,6 @@ import getBillboardByName from "@/actions/get-billboard-by-name";
 import FullscreenProductFiltersFooter from "@/components/Filters/full-screen-product-filters-footer";
 import HomepageBillboard from "@/components/Billboard/HomepageBillboard";
 import HomepageBillboardMobile from "@/components/Billboard/HomepageBillboardMobile";
-import getTopLikes from "@/actions/get-top-likes";
 
 
 export const revalidate = 0;

@@ -2,11 +2,9 @@ import ProductGrid from "@/components/Home/ProductGrid";
 import ProductCard from "@/components/Product/product-card";
 import LeftSidebar from "@/components/SideBars/LeftSideBar";
 import RightSidebar from "@/components/SideBars/RightSideBar";
-import FullscreenProductFilters from "@/components/Home/full-screen-product-filters";
 
 import getDesigners from "@/actions/get-designers";
 import getCategories from "@/actions/get-categories";
-import getProducts from "@/actions/get-products";
 import getSellers from "@/actions/get-sellers";
 import getColors from "@/actions/get-colors";
 import getSizes from "@/actions/get-sizes";
@@ -14,9 +12,9 @@ import getConditions from "@/actions/get-conditions";
 import getMaterials from "@/actions/get-materials";
 import getGenders from "@/actions/get-genders";
 import getSubcategories from "@/actions/get-sub-categories";
-import getTopLikes from "@/actions/get-top-likes";
+import getTrending from "@/actions/get-trending";
+
 import FullscreenProductFiltersFooter from "@/components/Filters/full-screen-product-filters-footer";
-import ClientSideProductGrid from "@/components/Home/client-side-product-grid";
 import ViewsLikesFilter from "./filter-views-and-likes";
 
 export const revalidate = 0;
@@ -43,7 +41,7 @@ interface TopLikesPageProps {
 }
 
 const TopLikesPage: React.FC<TopLikesPageProps> = async ({ searchParams }) => {
-  const topLikedProducts = await getTopLikes({
+  const topLikedProducts = await getTrending({
     categoryId: searchParams.categoryId,
     sort: searchParams.sort,
     sizeId: searchParams.sizeId,
@@ -82,9 +80,11 @@ const TopLikesPage: React.FC<TopLikesPageProps> = async ({ searchParams }) => {
             <h2 className="text-2xl font-bold text-black mt-2">
               TRENDING ITEMS
             </h2>
-            <ViewsLikesFilter 
-              data={topLikedProducts}
-            />
+            <div className="flex flex-row w-full items-center justify-center">
+              <ViewsLikesFilter 
+                data={topLikedProducts}
+              />
+            </div>
           </div>
         </div>
       <div className="justify-center items-center md:grid flex grid-cols-8 gap-4 bg-white ">
