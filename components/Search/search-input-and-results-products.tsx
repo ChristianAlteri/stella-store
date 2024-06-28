@@ -12,14 +12,14 @@ export interface SearchInputAndResultsProductsProps {
 const SearchInputAndResultsProducts: React.FC<
   SearchInputAndResultsProductsProps
 > = ({ label }) => {
-  const URL = `${process.env.NEXT_PUBLIC_API_URL}/products`;
+  const URL = `${process.env.NEXT_PUBLIC_API_URL}/products`;;
 
   const inputRef = React.useRef<HTMLInputElement>(null);
   const [searchResults, setSearchResults] = React.useState<Product[]>([]);
   const [debounceTimeout, setDebounceTimeout] = React.useState<ReturnType<
     typeof setTimeout
   > | null>(null);
-  
+
   const handleSearch = React.useCallback(() => {
     if (debounceTimeout) {
       clearTimeout(debounceTimeout);
@@ -35,7 +35,7 @@ const SearchInputAndResultsProducts: React.FC<
         console.error("Error fetching search results:", error);
         setSearchResults([]);
       }
-    }, 300); 
+    }, 300);
 
     setDebounceTimeout(timeout);
   }, [URL, debounceTimeout]);
@@ -53,27 +53,28 @@ const SearchInputAndResultsProducts: React.FC<
           ref={inputRef}
           placeholder={label}
           onChange={handleSearch}
-          className="w-full h-7 border text-xs focus:outline-none focus:ring-2 focus:ring-light-font focus:border-transparent rounded-md p-3"
+          className="w-full h-6 border text-xs focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent rounded-sm p-3 mb-4"
         />
-        <div className="flex flex-col flex-grow">
+
+        <div className="flex flex-col overflow-y-auto max-h-[500px]">
           {searchResults && searchResults.length > 0 && (
-            <div className="grid md:grid-cols-3 grid-cols-2 bg-white rounded-md mt-3">
-              {searchResults.map((product, index) => (
-                <div key={product.id} className="w-full h-full p-1">
-                  <SearchProductImage key={product.id} product={product} />
+            <>
+              <div className="grid bg-white rounded-md p-4">
+                <div className="flex flex-row w-full justify-center items-center text-xs">
+                  <h3>Items</h3>
                 </div>
-              ))}
-            </div>
+                <div className="grid md:grid-cols-3 grid-cols-2 bg-white rounded-md mt-3">
+                  {searchResults.map((product, index) => (
+                    <div key={product.id} className="w-full h-full p-1">
+                      <SearchProductImage key={product.id} product={product} />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </>
           )}
         </div>
       </div>
-      {/* <div className="bottom-0 w-full p-1 bg-white">
-        <NavbarScrollingBanner
-          text="Enjoy a 20% off your first purchase by"
-          underlinedText="creating an account."
-          link="/for-you"
-        />
-      </div> */}
     </>
   );
 };

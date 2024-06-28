@@ -12,17 +12,16 @@ import SearchProductImage from "./components/search-product-image";
 export interface MegaSearchInputAndResultsProps {
   label: string;
   children?: React.ReactNode;
-  name: string;
 }
 
 const MegaSearchInputAndResults: React.FC<MegaSearchInputAndResultsProps> = ({
   label,
-  name,
 }) => {
   const [filteredData, setFilteredData] = React.useState<
     Seller[] | Category[] | Designer[] | Product[] | undefined
   >([]);
-  const URL = `${process.env.NEXT_PUBLIC_API_URL}/mega-search`;
+  // const URL = `${process.env.NEXT_PUBLIC_API_URL}/mega-search`;
+  const URL = `${process.env.NEXT_PUBLIC_API_URL}/products`;
   const inputRef = React.useRef<HTMLInputElement>(null);
   const [searchedData, setSearchedData] = React.useState<
     | {
@@ -113,76 +112,76 @@ const MegaSearchInputAndResults: React.FC<MegaSearchInputAndResultsProps> = ({
           ref={inputRef}
           placeholder={label}
           onChange={handleSearch}
-          className="w-full h-7 border text-xs focus:outline-none focus:ring-2 focus:ring-light-font focus:border-transparent rounded-md p-3"
+          className="w-full h-6 border text-xs focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent rounded-sm p-3 mb-4"
         />
 
-        <div className="flex flex-col flex-grow">
+        <div className="flex flex-col overflow-y-auto max-h-[500px]">
           {searchedData && (
-            <div className="grid bg-white rounded-md ">
-              <div className="flex flex-row justify-center items-center text-center gap-2 m-1">
-                <p className="text-xs p-1">{name}</p>
-              </div>
+            <div className="grid bg-white rounded-md p-4">
+
+            <div className="w-full border-t border-black mb-2 mt-2"></div>
 
               {/* Display Sellers */}
               {searchedData.sellers.length > 0 && (
                 <div>
-                  <h3>Sellers</h3>
+                  <div className="flex flex-row w-full justify-center items-center text-xs">
+                    <h3>Sellers</h3>
+                  </div>
                   {searchedData.sellers.map((seller) => (
-                    <div
-                      key={seller.id}
-                      className="flex flex-col justify-center gap-1 m-1"
-                    >
-                      <Link href={`/sellers/${seller.id}`}>
-                        <p className="text-xs hover:underline hover:cursor-pointer">
-                          {seller.instagramHandle.toUpperCase()}
-                        </p>
-                      </Link>
-                      <div className="w-full flex flex-row justify-between rounded-md p-1 bg-light-background text-light-font text-super-small hover:underline hover:cursor-pointer">
-                        <button
-                          className="text-xs hover:underline hover:cursor-pointer"
-                          onClick={() => setShowAllProducts(!showAllProducts)}
-                        >
-                          {showAllProducts ? "Hide All" : "Show All"}
-                        </button>
-                        <div className="text-xs">
-                          <Menu autoSelect={true} isLazy>
-                            <MenuButton
-                              as="div"
-                              className="flex flex-row justify-between"
-                              transition="all 0.2s"
-                            >
-                              <CiSliderHorizontal size={15} />
-                            </MenuButton>
-                            <MenuList background="white">
-                              <MenuItem
-                                className="hover:underline hover:cursor-pointer"
-                                onClick={() =>
-                                  setFilteredData(
-                                    filteredDataByPrice(
-                                      searchedData.sellers,
-                                      "high-to-low"
-                                    )
-                                  )
-                                }
+                    <div key={seller.id} className="flex flex-col justify-center gap-1 m-1">
+
+                        <Link href={`/sellers/${seller.id}`}>
+                          <p className="text-super-small hover:underline hover:cursor-pointer w-full items-center justify-center">
+                            {seller.instagramHandle.toUpperCase()}
+                          </p>
+                        </Link>
+
+                        <div className="w-full flex flex-row justify-between text-super-small hover:underline hover:cursor-pointer">
+                          <button
+                            className="text-super-small hover:underline hover:cursor-pointer w-full"
+                            onClick={() => setShowAllProducts(!showAllProducts)}
+                          >
+                            {showAllProducts ? "Hide All" : "Show All"}
+                          </button>
+                          <div className="text-super-small">
+                            <Menu autoSelect={true} isLazy>
+                              <MenuButton
+                                as="div"
+                                className="flex flex-row justify-between"
+                                transition="all 0.2s"
                               >
-                                High-Low
-                              </MenuItem>
-                              <MenuItem
-                                className="hover:underline hover:cursor-pointer"
-                                onClick={() =>
-                                  setFilteredData(
-                                    filteredDataByPrice(
-                                      searchedData.sellers,
-                                      "low-to-high"
+                                <CiSliderHorizontal size={15} />
+                              </MenuButton>
+                              <MenuList background="white">
+                                <MenuItem
+                                  className="hover:underline hover:cursor-pointer"
+                                  onClick={() =>
+                                    setFilteredData(
+                                      filteredDataByPrice(
+                                        searchedData.sellers,
+                                        "high-to-low"
+                                      )
                                     )
-                                  )
-                                }
-                              >
-                                Low-High
-                              </MenuItem>
-                            </MenuList>
-                          </Menu>
-                        </div>
+                                  }
+                                >
+                                  High-Low
+                                </MenuItem>
+                                <MenuItem
+                                  className="hover:underline hover:cursor-pointer"
+                                  onClick={() =>
+                                    setFilteredData(
+                                      filteredDataByPrice(
+                                        searchedData.sellers,
+                                        "low-to-high"
+                                      )
+                                    )
+                                  }
+                                >
+                                  Low-High
+                                </MenuItem>
+                              </MenuList>
+                            </Menu>
+                          </div>
                       </div>
                       <div className="grid md:grid-cols-3 grid-cols-2 bg-white rounded-md">
                         {showAllProducts
@@ -199,31 +198,36 @@ const MegaSearchInputAndResults: React.FC<MegaSearchInputAndResultsProps> = ({
                       </div>
                     </div>
                   ))}
+              <div className="w-full border-t border-black mb-2 mt-2"></div>
                 </div>
               )}
+
 
               {/* Display Designers */}
               {searchedData.designers.length > 0 && (
                 <div>
-                  <h3>Designers</h3>
+                  <div className="flex flex-row w-full justify-center items-center text-xs">
+                    <h3>Designers</h3>
+                  </div>
                   {searchedData.designers.map((designer) => (
                     <div
                       key={designer.id}
-                      className="flex flex-col justify-center gap-1 m-1"
-                    >
+                      className="flex flex-col justify-center gap-1 m-1">
+
                       <Link href={`/designers/${designer.id}`}>
-                        <p className="text-xs hover:underline hover:cursor-pointer">
+                        <p className="text-super-small hover:underline hover:cursor-pointer w-full items-center justify-center">
                           {designer.name.toUpperCase()}
                         </p>
                       </Link>
-                      <div className="w-full flex flex-row justify-between rounded-md p-1 bg-light-background text-light-font text-super-small hover:underline hover:cursor-pointer">
+
+                      <div className="w-full flex flex-row justify-between text-super-small hover:underline hover:cursor-pointer">
                         <button
-                          className="text-xs hover:underline hover:cursor-pointer"
+                          className="text-super-small hover:underline hover:cursor-pointer w-full"
                           onClick={() => setShowAllProducts(!showAllProducts)}
                         >
                           {showAllProducts ? "Hide All" : "Show All"}
                         </button>
-                        <div className="text-xs">
+                        <div className="text-super-small">
                           <Menu autoSelect={true} isLazy>
                             <MenuButton
                               as="div"
@@ -278,31 +282,36 @@ const MegaSearchInputAndResults: React.FC<MegaSearchInputAndResultsProps> = ({
                       </div>
                     </div>
                   ))}
+              <div className="w-full border-t border-black mb-2 mt-2"></div>
                 </div>
               )}
+
 
               {/* Display Categories */}
               {searchedData.categories.length > 0 && (
                 <div>
-                  <h3>Categories</h3>
+                  <div className="flex flex-row w-full justify-center items-center text-xs">
+                    <h3>Categories</h3>
+                  </div>
                   {searchedData.categories.map((category) => (
                     <div
                       key={category.id}
                       className="flex flex-col justify-center gap-1 m-1"
                     >
                       <Link href={`/categories/${category.id}`}>
-                        <p className="text-xs hover:underline hover:cursor-pointer">
+                      <p className="text-super-small hover:underline hover:cursor-pointer w-full items-center justify-center">
                           {category.name.toUpperCase()}
                         </p>
                       </Link>
-                      <div className="w-full flex flex-row justify-between rounded-md p-1 bg-light-background text-light-font text-super-small hover:underline hover:cursor-pointer">
+
+                      <div className="w-full flex flex-row justify-between text-super-small hover:underline hover:cursor-pointer">
                         <button
-                          className="text-xs hover:underline hover:cursor-pointer"
+                          className="text-super-small hover:underline hover:cursor-pointer w-full"
                           onClick={() => setShowAllProducts(!showAllProducts)}
                         >
                           {showAllProducts ? "Hide All" : "Show All"}
                         </button>
-                        <div className="text-xs">
+                        <div className="text-super-small">
                           <Menu autoSelect={true} isLazy>
                             <MenuButton
                               as="div"
@@ -357,6 +366,7 @@ const MegaSearchInputAndResults: React.FC<MegaSearchInputAndResultsProps> = ({
                       </div>
                     </div>
                   ))}
+                  <div className="w-full border-t border-black mb-2 mt-2"></div>
                 </div>
               )}
 

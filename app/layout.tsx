@@ -49,7 +49,7 @@ export default async function RootLayout({
   const products = await getProducts({ all: true });
   const topTen = await getTopTen({ all: true }, "most-viewed");
   
-  const navBarBillboard = await getBillboardByName("navBarBillboard");
+  const billboard = await getBillboardByName("HomePageFullScreen");
 
   return (
     <html lang="en">
@@ -67,7 +67,7 @@ export default async function RootLayout({
           subcategories={subcategories}
           products={products}
           topTen={topTen}
-          navBarBillboard={navBarBillboard}
+          billboard={billboard}
         />
           {children}
         <Footer

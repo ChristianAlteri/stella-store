@@ -36,16 +36,16 @@ interface NavbarProps {
   genders: Gender[];
   subcategories: Subcategory[];
   products: Product[];
-  navBarBillboard: Billboard;
   topTen: Product[];
+  billboard: Billboard;
 }
 
 const Navbar: React.FC<NavbarProps> = ({
   sellers,
   designers,
   categories,
-  navBarBillboard,
   topTen,
+  billboard,
 }) => {
   const [loggedIn, setLoggedIn] = useState(true);
 
@@ -69,6 +69,7 @@ const Navbar: React.FC<NavbarProps> = ({
                 />
                 {/* <div className="hidden md:flex"> */}
                   <MegaSearch
+                    billboard={billboard}
                     icon={
                       <Input
                         flag="navbar"

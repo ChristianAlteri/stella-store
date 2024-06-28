@@ -45,7 +45,6 @@ interface HomepageProps {
 }
 
 const Homepage: React.FC<HomepageProps> = async ({ searchParams }) => {
-  console.log("Search params from page", searchParams);
   const products = await getProducts({
     categoryId: searchParams.categoryId,
     sort: searchParams.sort,
