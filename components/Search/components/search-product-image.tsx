@@ -20,27 +20,20 @@ const SearchProductImage: React.FC<SearchProductImageProps> = ({ product }) => {
   return (
     <div key={product.id} className="flex w-full rounded-md flex-col ">
       <div className="flex-col w-full border">
-        {/* <div className="w-full justify-center text-center items-center text-super-small hover:underline hover:cursor-pointer">
-            <Link
-            href={`/designers/${product.designer?.id}`}
-            className="w-full justify-center text-center items-center text-super-small hover:underline hover:cursor-pointer"
-            >
-            {product.designer?.name}
+        <div className="flex flex-row w-full justify-center items-center p-1">
+          <div className="flex flex-row gap-1 w-full justify-center">
+            <Link href={`/sellers/${product.seller.id}`}>
+              <p className="w-full justify-center text-center items-center text-super-small hover:underline hover:cursor-pointer">
+                {product.seller.instagramHandle.toUpperCase()}
+              </p>
             </Link>
-        </div> */}
 
-        <div className="flex flex-row gap-1 w-full justify-between">
-          <Link href={`/categories/${product.category.id}`}>
-            <p className="w-full text-super-small hover:underline hover:cursor-pointer w-full items-center justify-center">
-              {product.category.name.toUpperCase()}
-            </p>
-          </Link>
-
-          <Link href={`/sellers/${product.seller.id}`}>
-            <p className="w-full text-super-small hover:underline hover:cursor-pointer w-full items-center justify-center">
-              {product.seller.instagramHandle.toUpperCase()}
-            </p>
-          </Link>
+            {/* <Link href={`/categories/${product.category.id}`}>
+              <p className="w-full justify-center text-center items-center text-super-small hover:underline hover:cursor-pointer">
+                {product.category.name.toUpperCase()}
+              </p>
+            </Link> */}
+          </div>
         </div>
 
         <div className="inset-0 w-full h-full flex justify-center items-center hover:cursor-pointer">
@@ -51,8 +44,8 @@ const SearchProductImage: React.FC<SearchProductImageProps> = ({ product }) => {
               key={product?.images?.[0]?.id}
               onClick={() => handleProductClick(product)}
               url={product?.images?.[0]?.url}
-              width="50%"
-              height="50%"
+              width="80%"
+              height="80%"
               loop
               playing
               muted
@@ -68,7 +61,7 @@ const SearchProductImage: React.FC<SearchProductImageProps> = ({ product }) => {
                   key={product?.images?.[0]?.id}
                   onClick={() => handleProductClick(product)}
                   height={0}
-                  width={50}
+                  width={80}
                   src={product?.images?.[0]?.url}
                   alt={`Image of ${product.name} from ${product.seller?.instagramHandle} by ${product.designer?.name} in size ${product.size?.name} for £${product.ourPrice} (RRP £${product.retailPrice})`}
                   priority
@@ -80,6 +73,7 @@ const SearchProductImage: React.FC<SearchProductImageProps> = ({ product }) => {
             </>
           )}
         </div>
+
         <div
           className="flex flex-row w-full justify-between p-1"
           onClick={() => handleProductClick(product)}

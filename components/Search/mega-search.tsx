@@ -3,10 +3,8 @@
 import { useEffect, useState } from "react";
 import { Dialog } from "@headlessui/react";
 import Button from "@/components/ui/button";
-import SearchInputAndResultsProducts from "./search-input-and-results-products";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import MegaSearchInputAndResults from "./mega-search-input-and-results";
 import { CiCircleRemove } from "react-icons/ci";
 import { Billboard } from "@/types";
 import SearchResults from "./search-results";
@@ -76,19 +74,18 @@ const MegaSearch: React.FC<MegaSearchProps> = ({
                 {/* Search Bar */}
                 <div className="h-full w-full">
 
-
                   <div className="flex flex-row gap-4 items-start justify-start">
-                    <button
+                    {/* <button
                         className={cn(
                           "flex justify-start md:text-super-small text-xs font-medium transition-colors hover:underline hover:cursor-pointer p-2",
                           searchBy === "Product"
                             ? "flex justify-center underline"
                             : "text-black"
                         )}
-                        onClick={() => setSearchBy("Product")}
+                        onClick={() => setSearchBy("CLIENT_ADVISOR")}
                       >
-                      ITEMS
-                    </button>
+                      CLIENT ADVISOR
+                    </button> */}
                     <button
                         className={cn(
                           "flex justify-start md:text-super-small text-xs font-medium transition-colors hover:underline hover:cursor-pointer p-2",
@@ -101,17 +98,9 @@ const MegaSearch: React.FC<MegaSearchProps> = ({
                       ENTIRE STORE
                       </button>
                   </div>
-
-                  {searchBy === "Product" ? (
-                    <SearchInputAndResultsProducts label="Search for items..." />
-                  ) : (
-                    // <MegaSearchInputAndResults 
-                    //   label="Search entire store..."
-                    // />
                     <SearchResults 
-                      label="testing...."
+                      label="Search entire store..."
                     />
-                  )}
                 </div>
               </div>
             </div>
