@@ -2,8 +2,8 @@
 import React from "react";
 import { Product } from "@/types";
 import Link from "next/link";
-import SuggestedProductCard from "./suggested-product-card";
-import LargeSuggestedProductCard from "./large-suggested-product-card";
+import SuggestedProductCard from "./components/suggested-product-card";
+import LargeSuggestedProductCard from "./components/large-suggested-product-card";
 import { MdOutlineChevronRight } from "react-icons/md";
 
 

@@ -1,14 +1,11 @@
 "use client";
 
-import NextImage from "next/image";
-import { Tab } from "@headlessui/react";
 
-// import { Image } from "@/types";
+import { Tab } from "@headlessui/react";
 import Image from "next/image";
 import { Image as ImageType } from "@/types";
 
 import GalleryTab from "./gallery-tab";
-import { useRouter } from "next/navigation";
 import ReactPlayer from "react-player";
 
 interface GalleryProps {

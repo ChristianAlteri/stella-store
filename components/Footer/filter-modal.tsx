@@ -18,7 +18,7 @@ import { GoFilter } from "react-icons/go";
 
 import MiniProductCard from "../Product/mini-product-card";
 import MobileProductFilter from "../Filters/mobile-product-filter";
-import NavbarScrollingBanner from "../NavBar/navbar-scrolling-banner";
+import NavbarScrollingBanner from "../NavBar/components/navbar-scrolling-banner";
 import { MdArrowBackIos } from "react-icons/md";
 import RangeSlider from "../Filters/range-slider";
 

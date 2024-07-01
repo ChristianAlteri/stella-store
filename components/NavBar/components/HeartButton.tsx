@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import Button from "@/components/ui/button";
-import { CiHeart, CiShoppingCart } from "react-icons/ci";
+import { CiHeart } from "react-icons/ci";
 import useLike from "@/hooks/use-like";
 
 

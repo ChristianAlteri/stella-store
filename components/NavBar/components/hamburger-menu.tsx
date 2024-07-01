@@ -2,15 +2,14 @@ import Link from "next/link";
 import React, { useEffect } from "react";
 import { Category, Designer, Product, Seller } from "@/types";
 import { cn } from "@/lib/utils";
-import { useParams, usePathname } from "next/navigation";
-import MiniProductCarousel from "../Product/mini-product-carousel";
+import { usePathname } from "next/navigation";
 
 import { Drawer } from "@material-tailwind/react";
 
 import { CiMenuBurger } from "react-icons/ci";
 import QuickLinks from "./quick-links";
 import useParamsUtil from "@/utils/useParamsUtil";
-import MiniProductCard from "../Product/mini-product-card";
+import MiniProductCard from "../../Product/mini-product-card";
 import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
 
 interface HamburgerMenuProps {
@@ -148,7 +147,7 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
           
 
           <div className="row-span-3 bg-stone-200 flex items-center justify-center ">
-            <aside className="flex flex-col w-2/3 justify-center items-center top-0 h-2/3">
+            {/* <aside className="flex flex-col w-2/3 justify-center items-center top-0 h-2/3">
               {topTen && topTen.length > 0 && (
                 <MiniProductCard
                 data={topTen}
@@ -156,7 +155,7 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
                 miniProductTitle="Most Viewed"
                 />
               )}
-            </aside>
+            </aside> */}
           </div>
         </div>
       </Drawer>

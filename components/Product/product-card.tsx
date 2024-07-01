@@ -6,11 +6,8 @@ import Image from "next/image";
 import ProductCardButton from "./ProductCardButton";
 import {
   CiBadgeDollar,
-  CiCoinInsert,
-  CiDiscount1,
   CiHeart,
   CiRead,
-  CiShoppingCart,
 } from "react-icons/ci";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -85,34 +82,6 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
         className="bg-white rounded-md col-span-1 w-full "
         onClick={() => onClickButton(item)}
       >
-        {/* share */}
-        {/* <div className="lg:flex hidden gap-1 flex-row w-full mb-2 justify-center md:justify-between">
-          <div className="flex w-full justify-center">
-            <div className="text-stone-500 hover:scale-110 hover:cursor-pointer hover:text-black">
-              <ProductCardButton
-                icon={<CiHeart />}
-                onClick={(event) => onAddToLikes(event)}
-              />
-            </div>
-          </div>
-
-          <div className="flex w-full justify-center">
-            <div className="text-stone-500 hover:scale-110 hover:cursor-pointer hover:text-black">
-              <ShareButton
-                url={`${process.env.NEXT_PUBLIC_SITE_URL}/product/${item?.category?.id}/${item?.designer?.id}/${item?.id}/${item?.seller?.id}`}
-              />
-            </div>
-          </div>
-
-          <div className="flex w-full justify-center">
-            <div className="text-stone-800 hover:scale-110 hover:cursor-pointer hover:text-black">
-              <ProductCardButton
-                icon={<CiShoppingCart />}
-                onClick={(event) => onAddToCart(event)}
-              />
-            </div>
-          </div>
-        </div> */}
 
         {/* images */}
         <div className="relative h-full w-full rounded-md flex justify-center items-center z-30 p-2">
@@ -254,10 +223,6 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
           </div>
 
           <div className="flex justify-end flex-row mt-1">
-            {/* <div className="flex flex-row gap-2 items-start text-light-font text-super-small w-full">
-              <h3>{item?.likes} likes</h3>
-              <h3>{item?.clicks} views</h3>
-            </div> */}
             <div className="text-xs text-stone-300 hover:text-stone-700 ">
               {item?.size?.name}
             </div>
@@ -265,19 +230,6 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
 
           <div className="flex flex-row w-full items-center">
             <div className="flex flex-row gap-1 w-full items-center">
-              {/* {item?.isOnSale && (
-                <div className="flex flex-row">
-                  <Tooltip
-                    label="On sale"
-                    aria-label="A tooltip"
-                    placement="bottom"
-                  >
-                    <p className="text-red-500">
-                      <CiCoinInsert size={25} />
-                    </p>
-                  </Tooltip>
-                </div>
-              )} */}
               {item?.isCharity && (
                 <div className="flex flex-row text-xs">
                   <Tooltip
@@ -352,19 +304,6 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
           </div>
           <div className="flex flex-row gap-1 w-full items-center justify-between">
             <div className="flex flex-row gap-1 w-full items-center p-1">
-              {/* {item?.isOnSale && (
-                <div className="flex flex-row">
-                  <Tooltip
-                    label="On sale"
-                    aria-label="A tooltip"
-                    placement="bottom"
-                  >
-                    <p className="text-gray-500">
-                      <CiDiscount1 size={15} />
-                    </p>
-                  </Tooltip>
-                </div>
-              )} */}
               {item?.isCharity && (
                 <div className="flex flex-row text-xs">
                   <Tooltip
@@ -384,10 +323,6 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
               {item?.size?.name}
             </div>
           </div>
-          {/* <div className="flex flex-row justify-between items-start text-black text-super-small w-full underline">
-            <h3>{item?.likes} likes</h3>
-            <h3>{item?.clicks} views</h3>
-          </div> */}
         </div>
       </div>
     </>

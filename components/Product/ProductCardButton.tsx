@@ -1,8 +1,6 @@
 'use client';
 
-import { CiHeart } from "react-icons/ci";   
 import { MouseEventHandler } from "react";
-import { cn } from "@/lib/utils";
 
 
 interface ProductCardButtonProps {

@@ -102,7 +102,6 @@ const OnPageFiltersModal: React.FC<OnPageFiltersModalProps> = ({
                   data={sellers}
                   />
                   )}
-                  {/*TODO: Add material and condition  */}
                 {sizes && (
                   <FilterButtons 
                   valueKey="sizeId" 

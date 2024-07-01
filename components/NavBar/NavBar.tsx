@@ -3,10 +3,10 @@
 import Link from "next/link";
 
 import MegaSearch from "../Search/mega-search";
-import ShoppingCartButton from "./ShoppingCartButton";
-import HeartButton from "./HeartButton";
-import ProfileButton from "./ProfileButton";
-import HamburgerMenu from "./hamburger-menu";
+import ShoppingCartButton from "./components/ShoppingCartButton";
+import HeartButton from "./components/HeartButton";
+import ProfileButton from "./components/ProfileButton";
+import HamburgerMenu from "./components/hamburger-menu";
 import { Input } from "../ui/input";
 
 import {
@@ -22,7 +22,7 @@ import {
   Size,
   Subcategory,
 } from "@/types";
-import QuickLinks from "./quick-links";
+import QuickLinks from "./components/quick-links";
 import { useState } from "react";
 
 interface NavbarProps {
@@ -51,10 +51,6 @@ const Navbar: React.FC<NavbarProps> = ({
 
   return (
     <>
-      {/* <BannerBillboard
-        //@ts-ignore
-        data={navBarBillboard}
-      /> */}
 
       <div className="sticky bg-white w-full top-0 z-40 p-4">
         <div className="grid md:grid-rows-2 grid-rows-1 min-h-[55px] p-1">
@@ -67,7 +63,7 @@ const Navbar: React.FC<NavbarProps> = ({
                   sellers={sellers}
                   topTen={topTen}
                 />
-                {/* <div className="hidden md:flex"> */}
+
                   <MegaSearch
                     billboard={billboard}
                     icon={
@@ -78,8 +74,7 @@ const Navbar: React.FC<NavbarProps> = ({
                       />
                     }
                   />
-                {/* </div> */}
-                {/* <ClientAdvisor products={products} /> */}
+
               </div>
 
               <div className="w-full flex flex-row justify-center items-center gap-3 ">

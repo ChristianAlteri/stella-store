@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
@@ -55,37 +54,6 @@ const QuickLinks = () => {
         </div>
       </Link>
 
-      {/* <Link
-        href="/most-viewed"
-        className="hover: flex flex-col text-xs justify-center items-center rounded-xl w-full h-full hover:underline "
-      >
-        <div
-          className={cn(
-            isRouteSelected("/most-viewed")
-              ? " underline w-full flex flex-col justify-center items-center text-light-font text-xs rounded-md h-full"
-              : "text-stone-300 flex flex-col justify-center items-center"
-          )}
-        >
-          <IoMdTrendingUp size={20} />
-          Trending
-        </div>
-      </Link> */}
-
-      {/* <Link
-        href="/for-you"
-        className="hover: flex flex-col text-xs justify-center items-center rounded-xl w-full h-full hover:underline "
-      >
-        <div
-          className={cn(
-            isRouteSelected("/for-you")
-              ? " underline w-full flex flex-col justify-center items-center text-light-font text-xs rounded-md h-full"
-              : "text-stone-300 flex flex-col justify-center items-center"
-          )}
-        >
-          <RiHome5Line size={20} />
-          For You
-        </div>
-      </Link> */}
       <Link
         href="/sale"
         className="flex flex-col lg:text-sm text-super-small justify-center items-center rounded-xl w-full h-full hover:underline "
