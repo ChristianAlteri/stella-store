@@ -1,14 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { Plus, X } from "lucide-react";
 import { Dialog } from "@headlessui/react";
 
 import { IoCloseOutline } from "react-icons/io5";
 import Button from "@/components/ui/button";
 import { Category, Color, Designer, Seller, Size } from "@/types";
 
-import FilterButtons from "@/components/SideBars/filter-buttons";
+import FilterButtons from "@/components/SideBars/components/filter-buttons";
 import IconButton from "./icon-button";
 import { Input } from "./input";
 

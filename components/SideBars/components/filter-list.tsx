@@ -1,6 +1,5 @@
 "use client";
 
-
 import { cn } from "@/lib/utils";
 import { Category, Color, Condition, Designer, Gender, Material, Seller, Size, Subcategory } from "@/types";
 import { useSearchParams } from "next/navigation";

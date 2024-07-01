@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import axios from "axios"; // Make sure to import axios
-import SearchProductImage from "./components/search-product-image";
+import SearchProductImage from "./search-product-image";
 import { Product } from "@/types";
 
 export interface SearchResultsProps {
@@ -11,7 +11,6 @@ export interface SearchResultsProps {
 }
 
 const SearchResults: React.FC<SearchResultsProps> = ({ label }) => {
-  // const URL = `${process.env.NEXT_PUBLIC_API_URL}/products`;
   const URL = `${process.env.NEXT_PUBLIC_API_URL}/mega-search`;
 
   const inputRef = React.useRef<HTMLInputElement>(null);
@@ -19,7 +18,6 @@ const SearchResults: React.FC<SearchResultsProps> = ({ label }) => {
   const [debounceTimeout, setDebounceTimeout] = React.useState<ReturnType<
     typeof setTimeout
   > | null>(null);
-  const [showAllProducts, setShowAllProducts] = React.useState(false);
 
   const handleSearch = React.useCallback(() => {
     if (debounceTimeout) {

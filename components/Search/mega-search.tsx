@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { CiCircleRemove } from "react-icons/ci";
 import { Billboard } from "@/types";
-import SearchResults from "./search-results";
+import SearchResults from "./components/search-results";
 
 interface MegaSearchProps {
   icon?: React.ReactNode;

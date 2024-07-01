@@ -85,20 +85,10 @@ const SearchProductImage: React.FC<SearchProductImageProps> = ({ product }) => {
             >
               {product.designer?.name.toUpperCase()}
             </Link>
-            {/* <p
-              className="justify-center text-center items-center text-super-small hover:underline hover:cursor-pointer"
-              onClick={() => handleProductClick(product)}
-            >
-              {product.name}
-            </p> */}
             <p className="justify-center text-center items-center text-super-small text-red-500 w-full">
               £{product.ourPrice}
             </p>
           </div>
-
-          {/* <div>{product.seller?.instagramHandle}</div>
-          <div>{product.category?.name}</div>
-          <div>{product.name}</div> */}
         </div>
       </div>
     </div>

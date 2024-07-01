@@ -2,9 +2,6 @@
 
 import { useState } from "react";
 import { Category, Color, Condition, Designer, Gender, Material, Seller, Size, Subcategory } from "@/types";
-import { useSearchParams } from "next/navigation";
-import { useRouter } from "next/navigation";
-import qs from "query-string";
 import FilterList from "./filter-list";
 import { IoCloseOutline } from "react-icons/io5";
 import { CiSquarePlus } from "react-icons/ci";
