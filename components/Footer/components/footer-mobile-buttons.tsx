@@ -13,7 +13,7 @@ import {
   Subcategory,
 } from "@/types";
 import FooterSort from "./footer-sort";
-import FilterModal from "./filter-modal";
+import FilterModal from "../components/filter-modal";
 import GenderFilter from "./gender-filter";
 import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
 

@@ -4,12 +4,9 @@ import React from "react";
 import {
   Product,
 } from "@/types";
-
 import { CiSliderHorizontal } from "react-icons/ci";
-
 import { Drawer } from "@material-tailwind/react";
-
-import AllSortFilters from "../Filters/all-sort-filters";
+import AllSortFilters from "../../Filters/all-sort-filters";
 
 interface FooterSortProps {
   products: Product[] | undefined;

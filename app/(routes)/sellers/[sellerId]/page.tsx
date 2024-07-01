@@ -1,9 +1,7 @@
 import ProductGrid from "@/components/Home/ProductGrid";
 import ProductCard from "@/components/Product/product-card";
-import Billboard from "@/components/Billboard/Billboard";
 import RightSidebar from "@/components/SideBars/RightSideBar";
 import LeftSidebar from "@/components/SideBars/LeftSideBar";
-import FullscreenProductFilters from "@/components/Home/full-screen-product-filters";
 
 import getDesigners from "@/actions/get-designers";
 import getCategories from "@/actions/get-categories";
@@ -11,7 +9,6 @@ import getProducts from "@/actions/get-products";
 import getSellers from "@/actions/get-sellers";
 import getColors from "@/actions/get-colors";
 import getSizes from "@/actions/get-sizes";
-import getSingleCategory from "@/actions/get-single-category";
 import getConditions from "@/actions/get-conditions";
 import getMaterials from "@/actions/get-materials";
 import getSingleSeller from "@/actions/get-single-seller";

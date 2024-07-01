@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Arimo, Roboto, Roboto_Condensed } from "next/font/google";
+import { Roboto } from "next/font/google";
 import "./globals.css";
 
 import Footer from "@/components/Footer/Footer";
@@ -17,7 +17,7 @@ import getMaterials from "@/actions/get-materials";
 import getConditions from "@/actions/get-conditions";
 import getGenders from "@/actions/get-genders";
 import getSubcategories from "@/actions/get-sub-categories";
-import getTopTen from "@/actions/get-top-ten";
+// import getTopTen from "@/actions/get-top-ten";
 
 
 
@@ -47,7 +47,7 @@ export default async function RootLayout({
   const genders = await getGenders();
   const subcategories = await getSubcategories();
   const products = await getProducts({ all: true });
-  const topTen = await getTopTen({ all: true }, "most-viewed");
+  // const topTen = await getTopTen({ all: true }, "most-viewed");
   
   const billboard = await getBillboardByName("HomePageFullScreen");
 
@@ -66,7 +66,7 @@ export default async function RootLayout({
           genders={genders}
           subcategories={subcategories}
           products={products}
-          topTen={topTen}
+          // topTen={topTen}
           billboard={billboard}
         />
           {children}

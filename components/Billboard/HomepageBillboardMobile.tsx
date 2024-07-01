@@ -6,11 +6,11 @@ import React from "react";
 import { useEffect, useState } from "react";
 
 
-interface HomepageBillboardProps {
+interface HomepageBillboardMobileProps {
   data: Billboard[];
 }
 
-const HomepageBillboard: React.FC<HomepageBillboardProps> = ({ data }) => {
+const HomepageBillboardMobile: React.FC<HomepageBillboardMobileProps> = ({ data }) => {
   const [isMounted, setIsMounted] = useState(false);
   useEffect(() => {
     setIsMounted(true);
@@ -57,5 +57,5 @@ const HomepageBillboard: React.FC<HomepageBillboardProps> = ({ data }) => {
   );
 };
 
-export default HomepageBillboard;
+export default HomepageBillboardMobile;
 

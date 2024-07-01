@@ -16,11 +16,10 @@ import { Drawer } from "@material-tailwind/react";
 import React from "react";
 import { GoFilter } from "react-icons/go";
 
-import MiniProductCard from "../Product/mini-product-card";
-import MobileProductFilter from "../Filters/mobile-product-filter";
-import NavbarScrollingBanner from "../NavBar/components/navbar-scrolling-banner";
+import MobileProductFilter from "../../Filters/mobile-product-filter";
+import NavbarScrollingBanner from "../../NavBar/components/navbar-scrolling-banner";
 import { MdArrowBackIos } from "react-icons/md";
-import RangeSlider from "../Filters/range-slider";
+import RangeSlider from "../../Filters/range-slider";
 
 interface FilterModalProps {
   colors: Color[] | undefined;

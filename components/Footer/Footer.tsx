@@ -1,4 +1,4 @@
-import FooterMobileButtons from "./footer-mobile-buttons";
+import FooterMobileButtons from "./components/footer-mobile-buttons";
 
 import getDesigners from "@/actions/get-designers";
 import getCategories from "@/actions/get-categories";

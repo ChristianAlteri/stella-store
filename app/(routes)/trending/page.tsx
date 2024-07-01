@@ -101,9 +101,6 @@ const TopLikesPage: React.FC<TopLikesPageProps> = async ({ searchParams }) => {
         <div className="col-span-6 flex flex-col justify-center items-center w-full h-full">
 
           <ProductGrid>
-            {/* <ClientSideProductGrid 
-              productData={topLikedProducts}
-            /> */}
             {topLikedProducts.map((item) => (
               <ProductCard key={item.id} item={item} />
             ))}

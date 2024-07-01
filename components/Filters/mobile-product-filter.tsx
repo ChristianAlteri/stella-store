@@ -92,8 +92,6 @@ const MobileProductFilter: React.FC<MobileProductFilterProps> = ({
               >
                 {filterItem.name.toUpperCase()}
               </div>
-                {/* {filterItem.name.charAt(0).toUpperCase() +
-                filterItem.name.slice(1)} */}
             </div>
           ))}
         </div>

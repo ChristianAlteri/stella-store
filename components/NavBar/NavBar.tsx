@@ -36,7 +36,7 @@ interface NavbarProps {
   genders: Gender[];
   subcategories: Subcategory[];
   products: Product[];
-  topTen: Product[];
+  topTen?: Product[];
   billboard: Billboard;
 }
 

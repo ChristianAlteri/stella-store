@@ -6,10 +6,7 @@ import { useRouter } from "next/navigation";
 import qs from "query-string";
 import { cn } from "@/lib/utils";
 import { FiArrowDown, FiArrowUp } from "react-icons/fi";
-import { BiHide } from "react-icons/bi";
-import { CiBadgeDollar, CiCoinInsert } from "react-icons/ci";
 import { Product, Gender } from "@/types";
-import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
 
 interface FullScreenFooterFilterProps {
   data: Product[] | undefined;
@@ -100,7 +97,6 @@ const FullScreenFooterFilter: React.FC<FullScreenFooterFilterProps> = ({
               }
             }}
           >
-            {/* <BsGenderFemale size={20} /> */}
             {womenswear?.name.toUpperCase()}
           </div>
         </div>
@@ -119,7 +115,6 @@ const FullScreenFooterFilter: React.FC<FullScreenFooterFilterProps> = ({
               }
             }}
           >
-            {/* <BsGenderMale size={20} /> */}
             {menswear?.name.toUpperCase()}
           </div>
         </div>
@@ -134,7 +129,6 @@ const FullScreenFooterFilter: React.FC<FullScreenFooterFilterProps> = ({
             onClick={() => handleClick("isHidden", "true")}
           >
             <div className="flex flex-col justify-center items-center ">
-              {/* <BiHide size={20} /> */}
               UNRELEASED
             </div>
           </div>
@@ -150,7 +144,6 @@ const FullScreenFooterFilter: React.FC<FullScreenFooterFilterProps> = ({
             onClick={() => handleClick("isCharity", "true")}
           >
             <div className="flex flex-col justify-center items-center text-green-500">
-              {/* <CiBadgeDollar size={20} /> */}
               CHARITY
             </div>
           </div>
@@ -166,7 +159,6 @@ const FullScreenFooterFilter: React.FC<FullScreenFooterFilterProps> = ({
             onClick={() => handleClick("isOnSale", "true")}
           >
             <div className="flex flex-col justify-center items-center text-red-500">
-              {/* <CiCoinInsert size={20} /> */}
               SALE
             </div>
           </div>
