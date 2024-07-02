@@ -1,6 +1,5 @@
 import ProductGrid from "@/components/Home/ProductGrid";
 import ProductCard from "@/components/Product/product-card";
-import Billboard from "@/components/Billboard/Billboard";
 import RightSidebar from "@/components/SideBars/RightSideBar";
 import LeftSidebar from "@/components/SideBars/LeftSideBar";
 
@@ -15,7 +14,6 @@ import getMaterials from "@/actions/get-materials";
 import getSingleDesigner from "@/actions/get-single-designer";
 import getGenders from "@/actions/get-genders";
 import getSubcategories from "@/actions/get-sub-categories";
-import FullscreenProductFilters from "@/components/Home/full-screen-product-filters";
 import FullscreenProductFiltersFooter from "@/components/Filters/full-screen-product-filters-footer";
 
 export const revalidate = 0;

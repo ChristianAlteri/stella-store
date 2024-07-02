@@ -1,18 +1,14 @@
 import ProductGrid from "@/components/Home/ProductGrid";
-import ProductCard from "@/components/Product/product-card";
 import LeftSidebar from "@/components/SideBars/LeftSideBar";
 import RightSidebar from "@/components/SideBars/RightSideBar";
-import FullscreenProductFilters from "@/components/Home/full-screen-product-filters";
 
 import getDesigners from "@/actions/get-designers";
 import getCategories from "@/actions/get-categories";
-import getProducts from "@/actions/get-products";
 import getSellers from "@/actions/get-sellers";
 import getColors from "@/actions/get-colors";
 import getSizes from "@/actions/get-sizes";
 import getConditions from "@/actions/get-conditions";
 import getMaterials from "@/actions/get-materials";
-import getGenders from "@/actions/get-genders";
 import getSubcategories from "@/actions/get-sub-categories";
 import getTrending from "@/actions/get-trending";
 import SellerContainer from "./sellerContainer";
@@ -56,7 +52,6 @@ const TopSellers: React.FC<TopSellersProps> = async ({ searchParams }) => {
     designerId: searchParams.designerId,
     sellerId: searchParams.sellerId,
   });
-  const featuredProducts = await getProducts({ isFeatured: true });
 
   const sizes = await getSizes();
   const colors = await getColors();
@@ -65,11 +60,8 @@ const TopSellers: React.FC<TopSellersProps> = async ({ searchParams }) => {
   const sellers = await getSellers();
   const categories = await getCategories();
   const materials = await getMaterials();
-  const genders = await getGenders();
   const subcategories = await getSubcategories();
 
-  // TODO: make this a backend query to sort by most popular
-  // const sellerData = await getSellers();
   const sellerData = await getTopSellers();
 
   return (

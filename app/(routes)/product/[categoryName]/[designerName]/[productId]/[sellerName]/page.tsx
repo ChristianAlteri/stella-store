@@ -4,7 +4,6 @@ import DetailsCard from "@/components/Product/DetailsCard";
 
 import getSingleProduct from "@/actions/get-single-product";
 import getProducts from "@/actions/get-products";
-import getMostViewed from "@/actions/get-most-viewed";
 
 import {
   sortByMostLiked,

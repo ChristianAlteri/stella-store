@@ -3,14 +3,13 @@ import React, { useEffect } from "react";
 import { Category, Designer, Product, Seller } from "@/types";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
-
 import { Drawer } from "@material-tailwind/react";
-
-import { CiMenuBurger } from "react-icons/ci";
+import { CiBadgeDollar, CiMenuBurger } from "react-icons/ci";
 import QuickLinks from "./quick-links";
 import useParamsUtil from "@/utils/useParamsUtil";
-import MiniProductCard from "../../Product/mini-product-card";
-import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
+import {  MdArrowForwardIos } from "react-icons/md";
+import IconRedirectButton from "@/components/ui/icon-redirect-button"
+import { GrContact } from "react-icons/gr";
 
 interface HamburgerMenuProps {
   designers?: Designer[];
@@ -146,7 +145,13 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
 
           
 
-          <div className="row-span-3 bg-stone-200 flex items-center justify-center ">
+          <div className="row-span-3 bg-stone-200 flex items-center justify-center flex-row">
+          <div className="md:hidden flex">
+            <IconRedirectButton 
+              route="/about-us"
+              icon="ABOUT"
+            />
+          </div>
             {/* <aside className="flex flex-col w-2/3 justify-center items-center top-0 h-2/3">
               {topTen && topTen.length > 0 && (
                 <MiniProductCard

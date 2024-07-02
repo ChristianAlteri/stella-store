@@ -24,6 +24,8 @@ import {
 } from "@/types";
 import QuickLinks from "./components/quick-links";
 import { useState } from "react";
+import IconRedirectButton from "../ui/icon-redirect-button";
+import { HiInformationCircle } from "react-icons/hi";
 
 interface NavbarProps {
   sellers: Seller[];
@@ -85,6 +87,12 @@ const Navbar: React.FC<NavbarProps> = ({
               </div>
 
               <div className="w-full flex flex-row justify-end items-center gap-4 md:gap-8 p-2">
+                <div className="hidden md:flex">
+                  <IconRedirectButton 
+                    route="/about-us"
+                    icon="ABOUT"
+                  />
+                </div>
                 <HeartButton />
                 <ShoppingCartButton size="27px" />
                 {loggedIn ? <ProfileButton /> : null}

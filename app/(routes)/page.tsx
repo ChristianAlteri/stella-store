@@ -3,7 +3,6 @@ import ProductCard from "@/components/Product/product-card";
 import LeftSidebar from "@/components/SideBars/LeftSideBar";
 import RightSidebar from "@/components/SideBars/RightSideBar";
 
-
 import getDesigners from "@/actions/get-designers";
 import getCategories from "@/actions/get-categories";
 import getProducts from "@/actions/get-products";
@@ -64,25 +63,6 @@ const Homepage: React.FC<HomepageProps> = async ({ searchParams }) => {
     minPrice: searchParams.minPrice,
     maxPrice: searchParams.maxPrice,
   });
-  // const featuredProducts = await getProducts({ isFeatured: true });
-  // const featuredProducts = await getTopLikes({
-  //   categoryId: searchParams.categoryId,
-  //   sort: searchParams.sort,
-  //   sizeId: searchParams.sizeId,
-  //   colorId: searchParams.colorId,
-  //   conditionId: searchParams.conditionId,
-  //   materialId: searchParams.materialId,
-  //   genderId: searchParams.genderId,
-  //   subcategoryId: searchParams.subcategoryId,
-  //   isOnSale: searchParams.isOnSale,
-  //   isCharity: searchParams.isCharity,
-  //   isHidden: searchParams.isHidden,
-  //   isFeatured: searchParams.isFeatured,
-  //   designerId: searchParams.designerId,
-  //   sellerId: searchParams.sellerId,
-  //   minPrice: searchParams.minPrice,
-  //   maxPrice: searchParams.maxPrice,
-  // });
      
   const sizes = await getSizes();
   const colors = await getColors();
@@ -97,8 +77,6 @@ const Homepage: React.FC<HomepageProps> = async ({ searchParams }) => {
   const Billboard = await getBillboardByName("HomePageFullScreen");
   const BillboardMobile = await getBillboardByName("HomePageMobile");
 
-  // console.log("Billboard", Billboard);
-  // console.log("BillboardMobile", BillboardMobile);
 
   return (
     <>
@@ -111,7 +89,6 @@ const Homepage: React.FC<HomepageProps> = async ({ searchParams }) => {
         </div>
         {/* Mobile screen Billboard */}
         <div className="flex-row pl-7 pr-7 h-2/3 flex lg:hidden">
-          {/* TODO: make sure we upload the correct size */}
           <HomepageBillboardMobile
             // @ts-ignore
             data={BillboardMobile}
