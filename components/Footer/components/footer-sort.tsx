@@ -26,7 +26,7 @@ const FooterSort: React.FC<FooterSortProps> = ({
         onClick={openDrawer}
         className="flex flex-row justify-center text-center text-xs hover:underline hover:cursor-pointer"
       >
-        <CiSliderHorizontal className="flex flex-row" size={25} />
+        <CiSliderHorizontal className="flex flex-row" size={23} />
       </div>
       <Drawer
         open={open}

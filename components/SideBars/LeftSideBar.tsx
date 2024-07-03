@@ -27,9 +27,9 @@ const LeftSidebar: React.FC<LeftSideProps> = ({
 
       <div className="grid grid-rows-3 h-1/2 justify-start items-start">
         <div className="row-span-1 h-full justify-start">
-          <Link className="font-bold text-lg bg-white" href={`/top-sellers`}>
+          <p className="font-bold text-lg bg-white" >
             SELLERS
-          </Link>
+          </p>
           <div className="ml-1 row-span-1 h-full overflow-y-auto bg-white ">
             {sellers?.map((seller, index) => (
               <Link href={`/sellers/${seller.id}`} key={seller.instagramHandle}>
@@ -48,9 +48,9 @@ const LeftSidebar: React.FC<LeftSideProps> = ({
           </div>
         </div>
         <div className="row-span-1 h-full p-1">
-          <Link className="font-bold text-lg bg-white" href={`/designers`}>
+          <p className="font-bold text-lg bg-white" >
             DESIGNERS
-          </Link>
+          </p>
           <div className="ml-1 row-span-1 h-full overflow-y-auto bg-white ">
             {designers?.map((designer, index) => (
               <Link href={`/designers/${designer.id}`} key={designer.name}>
@@ -69,9 +69,9 @@ const LeftSidebar: React.FC<LeftSideProps> = ({
           </div>
         </div>
         <div className="row-span-1 h-full p-1">
-          <Link className="font-bold text-lg bg-white" href={`/categories`}>
+          <p className="font-bold text-lg bg-white" >
             CATEGORIES
-          </Link>
+          </p>
           <div className="ml-1 row-span-1 h-full overflow-y-auto bg-white ">
             {categories?.map((category, index) => (
               <Link href={`/categories/${category.id}`} key={category.name}>

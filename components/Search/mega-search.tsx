@@ -29,7 +29,7 @@ const MegaSearch: React.FC<MegaSearchProps> = ({
   const onClose = () => setOpen(false);
 
   // @ts-ignore
-  const imageUrl = billboard ? billboard[0].imageUrl : null;
+  const imageUrl = billboard ? billboard[0]?.imageUrl : null;
 
   return (
     <>

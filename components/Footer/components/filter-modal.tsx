@@ -51,7 +51,7 @@ const FilterModal: React.FC<FilterModalProps> = ({
         onClick={openDrawer}
         className="flex flex-row justify-center text-center text-xs hover:underline hover:cursor-pointer"
       >
-        <GoFilter className="flex flex-row" size={25} />
+        <GoFilter className="flex flex-row" size={23} />
       </div>
       <Drawer
         open={open}

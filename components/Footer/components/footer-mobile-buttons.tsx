@@ -51,18 +51,18 @@ const FooterMobileButtons: React.FC<FooterMobileButtonsProps> = ({
         className="flex flex-col items-center justify-center col-span-1 w-full min-h-[55px] text-xs">
         <FooterSort
           products={products}
-        />Sort by
+        />SORT BY
       </div>
       <div className="text-xs flex items-center justify-center col-span-1 w-full min-h-[55px] z-35 flex-col">
       <GenderFilter 
-      icon={<BsGenderMale size={25}/>}
+      icon={<BsGenderMale size={23}/>}
       gender={genders ? genders[1] : undefined} 
       /> 
       </div>
       <div
         className="text-xs flex-col flex items-center justify-center col-span-1 w-full min-h-[55px] z-35">
        <GenderFilter 
-       icon={<BsGenderFemale size={25}/>}
+       icon={<BsGenderFemale size={23}/>}
        gender={genders ? genders[0] : undefined} 
        /> 
       </div>
@@ -79,7 +79,7 @@ const FooterMobileButtons: React.FC<FooterMobileButtonsProps> = ({
           genders={genders}
           subcategories={subcategories}
           onSaleProducts={onSaleProducts}
-          /> Filter by
+          /> FILTER BY
       </div>
       
     </div>

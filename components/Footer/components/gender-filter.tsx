@@ -42,10 +42,10 @@ const GenderFilter: React.FC<GenderFilterProps> = ({ gender, icon }) => {
           >
             <div
               className={cn(
-                "w-full h-full flex flex-col justify-center items-center text-center text-xs text-white hover:underline hover:cursor-pointer",
+                "w-full h-full flex flex-col justify-center items-center text-center text-xs text-black hover:underline hover:cursor-pointer",
                 isSelected
-                ? "bg-stella-green w-4/5 flex justify-center items-center text-white text-xs rounded-md h-full p-1 scale-110 transition-transform animate-pulse"
-                  : "text-stone-700 w-4/5 text-xs h-full scale-90" 
+                  ? "underline flex justify-center items-center"
+                  : "text-black text-xs h-full "
               )}
               onClick={() => {
                 if (gender) {
@@ -53,7 +53,8 @@ const GenderFilter: React.FC<GenderFilterProps> = ({ gender, icon }) => {
                 }
               }}
             >
-             {icon}{gender?.name} 
+              {icon}
+              {gender?.name.toUpperCase()}
             </div>
           </div>
         </div>
