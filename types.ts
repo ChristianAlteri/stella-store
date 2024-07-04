@@ -26,6 +26,11 @@ export interface Seller {
   instagramHandle: string;
   billboardId: string;
   billboard: Billboard;
+  charityName: string  
+  charityUrl: string   
+  shoeSizeEU: string   
+  topSize: string     
+  bottomSize: string   
   products: Product[];
 }
 

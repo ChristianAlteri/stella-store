@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Seller } from "@/types";
 import { CiSearch } from "react-icons/ci";
 import SellerCard from "./single-seller-card";
+import { FiArrowDown, FiArrowUp } from "react-icons/fi";
 
 interface SellerContainerProps {
   sellerData: Seller[];
@@ -69,23 +70,10 @@ const SellerContainer: React.FC<SellerContainerProps> = ({ sellerData }) => {
     <>
       <div
         className="flex flex-col items-center justify-center text-center col-span-4 w-full"
-        // style={{
-        //   backgroundImage:
-        //     filteredData &&
-        //     filteredData.length > 0 &&
-        //     filteredData[0].billboard &&
-        //     filteredData[0].billboard.imageUrl
-        //       ? `url(${filteredData[0].billboard.imageUrl})`
-        //       : "none",
-        //   backgroundSize: "cover",
-        //   backgroundPosition: "center",
-        //   backgroundRepeat: "no-repeat",
-        // }}
       >
 
-
             {/* search and filter */}
-            <div className="flex justify-center items-center text-center flex-col row-span-1 gap-2 ">
+            <div className="flex justify-center items-center text-center flex-col row-span-1 gap-2 w-full">
               <div className="flex flex-row gap-1 justify-center items-center border rounded-md mt-1">
                 <CiSearch />
                 <input
@@ -95,27 +83,25 @@ const SellerContainer: React.FC<SellerContainerProps> = ({ sellerData }) => {
                   onChange={handleSearch}
                 />
               </div>
-              <div className="flex flex-row text-xs justify-center items-center text-center gap-3 mt-1">
-                <h1 className="flex flex-row justify-center">
-                  Sort by:{" "}
-                </h1>
-                {/* <div
-                  className="flex flex-row justify-center hover:underline hover:cursor-pointer"
-                  onClick={sortMostPopular}
-                >
-                  Most Popular
-                </div> */}
+
+              <div className="flex flex-row items-center justify-center w-full gap-2">
                 <div
-                  className="flex flex-row justify-center hover:underline hover:cursor-pointer"
+                  className="text-xs flex flex-row justify-center hover:underline hover:cursor-pointer w-full"
                   onClick={sortAverageLowestPrice}
                 >
-                  Lowest Prices
+                  <div className="flex flex-row justify-center items-center gap-1">
+                    LOWEST PRICES
+                    <p><FiArrowDown size={17}/></p>
+                  </div>
                 </div>
                 <div
-                  className="flex flex-row justify-center hover:underline hover:cursor-pointer"
+                  className="text-xs flex flex-row justify-center hover:underline hover:cursor-pointer w-full"
                   onClick={sortAverageHighestPrice}
                 >
-                  Highest Prices
+                  <div className="flex flex-row justify-center items-center gap-1">
+                    HIGHEST PRICES
+                    <p><FiArrowUp size={17}/></p>
+                  </div>
                 </div>
               </div>
             </div>

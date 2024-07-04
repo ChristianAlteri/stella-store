@@ -71,8 +71,6 @@ const TopLikesPage: React.FC<TopLikesPageProps> = async ({ searchParams }) => {
   const genders = await getGenders();
   const subcategories = await getSubcategories();
 
-
-
   return (
     <>
       <div className="flex flex-row w-full justify-center items-center text-center">

@@ -87,7 +87,7 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
                         href={`/sellers/${seller.id}`}
                         key={seller.instagramHandle}
                         className={cn(
-                          "flex justify-start text-xs font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer",
+                          "flex justify-center items-center text-center text-xs font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer",
                           isSellerSelected(seller.id)
                           ? "rounded-md w-full flex text-black underline"
                           : "text-light-font"
@@ -108,13 +108,13 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
                       href={`/designers/${designer.id}`}
                       key={designer.name}
                       className={cn(
-                        "flex justify-start text-xs font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer",
+                        "flex justify-center items-center text-center text-xs font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer",
                         isDesignerSelected(designer.id)
                         ? "rounded-md w-full flex text-black underline"
                         : "text-light-font"
                       )}
                     >
-                      {designer.name}
+                      {designer.name.toUpperCase()}
                     </Link>
                   ))}
                 </div>
@@ -129,13 +129,13 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
                       href={`/categories/${category.id}`}
                       key={category.name}
                       className={cn(
-                        "flex justify-start text-xs font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer",
+                        "flex justify-center items-center text-center text-xs font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer",
                         isCategorySelected(category.id)
                         ? "rounded-md w-full flex text-black underline"
                         : "text-light-font"
                       )}
                     >
-                      {category.name}
+                      {category.name.toUpperCase()}
                     </Link>
                   ))}
                 </div>
@@ -152,7 +152,7 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
               icon="ABOUT"
             />
           </div>
-            {/* <aside className="flex flex-col w-2/3 justify-center items-center top-0 h-2/3">
+            {/* <aside className="flex flex-col w-2/3 justify-center items-center text-center top-0 h-2/3">
               {topTen && topTen.length > 0 && (
                 <MiniProductCard
                 data={topTen}

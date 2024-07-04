@@ -11,7 +11,7 @@ import getConditions from "@/actions/get-conditions";
 import getMaterials from "@/actions/get-materials";
 import getSubcategories from "@/actions/get-sub-categories";
 import getTrending from "@/actions/get-trending";
-import SellerContainer from "./sellerContainer";
+import SellerContainer from "./components/sellerContainer";
 import getTopSellers from "@/actions/get-top-sellers";
 
 export const revalidate = 0;
@@ -84,18 +84,8 @@ const TopSellers: React.FC<TopSellersProps> = async ({ searchParams }) => {
         {/* Second column */}
         <div className="col-span-6 flex flex-col justify-center items-center w-full h-full">
           <ProductGrid>
-            {/* {topLikedProducts.map((item) => (
-              <ProductCard key={item.id} item={item} />
-            ))} */}
             <SellerContainer sellerData={sellerData} />
           </ProductGrid>
-
-          {/* <div className="fixed bottom-0 p-7 w-1/3 z-50">
-            <FullscreenProductFiltersFooter
-              productData={topLikedProducts}
-              genders={genders}
-            />
-          </div> */}
         </div>
 
         {/* Third column */}
