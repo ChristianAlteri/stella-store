@@ -2,7 +2,6 @@ import ProductGrid from "@/components/Home/ProductGrid";
 import ProductCard from "@/components/Product/product-card";
 import LeftSidebar from "@/components/SideBars/LeftSideBar";
 import RightSidebar from "@/components/SideBars/RightSideBar";
-import FullscreenProductFilters from "@/components/Home/full-screen-product-filters";
 
 import getDesigners from "@/actions/get-designers";
 import getCategories from "@/actions/get-categories";
@@ -14,8 +13,10 @@ import getConditions from "@/actions/get-conditions";
 import getMaterials from "@/actions/get-materials";
 import getGenders from "@/actions/get-genders";
 import getSubcategories from "@/actions/get-sub-categories";
-import LogInAndSignUp from "@/components/LoginSignup/log-in-and-sign-up";
+import AuthForm from "@/components/LoginSignup/auth-form";
+
 import FullscreenProductFiltersFooter from "@/components/Filters/full-screen-product-filters-footer";
+import Link from "next/link";
 
 export const revalidate = 0;
 
@@ -89,34 +90,50 @@ const ForYouPage: React.FC<ForYouPageProps> = async ({ searchParams }) => {
             <>
               <div className="flex flex-row h-1/3 w-full p-2">
                 <div className="w-full">
-                <h2 className="text-4xl font-bold text-black mt-2 mb-2">
-                  Welcome back, [user name]
-                </h2>
-                <p className="text-base font-cursive text-light-font">
-                  Like, follow and view items - The more you interact with the
-                  app the more we will show you some products you might like
-                </p>
+                  <h2 className="text-4xl font-bold text-black mt-2 mb-2">
+                    Welcome back, [user name]
+                  </h2>
+                  <p className="text-base font-cursive text-light-font">
+                    Like, follow and view items - The more you interact with the
+                    app the more we will show you some products you might like
+                  </p>
+                </div>
               </div>
-              </div>
-
-
               <ProductGrid>
                 {featuredProducts.map((item) => (
                   <ProductCard key={item.id} item={item} />
                 ))}
               </ProductGrid>
               <div className="fixed bottom-0 p-7 w-1/3 z-50">
-              <FullscreenProductFiltersFooter 
-                productData={featuredProducts}
-                genders={genders}
-            />
-          </div>
+                <FullscreenProductFiltersFooter
+                  productData={featuredProducts}
+                  genders={genders}
+                />
+              </div>
             </>
           ) : (
-            <LogInAndSignUp />
+            <div
+              className="
+      flex
+      min-h-full
+      flex-col
+      justify-center
+      py-12
+      sm:px-6
+      lg:px-8
+      "
+            >
+              <div className="sm:mx-auto sm:w-full sm:max-w-md flex flex-col justify-center items-center">
+                <h2
+                  className=" mt-6 text-center text-3xl font-bold tracking-tight  text-black"
+                >
+                  Sign in to your account
+                </h2>
+              </div>
+              <AuthForm />
+            </div>
           )}
         </div>
-
         {/* Third column */}
         <div
           className="col-span-1 justify-start items-start w-full p-6 hidden sticky z-50 h-full md:grid"
