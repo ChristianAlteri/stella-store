@@ -32,6 +32,7 @@ export interface Seller {
   topSize: string     
   bottomSize: string   
   products: Product[];
+  soldCount: number;
 }
 
 export interface Store {

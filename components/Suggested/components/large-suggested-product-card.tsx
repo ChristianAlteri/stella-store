@@ -101,11 +101,11 @@ const LargeSuggestedProductCard: React.FC<LargeSuggestedProductCardProps> = ({
             <div className="flex flex-col justify-center items-center  w-full">
               <Link
                 href={`/designers/${item?.designer?.id}`}
-                className="text-xs hover:underline underline text-black bg-light-background"
+                className="text-super-small hover:underline underline text-black bg-white opacity-50"
               >
                 {item.designer?.name.toUpperCase()}
               </Link>
-              <h3
+              {/* <h3
                 onClick={handleProductClick}
                 className="text-xs hover:underline text-light-font bg-light-background hover:cursor-pointer"
               >
@@ -127,7 +127,7 @@ const LargeSuggestedProductCard: React.FC<LargeSuggestedProductCardProps> = ({
               <div className="flex flex-row justify-between items-start text-black text-super-small w-full bg-light-background">
                 <h3>{item?.likes} likes</h3>
                 <h3>{item?.clicks} views</h3>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

@@ -31,7 +31,7 @@ const SuggestedContainer: React.FC<SuggestedContainerProps> = ({
           className="flex hover:underline hover:cursor-pointer text-black flex-row justify-start items-start text-xs md:text-sm"
         >
           {" "}
-          <p className="underline bg-light-background rounded-lg text-light-font text-xs md:text-sm">
+          <p className="underline rounded-lg text-black text-xs md:text-sm">
             {title?.toUpperCase()}{" "}
           </p> 
         </Link>

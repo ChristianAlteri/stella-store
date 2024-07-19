@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Seller } from "@/types";
-import { CiSearch } from "react-icons/ci";
+import { CiHeart, CiSearch } from "react-icons/ci";
 import SellerCard from "./single-seller-card";
 import { FiArrowDown, FiArrowUp } from "react-icons/fi";
 
@@ -65,7 +65,12 @@ const SellerContainer: React.FC<SellerContainerProps> = ({ sellerData }) => {
     });
     setFilteredData(localFiltered);
   };
+  const sortHighestSellerCount = () => {
+    const localFiltered = [...filteredData].sort((a, b) => b.soldCount - a.soldCount);
+    setFilteredData(localFiltered);
+  };
 
+  // Auto sorts to most popular
   return (
     <>
       <div
@@ -74,17 +79,8 @@ const SellerContainer: React.FC<SellerContainerProps> = ({ sellerData }) => {
 
             {/* search and filter */}
             <div className="flex justify-center items-center text-center flex-col row-span-1 gap-2 w-full">
-              <div className="flex flex-row gap-1 justify-center items-center border rounded-md mt-1">
-                <CiSearch />
-                <input
-                  type="text"
-                  placeholder="Search sellers..."
-                  className="w-2/3"
-                  onChange={handleSearch}
-                />
-              </div>
 
-              <div className="flex flex-row items-center justify-center w-full gap-2">
+              <div className="flex flex-row items-center justify-center w-full gap-2 p-2">
                 <div
                   className="text-xs flex flex-row justify-center hover:underline hover:cursor-pointer w-full"
                   onClick={sortAverageLowestPrice}
@@ -92,6 +88,16 @@ const SellerContainer: React.FC<SellerContainerProps> = ({ sellerData }) => {
                   <div className="flex flex-row justify-center items-center gap-1">
                     LOWEST PRICES
                     <p><FiArrowDown size={17}/></p>
+                  </div>
+                </div>
+                <div
+                  className="text-xs flex flex-row justify-center hover:underline hover:cursor-pointer w-full"
+                  onClick={sortHighestSellerCount}
+                >
+                  <div className="flex flex-row justify-center items-center gap-1">
+                    MOST POPULAR
+                    <CiHeart size={17} />
+                    {/* <p><FiArrowUp size={17}/></p> */}
                   </div>
                 </div>
                 <div
@@ -104,6 +110,17 @@ const SellerContainer: React.FC<SellerContainerProps> = ({ sellerData }) => {
                   </div>
                 </div>
               </div>
+
+              <div className="flex flex-row gap-1 justify-center items-center border rounded-md mt-1">
+                <CiSearch />
+                <input
+                  type="text"
+                  placeholder="Search sellers..."
+                  className="w-2/3"
+                  onChange={handleSearch}
+                />
+              </div>
+
             </div>
 
 

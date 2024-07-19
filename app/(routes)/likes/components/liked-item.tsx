@@ -86,13 +86,13 @@ const LikedItem: React.FC<LikedItemProps> = ({
                   className="text-sm ml-4  text-black hover:underline hover:cursor-pointer"
                   onClick={handleProductClick}
                 >
-                  {data.name}
+                  {data.name.toUpperCase()}
                 </p>
                 <Link href={`/designers/${data.designer.id}`} className="ml-4 text-xs text-stone-900 hover:underline hover:cursor-pointer">
-                  {data.designer.name}
+                  {data.designer.name.toUpperCase()}
                 </Link>
                 <Link href={`/sellers/${data.seller.id}`} className="ml-4 text-xs mt-2 text-stone-900 hover:underline hover:cursor-pointer">
-                  sold by {data.seller.instagramHandle}
+                  sold by {data.seller.instagramHandle.toUpperCase()}
                 </Link>
               </div>
               <p className="ml-4 pl-4 text-sm text-stone-900">
@@ -106,7 +106,7 @@ const LikedItem: React.FC<LikedItemProps> = ({
             </div>
             <div className="flex flex-row">
               <div className="flex flex-row justify-center items-center">
-                <p className="pl-4 text-xs text-stone-500">{data.size.name}</p>
+                <p className="pl-4 text-xs text-stone-500">{data.size.name.toUpperCase()}</p>
                 <p className="p-2 text-xs text-stone-900 text-red-500">
                   {" "}
                   £{data.ourPrice}{" "}

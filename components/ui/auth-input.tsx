@@ -31,7 +31,7 @@ const AuthInput: React.FC<AuthInputProps>  = ({
               text-sm 
               font-medium 
               leading-6 
-              text-slate-900
+              text-black
             "
           >
             {label}
@@ -54,7 +54,7 @@ const AuthInput: React.FC<AuthInputProps>  = ({
                 shadow-sm 
                 ring-1 
                 ring-inset 
-                ring-black-300 
+                ring-black 
                 placeholder:text-black-500
                 focus:ring-2 
                 focus:ring-inset 

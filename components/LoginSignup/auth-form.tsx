@@ -5,14 +5,13 @@ import AuthInput from "../ui/auth-input";
 import AuthButton from "../ui/auth-button";
 import { useRouter } from "next/navigation";
 import AuthSocialButton from "../ui/auth-social-button";
-import { BsFacebook, BsGoogle, BsInstagram } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
 import { useCallback, useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { TbFaceId, TbFaceIdError } from "react-icons/tb";
 import { CiFacebook, CiInstagram } from "react-icons/ci";
-// import { signIn, useSession } from "next-auth/react";
+import axios from "axios";
 
 type Variant = "LOGIN" | "REGISTER";
 
@@ -40,7 +39,7 @@ const toastSuccess = (message: string) => {
 const AuthForm = () => {
   // const session = useSession();
   const router = useRouter();
-  const [variant, setVariant] = useState<Variant>("LOGIN");
+  const [variant, setVariant] = useState<Variant>("REGISTER");
   const [isLoading, setIsLoading] = useState(false);
 
   // useEffect(() => {
@@ -71,70 +70,80 @@ const AuthForm = () => {
     },
   });
 
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     setIsLoading(true);
+    console.log("CLICK", data);
+    if (variant === "REGISTER") {
+      axios
+        .post(`${process.env.NEXT_PUBLIC_API_URL}/register`, data)
+        .then(() => toastSuccess("Registered successfully!"))
+        // .then(() => signIn("credentials", data))
+        //TODO: send to login
+        .then(() => router.push("/"))
+        .catch(() => toastError("Something went wrong!"))
+        .finally(() => setIsLoading(false));
+    }
 
+    if (variant === "LOGIN") {
+      try {
+        const response = await axios.post(
+          `${process.env.NEXT_PUBLIC_API_URL}/login`,
+          data
+        );
+        const token = response.data.token;
+
+        // Store token in localStorage or HTTP-only cookie
+        localStorage.setItem("token", token);
+
+        toastSuccess("Logged in successfully!");
+        router.push("/for-you");
+      } catch (error) {
+        toastError("Invalid credentials");
+      } finally {
+        setIsLoading(false);
+      }
+    }
   };
 
-  //   if (variant === "REGISTER") {
-  //     axios
-  //       .post("/api/register", data)
-  //       // .then(() => toastSuccess('Registered successfully!'))
-  //       .then(() => signIn("credentials", data))
-  //       .catch(() => toastError("Something went wrong!"))
-  //       .finally(() => setIsLoading(false));
-  //   }
+  // }
 
-  //   if (variant === "LOGIN") {
-  //     // console.log(data);
-  //     signIn("credentials", {
-  //       ...data,
-  //       redirect: false,
-  //     })
-  //       .then((callback) => {
-  //         if (callback?.error) {
-  //           toastError("Invalid credentials");
-  //         }
+  // signIn("credentials", {
+  //   ...data,
+  //   redirect: false,
+  // })
+  //   .then((callback) => {
+  //     if (callback?.error) {
+  //       toastError("Invalid credentials");
+  //     }
 
-  //         if (callback?.ok) {
-  //           router.push("/users");
-  //           toastSuccess("Logging in");
-  //         }
-  //       })
-  //       .finally(() => setIsLoading(false));
+  //     if (callback?.ok && !callback?.error) {
+  //       router.push("/for-you");
+  //       toastSuccess("Logging in");
+  //     }
+  //   })
+  // .finally(() => setIsLoading(false));
   //   }
   // };
 
-  const socialAction = (action: string) => {
-    // // TODO: ADD META LOGINS
-    // setIsLoading(true);
+  // const socialAction = (action: string) => {
+  //   // // TODO: ADD META LOGINS
+  //   // setIsLoading(true);
+  //   // signIn(action, { redirect: false })
+  //   //   .then((callback) => {
+  //   //     if (callback?.error) {
+  //   //       toastError("Invalid credentials");
+  //   //     }
+  //   //     if (callback?.ok && !callback?.error) {
+  //   //       // router.push('/conversations')
+  //   //       toastSuccess("Logging in");
+  //   //     }
+  //   //   })
+  //   //   .finally(() => setIsLoading(false));
+  // };
 
-    // signIn(action, { redirect: false })
-    //   .then((callback) => {
-    //     if (callback?.error) {
-    //       toastError("Invalid credentials");
-    //     }
-
-    //     if (callback?.ok && !callback?.error) {
-    //       // router.push('/conversations')
-    //       toastSuccess("Logging in");
-    //     }
-    //   })
-    //   .finally(() => setIsLoading(false));
-  };
-
-    return (
-      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-      <div
-        className="
-          bg-white
-            px-4
-            py-8
-            shadow
-            sm:rounded-lg
-            sm:px-10
-          "
-      >
+  return (
+    <div className="p-8 w-full h-full">
+      <div className="bg-white px-4 py-8 shadow sm:rounded-lg sm:px-10">
         <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
           {variant === "REGISTER" && (
             <AuthInput
@@ -173,24 +182,17 @@ const AuthForm = () => {
 
         <div className="mt-6">
           <div className="relative">
-            <div
-              className="
-                  absolute 
-                  inset-0 
-                  flex 
-                  items-center
-                "
-            >
-              <div className="w-full border-t border-slate-300" />
+            <div className="absolute inset-0 flex items-center">
+              {/* <div className="w-full border-t border-slate-300" /> */}
             </div>
-            <div className="relative flex justify-center text-sm">
+            {/* <div className="relative flex justify-center text-sm">
               <span className="bg-white px-2 text-slate-500">
                 Or continue with
               </span>
-            </div>
+            </div> */}
           </div>
 
-          <div className="mt-6 flex gap-2">
+          {/* <div className="mt-6 flex gap-2">
             <AuthSocialButton
               icon={FcGoogle}
               onClick={() => socialAction("google")}
@@ -204,20 +206,10 @@ const AuthForm = () => {
               icon={CiInstagram}
               onClick={() => socialAction("google")}
             />
-          </div>
-
+          </div> */}
         </div>
-        <div
-          className="
-              flex 
-              gap-2 
-              justify-center 
-              text-sm 
-              mt-6 
-              px-2 
-              text-slate-500
-            "
-        >
+        {/* <div
+          className="flex gap-2 justify-center text-sm mt-6 px-2 text-slate-500">
           <div>
             {variant === "LOGIN"
               ? "New to @nondrobe?"
@@ -230,12 +222,10 @@ const AuthForm = () => {
           >
             {variant === "LOGIN" ? "Create an account" : "Login"}
           </div>
-
-        </div>
+        </div> */}
       </div>
     </div>
   );
 };
 
-export default AuthForm
-;
+export default AuthForm;

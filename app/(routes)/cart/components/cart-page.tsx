@@ -1,11 +1,23 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
+import { useRouter, useSearchParams } from "next/navigation";
 import useCart from "@/hooks/use-cart";
 import Summary from "./summary";
 import CartItem from "./cart-item";
+import toast from "react-hot-toast";
+import { TbFaceId } from "react-icons/tb";
 
+// Custom Toast Success
+const toastSuccess = (message: string) => {
+  toast.success(message, {
+    style: {
+      background: "white",
+      color: "green",
+    },
+    icon: <TbFaceId size={30} />,
+  });
+};
 
 interface CartPageProps {}
 
@@ -14,13 +26,19 @@ export const revalidate = 0;
 const CartPage: React.FC<CartPageProps> = ({}) => {
   const [isMounted, setIsMounted] = useState(false);
   const cart = useCart();
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const success = searchParams.get('success');
+  const session_id = searchParams.get('session_id');
 
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
+
+
   if (!isMounted) {
-    return null;
+    return <div>Loading...</div>; 
   }
 
   return (

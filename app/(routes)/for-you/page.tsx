@@ -14,9 +14,7 @@ import getMaterials from "@/actions/get-materials";
 import getGenders from "@/actions/get-genders";
 import getSubcategories from "@/actions/get-sub-categories";
 import AuthForm from "@/components/LoginSignup/auth-form";
-
-import FullscreenProductFiltersFooter from "@/components/Filters/full-screen-product-filters-footer";
-import Link from "next/link";
+import SuggestedContainer from "@/components/Suggested/SuggestedContainer";
 
 export const revalidate = 0;
 
@@ -66,8 +64,7 @@ const ForYouPage: React.FC<ForYouPageProps> = async ({ searchParams }) => {
   const materials = await getMaterials();
   const genders = await getGenders();
   const subcategories = await getSubcategories();
-  // TODO: remove after testing
-  let loggedIn = false;
+  // TODO: loggedIn = false unless logged in;
 
   return (
     <>
@@ -86,53 +83,46 @@ const ForYouPage: React.FC<ForYouPageProps> = async ({ searchParams }) => {
 
         {/* Second column */}
         <div className="col-span-6 flex flex-col justify-center items-center w-full h-full">
-          {loggedIn ? (
-            <>
-              <div className="flex flex-row h-1/3 w-full p-2">
-                <div className="w-full">
-                  <h2 className="text-4xl font-bold text-black mt-2 mb-2">
-                    Welcome back, [user name]
-                  </h2>
-                  <p className="text-base font-cursive text-light-font">
-                    Like, follow and view items - The more you interact with the
-                    app the more we will show you some products you might like
-                  </p>
-                </div>
-              </div>
-              <ProductGrid>
-                {featuredProducts.map((item) => (
-                  <ProductCard key={item.id} item={item} />
-                ))}
-              </ProductGrid>
-              <div className="fixed bottom-0 p-7 w-1/3 z-50">
-                <FullscreenProductFiltersFooter
-                  productData={featuredProducts}
-                  genders={genders}
-                />
-              </div>
-            </>
-          ) : (
-            <div
-              className="
-      flex
-      min-h-full
-      flex-col
-      justify-center
-      py-12
-      sm:px-6
-      lg:px-8
-      "
-            >
-              <div className="sm:mx-auto sm:w-full sm:max-w-md flex flex-col justify-center items-center">
-                <h2
-                  className=" mt-6 text-center text-3xl font-bold tracking-tight  text-black"
-                >
-                  Sign in to your account
+          {/* {loggedIn ? ( */}
+          {/* <>
+            <div className="flex flex-row h-1/3 w-full p-2">
+              <div className="w-full">
+                <h2 className="text-4xl font-bold text-black mt-2 mb-2">
+                  Welcome back, [user name]
                 </h2>
+                <p className="text-base font-cursive text-light-font">
+                  Like, follow and view items - The more you interact with the
+                  app the more we will show you some products you might like
+                </p>
               </div>
-              <AuthForm />
             </div>
-          )}
+            <ProductGrid>
+              {featuredProducts.map((item) => (
+                <ProductCard key={item.id} item={item} />
+              ))}
+            </ProductGrid>
+            <div className="fixed bottom-0 p-7 w-1/3 z-50">
+              <FullscreenProductFiltersFooter
+                productData={featuredProducts}
+                genders={genders}
+              />
+            </div>
+          </> */}
+          {/* ) : ( */}
+
+          <div className="flex h-full flex-col justify-center w-full md:w-1/3">
+            {/* <div className="sm:mx-auto sm:w-full sm:max-w-md flex flex-col justify-center items-center">
+              <h2 className=" mt-2 text-center text-2xl font-bold text-black w-full items-center justify-center">
+                Register and receive 10% off your first purchase
+              </h2>
+            </div> */}
+            <h2 className="mt-2 text-center text-1xl font-bold text-black w-full items-center justify-center p-2">
+              Register and receive 10% off your first purchase
+            </h2>
+            <AuthForm />
+            <SuggestedContainer data={featuredProducts} route="trending" title="FEATURED PRODUCTS"/>
+          </div>
+          {/* )} */}
         </div>
         {/* Third column */}
         <div
@@ -145,10 +135,11 @@ const ForYouPage: React.FC<ForYouPageProps> = async ({ searchParams }) => {
             conditions={conditions}
             materials={materials}
             subcategories={subcategories}
-            productData={featuredProducts}
-            miniProductTitle="Our top picks"
+            // productData={featuredProducts}
+            // miniProductTitle="Our top picks"
           />
         </div>
+
       </div>
     </>
   );

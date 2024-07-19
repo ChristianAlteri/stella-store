@@ -1,5 +1,6 @@
 "use client";
 
+import AuthForm from "@/components/LoginSignup/auth-form";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 
@@ -15,12 +16,15 @@ const EmailSignUpInput = () => {
       <h2 className="text-super-small text-stone-700">
         Enter your email or continue as a guest
       </h2>
-      <Input
+      <div>
+        <AuthForm />
+      </div>
+      {/* <Input
         placeholder="Email"
         className="mt-1"
         value={email}
         onChange={handleEmailChange}
-      />
+      /> */}
     </>
   );
 };
