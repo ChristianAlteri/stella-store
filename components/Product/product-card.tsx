@@ -208,18 +208,19 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
 
           <div className="flex justify-between text-left">
             <Link
-              href={`/designers/${item?.designer?.id}`}
+              href={`/sellers/${item?.seller?.id}`}
               className="text-xs hover:underline text-black hover:text-stone-700"
             >
               {item.seller?.instagramHandle.toUpperCase()}
             </Link>
-            <h3
-              onClick={handleProductClick}
+            <Link
+              // onClick={handleProductClick}
+              href={`/designers/${item?.designer?.id}`}
               className="text-xs font-bold hover:underline text-black hover:text-stone-700 hover:cursor-pointer"
             >
               {item.designer?.name.charAt(0).toUpperCase() +
                 item.designer?.name.slice(1)}
-            </h3>
+            </Link>
           </div>
 
           <div className="flex justify-end flex-row mt-1">
@@ -278,18 +279,19 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
           </div>
 
           <Link
-            href={`/designers/${item?.designer?.id}`}
+            href={`/sellers/${item?.seller?.id}`}
             className="text-xs hover:underline underline text-black"
           >
             {item.seller?.instagramHandle.toUpperCase()}
           </Link>
-          <h3
-            onClick={handleProductClick}
+          <Link
+            // onClick={handleProductClick}
+            href={`/designers/${item?.designer?.id}`}
             className="text-xs hover:underline text-black hover:cursor-pointer"
           >
             {item.designer?.name.charAt(0).toUpperCase() +
               item.designer?.name.slice(1)}
-          </h3>
+          </Link>
           <div className="flex flex-row gap-1">
             <h6 onClick={handleProductClick} className="text-xs text-red-500">
               £{item.ourPrice}

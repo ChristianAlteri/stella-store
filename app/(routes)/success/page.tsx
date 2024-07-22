@@ -6,6 +6,8 @@ import { useRouter, useSearchParams } from "next/navigation";
 import toast from "react-hot-toast";
 import { TbFaceId, TbFaceIdError } from "react-icons/tb";
 import React from "react";
+import useCart from "@/hooks/use-cart";
+import useLike from "@/hooks/use-like";
 
 // Custom Toast Success
 const toastSuccess = (message: string) => {
@@ -37,52 +39,12 @@ const SuccesPage: React.FC<SuccesPageProps> = ({}) => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const session_id = searchParams.get("session_id");
+  const cart = useCart();
+  const likes = useLike();
 
   useEffect(() => {
     setIsMounted(true);
   }, []);
-
-  // useEffect(() => {
-  //   if (session_id) {
-  //     toastSuccess("Payment verified.");
-  //     router.push("/");
-  //     const verifyPayment = async () => {
-  //       try {
-  //         const response = await axios.post(
-  //           `${process.env.NEXT_PUBLIC_API_URL}/verify-payment?session_id=${session_id}`
-  //         );
-  //         const data = response.data;
-  //       } catch (err) {
-  //         console.error("Error verifying payment:", err);
-  //       }
-  //     };
-  //     verifyPayment();
-  //     // Clear the cart
-  //   } else {
-  //     toastError(
-  //       "Payment verification failed. Please check your internet connection and try again."
-  //     );
-  //     router.push("/");
-  //   }
-  //   // You can call your backend to verify the session_id and mark the order as paid.
-  //   // axios
-  //   //   .post(`/api/verify-payment?session_id=${session_id}`)
-  //   //   .then((res) => res.data())
-  //   //   .then((data) => {
-  //   //     console.log("FRONT END /SUCCESS", data);
-  //   //     if (data.success) {
-  //   //       toastSuccess("Payment verified.");
-  //   //       router.push("/");
-  //   //     } else {
-  //   //       alert(
-  //   //         "Payment verification failed. Please check your internet connection and try again."
-  //   //       );
-  //   //     }
-  //   //   })
-  //   //   .catch((err) => {
-  //   //     console.error("Error verifying payment:", err);
-  //   //   });
-  // }, [isMounted, session_id, router]);
 
   useEffect(() => {
     if (isMounted && session_id) {
@@ -92,12 +54,17 @@ const SuccesPage: React.FC<SuccesPageProps> = ({}) => {
             `${process.env.NEXT_PUBLIC_API_URL}/verify-payment?session_id=${session_id}`
           );
           const data = response.data;
+          // console.log("data.productIds", data.productIds);
           if (data.success) {
             toastSuccess("Payment verified.");
-            // Clear the cart
+            cart.removeAll();
+            if (data.productIds && Array.isArray(data.productIds)) {
+              data.productIds.forEach((productId: string) => {
+                likes.removeItem(productId);
+              });
+            }
           } else {
             toastError("Payment verification failed.");
-            // Can we redirect to the cart page?
           }
 
           router.push("/");

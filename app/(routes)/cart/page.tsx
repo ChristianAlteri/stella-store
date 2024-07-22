@@ -8,7 +8,9 @@ const CartPageServer = async () => {
   return (
       <div className="flex flex-col bg-white ">
         <div className="flex justify-center ">
-          <CartPage />
+          <CartPage 
+          products={products}
+          />
         </div>
           <SuggestedContainer route="/" title="NEW ARRIVALS" data={products}/>
       </div>

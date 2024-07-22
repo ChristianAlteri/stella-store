@@ -48,6 +48,7 @@ const Navbar: React.FC<NavbarProps> = ({
   categories,
   topTen,
   billboard,
+  products
 }) => {
   const [loggedIn, setLoggedIn] = useState(true);
 
@@ -97,8 +98,12 @@ const Navbar: React.FC<NavbarProps> = ({
                     icon="REGISTER"
                   />
                 </div>
-                <HeartButton />
-                <ShoppingCartButton size="27px" />
+                <HeartButton 
+                  products={products}
+                />
+                <ShoppingCartButton size="28px" 
+                  products={products}
+                />
                 {/* {loggedIn ? <ProfileButton /> : null} */} 
                 {/* TODO: Finish sign up and sign in */}
               </div>

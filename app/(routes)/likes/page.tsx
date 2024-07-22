@@ -1,6 +1,8 @@
 import SuggestedContainer from "@/components/Suggested/SuggestedContainer";
 import LikesPage from "./components/likes-page";
 import getTrending from "@/actions/get-trending";
+import getProducts from "@/actions/get-products";
+
 interface TopLikesPageProps {
   searchParams: {
     sizeId: string;
@@ -43,11 +45,32 @@ const CartPageServer: React.FC<TopLikesPageProps> = async ({
     minPrice: searchParams.minPrice,
     maxPrice: searchParams.maxPrice,
   });
+  const products = await getProducts({
+    categoryId: searchParams.categoryId,
+    sort: searchParams.sort,
+    sizeId: searchParams.sizeId,
+    colorId: searchParams.colorId,
+    conditionId: searchParams.conditionId,
+    materialId: searchParams.materialId,
+    genderId: searchParams.genderId,
+    subcategoryId: searchParams.subcategoryId,
+    isOnSale: searchParams.isOnSale,
+    isCharity: searchParams.isCharity,
+    isHidden: searchParams.isHidden,
+    isFeatured: searchParams.isFeatured,
+    designerId: searchParams.designerId,
+    sellerId: searchParams.sellerId,
+    all: true,
+    minPrice: searchParams.minPrice,
+    maxPrice: searchParams.maxPrice,
+  });
 
   return (
     <div className="flex flex-col bg-white ">
       <div className="flex justify-center ">
-        <LikesPage />
+        <LikesPage 
+          products={products}
+        />
       </div>
       <SuggestedContainer
         route="trending"

@@ -6,20 +6,35 @@ import { useEffect, useState } from "react";
 import Button from "@/components/ui/button";
 import { CiShoppingCart } from "react-icons/ci";
 import useCart from "@/hooks/use-cart";
+import { Product } from "@/types";
 
 interface ShoppingCartButtonProps {
   size: string;
+  products: Product[];
 }
 
-const ShoppingCartButton:React.FC<ShoppingCartButtonProps> = ({ size }) => {
+const ShoppingCartButton:React.FC<ShoppingCartButtonProps> = ({ size, products }) => {
   const [isMounted, setIsMounted] = useState(false);
+  const [cartProducts, setCartProducts] = useState<Product[]>([]);
+  const router = useRouter();
+  const cart = useCart();
 
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
-  const router = useRouter();
-  const cart = useCart();
+  useEffect(() => {
+    if (isMounted) {
+      const cartProductsNotArchived = products.filter(
+        (product) => !product.isArchived
+      );
+      const cartProductIds = cart.items.map((item) => item.id);
+      const filteredCartProducts = cartProductsNotArchived.filter((product) =>
+        cartProductIds.includes(product.id)
+      );
+      setCartProducts(filteredCartProducts);
+    }
+  }, [isMounted]);
 
   if (!isMounted) {
     return null;
@@ -29,7 +44,7 @@ const ShoppingCartButton:React.FC<ShoppingCartButtonProps> = ({ size }) => {
     <div className="">
       <Button onClick={() => router.push('/cart')} className="flex flex-row items-center justify-center">
         <span className="p-1 text-super-small text-green-800">
-          {cart.items.length}
+          {cartProducts.length}
         </span>
       <CiShoppingCart size={size} className="flex flex-row justify-center absolute hover:cursor-pointer hover:text-stone-900 hover:underline"/>
       </Button>

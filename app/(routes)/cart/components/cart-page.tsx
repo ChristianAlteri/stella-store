@@ -7,6 +7,11 @@ import Summary from "./summary";
 import CartItem from "./cart-item";
 import toast from "react-hot-toast";
 import { TbFaceId } from "react-icons/tb";
+import { Product } from "@/types";
+
+interface CartPageProps {
+  products: Product[];
+}
 
 // Custom Toast Success
 const toastSuccess = (message: string) => {
@@ -19,23 +24,29 @@ const toastSuccess = (message: string) => {
   });
 };
 
-interface CartPageProps {}
-
 export const revalidate = 0;
 
-const CartPage: React.FC<CartPageProps> = ({}) => {
+const CartPage: React.FC<CartPageProps> = ({products}) => {
   const [isMounted, setIsMounted] = useState(false);
+  const [cartProducts, setCartProducts] = useState<Product[]>([]);
   const cart = useCart();
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const success = searchParams.get('success');
-  const session_id = searchParams.get('session_id');
 
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
-
+  useEffect(() => {
+    if (isMounted) {
+      const cartProductsNotArchived = products.filter(
+        (product) => !product.isArchived
+      );
+      const cartProductIds = cart.items.map((item) => item.id);
+      const filteredCartProducts = cartProductsNotArchived.filter((product) =>
+        cartProductIds.includes(product.id)
+      );
+      setCartProducts(filteredCartProducts);
+    }
+  }, [isMounted]);
 
   if (!isMounted) {
     return <div>Loading...</div>; 
@@ -45,11 +56,11 @@ const CartPage: React.FC<CartPageProps> = ({}) => {
     <div className="flex flex-row md:w-1/2 w-full bg-white justify-center items-center p-1">
       <div className="w-2/3 p-4">
         <h1 className="text-sm font-bold text-black">Shopping Cart</h1>
-        {cart.items.length === 0 && (
+        {cartProducts.length === 0 && (
           <p className="text-neutral-500">No items added to cart.</p>
         )}
         <div>
-          {cart.items.map((item) => (
+          {cartProducts.map((item) => (
             <CartItem key={item.id} data={item} />
           ))}
         </div>
