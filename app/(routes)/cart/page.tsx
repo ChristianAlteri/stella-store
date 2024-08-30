@@ -4,6 +4,7 @@ import CartPage from './components/cart-page';
 
 const CartPageServer = async () => {
   const products = await getProducts({all: true});
+  const onlySaleItems = products.filter(product => product.isOnSale);
 
   return (
       <div className="flex flex-col bg-white ">
@@ -12,7 +13,7 @@ const CartPageServer = async () => {
           products={products}
           />
         </div>
-          <SuggestedContainer route="/" title="NEW ARRIVALS" data={products}/>
+          <SuggestedContainer route="/sale" title="SHOP OUR SALE" data={onlySaleItems}/>
       </div>
   )
 };

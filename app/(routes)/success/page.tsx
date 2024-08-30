@@ -66,8 +66,7 @@ const SuccessPage: React.FC<SuccessPageProps> = ({}) => {
           } else {
             toastError("Payment verification failed.");
           }
-          // Send the data.orderId to /thankyou-for-your-purchase
-          // You need to display the orderId in the /thankyou-for-your-purchase page
+          // Sending orderId to thankyou-for-your-purchase page
           router.push(`/thankyou-for-your-purchase?orderId=${data.orderId}`);
         } catch (err) {
           toastError("Error verifying payment.");
@@ -81,15 +80,15 @@ const SuccessPage: React.FC<SuccessPageProps> = ({}) => {
 
   if (!isMounted) {
     return (
-      <div className="flex flex-row w-full bg-white justify-center items-center p-1">
+      <div className="flex flex-row w-full h-full bg-white justify-center items-center p-1">
         Loading...
       </div>
     );
   }
 
   return (
-    <div className="flex flex-row w-full bg-white justify-center items-center p-1">
-      hi
+    <div className="flex flex-row w-full h-full bg-white justify-center items-center p-1">
+      Processing payment...
     </div>
   );
 };

@@ -45,29 +45,20 @@ const ThankYouForYourPurchasePage: React.FC<
     sellerId: searchParams.sellerId,
   });
 
-
   return (
     <>
-      <div className="flex flex-col w-full justify-center items-center text-center  h-1/2">
-        <ThankYouOrderDetails
-        // orderId={orderId}
-        />
-      </div>
-
-      <div className="justify-center items-center md:grid flex grid-cols-8 gap-1 bg-white ">
-        {/* First column */}
-
-        {/* Second column */}
-        <div className="col-span-8 flex flex-col justify-center items-center w-full h-full p-2">
-          <SuggestedContainer 
-            data={featuredProducts} 
-            title="CONTINUE SHOPPING OUR LATEST ARRIVALS"
-            route="/"
-
+      <div className="grid grid-rows-2 gap-4 h-full">
+        <div className="flex overflow-auto w-full justify-center">
+          <ThankYouOrderDetails />
+        </div>
+  
+        <div className="flex w-full justify-center items-center">
+          <SuggestedContainer
+            data={featuredProducts}
+            title="CONTINUE SHOPPING OUR STAFF PICKS"
+            route="/staff-picks"
           />
         </div>
-
-        {/* Third column */}
       </div>
     </>
   );

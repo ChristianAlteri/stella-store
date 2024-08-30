@@ -19,8 +19,8 @@ const OrderSummaryItem: React.FC<OrderSummaryItemProps> = ({ data }) => {
   };
 
   return (
-    <div className="group py-6 border-b w-full">
-      <div className="flex flex-row ">
+    <div className="group p-2 w-full col-span-1">
+      <div className="flex flex-row">
         <div className="relative overflow-hidden">
           {/* If item is marked hidden, we blur it. Used for unreleased products */}
           {data?.images[0]?.url?.match(
@@ -58,32 +58,28 @@ const OrderSummaryItem: React.FC<OrderSummaryItemProps> = ({ data }) => {
         </div>
 
         <div className="relative flex flex-1 flex-col justify-between">
-            <div className="flex flex-col justify-start items-start text-start">
-              <Link
-                href={`/designers/${data.designer.id}`}
-                className="ml-4 md:text-xs text-super-small hover:underline hover:cursor-pointer"
-              >
-                {data.designer.name}
-              </Link>
-              <Link
-                href={`/sellers/${data.seller.id}`}
-                className="ml-4 md:text-xs text-super-small mt-2 hover:underline hover:cursor-pointer"
-              >
-                {data.seller.instagramHandle}
-              </Link>
-                <p className="ml-4 pl-4 md:text-sm text-super-small text-red-500">
-                {" "}
-                £{data.ourPrice}{" "}
-                </p>
-                <p className="pl-4 md:text-xs text-super-small  text-stone-500">
-                    {data.size.name}
-                </p>
-            </div>
+          <div className="flex flex-col justify-start items-start text-start">
+            <Link
+              href={`/designers/${data.designer.id}`}
+              className="ml-4 md:text-xs text-super-small hover:underline hover:cursor-pointer"
+            >
+              {data.designer.name.toUpperCase()}
+            </Link>
+            <Link
+              href={`/sellers/${data.seller.id}`}
+              className="ml-4 md:text-xs text-super-small hover:underline hover:cursor-pointer"
+            >
+              {data.seller.instagramHandle.toUpperCase()}
+            </Link>
+            <p className="ml-4 md:text-xs text-super-small hover:underline hover:cursor-pointer text-red-500">
+              {" "}
+              £{data.ourPrice}{" "}
+            </p>
+            <p className="ml-4 md:text-xs text-super-small hover:underline hover:cursor-pointer">
+              {data.size.name.toUpperCase()}
+            </p>
           </div>
-          <div className="flex flex-row">
-            <div className="flex flex-row justify-center items-center">
-            </div>
-          </div>
+        </div>
       </div>
     </div>
   );

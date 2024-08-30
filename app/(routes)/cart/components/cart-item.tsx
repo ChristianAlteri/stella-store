@@ -77,10 +77,10 @@ const CartItem: React.FC<CartItemProps> = ({ data }) => {
                   {data.name}
                 </p> */}
                 <Link href={`/designers/${data.designer.id}`} className="ml-4 md:text-xs text-super-small text-stone-900 hover:underline hover:cursor-pointer">
-                  {data.designer.name}
+                  {data.designer.name.toUpperCase()}
                 </Link>
                 <Link href={`/sellers/${data.seller.id}`} className="ml-4 md:text-xs text-super-small mt-2 text-stone-900 hover:underline hover:cursor-pointer">
-                  {data.seller.instagramHandle}
+                  {data.seller.instagramHandle.toUpperCase()}
                 </Link>
               </div>
               <p className="ml-4 pl-4 md:text-sm text-super-small text-red-500">
@@ -90,7 +90,7 @@ const CartItem: React.FC<CartItemProps> = ({ data }) => {
             </div>
             <div className="flex flex-row">
               <div className="flex flex-row justify-center items-center">
-                <p className="pl-4 md:text-xs text-super-small  text-stone-500">{data.size.name}</p>
+                <p className="pl-4 md:text-xs text-super-small  text-stone-500">{data.size.name.toUpperCase()}</p>
               </div>
             </div>
           </div>
