@@ -33,8 +33,8 @@ const CartItem: React.FC<CartItemProps> = ({ data }) => {
           {/* If item is marked hidden, we blur it. Used for unreleased products */}
           {data?.images[0]?.url?.match(/https:\/\/.*\.(video|mp4|MP4|mov).*/) ? (
             <video
-              height={70}
-              width={70}
+              height={90}
+              width={90}
               muted
               autoPlay
               loop
@@ -51,7 +51,7 @@ const CartItem: React.FC<CartItemProps> = ({ data }) => {
                   key={data?.images?.[0]?.id}
                   onClick={handleProductClick}
                   height={0}
-                  width={50}
+                  width={100}
                   src={data!.images[0]!.url}
                   alt={`${data.name} from ${data.seller?.instagramHandle} by ${data.designer?.name} in size ${data.size?.name} for £${data.ourPrice} (RRP £${data.retailPrice})`}
                   priority
@@ -70,27 +70,27 @@ const CartItem: React.FC<CartItemProps> = ({ data }) => {
           <div className="relative pr-9 w-full">
             <div className="flex justify-between">
               <div className="flex flex-col">
-                <p
+                {/* <p
                   className="text-sm ml-4  text-black hover:underline hover:cursor-pointer"
                   onClick={handleProductClick}
                 >
                   {data.name}
-                </p>
-                <Link href={`/designers/${data.designer.id}`} className="ml-4 text-xs text-stone-900 hover:underline hover:cursor-pointer">
+                </p> */}
+                <Link href={`/designers/${data.designer.id}`} className="ml-4 md:text-xs text-super-small text-stone-900 hover:underline hover:cursor-pointer">
                   {data.designer.name}
                 </Link>
-                <Link href={`/sellers/${data.seller.id}`} className="ml-4 text-xs mt-2 text-stone-900 hover:underline hover:cursor-pointer">
-                  sold by {data.seller.instagramHandle}
+                <Link href={`/sellers/${data.seller.id}`} className="ml-4 md:text-xs text-super-small mt-2 text-stone-900 hover:underline hover:cursor-pointer">
+                  {data.seller.instagramHandle}
                 </Link>
               </div>
-              <p className="ml-4 pl-4 text-sm text-stone-900">
+              <p className="ml-4 pl-4 md:text-sm text-super-small text-red-500">
                 {" "}
                 £{data.ourPrice}{" "}
               </p>
             </div>
             <div className="flex flex-row">
               <div className="flex flex-row justify-center items-center">
-                <p className="pl-4 text-xs  text-stone-500">{data.size.name}</p>
+                <p className="pl-4 md:text-xs text-super-small  text-stone-500">{data.size.name}</p>
               </div>
             </div>
           </div>

@@ -10,6 +10,7 @@ import getConditions from "@/actions/get-conditions";
 import getMaterials from "@/actions/get-materials";
 import getGenders from "@/actions/get-genders";
 import getSubcategories from "@/actions/get-sub-categories";
+import IconRedirectButton from "../ui/icon-redirect-button";
 import FullscreenProductFiltersFooter from "../Filters/full-screen-product-filters-footer";
 
 interface FooterProps {
@@ -80,10 +81,17 @@ const Footer: React.FC<FooterProps> = async ({ searchParams }) => {
       </footer>
       {/* This footer will only render on screens larger than an iPad (larger than 768px) */}
       <footer className="hidden md:block bg-white border-t bottom-0 sticky inset-x-0 lg:relative">
-        <div className="mx-auto py-10 w-full justify-center items-center">
-          <p className="text-center text-xs text-stone-600">
-            &copy; 2024 Aviva, Inc. All rights reserved.
-          </p>
+        <div className="mx-auto w-full justify-center items-center">
+        <div className="flex gap-3 w-full h-full flex-row items-center justify-center bottom-0 p-3 mb-4">
+          {/* TODO: Make links work */}
+            <p className="text-center text-xs text-stone-600">
+              &copy; 2024 Aviva, Inc. All rights reserved.
+            </p>
+            <IconRedirectButton route="https://www.instagram.com/anon.drobe" icon="INSTAGRAM" />
+            <IconRedirectButton route="https://tiktok.com/@anondrobe" icon="TIKTOK" />
+            <IconRedirectButton route="/about-us" icon="ABOUT" />
+            <IconRedirectButton route="mailto:admin@anondrobe.com" icon="CONTACT US" />
+          </div>
         </div>
       </footer>
     </>

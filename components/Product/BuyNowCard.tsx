@@ -79,7 +79,7 @@ const BuyNowCard: React.FC<BuyNowCardProps> = ({ data }) => {
 
       </div>
 
-      <div className="flex flex-row w-full">
+      <div className="flex flex-row w-2/3 justify-center items-center">
         <h1 className="flex text-super-small justify-center items-center text-stone-300">Shipping details at checkout</h1>
       </div>
     </div>

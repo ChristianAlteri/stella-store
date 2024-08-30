@@ -30,11 +30,11 @@ const toastError = (message: string) => {
   });
 };
 
-interface SuccesPageProps {}
+interface SuccessPageProps {}
 
 export const revalidate = 0;
 
-const SuccesPage: React.FC<SuccesPageProps> = ({}) => {
+const SuccessPage: React.FC<SuccessPageProps> = ({}) => {
   const [isMounted, setIsMounted] = useState(false);
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -66,8 +66,9 @@ const SuccesPage: React.FC<SuccesPageProps> = ({}) => {
           } else {
             toastError("Payment verification failed.");
           }
-
-          router.push("/");
+          // Send the data.orderId to /thankyou-for-your-purchase
+          // You need to display the orderId in the /thankyou-for-your-purchase page
+          router.push(`/thankyou-for-your-purchase?orderId=${data.orderId}`);
         } catch (err) {
           toastError("Error verifying payment.");
           console.error("Error verifying payment:", err);
@@ -93,4 +94,4 @@ const SuccesPage: React.FC<SuccesPageProps> = ({}) => {
   );
 };
 
-export default SuccesPage;
+export default SuccessPage;

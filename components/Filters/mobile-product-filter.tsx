@@ -86,7 +86,7 @@ const MobileProductFilter: React.FC<MobileProductFilterProps> = ({
                   "flex flex-row justify-between text-xs font-medium transition-colors hover:underline hover:cursor-pointer",
                   isSelected(filterItem.id)
                     ? "flex flex-row justify-between items-center text-black underline transition-transform"
-                    : "text-light-font"
+                    : "text-black"
                 )}
                 onClick={() => onClick(filterItem?.id)}
               >

@@ -58,12 +58,12 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
       >
         <div className="grid grid-rows-9 h-full">
           <div className="row-span-1 bg-stone-100 flex flex-col items-center justify-around text-xs text-stone-700 shadow-md h-full">
-            <div className="flex flex-col w-full">
+            <div className="flex flex-col w-full gap-3">
               <div className="flex flex-row justify-end text-center items-center hover:cursor-pointer w-full">
-                <MdArrowForwardIos onClick={closeDrawer} size={17} />
+                <MdArrowForwardIos onClick={closeDrawer} size={13} />
               </div>
 
-              <div className="flex flex-row  w-full">
+              <div className="flex flex-row w-full">
                 <QuickLinks />
               </div>
             </div>
@@ -131,10 +131,14 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
             </div>
           </div>
 
-          <div className="row-span-3 bg-stone-200 flex items-center justify-center flex-row">
-            <div className="md:hidden flex flex-row gap-2">
+          <div className="row-span-3 bg-stone-200 flex items-center justify-center flex-col">
+
+            <div className="md:hidden flex gap-2 w-full h-full flex-row justify-center items-end mb-2">
+              <IconRedirectButton route="https://www.instagram.com/anon.drobe" icon="INSTAGRAM" />
+              <IconRedirectButton route="https://tiktok.com/@anondrobe" icon="TIKTOK" />
               <IconRedirectButton route="/about-us" icon="ABOUT" />
               <IconRedirectButton route="/for-you" icon="REGISTER" />
+              <IconRedirectButton route="mailto:admin@anondrobe.com" icon="CONTACT US" />
             </div>
             {/* <aside className="flex flex-col w-2/3 justify-center items-center text-center top-0 h-2/3">
               {topTen && topTen.length > 0 && (

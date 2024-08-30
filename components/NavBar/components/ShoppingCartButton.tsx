@@ -34,7 +34,7 @@ const ShoppingCartButton:React.FC<ShoppingCartButtonProps> = ({ size, products }
       );
       setCartProducts(filteredCartProducts);
     }
-  }, [isMounted]);
+  }, [isMounted, products]);
 
   if (!isMounted) {
     return null;

@@ -103,3 +103,9 @@ export interface Subcategory {
   name: string;
   value: string;
 }
+
+export interface OrderItem {
+  id: string  
+  orderId: string 
+  productId: string 
+}

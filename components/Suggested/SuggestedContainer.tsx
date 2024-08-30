@@ -23,7 +23,7 @@ const SuggestedContainer: React.FC<SuggestedContainerProps> = ({
 }) => {
 
   return (
-    <div className="p-6">
+    <div className="p-3 h-full w-full">
       <h1 className="text-black flex flex-row gap-1 text-xs md:text-sm items-center p-1 ">
         {header?.toUpperCase()}
         <Link

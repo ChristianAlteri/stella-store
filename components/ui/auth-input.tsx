@@ -11,6 +11,7 @@ interface AuthInputProps {
     register: UseFormRegister<FieldValues>,
     errors: FieldErrors<FieldValues>;
     disabled?: boolean;
+    isNameValidation?: boolean; 
 }
 
 const AuthInput: React.FC<AuthInputProps>  = ({
@@ -20,7 +21,8 @@ const AuthInput: React.FC<AuthInputProps>  = ({
     required,
     register,
     errors,
-    disabled
+    disabled,
+    isNameValidation,
 }) => {
     return ( 
         <div>
@@ -41,8 +43,16 @@ const AuthInput: React.FC<AuthInputProps>  = ({
               id={id}
               type={type}
               autoComplete={id}
+              // if isNameValidation && {
+              //   pattern: {
+              //     value: /^[a-zA-Z0-9]+$/,
+              //     message: "Name must consist of only alphanumeric characters",
+              //   },
+              // }),
               disabled={disabled}
-              {...register(id, { required })}
+              {...register(id, {
+                required,
+              })}
               className={clsx(`
                 form-input
                 block 
@@ -72,3 +82,4 @@ const AuthInput: React.FC<AuthInputProps>  = ({
 
  
 export default AuthInput;
+

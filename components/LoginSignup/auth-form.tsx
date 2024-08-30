@@ -12,8 +12,13 @@ import toast from "react-hot-toast";
 import { TbFaceId, TbFaceIdError } from "react-icons/tb";
 import { CiFacebook, CiInstagram } from "react-icons/ci";
 import axios from "axios";
+import { Billboard } from "@/types";
 
 type Variant = "LOGIN" | "REGISTER";
+
+interface AuthFormProps {
+  billboard: Billboard
+}
 
 // Custom Toast Error
 const toastError = (message: string) => {
@@ -36,11 +41,14 @@ const toastSuccess = (message: string) => {
   });
 };
 
-const AuthForm = () => {
+const AuthForm: React.FC<AuthFormProps> = ({billboard}) => {
   // const session = useSession();
+  // @ts-ignore
+  const imageUrl = billboard ? billboard[0]?.imageUrl : null;
   const router = useRouter();
   const [variant, setVariant] = useState<Variant>("REGISTER");
   const [isLoading, setIsLoading] = useState(false);
+
 
   // useEffect(() => {
   //   if (session?.status === "authenticated") {
@@ -77,8 +85,8 @@ const AuthForm = () => {
       axios
         .post(`${process.env.NEXT_PUBLIC_API_URL}/register`, data)
         .then(() => toastSuccess("Registered successfully!"))
-        // .then(() => signIn("credentials", data))
         //TODO: send to login
+        // .then(() => signIn("credentials", data))
         .then(() => router.push("/"))
         .catch(() => toastError("Something went wrong!"))
         .finally(() => setIsLoading(false));
@@ -142,8 +150,22 @@ const AuthForm = () => {
   // };
 
   return (
-    <div className="p-8 w-full h-full">
-      <div className="bg-white px-4 py-8 shadow sm:rounded-lg sm:px-10">
+    <div className="p-5 w-full "
+    
+    >
+      <div className="bg-white px-4 py-4 shadow rounded-lg sm:px-10 h-full"
+      style={{
+        backgroundImage: imageUrl
+          ? `url(${imageUrl})`
+          : "none",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "repeat",
+      }}
+      >
+        <h3 className="text-sm w-full justify-center items-center flex">
+          Sign up to @nondrobe
+        </h3>
         <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
           {variant === "REGISTER" && (
             <AuthInput
@@ -153,6 +175,7 @@ const AuthForm = () => {
               required
               id="name"
               label="Name"
+              isNameValidation={true}
             />
           )}
           <AuthInput
@@ -180,17 +203,17 @@ const AuthForm = () => {
           </div>
         </form>
 
-        <div className="mt-6">
+        {/* <div className="mt-6">
           <div className="relative">
-            <div className="absolute inset-0 flex items-center">
+            <div className="absolute inset-0 flex items-center"> */}
               {/* <div className="w-full border-t border-slate-300" /> */}
-            </div>
+            {/* </div> */}
             {/* <div className="relative flex justify-center text-sm">
               <span className="bg-white px-2 text-slate-500">
                 Or continue with
               </span>
             </div> */}
-          </div>
+          {/* </div> */}
 
           {/* <div className="mt-6 flex gap-2">
             <AuthSocialButton
@@ -207,7 +230,7 @@ const AuthForm = () => {
               onClick={() => socialAction("google")}
             />
           </div> */}
-        </div>
+        {/* </div> */}
         {/* <div
           className="flex gap-2 justify-center text-sm mt-6 px-2 text-slate-500">
           <div>

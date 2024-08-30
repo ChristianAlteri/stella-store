@@ -66,8 +66,8 @@ const CartPageServer: React.FC<TopLikesPageProps> = async ({
   });
 
   return (
-    <div className="flex flex-col bg-white ">
-      <div className="flex justify-center ">
+    <div className="flex flex-col bg-white w-full justify-center items-center">
+      <div className="flex w-full justify-center items-center">
         <LikesPage 
           products={products}
         />

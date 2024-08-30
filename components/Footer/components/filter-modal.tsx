@@ -77,10 +77,15 @@ const FilterModal: React.FC<FilterModalProps> = ({
           )}
 
           <div className="flex flex-col row-span-1 justify-center items-center h-1/3 w-full">
-            <RangeSlider />
+            {/* <RangeSlider /> */}
           </div>
 
           <div className="row-span-4 p-4 overflow-y-auto h-full flex-row justify-center items-center shadow-2xl rounded-md border w-full">
+              <div className="flex flex-row text-sm w-full items-center justify-center p-2 mb-2">
+                <h2>
+                  Set filters to find the perfect product for you
+                </h2>
+              </div>
             <div className="flex flex-col h-full w-full justify-start items-start overflow-y-auto gap-2">
               <div className="flex flex-col bg-white w-full justify-center items-center">
                 <MobileProductFilter
@@ -110,11 +115,17 @@ const FilterModal: React.FC<FilterModalProps> = ({
                   data={subcategories}
                 />
               </div>
+              <div className="flex flex-row items-center justify-center w-full">
+                <button className='text-sm flex flex-col row-span-1 justify-start items-center hover:cursor-pointer hover:rounded-md hover:underline w-full' onClick={closeDrawer} >
+                  Apply
+                </button>
+              </div>
             </div>
           </div>
 
           <div className="row-span-4 p-4 mt-3 overflow-y-auto h-full">
-            <div className="flex flex-col bg-white">
+            <div className="flex flex-col bg-white shadow-2xl rounded-md border">
+              <RangeSlider />
               {/* {onSaleProducts && (
                 <MiniProductCard
                   miniProductRoute="/sale"
@@ -129,7 +140,7 @@ const FilterModal: React.FC<FilterModalProps> = ({
             <MdArrowBackIos
               className="hover:cursor-pointer"
               onClick={closeDrawer}
-              size={20}
+              size={13}
             />
           </div>
         </div>

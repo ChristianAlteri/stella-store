@@ -17,7 +17,7 @@ const EmailSignUpInput = () => {
         Enter your email or continue as a guest
       </h2>
       <div>
-        <AuthForm />
+        {/* <AuthForm /> */}
       </div>
       {/* <Input
         placeholder="Email"

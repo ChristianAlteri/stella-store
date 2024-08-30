@@ -40,7 +40,7 @@ const LikesPage: React.FC<LikesPageProps> = ({ products }) => {
 
   return (
     <div className="flex flex-row md:w-1/2 w-full bg-white justify-center items-center p-1">
-      <div className="w-2/3 p-4">
+      <div className="w-full p-4">
         <h1 className="text-sm font-bold text-black">Your likes</h1>
         {likedProducts.length === 0 && (
           <p className="text-neutral-500">No items in your likes.</p>

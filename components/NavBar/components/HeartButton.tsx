@@ -33,7 +33,7 @@ const HeartButton: React.FC<HeartButtonProps> = ({ products }) => {
       );
       setLikedProducts(filteredLikedProducts);
     }
-  }, [isMounted]);
+  }, [isMounted, products]);
 
   if (!isMounted) {
     return null;

@@ -62,7 +62,8 @@ const TopSellers: React.FC<TopSellersProps> = async ({ searchParams }) => {
   const materials = await getMaterials();
   const subcategories = await getSubcategories();
 
-  const sellerData = await getTopSellers();
+  let sellerData = await getTopSellers();
+  sellerData = sellerData.filter(seller => seller.products && seller.products.length > 0);
 
   return (
     <>

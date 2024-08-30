@@ -15,8 +15,8 @@ interface GalleryProps {
 const Gallery: React.FC<GalleryProps> = ({ images = [] }) => {
   return (
     <Tab.Group as="div" className="flex flex-col-reverse ">
-      <div className="mt-6 w-full">
-        <Tab.List className="grid grid-cols-4 gap-2">
+      <div className="w-full h-full gap-1 justify-center items-center">
+        <Tab.List className="grid grid-cols-3 w-full justify-center items-center">
           {images.map((image) => (
             <GalleryTab key={image.id} image={image} />
           ))}
@@ -46,7 +46,7 @@ const Gallery: React.FC<GalleryProps> = ({ images = [] }) => {
                   key={image.id}
                   src={image.url}
                   alt={`Image from ${image.url}`}
-                  width={250}
+                  width={350}
                   height={0}
                   loading="lazy"
                   className="rounded-md transition-opacity duration-200 ease-in-out"

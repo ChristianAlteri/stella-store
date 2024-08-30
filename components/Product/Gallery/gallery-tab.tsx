@@ -12,10 +12,10 @@ interface GalleryTabProps {
 
 const GalleryTab: React.FC<GalleryTabProps> = ({ image }) => {
   return (
-    <Tab className="rounded-md relative flex aspect-square cursor-pointer items-center justify-center bg-white ">
+    <Tab className="p-1 mb-2 mt-2">
       {({ selected }) => (
-        <div>
-          <span className="absolute h-full w-full aspect-square inset-0 overflow-hidden ">
+        <div className="w-2/3 h-2/3">
+          <span className="h-2/3 w-2/3 inset-0">
             {image?.url?.match(/https:\/\/.*\.(video|mp4|MP4).*/) ? (
               <ReactPlayer
                 key={image.id}

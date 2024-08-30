@@ -46,10 +46,12 @@ export default function RangeSlider() {
 
   return (
       // <Box sx={{ width: 150 }}>
-      <Box className="w-[300px] sm:w-[150px]">
-        <button onClick={handleClick} className='text-sm flex flex-col row-span-1 justify-start items-center w-full hover:cursor-pointer hover:rounded-md p-2 hover:underline'>
-          Set price range:
-        </button>
+      <Box className="w-[300px] sm:w-[150px] p-4">
+        <div className='flex flex-col justify-center items-center'>
+          <h2 className='flex flex-row text-sm'>
+            Set a price range
+          </h2>
+        </div>
         <Slider
           getAriaLabel={() => 'Price range'}
           value={value}
@@ -73,6 +75,9 @@ export default function RangeSlider() {
             }
           }}
         />
+        <button onClick={handleClick} className='text-sm flex flex-col row-span-1 justify-start items-center w-full hover:cursor-pointer hover:rounded-md hover:underline'>
+          Apply
+        </button>
       </Box>
   );
 }

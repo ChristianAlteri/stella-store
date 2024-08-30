@@ -33,15 +33,15 @@ const DetailsCard: React.FC<DetailsCardProps> = ({ data, products }) => {
         <div className="mt-3 flex flex-col w-full">
           <Link
             href={`/designers/${data?.designer?.id}`}
-            className="text-2xl font-bold hover:underline hover:cursor-pointer underline "
+            className="text-2xl font-bold hover:underline hover:cursor-pointer"
           >
             {data?.designer?.name.toUpperCase()}{" "}
           </Link>
-          <h1 className="md:text-sm text-md  font-semibold ">{data?.name}</h1>
-          <div className="ml-1 flex flex-col w-full">
+          <h1 className="md:text-sm text-md  font-semibold ">{data?.name.toUpperCase()}</h1>
+          <div className=" flex flex-col w-full">
 
             <h1 className="text-xs flex flex-row text-light-font justify-start w-full">
-              size {data?.size?.name.toLowerCase()}
+              {data?.size?.name.toUpperCase()}
             </h1>
 
              <div className="flex flex-col justify-end w-full gap-1 mt-4">
@@ -76,8 +76,8 @@ const DetailsCard: React.FC<DetailsCardProps> = ({ data, products }) => {
 
         <div className="border-t border-light-font mt-3 mb-1">
           <div className="mt-3">
-            <div className="flex flex-row gap-1">
-              <h1 className="md:text-xs text-sm">Sold By </h1>
+            <div className="flex flex-row gap-1 w-full justify-center items-center">
+              <h1 className="md:text-xs text-sm">SOLD BY </h1>
               <Link
                 href={`/sellers/${data?.seller?.id}`}
                 className="md:text-xs font-semibold text-sm hover:underline hover:cursor-pointer underline"
@@ -101,17 +101,20 @@ const DetailsCard: React.FC<DetailsCardProps> = ({ data, products }) => {
 
             <div className="flex flex-row justify-between w-full gap-1 mt-2">
               <div>
-                <h1 className="md:text-xs text-sm underline">Description: </h1>
+              <h1 className="md:text-xs text-sm ">DESCRIPTION: </h1>
                 <h1 className="md:text-xs text-sm ml-1">
                   {descriptionElements}
                 </h1>
               </div>
 
               <div>
-                <h1 className="md:text-xs text-sm underline">Specs </h1>
-                <div className="p-1">
+                <h1 className="md:text-xs text-sm">SPECS </h1>
+                <div className="">
                   <h1 className="md:text-xs text-sm">
                     Material: {data?.material?.name}
+                  </h1>
+                  <h1 className="md:text-xs text-sm">
+                    Condition: {data?.condition?.name}
                   </h1>
                   <div className="flex flex-row gap-2">
                     <h1 className="md:text-xs text-sm">Colour: </h1>
@@ -125,7 +128,7 @@ const DetailsCard: React.FC<DetailsCardProps> = ({ data, products }) => {
             </div>
 
             <div className="flex-col flex w-full justify-center items-center">
-              <h1 className="text-xs">In {data?.condition?.name} condition</h1>
+              {/* <h1 className="text-xs">In {data?.condition?.name} condition</h1> */}
               <h1 className="text-xs">
                 Part of the{" "}
                 <Link
@@ -139,8 +142,8 @@ const DetailsCard: React.FC<DetailsCardProps> = ({ data, products }) => {
             </div>
           </div>
         </div>
-        <div className="border-t border-light-font mt-3 mb-1 justify-center items-center w-full"></div>
-        <aside className="flex flex-col w-full justify-center items-center p-4">
+        {/* <div className="border-t border-light-font mt-3 mb-1 justify-center items-center w-full"></div> */}
+        {/* <aside className="flex flex-col w-full justify-center items-center p-4">
           {products && products.length > 0 && (
             <MiniProductCard
               data={products}
@@ -148,7 +151,7 @@ const DetailsCard: React.FC<DetailsCardProps> = ({ data, products }) => {
               miniProductTitle="Our Picks"
             />
           )}
-        </aside>
+        </aside> */}
       </div>
     </>
   );

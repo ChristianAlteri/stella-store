@@ -50,9 +50,9 @@ const IndividualProductPage: React.FC<IndividualProductPageProps> = async ({
 
   return (
     <>
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-3 w-full bg-white p-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 md:gap-3 w-full bg-white p-6 items-center justify-center">
         {/* Left */}
-        <div className="col-span-2 overflow-auto">
+        <div className="col-span-2 w-full items-center justify-center">
           <div
             className={`flex flex-col w-full h-full items-center text-center justify-center ${
               product.isHidden ? "blur-xl" : ""
@@ -63,8 +63,8 @@ const IndividualProductPage: React.FC<IndividualProductPageProps> = async ({
         </div>
 
         {/* Right */}
-        <div className="flex flex-col">
-          <div className="flex flex-col text-left justify-center items-start mt-1">
+        <div className="flex flex-col h-full">
+          <div className="flex flex-col text-left justify-center items-start">
             <DetailsCard data={product} products={featuredProducts} />
           </div>
           <hr className="w-full" />

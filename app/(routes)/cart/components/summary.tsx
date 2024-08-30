@@ -67,7 +67,7 @@ const Summary = () => {
       <div className="rounded-lg top-0 bg-white px-4 py-6 sm:p-6 lg:col-span-5 lg:mt-0 lg:p-8">
 
         <div className="flex flex-col items-center gap-2 p-2">
-          {/* <EmailSignUpInput /> */}
+
         </div>
 
         <h2 className="mt-6 text-sm text-stone-900">Order summary</h2>

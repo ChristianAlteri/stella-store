@@ -15,6 +15,8 @@ import getGenders from "@/actions/get-genders";
 import getSubcategories from "@/actions/get-sub-categories";
 import AuthForm from "@/components/LoginSignup/auth-form";
 import SuggestedContainer from "@/components/Suggested/SuggestedContainer";
+import IconRedirectButton from "@/components/ui/icon-redirect-button";
+import getBillboardByName from "@/actions/get-billboard-by-name";
 
 export const revalidate = 0;
 
@@ -64,11 +66,14 @@ const ForYouPage: React.FC<ForYouPageProps> = async ({ searchParams }) => {
   const materials = await getMaterials();
   const genders = await getGenders();
   const subcategories = await getSubcategories();
+  const billboard = await getBillboardByName("HomePageFullScreen");
+
+
   // TODO: loggedIn = false unless logged in;
 
   return (
     <>
-      <div className="justify-center items-center md:grid flex grid-cols-8 gap-4 bg-white">
+      <div className="justify-center items-center md:grid flex grid-cols-8 gap-4 bg-white h-full">
         {/* First column */}
         <div
           className="col-span-1 justify-start items-start w-full p-6 hidden sticky z-50 h-full md:grid"
@@ -110,20 +115,30 @@ const ForYouPage: React.FC<ForYouPageProps> = async ({ searchParams }) => {
           </> */}
           {/* ) : ( */}
 
-          <div className="flex h-full flex-col justify-center w-full md:w-1/3">
-            {/* <div className="sm:mx-auto sm:w-full sm:max-w-md flex flex-col justify-center items-center">
-              <h2 className=" mt-2 text-center text-2xl font-bold text-black w-full items-center justify-center">
+          <div className="flex h-full flex-col justify-center w-full md:w-1/3 grid-rows-4">
+            
+            <div className="flx flex-col gap-4 items-center mb-2 justify-center row-span-2 h-2/3 mt-4">
+              <h2 className="text-center text-sm md:text-md text-black w-full items-center justify-center">
                 Register and receive 10% off your first purchase
               </h2>
-            </div> */}
-            <h2 className="mt-2 text-center text-1xl font-bold text-black w-full items-center justify-center p-2">
-              Register and receive 10% off your first purchase
-            </h2>
-            <AuthForm />
-            <SuggestedContainer data={featuredProducts} route="trending" title="FEATURED PRODUCTS"/>
+              <AuthForm 
+                billboard={billboard}
+              />
+              <h2 className="text-center text-sm md:text-md text-black w-full items-center justify-center row-span-1">
+                Want to sell with us? 
+                  <IconRedirectButton route="mailto:admin@anondrobe.com" icon="Send us an email" />
+              </h2>
+            </div>
+
+            {/* <br className="p-5"/> */}
+
+            <div className="flex p-2 row-span-1 mt-4">
+              <SuggestedContainer data={featuredProducts} route="trending" title="FEATURED PRODUCTS"/>
+            </div>
           </div>
           {/* )} */}
         </div>
+        
         {/* Third column */}
         <div
           className="col-span-1 justify-start items-start w-full p-6 hidden sticky z-50 h-full md:grid"

@@ -113,7 +113,7 @@ const CategoryNamePage: React.FC<CategoryNamePageProps> = async ({
             ))}
           </ProductGrid>
 
-          <div className="fixed bottom-0 p-7 w-1/3 z-50">
+          <div className="fixed bottom-0 p-9 mb-4 w-1/3 z-50">
             <FullscreenProductFiltersFooter
               productData={productData}
               genders={genders}

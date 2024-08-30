@@ -89,10 +89,10 @@ const Navbar: React.FC<NavbarProps> = ({
 
               <div className="w-full flex flex-row justify-end items-center gap-4 p-2">
                 <div className="hidden md:flex flex-row gap-2">
-                  <IconRedirectButton 
+                  {/* <IconRedirectButton 
                     route="/about-us"
                     icon="ABOUT"
-                  />
+                  /> */}
                 <IconRedirectButton 
                     route="/for-you"
                     icon="REGISTER"
