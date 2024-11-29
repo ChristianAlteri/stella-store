@@ -119,33 +119,48 @@ const SellerCard: React.FC<SellerCardProps> = ({ data }) => {
         </Link>
       </div>
 
-      <div className="flex flex-row justify-center items-center gap-2">
-        <div className="flex flex-row text-xs w-2/3 gap-4 justify-between">
-          <div className="flex flex-col gap-1">
-            {/* <p className="text-black text-super-small text-start justify-start items-start">SIZE GUIDE:</p> */}
-            <p className="text-black text-super-small text-start justify-start items-start">
-              SHOE: {data?.shoeSizeEU}
-            </p>
-            <p className="text-black text-super-small text-start justify-start items-start">
-              TOP: {data?.topSize.toUpperCase()}
-            </p>
-            <p className="text-black text-super-small text-start justify-start items-start">
-              BOTTOM: {data?.bottomSize.toUpperCase()}
-            </p>
-          </div>
-          {data?.charityName && (
+      {data.sellerType === "influencer" ? (
+        <div className="flex flex-row justify-center items-center gap-2">
+          <div className="flex flex-row text-xs w-2/3 gap-4 justify-between">
             <div className="flex flex-col gap-1">
-              <p className="text-black text-super-small text-end justify-end items-end">DONATES TO: </p>
-              <a href={data?.charityUrl} target="_blank">
-                <p className="text-green-500 text-xs text-end justify-end items-end">
-                  {" "}
-                  {data?.charityName.toUpperCase()}
-                </p>
-              </a>
+              {/* <p className="text-black text-super-small text-start justify-start items-start">SIZE GUIDE:</p> */}
+              <p className="text-black text-super-small text-start justify-start items-start">
+                SHOE: {data?.shoeSizeEU}
+              </p>
+              <p className="text-black text-super-small text-start justify-start items-start">
+                TOP: {data?.topSize.toUpperCase()}
+              </p>
+              <p className="text-black text-super-small text-start justify-start items-start">
+                BOTTOM: {data?.bottomSize.toUpperCase()}
+              </p>
             </div>
-          )}
+            {/* TODO: A seller now points to a charity model. update how we access the charity name and url  */}
+            {data?.charityName && (
+              <div className="flex flex-col gap-1">
+                <p className="text-black text-super-small text-end justify-end items-end">
+                  DONATES TO:{" "}
+                </p>
+                <a href={data?.charityUrl} target="_blank">
+                  <p className="text-green-500 text-xs text-end justify-end items-end">
+                    {" "}
+                    {data?.charityName.toUpperCase()}
+                  </p>
+                </a>
+              </div>
+            )}
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className="flex flex-row justify-center items-center gap-2">
+          <div className="flex flex-row text-xs w-2/3 gap-4 justify-between">
+            <div className="flex flex-col gap-1 w-full">
+              <p className="text-black text-super-small text-center justify-center items-center w-full">
+                {data?.description}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

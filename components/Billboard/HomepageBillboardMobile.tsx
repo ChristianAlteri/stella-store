@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 
 
 interface HomepageBillboardMobileProps {
-  data: Billboard[];
+  data: Billboard | Billboard[]; 
 }
 
 const HomepageBillboardMobile: React.FC<HomepageBillboardMobileProps> = ({ data }) => {
@@ -20,9 +20,12 @@ const HomepageBillboardMobile: React.FC<HomepageBillboardMobileProps> = ({ data 
     return null;
   }
 
+    // Normalise data to always be an array
+    const normalizedData = Array.isArray(data) ? data : [data];
+
   return (
     <>
-      {data?.map((billboard, index) => (
+      {normalizedData?.map((billboard, index) => (
         billboard?.imageUrl.match(/https:\/\/.*\.(video|mp4|MP4|mov).*/) ? (
           <div
             key={index}

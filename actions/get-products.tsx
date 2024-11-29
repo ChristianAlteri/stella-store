@@ -23,6 +23,7 @@ interface Query {
   all?: boolean;
   minPrice?: number;
   maxPrice?: number;
+  isArchived?: boolean;
 }
 
 const getProducts = async (query: Query): Promise<Product[]> => {
@@ -48,6 +49,8 @@ const getProducts = async (query: Query): Promise<Product[]> => {
         sort: query.sort,
         minPrice: query.minPrice,
         maxPrice: query.maxPrice,
+        // isArchived: query.isArchived,
+        isArchived: query.isArchived ? 'true' : 'false',
       },
     });
     const response = await axios.get(url);

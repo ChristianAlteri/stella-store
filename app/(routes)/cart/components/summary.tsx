@@ -14,6 +14,7 @@ import EmailSignUpInput from "./email-sign-up-input";
 const Summary = () => {
   const searchParams = useSearchParams();
   const items = useCart((state) => state.items);
+  console.log("items", items);
   const removeAll = useCart((state) => state.removeAll);
 
   // Custom Toast Error
@@ -44,6 +45,7 @@ const Summary = () => {
     }
 
     if (searchParams.get("canceled")) {
+      // TODO: we need to clear the cart storage and ensure we dont make the product isArchived = true
       toastError("Something went wrong.");
     }
   }, [searchParams, removeAll]);

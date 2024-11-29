@@ -32,6 +32,11 @@ const nextConfig = {
           protocol: "https",
           hostname: "stella-ecomm-media-bucket.s3.amazonaws.com",
           pathname: "**"
+        },
+        {
+          protocol: "https",
+          hostname: "d1t84xijak9ta1.cloudfront.net",
+          pathname: "**"
         }
       ],
     },

@@ -74,8 +74,11 @@ const Homepage: React.FC<HomepageProps> = async ({ searchParams }) => {
   const genders = await getGenders();
   const subcategories = await getSubcategories();
 
-  const Billboard = await getBillboardByName("HomePageFullScreen");
-  const BillboardMobile = await getBillboardByName("HomePageMobile");
+  const Billboard = await getBillboardByName("HomePageFullScreen", "1b82eba5-33e4-42d2-9747-cee435d4c3c7");
+  const BillboardMobile = await getBillboardByName("HomePageMobile", "1b82eba5-33e4-42d2-9747-cee435d4c3c7");
+  console.log("Billboard", Billboard);
+  console.log("BillboardMobile", BillboardMobile);
+
 
 
   return (

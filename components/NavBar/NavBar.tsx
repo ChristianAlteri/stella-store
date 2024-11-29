@@ -82,8 +82,7 @@ const Navbar: React.FC<NavbarProps> = ({
 
               <div className="w-full flex flex-row justify-center items-center gap-3 ">
                 <Link href="/" className="flex">
-                  <h1 className="font-bold text-2xl md:text-4xl">@</h1>
-                  <h1 className="font-bold text-2xl md:text-4xl">NONDROBE</h1>
+                  <h1 className="font-bold text-2xl md:text-4xl">Make this store name</h1>
                 </Link>
               </div>
 

@@ -26,13 +26,16 @@ export interface Seller {
   instagramHandle: string;
   billboardId: string;
   billboard: Billboard;
-  charityName: string  
-  charityUrl: string   
+  charityName: string  // TODO: remove and update adding the charity model
+  charityUrl: string   // TODO: remove and update adding the charity model
   shoeSizeEU: string   
   topSize: string     
   bottomSize: string   
   products: Product[];
   soldCount: number;
+  sellerType: string
+  storeName: string
+  description: string
 }
 
 export interface Store {

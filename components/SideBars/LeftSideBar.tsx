@@ -25,7 +25,7 @@ const LeftSidebar: React.FC<LeftSideProps> = ({
   return (
     <aside className="h-full z-35">
 
-      <div className="grid grid-rows-3 h-1/2 justify-start items-start">
+      <div className="grid grid-rows-3 h-2/3 justify-start items-start">
         <div className="row-span-1 h-full justify-start">
           <p className="font-bold text-lg bg-white" >
             SELLERS

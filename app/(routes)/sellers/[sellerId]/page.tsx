@@ -17,6 +17,7 @@ import getSubcategories from "@/actions/get-sub-categories";
 import FullscreenProductFiltersFooter from "@/components/Filters/full-screen-product-filters-footer";
 import ProfileBillboard from "@/components/Billboard/ProfileBillboard";
 import Link from "next/link";
+import ToggleButton from "./toggle-button";
 
 export const revalidate = 0;
 
@@ -41,6 +42,7 @@ interface SellerNamePageProps {
     isHidden: boolean;
     minPrice: number;
     maxPrice: number;
+    isArchived: boolean | undefined;
   };
 }
 
@@ -65,9 +67,9 @@ const SellerNamePage: React.FC<SellerNamePageProps> = async ({
     categoryId: searchParams.categoryId,
     minPrice: searchParams.minPrice,
     maxPrice: searchParams.maxPrice,
+    isArchived: searchParams.isArchived,
   });
   const sellerData = await getSingleSeller(params.sellerId);
-  const featuredProducts = await getProducts({ isFeatured: true });
 
   const sizes = await getSizes();
   const colors = await getColors();
@@ -78,31 +80,35 @@ const SellerNamePage: React.FC<SellerNamePageProps> = async ({
   const materials = await getMaterials();
   const genders = await getGenders();
   const subcategories = await getSubcategories();
-  const allProducts = await getProducts({ all: true });
 
   return (
     <>
-      <Link
-        href={`https://instagram.com/${sellerData?.instagramHandle}`}
-        className="text-lg text-black"
-        target="_blank"
-      >
       <div className="flex flex-col p-7 w-full justify-center items-center text-center mb-2">
-        <div className="flex justify-center items-center rounded-full overflow-hidden h-1/2 w-full hover:cursor-pointer">
-          <ProfileBillboard data={sellerData?.billboard} />
-        </div>
-        <div className="w-full justify-center text-center">
-            <h2 className="text-2xl font-bold text-black mt-2 hover:cursor-pointer hover:underline">
-              @{sellerData?.instagramHandle.toUpperCase()}
-            </h2>
+        <Link
+          href={`https://instagram.com/${sellerData?.instagramHandle}`}
+          className="text-lg text-black"
+          target="_blank"
+        >
+          <div className="flex flex-col p-7 w-full justify-center items-center text-center mb-2">
+            <div className="flex justify-center items-center rounded-full overflow-hidden h-1/2 w-full hover:cursor-pointer">
+              {/* <ProfileBillboard data={sellerData?.billboard} /> */}
+              <ProfileBillboard data={sellerData?.billboard} />
+            </div>
+            <div className="w-full justify-center text-center">
+              <h2 className="text-2xl font-bold text-black mt-2 hover:cursor-pointer hover:underline">
+                @{sellerData?.instagramHandle?.toUpperCase() || "Seller Name"}
+              </h2>
+            </div>
+          </div>
+        </Link>
+        <div className="toggle-container">
+          <ToggleButton currentIsArchived={!!searchParams.isArchived} />
         </div>
       </div>
-      </Link>
 
       <div className="justify-center items-center md:grid flex grid-cols-8 gap-4 bg-white">
         {/* First column */}
-        <div
-          className="col-span-1 justify-start items-start w-full hidden sticky z-50 h-full md:grid ml-4">
+        <div className="col-span-1 justify-start items-start w-full hidden sticky z-50 h-full md:grid ml-4">
           <LeftSidebar
             designers={designers}
             categories={categories}
@@ -113,10 +119,21 @@ const SellerNamePage: React.FC<SellerNamePageProps> = async ({
         {/* Second column */}
         <div className="col-span-6 flex flex-col justify-center items-center w-full h-full">
           {/* <Billboard data={sellerData?.billboard} /> */}
-          
           <ProductGrid>
             {productData?.map((item) => (
-              <ProductCard key={item.id} item={item} />
+              <div key={item.id}>
+                {searchParams.isArchived ? (
+                  <div className="relative">
+                    <div className="absolute top-0 left-0 bg-red-500 text-white p-2">
+                      SOLD 
+                      {/* TODO: INstead of ProductCard make a new component that doent let you click through to the product and greys everything out and says SOLD */}
+                    </div>
+                    <ProductCard item={item} />
+                  </div>
+                ) : (
+                  <ProductCard key={item.id} item={item} />
+                )}
+              </div>
             ))}
           </ProductGrid>
 
@@ -136,7 +153,7 @@ const SellerNamePage: React.FC<SellerNamePageProps> = async ({
             conditions={conditions}
             materials={materials}
             subcategories={subcategories}
-            productData={featuredProducts}
+            // productData={featuredProducts}
             miniProductTitle="Our top picks"
           />
         </div>
