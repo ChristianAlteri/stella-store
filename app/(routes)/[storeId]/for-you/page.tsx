@@ -66,7 +66,7 @@ const ForYouPage: React.FC<ForYouPageProps> = async ({ searchParams }) => {
   const materials = await getMaterials();
   const genders = await getGenders();
   const subcategories = await getSubcategories();
-  const billboard = await getBillboardByName("HomePageFullScreen");
+  const billboard = await getBillboardByName("HomePageFullScreen", "1b82eba5-33e4-42d2-9747-cee435d4c3c7");
 
 
   // TODO: loggedIn = false unless logged in;

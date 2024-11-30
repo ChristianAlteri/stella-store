@@ -24,6 +24,7 @@ interface Query {
   minPrice?: number;
   maxPrice?: number;
   isArchived?: boolean;
+  storeIdFromOnlineStore?: string;
 }
 
 const getProducts = async (query: Query): Promise<Product[]> => {
@@ -51,6 +52,7 @@ const getProducts = async (query: Query): Promise<Product[]> => {
         maxPrice: query.maxPrice,
         // isArchived: query.isArchived,
         isArchived: query.isArchived ? 'true' : 'false',
+        storeIdFromOnlineStore: query.storeIdFromOnlineStore
       },
     });
     const response = await axios.get(url);

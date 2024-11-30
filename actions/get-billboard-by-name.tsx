@@ -8,7 +8,7 @@ const getBillboardByName = async (label: string, storeId: string): Promise<Billb
     const response = await axios.get(`${URL}/${storeId}`, {
       params: { label, storeId },
     });
-    console.log("response from get-name", response.data);
+
 
     return response.data;
   } catch (error) {
@@ -16,18 +16,5 @@ const getBillboardByName = async (label: string, storeId: string): Promise<Billb
     throw error;
   }
 };
-
-// const getBillboardByName = async (label: string): Promise<Billboard> => {
-//   try {
-//     const response = await axios.get(`${URL}/${label}`);
-//     console.log("response from get-name", response.data);
-
-//     return response.data;
-//   } catch (error) {
-
-//     console.error("Error fetching Billboard by name:", error);
-//     throw error;
-//   }
-// };
 
 export default getBillboardByName;

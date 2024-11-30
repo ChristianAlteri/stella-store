@@ -45,6 +45,7 @@ export interface Store {
 
 export interface Product {
   id: string;
+  storeId: string;
   name: string;
   description: string;
   ourPrice: string;
@@ -61,6 +62,7 @@ export interface Product {
   isOnSale: boolean;
   isCharity: boolean;
   isHidden: boolean;
+  isOnline: boolean;
 
   likes: number | null | undefined;
   clicks: number | null | undefined;

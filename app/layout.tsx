@@ -17,9 +17,8 @@ import getMaterials from "@/actions/get-materials";
 import getConditions from "@/actions/get-conditions";
 import getGenders from "@/actions/get-genders";
 import getSubcategories from "@/actions/get-sub-categories";
+import getStore from "@/actions/get-store";
 // import getTopTen from "@/actions/get-top-ten";
-
-
 
 const font = Roboto({
   weight: "400",
@@ -34,60 +33,18 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({
   children,
+
 }: {
   children: React.ReactNode;
+
 }) {
-  const sellers = await getSellers();
-  const designers = await getDesigners();
-  const categories = await getCategories();
-  const sizes = await getSizes();
-  const colors = await getColors();
-  const materials = await getMaterials();
-  const conditions = await getConditions();
-  const genders = await getGenders();
-  const subcategories = await getSubcategories();
-  const products = await getProducts({ all: true });
-  // const topTen = await getTopTen({ all: true }, "most-viewed");
-  
-  const billboard = await getBillboardByName("HomePageFullScreen", "1b82eba5-33e4-42d2-9747-cee435d4c3c7");
+
 
   return (
     <html lang="en">
       <body className={font.className}>
         <ToastProvider />
-        <Navbar
-          sellers={sellers}
-          designers={designers}
-          categories={categories}
-          sizes={sizes}
-          colors={colors}
-          materials={materials}
-          conditions={conditions}
-          genders={genders}
-          subcategories={subcategories}
-          products={products}
-          // topTen={topTen}
-          billboard={billboard}
-        />
           {children}
-        <Footer
-          searchParams={{
-            categoryId: "",
-            designerId: "",
-            sellerId: "",
-            sizeId: "",
-            colorId: "",
-            conditionId: "",
-            materialId: "",
-            subcategoryId: "",
-            genderId: "",
-            sort: "",
-            isFeatured: undefined,
-            isOnSale: undefined,
-            isCharity: undefined ,
-            isHidden: undefined,
-          }}
-        />
       </body>
     </html>
   );

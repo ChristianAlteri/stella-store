@@ -20,6 +20,7 @@ import {
   Product,
   Seller,
   Size,
+  Store,
   Subcategory,
 } from "@/types";
 import QuickLinks from "./components/quick-links";
@@ -28,6 +29,7 @@ import IconRedirectButton from "../ui/icon-redirect-button";
 import { HiInformationCircle } from "react-icons/hi";
 
 interface NavbarProps {
+  store: Store;
   sellers: Seller[];
   designers: Designer[];
   categories: Category[];
@@ -43,6 +45,7 @@ interface NavbarProps {
 }
 
 const Navbar: React.FC<NavbarProps> = ({
+  store,
   sellers,
   designers,
   categories,
@@ -82,7 +85,7 @@ const Navbar: React.FC<NavbarProps> = ({
 
               <div className="w-full flex flex-row justify-center items-center gap-3 ">
                 <Link href="/" className="flex">
-                  <h1 className="font-bold text-2xl md:text-4xl">Make this store name</h1>
+                  <h1 className="font-bold text-2xl md:text-4xl">{store.name}</h1>
                 </Link>
               </div>
 
