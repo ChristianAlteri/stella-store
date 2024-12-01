@@ -51,16 +51,17 @@ const SalePage: React.FC<SalePageProps> = async ({ searchParams, params }) => {
     materialId: searchParams.materialId,
     genderId: searchParams.genderId,
     subcategoryId: searchParams.subcategoryId,
-    isOnSale: searchParams.isOnSale,
     isCharity: searchParams.isCharity,
     isHidden: searchParams.isHidden,
     isFeatured: searchParams.isFeatured,
     designerId: searchParams.designerId,
     sellerId: searchParams.sellerId,
+    isOnSale: true,
     all: true,
     minPrice: searchParams.minPrice,
     maxPrice: searchParams.maxPrice,
     storeIdFromOnlineStore: params.storeId,
+    isOnline: true,
   });
   // const featuredProducts = await getProducts({ isFeatured: true });
 
@@ -75,7 +76,7 @@ const SalePage: React.FC<SalePageProps> = async ({ searchParams, params }) => {
   const genders = await getGenders(params.storeId);
   const subcategories = await getSubcategories();
 
-  const onlySaleItems = onSaleItems.filter(product => product.isOnSale);
+  // const onlySaleItems = onSaleItems.filter(product => product.isOnSale);
 
   return (
     <>
@@ -91,7 +92,7 @@ const SalePage: React.FC<SalePageProps> = async ({ searchParams, params }) => {
             </p>
           </div>
         </div>
-      <div className="justify-center items-center md:grid flex grid-cols-8 gap-4 bg-white ">
+      <div className="justify-start items-center md:grid flex grid-cols-8 gap-4 bg-white ">
         {/* First column */}
         <div className="col-span-1 justify-start items-start w-full hidden sticky z-50 h-full md:grid ml-4">
           <LeftSidebar
@@ -102,10 +103,10 @@ const SalePage: React.FC<SalePageProps> = async ({ searchParams, params }) => {
         </div>
 
         {/* Second column */}
-        <div className="col-span-6 flex flex-col justify-center items-center w-full h-full">
+        <div className="col-span-6 flex flex-col justify-start mt-4 items-center w-full h-full">
 
           <ProductGrid>
-            {onlySaleItems.map((item) => (
+            {onSaleItems.map((item) => (
               <ProductCard key={item.id} item={item} />
             ))}
           </ProductGrid>

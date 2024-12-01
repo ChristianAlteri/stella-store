@@ -58,21 +58,22 @@ const TopSellers: React.FC<TopSellersProps> = async ({ searchParams, params }) =
   //   isOnline: searchParams.isOnline,
   // });
 
-  const sizes = await getSizes();
-  const colors = await getColors();
-  const conditions = await getConditions();
+  // const sizes = await getSizes();
+  // const colors = await getColors();
+  // const conditions = await getConditions();
+  // const materials = await getMaterials();
+  // const subcategories = await getSubcategories();
   const designers = await getDesigners();
   const sellers = await getSellers();
   const categories = await getCategories();
-  const materials = await getMaterials();
-  const subcategories = await getSubcategories();
 
   let sellerData = await getTopSellers();
-  sellerData = sellerData.filter(seller => seller.products && seller.products.length > 0);
+  // make sure sellers have products
+  sellerData = sellerData.filter(seller => seller.products && seller.products.length > 0 && seller.products.some(product => product.isOnline));
 
   return (
     <>
-      <div className="flex flex-row w-full justify-center items-center text-center">
+      <div className="flex flex-row w-full justify-center items-center text-center mt-4">
         <div className="w-full justify-center text-center">
           <h2 className="text-2xl font-bold text-black mt-2 p-2">TOP SELLERS</h2>
         </div>
@@ -88,7 +89,7 @@ const TopSellers: React.FC<TopSellersProps> = async ({ searchParams, params }) =
         </div>
 
         {/* Second column */}
-        <div className="col-span-6 flex flex-col justify-center items-center w-full h-full">
+        <div className="col-span-6 flex flex-col justify-start items-center w-full h-full">
           <ProductGrid>
             <SellerContainer sellerData={sellerData} />
           </ProductGrid>
@@ -96,7 +97,7 @@ const TopSellers: React.FC<TopSellersProps> = async ({ searchParams, params }) =
 
         {/* Third column */}
         <div className="col-span-1 justify-end items-end w-full hidden sticky z-50 h-full md:grid p-4">
-          <RightSidebar
+          {/* <RightSidebar
             colors={colors}
             sizes={sizes}
             conditions={conditions}
@@ -104,7 +105,7 @@ const TopSellers: React.FC<TopSellersProps> = async ({ searchParams, params }) =
             subcategories={subcategories}
             // productData={featuredProducts}
             miniProductTitle="Our top picks"
-          />
+          /> */}
         </div>
       </div>
     </>

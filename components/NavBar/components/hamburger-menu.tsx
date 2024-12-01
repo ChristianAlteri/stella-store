@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import Link from "next/link";
 import React, { useEffect } from "react";
 import { Category, Designer, Product, Seller } from "@/types";
@@ -38,6 +38,32 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
   const { isSellerSelected, isDesignerSelected, isCategorySelected } =
     useParamsUtil();
 
+  // Create sorted copies of the arrays
+  const sortedSellers = sellers
+    ?.filter(
+      (seller) =>
+        seller.products &&
+        seller.products.length > 0 &&
+        seller.products.some((product) => product.isOnline)
+    )
+    .sort((a, b) => a.storeName.localeCompare(b.storeName));
+  const sortedDesigners = designers
+    ?.filter(
+      (designer) =>
+        designer.products &&
+        designer.products.length > 0 &&
+        designer.products.some((product) => product.isOnline)
+    )
+    .sort((a, b) => a.name.localeCompare(b.name));
+  const sortedCategories = categories
+    ?.filter(
+      (categorie) =>
+        categorie.products &&
+        categorie.products.length > 0 &&
+        categorie.products.some((product) => product.isOnline)
+    )
+    .sort((a, b) => a.name.localeCompare(b.name));
+
   return (
     <>
       <div
@@ -76,7 +102,7 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
               <div className="flex flex-col items-center border-r w-full p-4">
                 <p className="font-bold text-sm bg-white">SELLERS</p>
                 <div className="flex flex-col items-center row-span-1 h-full overflow-y-auto bg-white">
-                  {sellers?.map((seller) => (
+                  {sortedSellers?.map((seller) => (
                     <Link
                       href={`${params.storeId}/sellers/${seller.id}`}
                       key={seller.storeName}
@@ -95,7 +121,7 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
               <div className="flex flex-col items-center border-r w-full p-4">
                 <p className="font-bold text-sm bg-white">DESIGNERS</p>
                 <div className="flex flex-col items-center row-span-1 h-full overflow-y-auto bg-white">
-                  {designers?.map((designer) => (
+                  {sortedDesigners?.map((designer) => (
                     <Link
                       href={`${params.storeId}/designers/${designer.id}`}
                       key={designer.name}
@@ -114,7 +140,7 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
               <div className="flex flex-col items-center w-full p-4">
                 <p className="font-bold text-sm bg-white">CATEGORIES</p>
                 <div className="flex flex-col items-center row-span-1 h-full overflow-y-auto bg-white">
-                  {categories?.map((category) => (
+                  {sortedCategories?.map((category) => (
                     <Link
                       href={`${params.storeId}/categories/${category.id}`}
                       key={category.name}
@@ -134,13 +160,21 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
           </div>
 
           <div className="row-span-3 bg-stone-200 flex items-center justify-center flex-col">
-
             <div className="md:hidden flex gap-2 w-full h-full flex-row justify-center items-end mb-2">
-              <IconRedirectButton route="https://www.instagram.com/anon.drobe" icon="INSTAGRAM" />
-              <IconRedirectButton route="https://tiktok.com/@anondrobe" icon="TIKTOK" />
+              <IconRedirectButton
+                route="https://www.instagram.com/anon.drobe"
+                icon="INSTAGRAM"
+              />
+              <IconRedirectButton
+                route="https://tiktok.com/@anondrobe"
+                icon="TIKTOK"
+              />
               <IconRedirectButton route="/about-us" icon="ABOUT" />
               <IconRedirectButton route="/for-you" icon="REGISTER" />
-              <IconRedirectButton route="mailto:admin@anondrobe.com" icon="CONTACT US" />
+              <IconRedirectButton
+                route="mailto:admin@anondrobe.com"
+                icon="CONTACT US"
+              />
             </div>
             {/* <aside className="flex flex-col w-2/3 justify-center items-center text-center top-0 h-2/3">
               {topTen && topTen.length > 0 && (

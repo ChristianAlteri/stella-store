@@ -57,7 +57,7 @@ const HomepageBillboard: React.FC<HomepageBillboardProps> = ({ data }) => {
             <Image
               key={billboard?.id}
               // style={{ objectFit: "cover", width: "100%", height: "100%" }}
-              fill
+              // fill
               width={1920}
               height={1080}
               src={billboard?.imageUrl}

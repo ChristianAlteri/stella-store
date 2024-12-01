@@ -41,7 +41,7 @@ const QuickLinks = () => {
         </div>
       </Link>
       <Link
-        href={`/${params.storeId}/trending`}
+        href={`/${params.storeId}/trending?sort=most-liked`}
         className="flex flex-col lg:text-sm text-super-small justify-center items-center rounded-xl w-full h-full hover:underline "
       >
         <div

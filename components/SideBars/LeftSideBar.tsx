@@ -28,14 +28,30 @@ const LeftSidebar: React.FC<LeftSideProps> = ({
 
   // Create sorted copies of the arrays
   const sortedSellers = sellers
-    ? [...sellers].sort((a, b) => a.storeName.localeCompare(b.storeName))
-    : [];
+  ?.filter(
+    (seller) =>
+      seller.products &&
+      seller.products.length > 0 &&
+      seller.products.some((product) => product.isOnline)
+  )
+  .sort((a, b) => a.storeName.localeCompare(b.storeName));
   const sortedDesigners = designers
-    ? [...designers].sort((a, b) => a.name.localeCompare(b.name))
-    : [];
+  ?.filter(
+    (designer) =>
+      designer.products &&
+      designer.products.length > 0 &&
+      designer.products.some((product) => product.isOnline)
+  )
+  .sort((a, b) => a.name.localeCompare(b.name));
   const sortedCategories = categories
-    ? [...categories].sort((a, b) => a.name.localeCompare(b.name))
-    : [];
+  ?.filter(
+    (categories) =>
+      categories.products &&
+      categories.products.length > 0 &&
+      categories.products.some((product) => product.isOnline)
+  )
+  .sort((a, b) => a.name.localeCompare(b.name));
+
 
   return (
     <aside className="h-full z-35">
@@ -51,7 +67,7 @@ const LeftSidebar: React.FC<LeftSideProps> = ({
                     className="h-5 w-full mb-2 bg-gray-200"
                   />
                 ))
-              : sortedSellers.map((seller) => (
+              : sortedSellers?.map((seller) => (
                   <Link
                     href={`/${params.storeId}/sellers/${seller.id}`}
                     key={seller.storeName}
@@ -82,7 +98,7 @@ const LeftSidebar: React.FC<LeftSideProps> = ({
                     className="h-5 w-full mb-2 bg-gray-200"
                   />
                 ))
-              : sortedDesigners.map((designer) => (
+              : sortedDesigners?.map((designer) => (
                   <Link
                     href={`/${params.storeId}/designers/${designer.id}`}
                     key={designer.name}
@@ -113,7 +129,7 @@ const LeftSidebar: React.FC<LeftSideProps> = ({
                     className="h-5 w-full mb-2 bg-gray-200"
                   />
                 ))
-              : sortedCategories.map((category) => (
+              : sortedCategories?.map((category) => (
                   <Link
                     href={`/${params.storeId}/categories/${category.id}`}
                     key={category.name}
