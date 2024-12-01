@@ -95,7 +95,7 @@ const MiniProductSellerCard: React.FC<MiniProductSellerCardProps> = ({
                   currentProduct.isHidden ? "blur-xl" : ""
                 }`}
                 style={{
-                  objectFit: "cover",
+                  // objectFit: "cover",
                   width: "100%",
                   height: "100%",
                   borderRadius: "0.375rem",
@@ -115,8 +115,9 @@ const MiniProductSellerCard: React.FC<MiniProductSellerCardProps> = ({
                   //   height: "100%",
                   //   borderRadius: "0.375rem",
                   // }}
-                  layout="fill" 
-                  objectFit="cover"
+                  // layout="fill" 
+                  fill
+                  // objectFit="cover"
                   alt={`${currentProduct.name} from ${currentProduct.seller?.storeName} by ${currentProduct.designer?.name} in size ${currentProduct.size?.name} for £${currentProduct.ourPrice} (RRP £${currentProduct.retailPrice})`}
                   className={`rounded-md transition-opacity duration-200 ease-in-out flex justify-center items-center overflow-hidden bg-cover 
                       ${currentProduct.isHidden ? "blur-xl" : ""}`}

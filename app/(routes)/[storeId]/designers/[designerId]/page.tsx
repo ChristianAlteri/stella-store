@@ -38,6 +38,7 @@ interface DesignerNamePageProps {
     isOnSale: boolean;
     isCharity: boolean;
     isHidden: boolean;
+    isOnline: boolean;
     minPrice: number;
     maxPrice: number;
   };
@@ -59,6 +60,7 @@ const DesignerNamePage: React.FC<DesignerNamePageProps> = async ({
     isOnSale: searchParams.isOnSale,
     isCharity: searchParams.isCharity,
     isHidden: searchParams.isHidden,
+    isOnline: true,
     isFeatured: searchParams.isFeatured,
     categoryId: searchParams.categoryId,
     sellerId: searchParams.sellerId,
@@ -78,7 +80,7 @@ const DesignerNamePage: React.FC<DesignerNamePageProps> = async ({
   const materials = await getMaterials();
   const genders = await getGenders(params.storeId);
   const subcategories = await getSubcategories();
-  const allProducts = await getProducts({all: true});
+  // const allProducts = await getProducts({all: true});
 
   return (
     <>

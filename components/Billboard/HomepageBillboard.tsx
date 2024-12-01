@@ -45,7 +45,8 @@ const HomepageBillboard: React.FC<HomepageBillboardProps> = ({ data }) => {
               loop
               src={`${billboard?.imageUrl}`}
               className="flex justify-center items-center overflow-hidden bg-cover"
-              style={{ objectFit: "cover", width: "100%", height: "100%" }}
+              // style={{ objectFit: "cover", width: "100%", height: "100%" }}
+              
             ></video>
           </div>
         ) : (
@@ -55,7 +56,8 @@ const HomepageBillboard: React.FC<HomepageBillboardProps> = ({ data }) => {
           >
             <Image
               key={billboard?.id}
-              style={{ objectFit: "cover", width: "100%", height: "100%" }}
+              // style={{ objectFit: "cover", width: "100%", height: "100%" }}
+              fill
               width={1920}
               height={1080}
               src={billboard?.imageUrl}

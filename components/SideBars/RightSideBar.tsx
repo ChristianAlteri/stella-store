@@ -45,36 +45,48 @@ const RightSidebar: React.FC<RightSideProps> = ({
     setRandomisedProductData(randomiseData(productData));
   }, [productData]);
 
+  const sortAlphabetically = (data: any[] | undefined) => {
+    return data?.sort((a, b) => a.name.localeCompare(b.name)) || [];
+  };
+
   return (
     <aside className="h-full z-35 mr-5 p-1">
-      <div className="grid grid-rows-4 h-full w-full justify-end items-end flex-col">
+      <div className="grid grid-rows-4 h-full w-full justify-start items-start flex-col">
 
-        <div className="flex flex-col row-span-1 justify-start items-center h-full w-full">
-          <RangeSlider />
-        </div>
-
-        <div className="row-span-3 h-full w-full">
+        <div className="row-span-3 h-full w-full justify-start items-center">
           <div className="flex flex-col bg-white w-full justify-center items-center">
-            <MobileProductFilter valueKey="sizeId" name="Sizes" data={sizes} />
+            <MobileProductFilter
+              valueKey="sizeId"
+              name="Sizes"
+              data={sortAlphabetically(sizes)}
+            />
           </div>
           <div className="flex flex-col bg-white w-full justify-center items-center">
-            <MobileProductFilter valueKey="colorId" name="Colors" data={colors} />
+            <MobileProductFilter
+              valueKey="colorId"
+              name="Colors"
+              data={sortAlphabetically(colors)}
+            />
           </div>
 
           <div className="flex flex-col bg-white w-full justify-center items-center">
             <MobileProductFilter
               valueKey="materialId"
               name="Materials"
-              data={materials}
+              data={sortAlphabetically(materials)}
             />
           </div>
           <div className="flex flex-col bg-white w-full justify-center items-center ">
             <MobileProductFilter
               valueKey="subcategoryId"
               name="Sub-Category"
-              data={subcategories}
+              data={sortAlphabetically(subcategories)}
             />
           </div>
+        </div>
+
+        <div className="flex flex-col row-span-1 justify-start items-center">
+          <RangeSlider />
         </div>
 
         {/* <div className="flex flex-col bg-white row-span-2 h-full w-full ">
@@ -86,10 +98,93 @@ const RightSidebar: React.FC<RightSideProps> = ({
             />
           ) : null}
         </div> */}
-
       </div>
     </aside>
   );
 };
 
 export default RightSidebar;
+
+// "use client";
+
+// import React, { useEffect, useState } from "react";
+// import {
+//   Color,
+//   Condition,
+//   Designer,
+//   Material,
+//   Product,
+//   Seller,
+//   Size,
+//   Subcategory,
+// } from "@/types";
+// import { randomiseData } from "@/utils/sortdata";
+// import RangeSlider from "@/components/Filters/range-slider";
+// import FilterGroup from "@/components/Filters/filter-group";
+
+// interface RightSidebarProps {
+//   sizes?: Size[];
+//   colors?: Color[];
+//   conditions?: Condition[];
+//   materials?: Material[];
+//   subcategories?: Subcategory[];
+//   productData?: Product[];
+//   designers?: Designer[];
+//   sellers?: Seller[];
+//   miniProductTitle?: string;
+// }
+
+// const RightSidebar: React.FC<RightSidebarProps> = ({
+//   sizes,
+//   colors,
+//   materials,
+//   subcategories,
+//   productData,
+// }) => {
+//   const [randomisedProductData, setRandomisedProductData] = useState(
+//     productData || []
+//   );
+
+//   useEffect(() => {
+//     setRandomisedProductData(randomiseData(productData));
+//   }, [productData]);
+
+//   const sortAlphabetically = (data: any[] | undefined) => {
+//     return data?.sort((a, b) => a.name.localeCompare(b.name)) || [];
+//   };
+
+//   return (
+//     <aside className="h-full z-35 mr-5 p-1">
+//       <div className="grid grid-rows-4 h-full w-full justify-end items-end flex-col">
+
+//       <div className="flex flex-col row-span-1 justify-start items-center h-full w-full">
+//           <RangeSlider />
+//         </div>
+//         <div className="row-span-3 h-full w-full">
+//           <FilterGroup
+//             title="Sizes"
+//             data={sortAlphabetically(sizes)}
+//             valueKey="sizeId"
+//           />
+//           <FilterGroup
+//             title="Colors"
+//             data={sortAlphabetically(colors)}
+//             valueKey="colorId"
+//           />
+//           <FilterGroup
+//             title="Materials"
+//             data={sortAlphabetically(materials)}
+//             valueKey="materialId"
+//           />
+//           <FilterGroup
+//             title="Sub-categories"
+//             data={sortAlphabetically(subcategories)}
+//             valueKey="subcategoryId"
+//           />
+//         </div>
+//       </div>
+//     </aside>
+//   );
+// };
+
+// export default RightSidebar;

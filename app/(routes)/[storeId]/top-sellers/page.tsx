@@ -39,23 +39,24 @@ interface TopSellersProps {
 }
 
 const TopSellers: React.FC<TopSellersProps> = async ({ searchParams, params }) => {
-  const topLikedProducts = await getTrending({
-    categoryId: searchParams.categoryId,
-    sort: searchParams.sort,
-    sizeId: searchParams.sizeId,
-    colorId: searchParams.colorId,
-    conditionId: searchParams.conditionId,
-    materialId: searchParams.materialId,
-    genderId: searchParams.genderId,
-    subcategoryId: searchParams.subcategoryId,
-    isOnSale: searchParams.isOnSale,
-    isCharity: searchParams.isCharity,
-    isHidden: searchParams.isHidden,
-    isFeatured: searchParams.isFeatured,
-    designerId: searchParams.designerId,
-    sellerId: searchParams.sellerId,
-    storeIdFromOnlineStore: params.storeId,
-  });
+  // const topLikedProducts = await getTrending({
+  //   categoryId: searchParams.categoryId,
+  //   sort: searchParams.sort,
+  //   sizeId: searchParams.sizeId,
+  //   colorId: searchParams.colorId,
+  //   conditionId: searchParams.conditionId,
+  //   materialId: searchParams.materialId,
+  //   genderId: searchParams.genderId,
+  //   subcategoryId: searchParams.subcategoryId,
+  //   isOnSale: searchParams.isOnSale,
+  //   isCharity: searchParams.isCharity,
+  //   isHidden: searchParams.isHidden,
+  //   isFeatured: searchParams.isFeatured,
+  //   designerId: searchParams.designerId,
+  //   sellerId: searchParams.sellerId,
+  //   storeIdFromOnlineStore: params.storeId,
+  //   isOnline: searchParams.isOnline,
+  // });
 
   const sizes = await getSizes();
   const colors = await getColors();

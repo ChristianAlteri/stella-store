@@ -26,7 +26,7 @@ const MegaSearch: React.FC<MegaSearchProps> = ({ icon, billboard }) => {
   const onClose = () => setOpen(false);
 
   // @ts-ignore
-  const imageUrl = billboard ? billboard[0]?.imageUrl : null;
+  const imageUrl = billboard ? billboard?.imageUrl : null;
 
   return (
     <>
@@ -56,11 +56,11 @@ const MegaSearch: React.FC<MegaSearchProps> = ({ icon, billboard }) => {
               }}
             >
               {/* Fallback text for null billboard */}
-              {!imageUrl && (
+              {/* {!imageUrl && (
                 <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-70">
                   <p className="text-white text-2xl font-bold">Please add a Billboard via your backend</p>
                 </div>
-              )}
+              )} */}
               <div
                 className="flex flex-row w-full justify-between items-center p-1 hover:cursor-pointer"
                 onClick={onClose}

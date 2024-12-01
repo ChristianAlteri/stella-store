@@ -45,6 +45,9 @@ const FilterModal: React.FC<FilterModalProps> = ({
   const [open, setOpen] = React.useState(false);
   const openDrawer = () => setOpen(true);
   const closeDrawer = () => setOpen(false);
+  const sortAlphabetically = (data: any[] | undefined) => {
+    return data?.sort((a, b) => a.name.localeCompare(b.name)) || [];
+  };
 
   return (
     <>
@@ -91,28 +94,28 @@ const FilterModal: React.FC<FilterModalProps> = ({
                 <MobileProductFilter
                   valueKey="sizeId"
                   name="Sizes"
-                  data={sizes}
+                  data={sortAlphabetically(sizes)}
                 />
               </div>
               <div className="flex flex-col bg-white w-full justify-center items-center">
                 <MobileProductFilter
                   valueKey="colorId"
                   name="Colors"
-                  data={colors}
+                  data={sortAlphabetically(colors)}
                 />
               </div>
               <div className="flex flex-col bg-white w-full justify-center items-center">
                 <MobileProductFilter
                   valueKey="materialId"
                   name="Materials"
-                  data={materials}
+                  data={sortAlphabetically(materials)}
                 />
               </div>
               <div className="flex flex-col bg-white w-full justify-center items-center">
                 <MobileProductFilter
                   valueKey="subcategoryId"
                   name="Sub-Category"
-                  data={subcategories}
+                  data={sortAlphabetically(subcategories)}
                 />
               </div>
               <div className="flex flex-row items-center justify-center w-full">

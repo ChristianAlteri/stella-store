@@ -25,8 +25,6 @@ export default async function SiteLayout({
   params: { storeId: string };
 }) {
   const { storeId } = params;
-
-  console.log("Layout storeId", storeId);
   const store = await getStore(storeId);
   const sellers = await getSellers();
   const designers = await getDesigners();

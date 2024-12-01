@@ -40,6 +40,7 @@ interface CategoryNamePageProps {
     isOnSale: boolean;
     isCharity: boolean;
     isHidden: boolean;
+    isOnline: boolean;
     minPrice: number;
     maxPrice: number;
   };
@@ -61,6 +62,7 @@ const CategoryNamePage: React.FC<CategoryNamePageProps> = async ({
     isOnSale: searchParams.isOnSale,
     isCharity: searchParams.isCharity,
     isHidden: searchParams.isHidden,
+    isOnline: true,
     isFeatured: searchParams.isFeatured,
     designerId: searchParams.designerId,
     sellerId: searchParams.sellerId,

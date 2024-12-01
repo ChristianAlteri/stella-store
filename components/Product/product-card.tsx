@@ -2,6 +2,7 @@
 
 import { Product } from "@/types";
 import Image from "next/image";
+import { Skeleton } from "@/components/ui/skeleton";
 
 import ProductCardButton from "./ProductCardButton";
 import { CiBadgeDollar, CiHeart, CiRead, CiShoppingCart } from "react-icons/ci";
@@ -14,6 +15,7 @@ import axios from "axios";
 import ReactPlayer from "react-player";
 import ShareButton from "./share-button";
 import { Tooltip } from "@chakra-ui/react";
+import ClothingSkeleton from "../ui/clothing-skeleton";
 
 interface ProductListProps {
   item: Product;
@@ -25,15 +27,21 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
   const likes = useLike();
   const params = useParams();
 
-  const [isMounted, setIsMounted] = useState(false);
+  // const [isMounted, setIsMounted] = useState(false);
+  const [isImageLoading, setIsImageLoading] = useState(true);
+  const [showSkeleton, setShowSkeleton] = useState(true);
 
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
+  const handleImageLoad = () => {
+    setIsImageLoading(false);
+  };
 
-  if (!isMounted) {
-    return null;
-  }
+  // useEffect(() => {
+  //   setIsMounted(true);
+  // }, []);
+
+  // if (!isMounted) {
+  //   return null;
+  // }
 
   const onAddToCart: MouseEventHandler<HTMLButtonElement> = (event) => {
     event.stopPropagation();
@@ -111,6 +119,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
                     priority
                     className={`rounded-md transition-opacity duration-200 ease-in-out 
                     ${item.isHidden ? "blur-xl" : ""}`}
+                    onLoad={handleImageLoad}
                   />
                 </div>
                 <div className="flex lg:hidden">
@@ -124,6 +133,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
                     priority
                     className={`rounded-md transition-opacity duration-200 ease-in-out 
                     ${item.isHidden ? "blur-xl" : ""}`}
+                    onLoad={handleImageLoad}
                   />
                 </div>
               </>
@@ -162,6 +172,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
                       className={`rounded-md transition-opacity duration-200 ease-in-out ${
                         item.isHidden ? "blur-xl" : ""
                       }`}
+                      onLoad={handleImageLoad}
                     />
                   </div>
                   <div className="flex lg:hidden">
@@ -176,6 +187,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
                       className={`rounded-md transition-opacity duration-200 ease-in-out ${
                         item.isHidden ? "blur-xl" : ""
                       }`}
+                      onLoad={handleImageLoad}
                     />
                   </div>
                 </>
@@ -205,7 +217,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
           <div className="flex justify-between text-left">
             <div
               onClick={handleProductClick}
-              className="text-xs hover:underline hover:cursor-pointer underline text-black"
+              className="text-xs hover:underline hover:cursor-pointer text-black"
             >
               {item.name.charAt(0).toUpperCase() + item.name.slice(1)}
             </div>
@@ -222,12 +234,12 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
           <div className="flex justify-between text-left">
             <Link
               href={`/${params.storeId}/sellers/${item?.seller?.id}`}
-              className="text-xs hover:underline text-black hover:text-stone-700"
+              className="text-xs hover:underline text-black hover:text-stone-700 "
             >
               {item.seller?.storeName.toUpperCase()}
             </Link>
             <div className="text-xs text-stone-300 hover:text-stone-700 ">
-              {item?.size?.name}
+              Size: {item?.size?.name}
             </div>
           </div>
 
@@ -292,7 +304,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
 
           <div
             onClick={handleProductClick}
-            className="text-xs hover:underline hover:cursor-pointer underline text-black"
+            className="text-xs hover:underline hover:cursor-pointer text-black"
           >
             {item.name.charAt(0).toUpperCase() + item.name.slice(1)}
           </div>
@@ -306,7 +318,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
             {item.designer?.name.toUpperCase()}
           </Link>
           <div className="flex flex-row justify-between  w-2/3 gap-1">
-            <div className="text-gray-500 hover:cursor-pointer hover:text-black text-xs">
+            <div className="text-gray-500 hover:cursor-pointer hover:text-black text-xs ">
               <Link
                 href={`/${params.storeId}/sellers/${item?.seller?.id}`}
                 className="text-xs hover:underline  text-black truncate"
@@ -350,7 +362,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
             </div>
 
             <div className="flex flex-row gap-1 justify-end text-super-small text-black w-full items-center m-1">
-              {item?.size?.name}
+              Size: {item?.size?.name}
             </div>
           </div>
         </div>

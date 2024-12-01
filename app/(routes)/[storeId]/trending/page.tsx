@@ -38,6 +38,7 @@ interface TopLikesPageProps {
     isOnSale: boolean;
     isCharity: boolean;
     isHidden: boolean;
+    isOnline: boolean;
     minPrice: number;
     maxPrice: number;
   };
@@ -62,6 +63,7 @@ const TopLikesPage: React.FC<TopLikesPageProps> = async ({ searchParams, params 
     minPrice: searchParams.minPrice,
     maxPrice: searchParams.maxPrice,
     storeIdFromOnlineStore: params.storeId,
+    isOnline: true,
   });
   // const featuredProducts = await getProducts({ isFeatured: true });
 

@@ -49,6 +49,7 @@ const CartPageServer: React.FC<TopLikesPageProps> = async ({
     minPrice: searchParams.minPrice,
     maxPrice: searchParams.maxPrice,
     storeIdFromOnlineStore: params.storeId,
+    isOnline: true,
   });
   const products = await getProducts({
     categoryId: searchParams.categoryId,

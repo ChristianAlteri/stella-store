@@ -10,9 +10,9 @@ const getStore = async (storeIdFromOnlineStore: string): Promise<Store> => {
     const response = await axios.get(`${URL}`, {
       params: { storeIdFromOnlineStore },
     });
-    console.log(`STORE URL ${URL}`);
-    console.log(`PARAMS `, { params: { storeIdFromOnlineStore } });
-    console.log(`response `, response);
+    // console.log(`STORE URL ${URL}`);
+    // console.log(`PARAMS `, { params: { storeIdFromOnlineStore } });
+    // console.log(`response `, response);
     return response.data;
   } catch (error) {
     console.error("Error fetching store:", error);

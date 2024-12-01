@@ -41,6 +41,7 @@ interface SellerNamePageProps {
     isOnSale: boolean;
     isCharity: boolean;
     isHidden: boolean;
+    isOnline: boolean;
     minPrice: number;
     maxPrice: number;
     isArchived: boolean | undefined;
@@ -63,6 +64,7 @@ const SellerNamePage: React.FC<SellerNamePageProps> = async ({
     isOnSale: searchParams.isOnSale,
     isCharity: searchParams.isCharity,
     isHidden: searchParams.isHidden,
+    isOnline: true,
     isFeatured: searchParams.isFeatured,
     designerId: searchParams.designerId,
     categoryId: searchParams.categoryId,
