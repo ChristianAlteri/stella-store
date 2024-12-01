@@ -8,6 +8,7 @@ import { Category, Designer, Seller } from "@/types";
 
 import Link from "next/link";
 import useParamsUtil from "@/utils/useParamsUtil";
+import { useParams } from "next/navigation";
 
 interface LeftSideProps {
   designers?: Designer[];
@@ -21,6 +22,7 @@ const LeftSidebar: React.FC<LeftSideProps> = ({
   sellers,
 }) => {
   const { isSellerSelected, isDesignerSelected, isCategorySelected } = useParamsUtil();
+  const params = useParams();
 
   return (
     <aside className="h-full z-35">
@@ -32,7 +34,7 @@ const LeftSidebar: React.FC<LeftSideProps> = ({
           </p>
           <div className="ml-1 row-span-1 h-full overflow-y-auto bg-white ">
             {sellers?.map((seller, index) => (
-              <Link href={`/sellers/${seller.id}`} key={seller.instagramHandle}>
+              <Link href={`${params.storeId}/sellers/${seller.id}`} key={seller.storeName}>
                 <p
                   className={cn(
                     "flex justify-start text-sm font-medium text-light-font transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer",
@@ -41,7 +43,7 @@ const LeftSidebar: React.FC<LeftSideProps> = ({
                       : "text-light-font"
                   )}
                 >
-                  {seller.instagramHandle.toUpperCase()}
+                  {seller.storeName.toUpperCase()}
                 </p>
               </Link>
             ))}
@@ -53,7 +55,7 @@ const LeftSidebar: React.FC<LeftSideProps> = ({
           </p>
           <div className="ml-1 row-span-1 h-full overflow-y-auto bg-white ">
             {designers?.map((designer, index) => (
-              <Link href={`/designers/${designer.id}`} key={designer.name}>
+              <Link href={`${params.storeId}/designers/${designer.id}`} key={designer.name}>
                 <p
                   className={cn(
                     "flex justify-start text-sm font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer",
@@ -74,7 +76,7 @@ const LeftSidebar: React.FC<LeftSideProps> = ({
           </p>
           <div className="ml-1 row-span-1 h-full overflow-y-auto bg-white ">
             {categories?.map((category, index) => (
-              <Link href={`/categories/${category.id}`} key={category.name}>
+              <Link href={`${params.storeId}/categories/${category.id}`} key={category.name}>
                 <p
                   className={cn(
                     "flex justify-start text-sm font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer",

@@ -5,9 +5,8 @@ import Image from "next/image";
 import React from "react";
 import { useEffect, useState } from "react";
 
-
 interface HomepageBillboardProps {
-  data: Billboard | Billboard[]; 
+  data: Billboard | Billboard[] | null;
 }
 
 const HomepageBillboard: React.FC<HomepageBillboardProps> = ({ data }) => {
@@ -20,12 +19,20 @@ const HomepageBillboard: React.FC<HomepageBillboardProps> = ({ data }) => {
     return null;
   }
 
+  if (!data) {
+    return (
+      <div className="w-full h-full justify-center items-center text-center text-3xl">
+        <p>Please add a Full screen Billboard via your back end</p>
+      </div>
+    );
+  }
+
   // Normalise data to always be an array
   const normalizedData = Array.isArray(data) ? data : [data];
 
   return (
     <>
-      {normalizedData?.map((billboard, index) => (
+      {normalizedData?.map((billboard, index) =>
         billboard?.imageUrl.match(/https:\/\/.*\.(video|mp4|MP4|mov).*/) ? (
           <div
             key={index}
@@ -42,21 +49,24 @@ const HomepageBillboard: React.FC<HomepageBillboardProps> = ({ data }) => {
             ></video>
           </div>
         ) : (
-          <div key={billboard?.id} style={{ width: "100%", height: "100%", overflow: "hidden" }}>
-          <Image
+          <div
             key={billboard?.id}
-            style={{ objectFit: "cover", width: "100%", height: "100%" }}
-            width={1920}
-            height={1080}
-            src={billboard?.imageUrl}
-            alt={`Image of ${billboard.name} })`}
-            priority
-            className={``}
-          />
+            style={{ width: "100%", height: "100%", overflow: "hidden" }}
+          >
+            <Image
+              key={billboard?.id}
+              style={{ objectFit: "cover", width: "100%", height: "100%" }}
+              width={1920}
+              height={1080}
+              src={billboard?.imageUrl}
+              alt={`Image of ${billboard.name} })`}
+              priority
+              className={``}
+            />
           </div>
         )
-      ))}
+      )}
     </>
   );
-}
+};
 export default HomepageBillboard;

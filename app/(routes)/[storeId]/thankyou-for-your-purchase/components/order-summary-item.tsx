@@ -2,7 +2,7 @@
 import Image from "next/image";
 
 import { Product } from "@/types";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 
 interface OrderSummaryItemProps {
@@ -11,10 +11,11 @@ interface OrderSummaryItemProps {
 
 const OrderSummaryItem: React.FC<OrderSummaryItemProps> = ({ data }) => {
   const router = useRouter();
+  const params = useParams();
 
   const handleProductClick = () => {
     router.push(
-      `/product/${data?.category?.id}/${data?.designer?.name}/${data?.id}/${data?.seller?.instagramHandle}`
+      `${params.storeId}/product/${data?.category?.id}/${data?.designer?.name}/${data?.id}/${data?.seller?.instagramHandle}`
     );
   };
 
@@ -47,7 +48,7 @@ const OrderSummaryItem: React.FC<OrderSummaryItemProps> = ({ data }) => {
                   height={0}
                   width={100}
                   src={data!.images[0]!.url}
-                  alt={`${data.name} from ${data.seller?.instagramHandle} by ${data.designer?.name} in size ${data.size?.name} for £${data.ourPrice} (RRP £${data.retailPrice})`}
+                  alt={`${data.name} from ${data.seller?.storeName} by ${data.designer?.name} in size ${data.size?.name} for £${data.ourPrice} (RRP £${data.retailPrice})`}
                   priority
                   className={`rounded-md transition-opacity duration-200 ease-in-out 
                       ${data.isHidden ? "blur-xl" : ""}`}
@@ -60,16 +61,16 @@ const OrderSummaryItem: React.FC<OrderSummaryItemProps> = ({ data }) => {
         <div className="relative flex flex-1 flex-col justify-between">
           <div className="flex flex-col justify-start items-start text-start">
             <Link
-              href={`/designers/${data.designer.id}`}
+              href={`${params.storeId}/designers/${data.designer.id}`}
               className="ml-4 md:text-xs text-super-small hover:underline hover:cursor-pointer"
             >
               {data.designer.name.toUpperCase()}
             </Link>
             <Link
-              href={`/sellers/${data.seller.id}`}
+              href={`${params.storeId}/sellers/${data.seller.id}`}
               className="ml-4 md:text-xs text-super-small hover:underline hover:cursor-pointer"
             >
-              {data.seller.instagramHandle.toUpperCase()}
+              {data.seller.storeName.toUpperCase()}
             </Link>
             <p className="ml-4 md:text-xs text-super-small hover:underline hover:cursor-pointer text-red-500">
               {" "}

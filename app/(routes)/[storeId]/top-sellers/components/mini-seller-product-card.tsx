@@ -39,7 +39,6 @@ const MiniProductSellerCard: React.FC<MiniProductSellerCardProps> = ({
     };
   }, [data]);
 
-
   // fade in opacity of description
   useEffect(() => {
     const opacityInterval = setInterval(() => {
@@ -61,7 +60,6 @@ const MiniProductSellerCard: React.FC<MiniProductSellerCardProps> = ({
     };
   }, [intervalId, opacityIntervalId, data]);
 
-
   // const handleProductClick = () => {
   //   router.push(
   //     `/product/${currentProduct?.category?.id}/${currentProduct?.designer?.id}/${currentProduct?.id}/${currentProduct?.seller?.id}`
@@ -70,55 +68,63 @@ const MiniProductSellerCard: React.FC<MiniProductSellerCardProps> = ({
 
   return (
     <div className="flex flex-col w-full">
-
-        <div className="flex flex-col p-1 justify-center items-center" key={currentProduct.id}>
+      <div
+        className="flex flex-col p-1 justify-center items-center"
+        key={currentProduct.id}
+      >
+        <div className="flex justify-center items-center hover:cursor-pointer">
           <div
-            className="flex justify-center items-center hover:cursor-pointer"
+            className="relative w-full"
+            style={{
+              aspectRatio: "4 / 5", 
+            }}
           >
-            <div className="relative">
-              {currentProduct?.images[0]?.url?.match(/https:\/\/.*\.(video|mp4|MP4|mov).*/)
-              ? (
-                <ReactPlayer
+            {currentProduct?.images[0]?.url?.match(
+              /https:\/\/.*\.(video|mp4|MP4|mov).*/
+            ) ? (
+              <ReactPlayer
+                key={currentProduct?.images?.[0]?.id}
+                url={currentProduct?.images[0].url}
+                width={1080}
+                height={1350}
+                loop={true}
+                playing={true}
+                muted={true}
+                alt={`${currentProduct.name} from ${currentProduct.seller?.storeName} by ${currentProduct.designer?.name} in size ${currentProduct.size?.name} for £${currentProduct.ourPrice} (RRP £${currentProduct.retailPrice})`}
+                className={`rounded-md transition-opacity duration-200 ease-in-out ${
+                  currentProduct.isHidden ? "blur-xl" : ""
+                }`}
+                style={{
+                  objectFit: "cover",
+                  width: "100%",
+                  height: "100%",
+                  borderRadius: "0.375rem",
+                }}
+              />
+            ) : (
+              <div className="flex">
+                <Image
                   key={currentProduct?.images?.[0]?.id}
-                  url={currentProduct?.images[0].url}
-                  width={1080}
-                  height={1350}
-                  loop={true}
-                  playing={true}
-                  muted={true}
-                  alt={`${currentProduct.name} from ${currentProduct.seller?.instagramHandle} by ${currentProduct.designer?.name} in size ${currentProduct.size?.name} for £${currentProduct.ourPrice} (RRP £${currentProduct.retailPrice})`}
-                  className={`rounded-md transition-opacity duration-200 ease-in-out ${
-                    currentProduct.isHidden ? "blur-xl" : ""
-                  }`}
-                  style={{
-                    objectFit: "cover",
-                    width: "100%",
-                    height: "100%",
-                    borderRadius: "0.375rem",
-                  }}
-                />
-              ) : (
-                <div className="flex">
-                  <Image
-                    key={currentProduct?.images?.[0]?.id}
-                    width={1080}
-                    height={1350}
-                    loading="lazy"
-                    src={currentProduct!.images[0]!.url}
-                    style={{
-                      objectFit: "cover",
-                      width: "100%",
-                      height: "100%",
-                      borderRadius: "0.375rem",
-                    }}
-                    alt={`${currentProduct.name} from ${currentProduct.seller?.instagramHandle} by ${currentProduct.designer?.name} in size ${currentProduct.size?.name} for £${currentProduct.ourPrice} (RRP £${currentProduct.retailPrice})`}
-                    className={`rounded-md transition-opacity duration-200 ease-in-out flex justify-center items-center overflow-hidden bg-cover 
+                  // width={1080}
+                  // height={1350}
+                  loading="lazy"
+                  src={currentProduct!.images[0]!.url}
+                  // style={{
+                  //   objectFit: "cover",
+                  //   width: "100%",
+                  //   height: "100%",
+                  //   borderRadius: "0.375rem",
+                  // }}
+                  layout="fill" 
+                  objectFit="cover"
+                  alt={`${currentProduct.name} from ${currentProduct.seller?.storeName} by ${currentProduct.designer?.name} in size ${currentProduct.size?.name} for £${currentProduct.ourPrice} (RRP £${currentProduct.retailPrice})`}
+                  className={`rounded-md transition-opacity duration-200 ease-in-out flex justify-center items-center overflow-hidden bg-cover 
                       ${currentProduct.isHidden ? "blur-xl" : ""}`}
-                  />
-                </div>
-              )}
+                />
+              </div>
+            )}
 
-              {/* <div
+            {/* <div
                 className="absolute top-0 left-0 w-full h-full flex items-center justify-center transition-opacity duration-300 "
                 style={{ opacity }}>
                 <div className="flex flex-col justify-center items-center m-5 ">
@@ -147,13 +153,11 @@ const MiniProductSellerCard: React.FC<MiniProductSellerCardProps> = ({
                   </div>
                 </div>
               </div> */}
-            </div>
           </div>
         </div>
+      </div>
     </div>
   );
 };
 
 export default MiniProductSellerCard;
-
-

@@ -4,6 +4,9 @@ import getTrending from "@/actions/get-trending";
 import getProducts from "@/actions/get-products";
 
 interface TopLikesPageProps {
+  params: {
+    storeId: string;
+  };
   searchParams: {
     sizeId: string;
     colorId: string;
@@ -26,6 +29,7 @@ interface TopLikesPageProps {
 
 const CartPageServer: React.FC<TopLikesPageProps> = async ({
   searchParams,
+  params,
 }) => {
   const topLikedProducts = await getTrending({
     categoryId: searchParams.categoryId,
@@ -44,6 +48,7 @@ const CartPageServer: React.FC<TopLikesPageProps> = async ({
     sellerId: searchParams.sellerId,
     minPrice: searchParams.minPrice,
     maxPrice: searchParams.maxPrice,
+    storeIdFromOnlineStore: params.storeId,
   });
   const products = await getProducts({
     categoryId: searchParams.categoryId,

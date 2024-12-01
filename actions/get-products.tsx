@@ -20,6 +20,7 @@ interface Query {
   isOnSale?: boolean | undefined;
   isHidden?: boolean | undefined;
   isCharity?: boolean | undefined;
+  isOnline?: boolean | undefined;
   all?: boolean;
   minPrice?: number;
   maxPrice?: number;
@@ -47,6 +48,7 @@ const getProducts = async (query: Query): Promise<Product[]> => {
         isOnSale: query.isOnSale,
         isCharity: query.isCharity,
         isHidden: query.isHidden,
+        isOnline: query.isOnline,
         sort: query.sort,
         minPrice: query.minPrice,
         maxPrice: query.maxPrice,

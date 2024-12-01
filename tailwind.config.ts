@@ -20,7 +20,7 @@ const config: Config = withMT({
     },
     extend: {
       fontSize: {
-        'super-small': '10px',
+        "super-small": "10px",
       },
       boxShadow: {
         top: "0 -3px 5px -1px rgba(115,115,115,0.5)",
@@ -74,9 +74,9 @@ const config: Config = withMT({
           from: { height: "0" },
           to: { height: "var(--radix-accordion-content-height)" },
         },
-        'loop-scroll': {
-          '0%': { transform: 'translateX(100%)' },
-          '100%': { transform: 'translateX(-100%)' },
+        "loop-scroll": {
+          "0%": { transform: "translateX(100%)" },
+          "100%": { transform: "translateX(-100%)" },
         },
       },
       "accordion-up": {
@@ -87,12 +87,16 @@ const config: Config = withMT({
     animation: {
       "accordion-down": "accordion-down 0.2s ease-out",
       "accordion-up": "accordion-up 0.2s ease-out",
-      'loop-scroll': 'loop-scroll 10s linear infinite',
+      "loop-scroll": "loop-scroll 10s linear infinite",
     },
   },
-  plugins: [require("tailwindcss-animate"), require("@tailwindcss/forms")({
-    strategy: "class",
-  })],
+  plugins: [
+    require("@tailwindcss/aspect-ratio"),
+    require("tailwindcss-animate"),
+    require("@tailwindcss/forms")({
+      strategy: "class",
+    }),
+  ],
 }) as Config;
 
 export default config;

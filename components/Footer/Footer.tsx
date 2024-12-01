@@ -30,10 +30,22 @@ interface FooterProps {
     isCharity: boolean | undefined;
     isHidden: boolean | undefined;
   };
+  storeId: string;
 }
 
-const Footer: React.FC<FooterProps> = async ({ searchParams }) => {
+// const Footer: React.FC<FooterProps> = async ({ searchParams }) => {
+  const Footer = async ({
+    searchParams,
+    params,
+  }: {
+    searchParams: FooterProps["searchParams"];
+    params: { storeId: string };
+  }) => {
+    const { storeId } = params;
   const productData = await getProducts({
+    storeIdFromOnlineStore: storeId,
+    all: true,
+    isOnline: true,
     sort: searchParams.sort,
     designerId: searchParams.designerId,
     sellerId: searchParams.sellerId,
@@ -57,7 +69,7 @@ const Footer: React.FC<FooterProps> = async ({ searchParams }) => {
   const sellers = await getSellers();
   const categories = await getCategories();
   const materials = await getMaterials();
-  const genders = await getGenders();
+  const genders = await getGenders(storeId);
   const subcategories = await getSubcategories();
   // const onSaleProducts = await getProducts({ isOnSale: true });
 
@@ -83,7 +95,7 @@ const Footer: React.FC<FooterProps> = async ({ searchParams }) => {
       <footer className="hidden md:block bg-white border-t bottom-0 sticky inset-x-0 lg:relative">
         <div className="mx-auto w-full justify-center items-center">
         <div className="flex gap-3 w-full h-full flex-row items-center justify-center bottom-0 p-3 mb-4">
-          {/* TODO: Make links work */}
+          {/* TODO: Make links store specific */}
             <p className="text-center text-xs text-stone-600">
               &copy; 2024 Aviva, Inc. All rights reserved.
             </p>

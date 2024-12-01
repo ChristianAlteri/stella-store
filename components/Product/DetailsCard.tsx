@@ -6,6 +6,7 @@ import React from "react";
 import { CiBadgeDollar } from "react-icons/ci";
 import BuyNowCard from "./BuyNowCard";
 import MiniProductCard from "./mini-product-card";
+import { useParams } from "next/navigation";
 
 interface DetailsCardProps {
   data: Product;
@@ -13,26 +14,27 @@ interface DetailsCardProps {
 }
 
 const DetailsCard: React.FC<DetailsCardProps> = ({ data, products }) => {
-  const descriptionElements = data.description
-    .split("- ") // Split the description by the hyphen
-    .filter((item) => item.trim() !== "") // Remove any empty strings
-    .map((item, index) => (
-      <React.Fragment key={index}>
-        {index > 0 && (
-          <React.Fragment>
-            <br />
-          </React.Fragment>
-        )}
-        - {item}
-      </React.Fragment>
-    ));
+  const params = useParams();
+  // const descriptionElements = data.description
+  //   .split("- ") // Split the description by the hyphen
+  //   .filter((item) => item.trim() !== "") // Remove any empty strings
+  //   .map((item, index) => (
+  //     <React.Fragment key={index}>
+  //       {index > 0 && (
+  //         <React.Fragment>
+  //           <br />
+  //         </React.Fragment>
+  //       )}
+  //       - {item}
+  //     </React.Fragment>
+  //   ));
 
   return (
     <>
       <div className="flex flex-col w-full border-t border-light-font mt-3 mb-1">
         <div className="mt-3 flex flex-col w-full">
           <Link
-            href={`/designers/${data?.designer?.id}`}
+            href={`${params.storeId}/designers/${data?.designer?.id}`}
             className="text-2xl font-bold hover:underline hover:cursor-pointer"
           >
             {data?.designer?.name.toUpperCase()}{" "}
@@ -79,14 +81,14 @@ const DetailsCard: React.FC<DetailsCardProps> = ({ data, products }) => {
             <div className="flex flex-row gap-1 w-full justify-center items-center">
               <h1 className="md:text-xs text-sm">SOLD BY </h1>
               <Link
-                href={`/sellers/${data?.seller?.id}`}
+                href={`${params.storeId}/sellers/${data?.seller?.id}`}
                 className="md:text-xs font-semibold text-sm hover:underline hover:cursor-pointer underline"
               >
                 {" "}
-                {data?.seller?.instagramHandle.toUpperCase()}
+                {data?.seller?.storeName.toUpperCase()}
               </Link>
             </div>
-            {data?.isCharity && (
+            {/* {data?.isCharity && (
               <>
                 <div className="flex flex-row w-full">
                   <h1 className="text-super-small flex flex-row w-full justify-start gap-1 items-center">
@@ -97,13 +99,14 @@ const DetailsCard: React.FC<DetailsCardProps> = ({ data, products }) => {
                   </h1>
                 </div>
               </>
-            )}
+            )} */}
 
             <div className="flex flex-row justify-between w-full gap-1 mt-2">
               <div>
               <h1 className="md:text-xs text-sm ">DESCRIPTION: </h1>
                 <h1 className="md:text-xs text-sm ml-1">
-                  {descriptionElements}
+                  {data?.description}
+                  {/* {descriptionElements} */}
                 </h1>
               </div>
 
@@ -132,7 +135,7 @@ const DetailsCard: React.FC<DetailsCardProps> = ({ data, products }) => {
               <h1 className="text-xs">
                 Part of the{" "}
                 <Link
-                  href={`/categories/${data?.category?.id}`}
+                  href={`${params.storeId}/categories/${data?.category?.id}`}
                   className="text-xs  hover:underline hover:cursor-pointer underline"
                 >
                   {data?.category?.name.toLowerCase()}

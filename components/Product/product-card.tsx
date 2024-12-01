@@ -4,12 +4,8 @@ import { Product } from "@/types";
 import Image from "next/image";
 
 import ProductCardButton from "./ProductCardButton";
-import {
-  CiBadgeDollar,
-  CiHeart,
-  CiRead,
-} from "react-icons/ci";
-import { useRouter } from "next/navigation";
+import { CiBadgeDollar, CiHeart, CiRead, CiShoppingCart } from "react-icons/ci";
+import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { MouseEventHandler, useEffect, useState } from "react";
 import useCart from "@/hooks/use-cart";
@@ -27,6 +23,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
   const router = useRouter();
   const cart = useCart();
   const likes = useLike();
+  const params = useParams();
 
   const [isMounted, setIsMounted] = useState(false);
 
@@ -72,7 +69,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
 
   const handleProductClick = () => {
     router.push(
-      `/product/${item?.category?.id}/${item?.designer?.id}/${item?.id}/${item?.seller?.id}`
+      `${params.storeId}/product/${item?.category?.id}/${item?.designer?.id}/${item?.id}/${item?.seller?.id}`
     );
   };
 
@@ -82,7 +79,6 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
         className="bg-white rounded-md col-span-1 w-full "
         onClick={() => onClickButton(item)}
       >
-
         {/* images */}
         <div className="relative h-full w-full rounded-md flex justify-center items-center z-30 p-2">
           <div className="inset-0 w-full h-full flex justify-center items-center hover:cursor-pointer">
@@ -97,7 +93,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
                 loop={true}
                 playing={true}
                 muted={true}
-                alt={`${item.name} from ${item.seller?.instagramHandle} by ${item.designer?.name} in size ${item.size?.name} for £${item.ourPrice} (RRP £${item.retailPrice})`}
+                alt={`${item.name} from ${item.seller?.storeName} by ${item.designer?.name} in size ${item.size?.name} for £${item.ourPrice} (RRP £${item.retailPrice})`}
                 className={`rounded-md transition-opacity duration-200 ease-in-out ${
                   item.isHidden ? "blur-xl" : ""
                 }`}
@@ -111,7 +107,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
                     width={1080}
                     height={1350}
                     src={item!.images[0]!.url}
-                    alt={`${item.name} from ${item.seller?.instagramHandle} by ${item.designer?.name} in size ${item.size?.name} for £${item.ourPrice} (RRP £${item.retailPrice})`}
+                    alt={`${item.name} from ${item.seller?.storeName} by ${item.designer?.name} in size ${item.size?.name} for £${item.ourPrice} (RRP £${item.retailPrice})`}
                     priority
                     className={`rounded-md transition-opacity duration-200 ease-in-out 
                     ${item.isHidden ? "blur-xl" : ""}`}
@@ -124,7 +120,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
                     width={1080}
                     height={1350}
                     src={item!.images[0]!.url}
-                    alt={`${item.name} from ${item.seller?.instagramHandle} by ${item.designer?.name} in size ${item.size?.name} for £${item.ourPrice} (RRP £${item.retailPrice})`}
+                    alt={`${item.name} from ${item.seller?.storeName} by ${item.designer?.name} in size ${item.size?.name} for £${item.ourPrice} (RRP £${item.retailPrice})`}
                     priority
                     className={`rounded-md transition-opacity duration-200 ease-in-out 
                     ${item.isHidden ? "blur-xl" : ""}`}
@@ -147,7 +143,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
                   loop
                   playing
                   muted
-                  alt={`${item.name} video from ${item.seller?.instagramHandle} by ${item.designer?.name} in size ${item.size?.name} for £${item.ourPrice} (RRP £${item.retailPrice})`}
+                  alt={`${item.name} video from ${item.seller?.storeName} by ${item.designer?.name} in size ${item.size?.name} for £${item.ourPrice} (RRP £${item.retailPrice})`}
                   className={`rounded-md transition-opacity duration-200 ease-in-out ${
                     item.isHidden ? "blur-xl" : ""
                   }`}
@@ -161,7 +157,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
                       width={1080}
                       height={1350}
                       src={item?.images?.[1]?.url}
-                      alt={`Image of ${item.name} from ${item.seller?.instagramHandle} by ${item.designer?.name} in size ${item.size?.name} for £${item.ourPrice} (RRP £${item.retailPrice})`}
+                      alt={`Image of ${item.name} from ${item.seller?.storeName} by ${item.designer?.name} in size ${item.size?.name} for £${item.ourPrice} (RRP £${item.retailPrice})`}
                       priority
                       className={`rounded-md transition-opacity duration-200 ease-in-out ${
                         item.isHidden ? "blur-xl" : ""
@@ -175,7 +171,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
                       width={1080}
                       height={1350}
                       src={item?.images?.[1]?.url}
-                      alt={`Image of ${item.name} from ${item.seller?.instagramHandle} by ${item.designer?.name} in size ${item.size?.name} for £${item.ourPrice} (RRP £${item.retailPrice})`}
+                      alt={`Image of ${item.name} from ${item.seller?.storeName} by ${item.designer?.name} in size ${item.size?.name} for £${item.ourPrice} (RRP £${item.retailPrice})`}
                       priority
                       className={`rounded-md transition-opacity duration-200 ease-in-out ${
                         item.isHidden ? "blur-xl" : ""
@@ -207,23 +203,29 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
           </div>
 
           <div className="flex justify-between text-left">
-            <Link
-              href={`/sellers/${item?.seller?.id}`}
-              className="text-xs hover:underline text-black hover:text-stone-700"
+            <div
+              onClick={handleProductClick}
+              className="text-xs hover:underline hover:cursor-pointer underline text-black"
             >
-              {item.seller?.instagramHandle.toUpperCase()}
-            </Link>
+              {item.name.charAt(0).toUpperCase() + item.name.slice(1)}
+            </div>
             <Link
               // onClick={handleProductClick}
-              href={`/designers/${item?.designer?.id}`}
+              href={`/${params.storeId}/designers/${item?.designer?.id}`}
               className="text-xs font-bold hover:underline text-black hover:text-stone-700 hover:cursor-pointer"
             >
-              {item.designer?.name.charAt(0).toUpperCase() +
-                item.designer?.name.slice(1)}
+              {item.designer?.name.toUpperCase()}
             </Link>
           </div>
 
-          <div className="flex justify-end flex-row mt-1">
+          {/* <div className="flex justify-end flex-row mt-1"> */}
+          <div className="flex justify-between text-left">
+            <Link
+              href={`/${params.storeId}/sellers/${item?.seller?.id}`}
+              className="text-xs hover:underline text-black hover:text-stone-700"
+            >
+              {item.seller?.storeName.toUpperCase()}
+            </Link>
             <div className="text-xs text-stone-300 hover:text-stone-700 ">
               {item?.size?.name}
             </div>
@@ -231,7 +233,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
 
           <div className="flex flex-row w-full items-center">
             <div className="flex flex-row gap-1 w-full items-center">
-              {item?.isCharity && (
+              {/* {item?.isCharity && (
                 <div className="flex flex-row text-xs">
                   <Tooltip
                     label="Charity"
@@ -243,19 +245,29 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
                     </p>
                   </Tooltip>
                 </div>
-              )}
+              )} */}
+              <div className="text-gray-500 hover:cursor-pointer hover:text-black text-xs">
+                <ProductCardButton
+                  icon={<CiShoppingCart size={18} />}
+                  onClick={(event) => onAddToCart(event)}
+                />
+              </div>
             </div>
-            <div className="flex flex-row gap-1 justify-end w-full">
+            <div className="flex flex-row gap-1 justify-end w-full ">
               <h6 onClick={handleProductClick} className="text-xs text-red-500">
                 £{item.ourPrice}
               </h6>
-              <h6 className="text-xs text-stone-400">RRP</h6>
-              <h6
-                onClick={handleProductClick}
-                className="text-xs text-stone-800 line-through"
-              >
-                £{item.retailPrice}
-              </h6>
+              {item.isOnSale && (
+                <>
+                  <h6 className="text-xs">WAS</h6>
+                  <h6
+                    onClick={handleProductClick}
+                    className="text-xs line-through"
+                  >
+                    £{item.retailPrice}
+                  </h6>
+                </>
+              )}
             </div>
           </div>
         </div>
@@ -278,35 +290,51 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
             </div>
           </div>
 
-          <Link
-            href={`/sellers/${item?.seller?.id}`}
-            className="text-xs hover:underline underline text-black"
+          <div
+            onClick={handleProductClick}
+            className="text-xs hover:underline hover:cursor-pointer underline text-black"
           >
-            {item.seller?.instagramHandle.toUpperCase()}
-          </Link>
+            {item.name.charAt(0).toUpperCase() + item.name.slice(1)}
+          </div>
           <Link
             // onClick={handleProductClick}
-            href={`/designers/${item?.designer?.id}`}
+            href={`/${params.storeId}/designers/${item?.designer?.id}`}
             className="text-xs hover:underline text-black hover:cursor-pointer"
           >
-            {item.designer?.name.charAt(0).toUpperCase() +
-              item.designer?.name.slice(1)}
+            {/* {item.designer?.name.charAt(0).toUpperCase() +
+              item.designer?.name.slice(1)} */}
+            {item.designer?.name.toUpperCase()}
           </Link>
-          <div className="flex flex-row gap-1">
-            <h6 onClick={handleProductClick} className="text-xs text-red-500">
-              £{item.ourPrice}
-            </h6>
-            <h6 className="text-xs text-stone-400">RRP</h6>
-            <h6
-              onClick={handleProductClick}
-              className="text-xs text-stone-800 line-through"
-            >
-              £{item.retailPrice}
-            </h6>
+          <div className="flex flex-row justify-between  w-2/3 gap-1">
+            <div className="text-gray-500 hover:cursor-pointer hover:text-black text-xs">
+              <Link
+                href={`/${params.storeId}/sellers/${item?.seller?.id}`}
+                className="text-xs hover:underline  text-black truncate"
+              >
+                {item.seller?.storeName.toUpperCase()}
+              </Link>
+            </div>
+            <h6 className="text-xs text-red-500">£{item.ourPrice}</h6>
+            {item.isOnSale && (
+              <>
+                <h6
+                  onClick={handleProductClick}
+                  className="text-xs line-through"
+                >
+                  £{item.retailPrice}
+                </h6>
+              </>
+            )}
           </div>
           <div className="flex flex-row gap-1 w-full items-center justify-between">
             <div className="flex flex-row gap-1 w-full items-center p-1">
-              {item?.isCharity && (
+              <div className="text-gray-500 hover:cursor-pointer hover:text-black text-xs">
+                <ProductCardButton
+                  icon={<CiShoppingCart size={18} />}
+                  onClick={(event) => onAddToCart(event)}
+                />
+              </div>
+              {/* {item?.isCharity && (
                 <div className="flex flex-row text-xs">
                   <Tooltip
                     label="Charity"
@@ -318,7 +346,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
                     </p>
                   </Tooltip>
                 </div>
-              )}
+              )} */}
             </div>
 
             <div className="flex flex-row gap-1 justify-end text-super-small text-black w-full items-center m-1">

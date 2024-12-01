@@ -1,23 +1,24 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
 
 const QuickLinks = () => {
   const pathname = usePathname();
   const isRouteSelected = (route: string) => pathname === route;
+  const params = useParams();
 
   return (
     <>
       <Link
-        href="/"
+        href={`/${params.storeId}`}
         className="flex flex-col lg:text-sm text-super-small justify-center items-center rounded-xl w-full h-full hover:underline "
       >
         <div
           className={cn(
-            isRouteSelected("/")
+            isRouteSelected(`/${params.storeId}`)
               ? " underline w-full flex flex-col justify-center items-center text-light-font lg:text-sm text-super-small rounded-md h-full"
               : "text-stone-300 flex flex-col justify-center items-center"
           )}
@@ -26,12 +27,12 @@ const QuickLinks = () => {
         </div>
       </Link>
       <Link
-        href="/top-sellers"
+        href={`/${params.storeId}/top-sellers`}
         className="flex flex-col lg:text-sm text-super-small justify-center items-center rounded-xl w-full h-full hover:underline "
       >
         <div
           className={cn(
-            isRouteSelected("/top-sellers")
+            isRouteSelected(`/${params.storeId}/top-sellers`)
               ? "underline w-full flex flex-col justify-center items-center text-light-font lg:text-sm text-super-small rounded-md h-full"
               : "text-stone-300 flex flex-col justify-center items-center w-full"
           )}
@@ -40,12 +41,12 @@ const QuickLinks = () => {
         </div>
       </Link>
       <Link
-        href="/trending"
+        href={`/${params.storeId}/trending`}
         className="flex flex-col lg:text-sm text-super-small justify-center items-center rounded-xl w-full h-full hover:underline "
       >
         <div
           className={cn(
-            isRouteSelected("/trending")
+            isRouteSelected(`/${params.storeId}/trending`)
               ? " underline w-full flex flex-col justify-center items-center text-light-font lg:text-sm text-super-small rounded-md h-full"
               : "text-stone-300 flex flex-col justify-center items-center w-full"
           )}
@@ -55,12 +56,12 @@ const QuickLinks = () => {
       </Link>
 
       <Link
-        href="/sale"
+        href={`/${params.storeId}/sale`}
         className="flex flex-col lg:text-sm text-super-small justify-center items-center rounded-xl w-full h-full hover:underline "
       >
         <div
           className={cn(
-            isRouteSelected("/sale")
+            isRouteSelected(`/${params.storeId}/sale`)
               ? " underline w-full flex flex-col justify-center items-center text-red-500 lg:text-sm text-super-small rounded-md h-full"
               : "text-red-500 flex flex-col justify-center items-center"
           )}

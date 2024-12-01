@@ -1,5 +1,7 @@
 'use client';
+import { url } from "inspector";
 import Link from "next/link";
+import { useParams } from "next/navigation";
 
 interface IconRedirectButtonProps {
     icon: React.ReactElement | string;
@@ -11,6 +13,8 @@ const IconRedirectButton: React.FC<IconRedirectButtonProps> = ({
     route,
 }) => {
     const isMailto = route.startsWith("mailto:");
+    const params = useParams()
+    const URL = `${params.storeId}${route}`
 
     return (
         <div className="text-xs hover:underline hover:cursor-pointer">
@@ -19,9 +23,9 @@ const IconRedirectButton: React.FC<IconRedirectButtonProps> = ({
                     {icon}
                 </a>
             ) : (
-                <Link href={route}>
-                    {icon}
-                </Link>
+                <Link href={URL}>
+                {icon}
+            </Link>
             )}
         </div>
     );

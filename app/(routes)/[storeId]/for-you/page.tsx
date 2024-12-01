@@ -21,6 +21,9 @@ import getBillboardByName from "@/actions/get-billboard-by-name";
 export const revalidate = 0;
 
 interface ForYouPageProps {
+  params: {
+    storeId: string;
+  };
   searchParams: {
     sizeId: string;
     colorId: string;
@@ -39,7 +42,7 @@ interface ForYouPageProps {
   };
 }
 
-const ForYouPage: React.FC<ForYouPageProps> = async ({ searchParams }) => {
+const ForYouPage: React.FC<ForYouPageProps> = async ({ searchParams, params }) => {
   const featuredProducts = await getProducts({
     categoryId: searchParams.categoryId,
     sort: searchParams.sort,
@@ -55,6 +58,7 @@ const ForYouPage: React.FC<ForYouPageProps> = async ({ searchParams }) => {
     isFeatured: true,
     designerId: searchParams.designerId,
     sellerId: searchParams.sellerId,
+    storeIdFromOnlineStore: params.storeId,
   });
 
   const sizes = await getSizes();
@@ -64,7 +68,7 @@ const ForYouPage: React.FC<ForYouPageProps> = async ({ searchParams }) => {
   const sellers = await getSellers();
   const categories = await getCategories();
   const materials = await getMaterials();
-  const genders = await getGenders();
+  const genders = await getGenders(params.storeId);
   const subcategories = await getSubcategories();
   const billboard = await getBillboardByName("HomePageFullScreen", "1b82eba5-33e4-42d2-9747-cee435d4c3c7");
 

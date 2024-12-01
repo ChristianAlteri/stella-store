@@ -5,6 +5,7 @@ import Link from "next/link";
 import SuggestedProductCard from "./components/suggested-product-card";
 import LargeSuggestedProductCard from "./components/large-suggested-product-card";
 import { MdOutlineChevronRight } from "react-icons/md";
+import { useParams } from "next/navigation";
 
 
 
@@ -21,13 +22,14 @@ const SuggestedContainer: React.FC<SuggestedContainerProps> = ({
   header,
   route,
 }) => {
+  const params = useParams();
 
   return (
     <div className="p-3 h-full w-full">
       <h1 className="text-black flex flex-row gap-1 text-xs md:text-sm items-center p-1 ">
         {header?.toUpperCase()}
         <Link
-          href={`/${route}`}
+          href={`${route}`}
           className="flex hover:underline hover:cursor-pointer text-black flex-row justify-start items-start text-xs md:text-sm"
         >
           {" "}

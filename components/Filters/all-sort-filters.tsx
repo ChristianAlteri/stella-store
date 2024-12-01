@@ -37,7 +37,7 @@ const AllSortFilters: React.FC<AllSortFiltersProps> = ({ data }) => {
   const isLowToHighSelected = searchParams.get("sort") === "low-to-high";
   const isHighToLowSelected = searchParams.get("sort") === "high-to-low";
   const isOnSaleSelected = searchParams.get("isOnSale") === "true";
-  const isCharitySelected = searchParams.get("isCharity") === "true";
+  const isFeaturedSelected = searchParams.get("isFeatured") === "true";
   const isHiddenSelected = searchParams.get("isHidden") === "true";
 
   return (
@@ -72,6 +72,23 @@ const AllSortFilters: React.FC<AllSortFiltersProps> = ({ data }) => {
             </div>
           </div>
         </div>
+
+        <div className="flex flex-col justify-center gap-1 items-center text-center text-xs text-stone-300 hover:cursor-pointer w-full">
+          <div
+            className={cn(
+              isFeaturedSelected
+                ? "bg-stella-green w-full flex justify-center items-center text-white text-xs rounded-md h-full p-1 scale-110 transition-transform animate-pulse"
+                : "text-stone-300 w-full flex flex-col justify-center items-center"
+            )}
+            onClick={() => handleClick("isFeatured", "true")}
+          >
+            <div className="flex flex-col justify-center items-center">
+              <CiBadgeDollar size={20} />
+              OUR PICKS
+            </div>
+          </div>
+        </div>
+
         <div className="flex flex-col justify-center gap-1 items-center text-center text-xs text-stone-300 hover:cursor-pointer w-full">
           <div
             className={cn(
@@ -81,28 +98,14 @@ const AllSortFilters: React.FC<AllSortFiltersProps> = ({ data }) => {
             )}
             onClick={() => handleClick("isOnSale", "true")}
           >
-            <div className="flex flex-col justify-center items-center">
+            <div className="flex flex-col justify-center items-center text-red-500">
               <CiCoinInsert size={20} />
               Sale
             </div>
           </div>
         </div>
-        <div className="flex flex-col justify-center gap-1 items-center text-center text-xs text-stone-300 hover:cursor-pointer w-full">
-          <div
-            className={cn(
-              isCharitySelected
-                ? "bg-stella-green w-full flex justify-center items-center text-white text-xs rounded-md h-full p-1 scale-110 transition-transform animate-pulse"
-                : "text-stone-300 w-full flex flex-col justify-center items-center"
-            )}
-            onClick={() => handleClick("isCharity", "true")}
-          >
-            <div className="flex flex-col justify-center items-center">
-              <CiBadgeDollar size={20} />
-              Charity
-            </div>
-          </div>
-        </div>
-        <div className="flex flex-col justify-center gap-1 items-center text-center text-xs text-stone-300 hover:cursor-pointer w-full h-full">
+        
+        {/* <div className="flex flex-col justify-center gap-1 items-center text-center text-xs text-stone-300 hover:cursor-pointer w-full h-full">
           <div
             className={cn(
               isHiddenSelected
@@ -116,7 +119,7 @@ const AllSortFilters: React.FC<AllSortFiltersProps> = ({ data }) => {
               Unreleased
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );

@@ -5,7 +5,7 @@ import { Product } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 import { CiSquareChevLeft, CiSquareChevRight } from "react-icons/ci";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { Tooltip } from "@material-tailwind/react";
 import ReactPlayer from "react-player";
 
@@ -20,6 +20,7 @@ const MiniProductCard: React.FC<MiniProductCardProps> = ({
   miniProductTitle,
   miniProductRoute,
 }) => {
+  const params = useParams();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentProduct, setCurrentProduct] = useState<Product>(data![0]);
   const [opacity, setOpacity] = useState(0);
@@ -93,7 +94,7 @@ const MiniProductCard: React.FC<MiniProductCardProps> = ({
 
   const handleProductClick = () => {
     router.push(
-      `/product/${currentProduct?.category?.id}/${currentProduct?.designer?.id}/${currentProduct?.id}/${currentProduct?.seller?.id}`
+      `${params.storeId}/product/${currentProduct?.category?.id}/${currentProduct?.designer?.id}/${currentProduct?.id}/${currentProduct?.seller?.id}`
     );
   };
 
@@ -101,7 +102,7 @@ const MiniProductCard: React.FC<MiniProductCardProps> = ({
     <div className="flex flex-col">
       <div>
         <Link
-          href={miniProductRoute || "/"}
+          href={`${params.storeId}/${miniProductRoute}` || `${params.storeId}/`}
           className="flex justify-center text-sm font-medium  transition-colors border shadow-md rounded-md p-1 hover:text-stone-900 hover:underline hover:cursor-pointer"
         >
           <Tooltip
@@ -141,7 +142,7 @@ const MiniProductCard: React.FC<MiniProductCardProps> = ({
                   loop={true}
                   playing={true}
                   muted={true}
-                  alt={`${currentProduct.name} from ${currentProduct.seller?.instagramHandle} by ${currentProduct.designer?.name} in size ${currentProduct.size?.name} for £${currentProduct.ourPrice} (RRP £${currentProduct.retailPrice})`}
+                  alt={`${currentProduct.name} from ${currentProduct.seller?.storeName} by ${currentProduct.designer?.name} in size ${currentProduct.size?.name} for £${currentProduct.ourPrice} (RRP £${currentProduct.retailPrice})`}
                   className={`rounded-md transition-opacity duration-200 ease-in-out ${
                     currentProduct.isHidden ? "blur-xl" : ""
                   }`}
@@ -155,7 +156,7 @@ const MiniProductCard: React.FC<MiniProductCardProps> = ({
                     width={120}
                     loading="lazy"
                     src={currentProduct!.images[0]!.url}
-                    alt={`${currentProduct.name} from ${currentProduct.seller?.instagramHandle} by ${currentProduct.designer?.name} in size ${currentProduct.size?.name} for £${currentProduct.ourPrice} (RRP £${currentProduct.retailPrice})`}
+                    alt={`${currentProduct.name} from ${currentProduct.seller?.storeName} by ${currentProduct.designer?.name} in size ${currentProduct.size?.name} for £${currentProduct.ourPrice} (RRP £${currentProduct.retailPrice})`}
                     className={`rounded-md transition-opacity duration-200 ease-in-out 
                       ${currentProduct.isHidden ? "blur-xl" : ""}`}
                   />
@@ -168,7 +169,7 @@ const MiniProductCard: React.FC<MiniProductCardProps> = ({
               >
                 <div className="flex flex-col justify-center items-center m-5 ">
                   <a
-                    href={`/designers/${currentProduct?.designer?.id}`}
+                    href={`${params.storeId}/designers/${currentProduct?.designer?.id}`}
                     className="text-xs hover:underline underline text-black hover:text-stone-700 bg-stone-200 bg-opacity-60"
                   >
                     {currentProduct.designer?.name.toUpperCase()}

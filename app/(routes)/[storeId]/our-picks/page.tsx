@@ -17,7 +17,10 @@ import FullscreenProductFiltersFooter from "@/components/Filters/full-screen-pro
 
 export const revalidate = 0;
 
-interface StaffPicksPageProps {
+interface OurPicksPageProps {
+  params: {
+    storeId: string;
+  };
   searchParams: {
     sizeId: string;
     colorId: string;
@@ -38,7 +41,7 @@ interface StaffPicksPageProps {
   };
 }
 
-const StaffPicksPage: React.FC<StaffPicksPageProps> = async ({ searchParams }) => {
+const OurPicksPage: React.FC<OurPicksPageProps> = async ({ searchParams, params }) => {
   const featuredProducts = await getProducts({
     categoryId: searchParams.categoryId,
     sort: searchParams.sort,
@@ -54,6 +57,7 @@ const StaffPicksPage: React.FC<StaffPicksPageProps> = async ({ searchParams }) =
     isFeatured: true,
     designerId: searchParams.designerId,
     sellerId: searchParams.sellerId,
+    storeIdFromOnlineStore: params.storeId,
   });
   // const featuredProducts = await getProducts({ isFeatured: true });
 
@@ -65,7 +69,7 @@ const StaffPicksPage: React.FC<StaffPicksPageProps> = async ({ searchParams }) =
   const sellers = await getSellers();
   const categories = await getCategories();
   const materials = await getMaterials();
-  const genders = await getGenders();
+  const genders = await getGenders(params.storeId);
   const subcategories = await getSubcategories();
 
   // const onlySaleItems = onSaleItems.filter(product => product.isOnSale);
@@ -75,7 +79,7 @@ const StaffPicksPage: React.FC<StaffPicksPageProps> = async ({ searchParams }) =
         <div className="flex flex-row w-full justify-center items-center text-center">
           <div className="w-full justify-center text-center">
             <h2 className="text-2xl font-bold text-black mt-2">
-              STAFF PICKS!
+              OUR PICKS!
             </h2>
             <p className="text-sm font-cursive text-light-font">
               Shop from our favourite items. Each item in this collection has been carefully chosen by our team to reflect the best of what we offer.
@@ -125,4 +129,4 @@ const StaffPicksPage: React.FC<StaffPicksPageProps> = async ({ searchParams }) =
   );
 };
 
-export default StaffPicksPage;
+export default OurPicksPage;

@@ -1,9 +1,10 @@
+'use client';
 import Image from "next/image";
 
 import IconButton from "@/components/ui/icon-button";
 import useCart from "@/hooks/use-cart";
 import { Product } from "@/types";
-import { useRouter } from "next/navigation";
+import { useRouter, useParams } from "next/navigation";
 import { CiCircleRemove } from "react-icons/ci";
 import Link from "next/link";
 
@@ -14,6 +15,7 @@ interface CartItemProps {
 const CartItem: React.FC<CartItemProps> = ({ data }) => {
   const cart = useCart();
   const router = useRouter();
+  const params = useParams();
 
   const onRemove = () => {
     cart.removeItem(data.id);
@@ -21,7 +23,7 @@ const CartItem: React.FC<CartItemProps> = ({ data }) => {
 
   const handleProductClick = () => {
     router.push(
-      `/product/${data?.category?.id}/${data?.designer?.name}/${data?.id}/${data?.seller?.instagramHandle}`
+      `${params.storeId}/product/${data?.category?.id}/${data?.designer?.name}/${data?.id}/${data?.seller?.instagramHandle}`
     );
   };
 
@@ -53,7 +55,7 @@ const CartItem: React.FC<CartItemProps> = ({ data }) => {
                   height={0}
                   width={100}
                   src={data!.images[0]!.url}
-                  alt={`${data.name} from ${data.seller?.instagramHandle} by ${data.designer?.name} in size ${data.size?.name} for £${data.ourPrice} (RRP £${data.retailPrice})`}
+                  alt={`${data.name} from ${data.seller?.storeName} by ${data.designer?.name} in size ${data.size?.name} for £${data.ourPrice} (RRP £${data.retailPrice})`}
                   priority
                   className={`rounded-md transition-opacity duration-200 ease-in-out 
                       ${data.isHidden ? "blur-xl" : ""}`}
@@ -76,10 +78,10 @@ const CartItem: React.FC<CartItemProps> = ({ data }) => {
                 >
                   {data.name}
                 </p> */}
-                <Link href={`/designers/${data.designer.id}`} className="ml-4 md:text-xs text-super-small text-stone-900 hover:underline hover:cursor-pointer">
+                <Link href={`${params.storeId}/designers/${data.designer.id}`} className="ml-4 md:text-xs text-super-small text-stone-900 hover:underline hover:cursor-pointer">
                   {data.designer.name.toUpperCase()}
                 </Link>
-                <Link href={`/sellers/${data.seller.id}`} className="ml-4 md:text-xs text-super-small mt-2 text-stone-900 hover:underline hover:cursor-pointer">
+                <Link href={`${params.storeId}/sellers/${data.seller.id}`} className="ml-4 md:text-xs text-super-small mt-2 text-stone-900 hover:underline hover:cursor-pointer">
                   {data.seller.instagramHandle.toUpperCase()}
                 </Link>
               </div>

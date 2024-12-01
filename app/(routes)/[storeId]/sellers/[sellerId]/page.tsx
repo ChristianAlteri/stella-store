@@ -24,6 +24,7 @@ export const revalidate = 0;
 interface SellerNamePageProps {
   params: {
     sellerId: string;
+    storeId: string;
   };
   searchParams: {
     sizeId: string;
@@ -68,6 +69,7 @@ const SellerNamePage: React.FC<SellerNamePageProps> = async ({
     minPrice: searchParams.minPrice,
     maxPrice: searchParams.maxPrice,
     isArchived: searchParams.isArchived,
+    storeIdFromOnlineStore: params.storeId,
   });
   const sellerData = await getSingleSeller(params.sellerId);
 
@@ -78,7 +80,7 @@ const SellerNamePage: React.FC<SellerNamePageProps> = async ({
   const sellers = await getSellers();
   const categories = await getCategories();
   const materials = await getMaterials();
-  const genders = await getGenders();
+  const genders = await getGenders(params.storeId);
   const subcategories = await getSubcategories();
 
   return (

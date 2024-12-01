@@ -20,6 +20,9 @@ import ViewsLikesFilter from "./filter-views-and-likes";
 export const revalidate = 0;
 
 interface TopLikesPageProps {
+  params: {
+    storeId: string;
+  };
   searchParams: {
     sizeId: string;
     colorId: string;
@@ -40,7 +43,7 @@ interface TopLikesPageProps {
   };
 }
 
-const TopLikesPage: React.FC<TopLikesPageProps> = async ({ searchParams }) => {
+const TopLikesPage: React.FC<TopLikesPageProps> = async ({ searchParams, params }) => {
   const topLikedProducts = await getTrending({
     categoryId: searchParams.categoryId,
     sort: searchParams.sort,
@@ -58,6 +61,7 @@ const TopLikesPage: React.FC<TopLikesPageProps> = async ({ searchParams }) => {
     sellerId: searchParams.sellerId,
     minPrice: searchParams.minPrice,
     maxPrice: searchParams.maxPrice,
+    storeIdFromOnlineStore: params.storeId,
   });
   // const featuredProducts = await getProducts({ isFeatured: true });
 
@@ -68,7 +72,7 @@ const TopLikesPage: React.FC<TopLikesPageProps> = async ({ searchParams }) => {
   const sellers = await getSellers();
   const categories = await getCategories();
   const materials = await getMaterials();
-  const genders = await getGenders();
+  const genders = await getGenders(params.storeId);
   const subcategories = await getSubcategories();
 
   return (

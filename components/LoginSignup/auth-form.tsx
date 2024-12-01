@@ -17,7 +17,7 @@ import { Billboard } from "@/types";
 type Variant = "LOGIN" | "REGISTER";
 
 interface AuthFormProps {
-  billboard: Billboard
+  billboard: Billboard | null;
 }
 
 // Custom Toast Error
@@ -164,7 +164,7 @@ const AuthForm: React.FC<AuthFormProps> = ({billboard}) => {
       }}
       >
         <h3 className="text-sm w-full justify-center items-center flex">
-          Sign up to @nondrobe
+          Sign up to get started
         </h3>
         <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
           {variant === "REGISTER" && (

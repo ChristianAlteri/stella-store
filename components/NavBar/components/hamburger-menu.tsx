@@ -1,8 +1,9 @@
+'use client';
 import Link from "next/link";
 import React, { useEffect } from "react";
 import { Category, Designer, Product, Seller } from "@/types";
 import { cn } from "@/lib/utils";
-import { usePathname } from "next/navigation";
+import { usePathname, useParams } from "next/navigation";
 import { Drawer } from "@material-tailwind/react";
 import { CiBadgeDollar, CiMenuBurger } from "react-icons/ci";
 import QuickLinks from "./quick-links";
@@ -25,6 +26,7 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
   topTen,
 }) => {
   const pathname = usePathname();
+  const params = useParams();
   const [open, setOpen] = React.useState(false);
   const openDrawer = () => setOpen(true);
   const closeDrawer = () => setOpen(false);
@@ -76,8 +78,8 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
                 <div className="flex flex-col items-center row-span-1 h-full overflow-y-auto bg-white">
                   {sellers?.map((seller) => (
                     <Link
-                      href={`/sellers/${seller.id}`}
-                      key={seller.instagramHandle}
+                      href={`${params.storeId}/sellers/${seller.id}`}
+                      key={seller.storeName}
                       className={cn(
                         "flex justify-center items-center text-center text-xs font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer",
                         isSellerSelected(seller.id)
@@ -85,7 +87,7 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
                           : "text-light-font"
                       )}
                     >
-                      {seller.instagramHandle.toUpperCase()}
+                      {seller.storeName.toUpperCase()}
                     </Link>
                   ))}
                 </div>
@@ -95,7 +97,7 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
                 <div className="flex flex-col items-center row-span-1 h-full overflow-y-auto bg-white">
                   {designers?.map((designer) => (
                     <Link
-                      href={`/designers/${designer.id}`}
+                      href={`${params.storeId}/designers/${designer.id}`}
                       key={designer.name}
                       className={cn(
                         "flex justify-center items-center text-center text-xs font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer",
@@ -114,7 +116,7 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
                 <div className="flex flex-col items-center row-span-1 h-full overflow-y-auto bg-white">
                   {categories?.map((category) => (
                     <Link
-                      href={`/categories/${category.id}`}
+                      href={`${params.storeId}/categories/${category.id}`}
                       key={category.name}
                       className={cn(
                         "flex justify-center items-center text-center text-xs font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer",

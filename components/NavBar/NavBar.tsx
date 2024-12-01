@@ -27,6 +27,8 @@ import QuickLinks from "./components/quick-links";
 import { useState } from "react";
 import IconRedirectButton from "../ui/icon-redirect-button";
 import { HiInformationCircle } from "react-icons/hi";
+import { useParams } from "next/navigation";
+
 
 interface NavbarProps {
   store: Store;
@@ -41,7 +43,7 @@ interface NavbarProps {
   subcategories: Subcategory[];
   products: Product[];
   topTen?: Product[];
-  billboard: Billboard;
+  billboard: Billboard | null;
 }
 
 const Navbar: React.FC<NavbarProps> = ({
@@ -54,6 +56,7 @@ const Navbar: React.FC<NavbarProps> = ({
   products
 }) => {
   const [loggedIn, setLoggedIn] = useState(true);
+  const params = useParams()
 
   return (
     <>
@@ -84,7 +87,7 @@ const Navbar: React.FC<NavbarProps> = ({
               </div>
 
               <div className="w-full flex flex-row justify-center items-center gap-3 ">
-                <Link href="/" className="flex">
+                <Link href={`/${params.storeId}`} className="flex">
                   <h1 className="font-bold text-2xl md:text-4xl">{store.name}</h1>
                 </Link>
               </div>

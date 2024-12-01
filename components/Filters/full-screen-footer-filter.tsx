@@ -42,7 +42,7 @@ const FullScreenFooterFilter: React.FC<FullScreenFooterFilterProps> = ({
   const isLowToHighSelected = searchParams.get("sort") === "low-to-high";
   const isHighToLowSelected = searchParams.get("sort") === "high-to-low";
   const isOnSaleSelected = searchParams.get("isOnSale") === "true";
-  const isCharitySelected = searchParams.get("isCharity") === "true";
+  const isFeaturedSelected = searchParams.get("isFeatured") === "true";
   const isHiddenSelected = searchParams.get("isHidden") === "true";
   const isWomenswearSelected =
     womenswear && searchParams.get("genderId") === womenswear.id;
@@ -119,7 +119,7 @@ const FullScreenFooterFilter: React.FC<FullScreenFooterFilterProps> = ({
           </div>
         </div>
 
-        <div className="flex flex-col justify-center gap-1 items-center text-center text-xs  text-light-font hover:cursor-pointer hover:underline w-full h-full p-1 rounded-md">
+        {/* <div className="flex flex-col justify-center gap-1 items-center text-center text-xs  text-light-font hover:cursor-pointer hover:underline w-full h-full p-1 rounded-md">
           <div
             className={cn(
               isHiddenSelected
@@ -132,19 +132,19 @@ const FullScreenFooterFilter: React.FC<FullScreenFooterFilterProps> = ({
               UNRELEASED
             </div>
           </div>
-        </div>
+        </div> */}
 
         <div className="flex flex-col justify-center gap-1 items-center text-center text-xs  text-light-font hover:cursor-pointer hover:underline w-full">
           <div
             className={cn(
-              isCharitySelected
+              isFeaturedSelected
                 ? "underline text-black w-full flex justify-center items-center  text-xs rounded-md h-full p-1  transition-transform animate-pulse"
                 : " text-light-font w-full flex flex-col justify-center items-center"
             )}
-            onClick={() => handleClick("isCharity", "true")}
+            onClick={() => handleClick("isFeatured", "true")}
           >
             <div className="flex flex-col justify-center items-center text-green-500">
-              CHARITY
+              OUR PICKS
             </div>
           </div>
         </div>

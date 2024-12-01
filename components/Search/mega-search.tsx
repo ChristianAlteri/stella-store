@@ -11,13 +11,10 @@ import SearchResults from "./components/search-results";
 
 interface MegaSearchProps {
   icon?: React.ReactNode;
-  billboard: Billboard
+  billboard: Billboard | null;
 }
 
-const MegaSearch: React.FC<MegaSearchProps> = ({
-  icon,
-  billboard,
-}) => {
+const MegaSearch: React.FC<MegaSearchProps> = ({ icon, billboard }) => {
   const [open, setOpen] = useState(false);
   const [searchBy, setSearchBy] = useState("STORE");
   const pathname = usePathname();
@@ -44,36 +41,39 @@ const MegaSearch: React.FC<MegaSearchProps> = ({
 
       <Dialog open={open} as="div" className="relative z-50 " onClose={onClose}>
         {/* Background color and opacity */}
-        <div className="fixed inset-0 bg-black bg-opacity-60"/>
+        <div className="fixed inset-0 bg-black bg-opacity-60" />
 
         {/* Dialog position */}
         <div className="fixed justify-center items-center inset-0 z-40 flex">
-          <Dialog.Panel className="flex rounded-sm flex-col h-2/3 w-2/3 overflow-y-auto shadow-xl border border-black"
-          >
-            <div className="flex flex-col w-full h-full items-center justify-center p-1"
-            style={{
-              backgroundImage: imageUrl
-                ? `url(${imageUrl})`
-                : "none",
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              backgroundRepeat: "repeat",
-            }}
+          <Dialog.Panel className="flex rounded-sm flex-col h-2/3 w-2/3 overflow-y-auto shadow-xl border border-black">
+            <div
+              className="flex flex-col w-full h-full items-center justify-center p-1"
+              style={{
+                backgroundImage: imageUrl ? `url(${imageUrl})` : "none",
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                backgroundRepeat: "repeat",
+              }}
             >
-
-
-              <div className="flex flex-row w-full justify-between items-center p-1 hover:cursor-pointer" onClick={onClose}>
-                  <div className="flex justify-center text-super-small sm:text-xs font-medium transition-colors">
-                    SEARCH @NONDROBE:
-                  </div>
-                <CiCircleRemove size={22}
-                /> 
+              {/* Fallback text for null billboard */}
+              {!imageUrl && (
+                <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-70">
+                  <p className="text-white text-2xl font-bold">Please add a Billboard via your backend</p>
+                </div>
+              )}
+              <div
+                className="flex flex-row w-full justify-between items-center p-1 hover:cursor-pointer"
+                onClick={onClose}
+              >
+                <div className="flex justify-center text-super-small sm:text-xs font-medium transition-colors">
+                  SEARCH OUR STORE:
+                </div>
+                <CiCircleRemove size={22} />
               </div>
 
               <div className="grid grid-cols-1 w-2/3 justify-start items-start h-full">
                 {/* Search Bar */}
                 <div className="h-full w-full">
-
                   <div className="flex flex-row gap-4 items-start justify-start">
                     {/* <button
                         className={cn(
@@ -87,20 +87,18 @@ const MegaSearch: React.FC<MegaSearchProps> = ({
                       CLIENT ADVISOR
                     </button> */}
                     <button
-                        className={cn(
-                          "flex justify-start md:text-super-small text-xs font-medium transition-colors hover:underline hover:cursor-pointer p-2",
-                          searchBy === "STORE"
-                            ? "flex justify-center underline"
-                            : "text-stone-500"
-                        )}
-                        onClick={() => setSearchBy("STORE")}
-                      >
+                      className={cn(
+                        "flex justify-start md:text-super-small text-xs font-medium transition-colors hover:underline hover:cursor-pointer p-2",
+                        searchBy === "STORE"
+                          ? "flex justify-center underline"
+                          : "text-stone-500"
+                      )}
+                      onClick={() => setSearchBy("STORE")}
+                    >
                       ENTIRE STORE
-                      </button>
+                    </button>
                   </div>
-                    <SearchResults 
-                      label="Search entire store..."
-                    />
+                  <SearchResults label="Search entire store..." />
                 </div>
               </div>
             </div>

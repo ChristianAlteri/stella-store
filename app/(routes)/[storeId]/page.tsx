@@ -18,11 +18,13 @@ import getBillboardByName from "@/actions/get-billboard-by-name";
 import FullscreenProductFiltersFooter from "@/components/Filters/full-screen-product-filters-footer";
 import HomepageBillboard from "@/components/Billboard/HomepageBillboard";
 import HomepageBillboardMobile from "@/components/Billboard/HomepageBillboardMobile";
+import { Billboard } from "@/types";
 
 export const revalidate = 0;
 
 interface HomepageProps {
   searchParams: {
+    storeId: string;
     sizeId: string;
     colorId: string;
     conditionId: string;
@@ -37,14 +39,13 @@ interface HomepageProps {
     isOnSale: boolean | undefined;
     isCharity: boolean | undefined;
     isHidden: boolean | undefined;
+    isOnline: boolean | undefined;
     minPrice: number;
     maxPrice: number;
-    storeId: string;
   };
   storeId: string;
 }
 
-// const Homepage: React.FC<HomepageProps> = async ({ searchParams, storeId }) => {
 const Homepage = async ({
   searchParams,
   params,
@@ -54,6 +55,9 @@ const Homepage = async ({
 }) => {
   const { storeId } = params;
   const products = await getProducts({
+    storeIdFromOnlineStore: storeId,
+    all: true,
+    isOnline: true,
     categoryId: searchParams.categoryId,
     sort: searchParams.sort,
     sizeId: searchParams.sizeId,
@@ -62,16 +66,14 @@ const Homepage = async ({
     materialId: searchParams.materialId,
     genderId: searchParams.genderId,
     subcategoryId: searchParams.subcategoryId,
-    isOnSale: searchParams.isOnSale,
     isCharity: searchParams.isCharity,
     isHidden: searchParams.isHidden,
+    isOnSale: searchParams.isOnSale,
     isFeatured: searchParams.isFeatured,
     designerId: searchParams.designerId,
     sellerId: searchParams.sellerId,
-    all: true,
     minPrice: searchParams.minPrice,
     maxPrice: searchParams.maxPrice,
-    storeIdFromOnlineStore: storeId,
   });
 
   const sizes = await getSizes();
@@ -81,28 +83,34 @@ const Homepage = async ({
   const sellers = await getSellers();
   const categories = await getCategories();
   const materials = await getMaterials();
-  const genders = await getGenders();
+  const genders = await getGenders(storeId);
   const subcategories = await getSubcategories();
 
-  const Billboard = await getBillboardByName("HomePageFullScreen", storeId);
-  const BillboardMobile = await getBillboardByName("HomePageMobile", storeId);
+  const Billboard: Billboard | null = await getBillboardByName(
+    "HomePageFullScreen",
+    storeId
+  );
+  const BillboardMobile: Billboard | null = await getBillboardByName(
+    "HomePageMobile",
+    storeId
+  );
 
   return (
     <>
       {/* Large screen Billboard */}
-      <div className="flex-row pl-7 pr-7 h-full lg:flex hidden">
-        <HomepageBillboard
-          // @ts-ignore
-          data={Billboard}
-        />
-      </div>
+        <div className="flex-row pl-7 pr-7 h-full lg:flex hidden">
+          <HomepageBillboard
+            // @ts-ignore
+            data={Billboard}
+          />
+        </div>
       {/* Mobile screen Billboard */}
-      <div className="flex-row pl-7 pr-7 h-2/3 flex lg:hidden">
-        <HomepageBillboardMobile
-          // @ts-ignore
-          data={BillboardMobile}
-        />
-      </div>
+        <div className="flex-row pl-7 pr-7 h-2/3 flex lg:hidden">
+          <HomepageBillboardMobile
+            // @ts-ignore
+            data={BillboardMobile}
+          />
+        </div>
 
       <div className="flex flex-row w-full justify-center items-center text-center mt-7">
         <div className="w-full justify-center text-center">

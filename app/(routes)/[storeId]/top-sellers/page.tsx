@@ -17,6 +17,9 @@ import getTopSellers from "@/actions/get-top-sellers";
 export const revalidate = 0;
 
 interface TopSellersProps {
+  params: {
+    storeId: string;
+  };
   searchParams: {
     sizeId: string;
     colorId: string;
@@ -35,7 +38,7 @@ interface TopSellersProps {
   };
 }
 
-const TopSellers: React.FC<TopSellersProps> = async ({ searchParams }) => {
+const TopSellers: React.FC<TopSellersProps> = async ({ searchParams, params }) => {
   const topLikedProducts = await getTrending({
     categoryId: searchParams.categoryId,
     sort: searchParams.sort,
@@ -51,6 +54,7 @@ const TopSellers: React.FC<TopSellersProps> = async ({ searchParams }) => {
     isFeatured: searchParams.isFeatured,
     designerId: searchParams.designerId,
     sellerId: searchParams.sellerId,
+    storeIdFromOnlineStore: params.storeId,
   });
 
   const sizes = await getSizes();

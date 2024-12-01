@@ -18,6 +18,9 @@ import FullscreenProductFiltersFooter from "@/components/Filters/full-screen-pro
 export const revalidate = 0;
 
 interface SalePageProps {
+  params: {
+    storeId: string;
+  };
   searchParams: {
     sizeId: string;
     colorId: string;
@@ -38,7 +41,7 @@ interface SalePageProps {
   };
 }
 
-const SalePage: React.FC<SalePageProps> = async ({ searchParams }) => {
+const SalePage: React.FC<SalePageProps> = async ({ searchParams, params }) => {
   const onSaleItems = await getProducts({
     categoryId: searchParams.categoryId,
     sort: searchParams.sort,
@@ -57,6 +60,7 @@ const SalePage: React.FC<SalePageProps> = async ({ searchParams }) => {
     all: true,
     minPrice: searchParams.minPrice,
     maxPrice: searchParams.maxPrice,
+    storeIdFromOnlineStore: params.storeId,
   });
   // const featuredProducts = await getProducts({ isFeatured: true });
 
@@ -68,7 +72,7 @@ const SalePage: React.FC<SalePageProps> = async ({ searchParams }) => {
   const sellers = await getSellers();
   const categories = await getCategories();
   const materials = await getMaterials();
-  const genders = await getGenders();
+  const genders = await getGenders(params.storeId);
   const subcategories = await getSubcategories();
 
   const onlySaleItems = onSaleItems.filter(product => product.isOnSale);

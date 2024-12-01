@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 
 
 interface HomepageBillboardMobileProps {
-  data: Billboard | Billboard[]; 
+  data: Billboard | Billboard[] | null; 
 }
 
 const HomepageBillboardMobile: React.FC<HomepageBillboardMobileProps> = ({ data }) => {
@@ -18,6 +18,14 @@ const HomepageBillboardMobile: React.FC<HomepageBillboardMobileProps> = ({ data 
 
   if (!isMounted) {
     return null;
+  }
+
+  if (!data) {
+    return (
+      <div className="w-full h-full justify-center items-center text-center text-3xl">
+        <p>Please add a Mobile screen Billboard via your back end</p>
+      </div>
+    );
   }
 
     // Normalise data to always be an array

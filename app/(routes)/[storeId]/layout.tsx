@@ -1,8 +1,5 @@
-
-
 import Footer from "@/components/Footer/Footer";
 import Navbar from "@/components/NavBar/NavBar";
-import ToastProvider from "@/providers/toast-provider";
 
 import getCategories from "@/actions/get-categories";
 import getDesigners from "@/actions/get-designers";
@@ -17,8 +14,8 @@ import getGenders from "@/actions/get-genders";
 import getSubcategories from "@/actions/get-sub-categories";
 import getStore from "@/actions/get-store";
 import React from "react";
+import { Billboard } from "@/types";
 // import getTopTen from "@/actions/get-top-ten";
-
 
 export default async function SiteLayout({
   children,
@@ -29,6 +26,7 @@ export default async function SiteLayout({
 }) {
   const { storeId } = params;
 
+  console.log("Layout storeId", storeId);
   const store = await getStore(storeId);
   const sellers = await getSellers();
   const designers = await getDesigners();
@@ -37,49 +35,55 @@ export default async function SiteLayout({
   const colors = await getColors();
   const materials = await getMaterials();
   const conditions = await getConditions();
-  const genders = await getGenders();
+  const genders = await getGenders(storeId);
   const subcategories = await getSubcategories();
   const products = await getProducts({ all: true });
   // const topTen = await getTopTen({ all: true }, "most-viewed");
-  
-  const billboard = await getBillboardByName("HomePageFullScreen", storeId);
+
+  const billboard: Billboard | null = await getBillboardByName(
+    "HomePageFullScreen",
+    storeId
+  );
 
   return (
     <div>
-        <Navbar
-          store={store}
-          sellers={sellers}
-          designers={designers}
-          categories={categories}
-          sizes={sizes}
-          colors={colors}
-          materials={materials}
-          conditions={conditions}
-          genders={genders}
-          subcategories={subcategories}
-          products={products}
-          // topTen={topTen}
-          billboard={billboard}
-        />
-          {children}
-        <Footer
-          searchParams={{
-            categoryId: "",
-            designerId: "",
-            sellerId: "",
-            sizeId: "",
-            colorId: "",
-            conditionId: "",
-            materialId: "",
-            subcategoryId: "",
-            genderId: "",
-            sort: "",
-            isFeatured: undefined,
-            isOnSale: undefined,
-            isCharity: undefined ,
-            isHidden: undefined,
-          }}
-        />
+      <Navbar
+        store={store}
+        sellers={sellers}
+        designers={designers}
+        categories={categories}
+        sizes={sizes}
+        colors={colors}
+        materials={materials}
+        conditions={conditions}
+        genders={genders}
+        subcategories={subcategories}
+        products={products}
+        // topTen={topTen}
+        billboard={billboard}
+      />
+      {children}
+      <Footer
+        searchParams={{
+          categoryId: "",
+          designerId: "",
+          sellerId: "",
+          sizeId: "",
+          colorId: "",
+          conditionId: "",
+          materialId: "",
+          subcategoryId: "",
+          genderId: "",
+          sort: "",
+          isFeatured: undefined,
+          isOnSale: undefined,
+          isCharity: undefined,
+          isHidden: undefined,
+        }}
+        params={{
+          storeId: storeId,
+        }}
+      />
     </div>
   );
 }

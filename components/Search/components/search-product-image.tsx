@@ -2,7 +2,7 @@
 import Image from "next/image";
 import ReactPlayer from "react-player";
 import { Product } from "@/types";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 
 interface SearchProductImageProps {
@@ -11,9 +11,10 @@ interface SearchProductImageProps {
 
 const SearchProductImage: React.FC<SearchProductImageProps> = ({ product }) => {
   const router = useRouter();
+  const params = useParams();
   const handleProductClick = (product: any) => {
     router.push(
-      `/product/${product?.category?.id}/${product?.designer?.name}/${product?.id}/${product?.seller?.instagramHandle}`
+      `${params.storeId}/product/${product?.category?.id}/${product?.designer?.name}/${product?.id}/${product?.seller?.instagramHandle}`
     );
   };
 
@@ -22,9 +23,9 @@ const SearchProductImage: React.FC<SearchProductImageProps> = ({ product }) => {
       <div className="flex-col w-full border">
         <div className="flex flex-row w-full justify-center items-center p-1">
           <div className="flex flex-row gap-1 w-full justify-center">
-            <Link href={`/sellers/${product.seller.id}`}>
+            <Link href={`${params.storeId}/sellers/${product.seller.id}`}>
               <p className="w-full justify-center text-center items-center text-super-small hover:underline hover:cursor-pointer">
-                {product.seller.instagramHandle.toUpperCase()}
+                {product.seller.storeName.toUpperCase()}
               </p>
             </Link>
 
@@ -49,7 +50,7 @@ const SearchProductImage: React.FC<SearchProductImageProps> = ({ product }) => {
               loop
               playing
               muted
-              alt={`${product.name} video from ${product.seller?.instagramHandle} by ${product.designer?.name} in size ${product.size?.name} for £${product.ourPrice} (RRP £${product.retailPrice})`}
+              alt={`${product.name} video from ${product.seller?.storeName} by ${product.designer?.name} in size ${product.size?.name} for £${product.ourPrice} (RRP £${product.retailPrice})`}
               className={`flex h-full fle-col items-center justify-center rounded-md transition-opacity duration-200 ease-in-out ${
                 product.isHidden ? "blur-xl" : ""
               }`}
@@ -63,7 +64,7 @@ const SearchProductImage: React.FC<SearchProductImageProps> = ({ product }) => {
                   height={0}
                   width={80}
                   src={product?.images?.[0]?.url}
-                  alt={`Image of ${product.name} from ${product.seller?.instagramHandle} by ${product.designer?.name} in size ${product.size?.name} for £${product.ourPrice} (RRP £${product.retailPrice})`}
+                  alt={`Image of ${product.name} from ${product.seller?.storeName} by ${product.designer?.name} in size ${product.size?.name} for £${product.ourPrice} (RRP £${product.retailPrice})`}
                   priority
                   className={`rounded-md transition-opacity duration-200 ease-in-out ${
                     product.isHidden ? "blur-xl" : ""
@@ -80,7 +81,7 @@ const SearchProductImage: React.FC<SearchProductImageProps> = ({ product }) => {
         >
           <div className="flex flex-row w-full justify-between">
             <Link
-              href={`/designers/${product.designer?.id}`}
+              href={`${params.storeId}/designers/${product.designer?.id}`}
               className="w-full justify-center text-center items-center text-super-small hover:underline hover:cursor-pointer"
             >
               {product.designer?.name.toUpperCase()}

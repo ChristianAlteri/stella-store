@@ -23,6 +23,7 @@ interface Query {
   all?: boolean;
   minPrice?: number;
   maxPrice?: number;
+  storeIdFromOnlineStore: string;
 }
 
 const getTrending = async (query: Query): Promise<Product[]> => {
@@ -48,6 +49,7 @@ const getTrending = async (query: Query): Promise<Product[]> => {
         isHidden: query.isHidden,
         minPrice: query.minPrice,
         maxPrice: query.maxPrice,
+        storeIdFromOnlineStore: query.storeIdFromOnlineStore,
       },
     });
     const response = await axios.get(url);

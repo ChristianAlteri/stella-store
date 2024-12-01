@@ -2,7 +2,7 @@
 import { Product } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import ReactPlayer from "react-player";
 
 interface SuggestedProductCardProps {
@@ -13,9 +13,10 @@ const SuggestedProductCard: React.FC<SuggestedProductCardProps> = ({
   item,
 }) => {
   const router = useRouter();
+  const params = useParams()
   const handleProductClick = () => {
     router.push(
-      `/product/${item?.category?.id}/${item?.designer?.id}/${item?.id}/${item?.seller?.id}`
+      `${params.storeId}/product/${item?.category?.id}/${item?.designer?.id}/${item?.id}/${item?.seller?.id}`
     );
   };
 
@@ -31,7 +32,7 @@ const SuggestedProductCard: React.FC<SuggestedProductCardProps> = ({
               loop={true}
               playing={true}
               muted={true}
-              alt={`${item?.name} from ${item?.seller?.instagramHandle} by ${item?.designer?.name} in size ${item?.size?.name} for £${item?.ourPrice} (RRP £${item?.retailPrice})`}
+              alt={`${item?.name} from ${item?.seller?.storeName} by ${item?.designer?.name} in size ${item?.size?.name} for £${item?.ourPrice} (RRP £${item?.retailPrice})`}
               className={`rounded-md transition-opacity duration-200 ease-in-out ${
                 item?.isHidden ? "blur-xl" : ""
               }`}
@@ -45,7 +46,7 @@ const SuggestedProductCard: React.FC<SuggestedProductCardProps> = ({
                   height={0}
                   width={150}
                   src={item!.images[0]!.url}
-                  alt={`${item?.name} from ${item?.seller?.instagramHandle} by ${item?.designer?.name} in size ${item?.size?.name} for £${item?.ourPrice} (RRP £${item?.retailPrice})`}
+                  alt={`${item?.name} from ${item?.seller?.storeName} by ${item?.designer?.name} in size ${item?.size?.name} for £${item?.ourPrice} (RRP £${item?.retailPrice})`}
                   priority
                   className={`rounded-md transition-opacity duration-200 ease-in-out 
                     ${item?.isHidden ? "blur-xl" : ""}`}
@@ -68,7 +69,7 @@ const SuggestedProductCard: React.FC<SuggestedProductCardProps> = ({
                 loop
                 playing
                 muted
-                alt={`${item.name} video from ${item.seller?.instagramHandle} by ${item.designer?.name} in size ${item.size?.name} for £${item.ourPrice} (RRP £${item.retailPrice})`}
+                alt={`${item.name} video from ${item.seller?.storeName} by ${item.designer?.name} in size ${item.size?.name} for £${item.ourPrice} (RRP £${item.retailPrice})`}
                 className={`rounded-md transition-opacity duration-200 ease-in-out ${
                   item.isHidden ? "blur-xl" : ""
                 }`}
@@ -82,7 +83,7 @@ const SuggestedProductCard: React.FC<SuggestedProductCardProps> = ({
                     height={0}
                     width={150}
                     src={item?.images?.[1]?.url}
-                    alt={`Image of ${item.name} from ${item.seller?.instagramHandle} by ${item.designer?.name} in size ${item.size?.name} for £${item.ourPrice} (RRP £${item.retailPrice})`}
+                    alt={`Image of ${item.name} from ${item.seller?.storeName} by ${item.designer?.name} in size ${item.size?.name} for £${item.ourPrice} (RRP £${item.retailPrice})`}
                     priority
                     className={`rounded-md transition-opacity duration-200 ease-in-out ${
                       item.isHidden ? "blur-xl" : ""
@@ -97,7 +98,7 @@ const SuggestedProductCard: React.FC<SuggestedProductCardProps> = ({
         <div className="absolute flex-col justify-center items-center m-5">
             <div className="flex flex-col justify-center items-center w-full">
                 <Link
-                href={`/designers/${item?.designer?.id}`}
+                href={`${params.storeId}/designers/${item?.designer?.id}`}
                 className="text-super-small hover:underline underline text-black bg-white opacity-50"
                 >
                 {item?.designer?.name.toUpperCase()}

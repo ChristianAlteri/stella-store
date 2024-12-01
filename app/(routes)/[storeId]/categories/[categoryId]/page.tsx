@@ -23,6 +23,7 @@ export const revalidate = 0;
 interface CategoryNamePageProps {
   params: {
     categoryId: string;
+    storeId: string;
   };
   searchParams: {
     sizeId: string;
@@ -65,6 +66,7 @@ const CategoryNamePage: React.FC<CategoryNamePageProps> = async ({
     sellerId: searchParams.sellerId,
     minPrice: searchParams.minPrice,
     maxPrice: searchParams.maxPrice,
+    storeIdFromOnlineStore: params.storeId,
   });
   const categoryData = await getSingleCategory(params.categoryId);
   const featuredProducts = await getProducts({ isFeatured: true });
@@ -76,7 +78,7 @@ const CategoryNamePage: React.FC<CategoryNamePageProps> = async ({
   const sellers = await getSellers();
   const categories = await getCategories();
   const materials = await getMaterials();
-  const genders = await getGenders();
+  const genders = await getGenders(params.storeId);
   const subcategories = await getSubcategories();
 
   return (
@@ -105,7 +107,6 @@ const CategoryNamePage: React.FC<CategoryNamePageProps> = async ({
         {/* Second column */}
         <div className="col-span-6 flex flex-col justify-center items-center w-full h-full">
           {/* <Billboard data={categoryData?.billboard} /> */}
-          
 
           <ProductGrid>
             {productData?.map((item) => (
