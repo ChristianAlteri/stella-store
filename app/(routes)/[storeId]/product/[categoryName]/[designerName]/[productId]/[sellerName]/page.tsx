@@ -13,6 +13,7 @@ import {
 
 interface IndividualProductPageProps {
   params: {
+    storeId: string;
     categoryName: string;
     designerName: string;
     productId: string;
@@ -27,12 +28,18 @@ const IndividualProductPage: React.FC<IndividualProductPageProps> = async ({
 
   const suggestedProductsBasedOnSeller = await getProducts({
     sellerId: product?.seller?.id,
+    isOnline: true,
+    isArchived: false,
   });
   const suggestedProductsBasedOnCategory = await getProducts({
     categoryId: product?.category?.id,
+    isOnline: true,
+    isArchived: false,
   });
   const suggestedProductsBasedOnDesigner = await getProducts({
     designerId: product?.designer?.id,
+    isOnline: true,
+    isArchived: false,
   });
   // const mostViewedProducts = await getMostViewed({all: true});
   const featuredProducts = await getProducts({ isFeatured: true });
@@ -75,15 +82,15 @@ const IndividualProductPage: React.FC<IndividualProductPageProps> = async ({
       
       {sortedProductsBasedOnSeller.length > 0 && ( //same seller large screen
         <SuggestedContainer
-          route={`sellers/${product?.seller?.id}`}
+          route={`/${params.storeId}/sellers/${product?.seller?.id}`}
           header={`MORE FROM THIS`}
-          title={"DROBE"}
+          title={"SELLER"}
           data={sortedProductsBasedOnSeller}
         />
       )}
       {sortedProductsBasedOnCategory.length > 0 && ( //most clicked
         <SuggestedContainer
-          route={`categories/${product?.category?.id}`}
+          route={`/${params.storeId}/categories/${product?.category?.id}`}
           header="POPULAR IN"
           title={product?.category?.name}
           data={sortedProductsBasedOnCategory}
@@ -91,7 +98,7 @@ const IndividualProductPage: React.FC<IndividualProductPageProps> = async ({
       )}
       {sortedProductsBasedOnDesigner.length > 0 && ( // most liked
         <SuggestedContainer
-          route={`designers/${product?.seller?.id}`}
+          route={`/${params.storeId}/designers/${product?.designer?.id}`}
           header="SHOP"
           title={product?.designer?.name}
           data={sortedProductsBasedOnDesigner}

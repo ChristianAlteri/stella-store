@@ -77,7 +77,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
 
   const handleProductClick = () => {
     router.push(
-      `${params.storeId}/product/${item?.category?.id}/${item?.designer?.id}/${item?.id}/${item?.seller?.id}`
+      `/${params.storeId}/product/${item?.category?.id}/${item?.designer?.id}/${item?.id}/${item?.seller?.id}`
     );
   };
 

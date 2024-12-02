@@ -5,6 +5,9 @@ import SuggestedContainer from "@/components/Suggested/SuggestedContainer";
 export const revalidate = 0;
 
 interface ThankYouForYourPurchasePageProps {
+  params: {
+    storeId: string;
+  },
   searchParams: {
     sizeId: string;
     colorId: string;
@@ -27,23 +30,23 @@ interface ThankYouForYourPurchasePageProps {
 
 const ThankYouForYourPurchasePage: React.FC<
   ThankYouForYourPurchasePageProps
-> = async ({ searchParams }) => {
-  const featuredProducts = await getProducts({
-    categoryId: searchParams.categoryId,
-    sort: searchParams.sort,
-    sizeId: searchParams.sizeId,
-    colorId: searchParams.colorId,
-    conditionId: searchParams.conditionId,
-    materialId: searchParams.materialId,
-    genderId: searchParams.genderId,
-    subcategoryId: searchParams.subcategoryId,
-    isOnSale: searchParams.isOnSale,
-    isCharity: searchParams.isCharity,
-    isHidden: searchParams.isHidden,
-    isFeatured: true,
-    designerId: searchParams.designerId,
-    sellerId: searchParams.sellerId,
-  });
+> = async ({ searchParams, params }) => {
+  // const featuredProducts = await getProducts({
+  //   categoryId: searchParams.categoryId,
+  //   sort: searchParams.sort,
+  //   sizeId: searchParams.sizeId,
+  //   colorId: searchParams.colorId,
+  //   conditionId: searchParams.conditionId,
+  //   materialId: searchParams.materialId,
+  //   genderId: searchParams.genderId,
+  //   subcategoryId: searchParams.subcategoryId,
+  //   isOnSale: searchParams.isOnSale,
+  //   isCharity: searchParams.isCharity,
+  //   isHidden: searchParams.isHidden,
+  //   isFeatured: true,
+  //   designerId: searchParams.designerId,
+  //   sellerId: searchParams.sellerId,
+  // });
 
   return (
     <>
@@ -51,14 +54,15 @@ const ThankYouForYourPurchasePage: React.FC<
         <div className="flex overflow-auto w-full justify-center">
           <ThankYouOrderDetails />
         </div>
-  
-        <div className="flex w-full justify-center items-center">
+
+        {/* <div className="flex w-full justify-center items-center">
           <SuggestedContainer
             data={featuredProducts}
-            title="CONTINUE SHOPPING OUR STAFF PICKS"
-            route="/staff-picks"
+            title="CONTINUE SHOPPING OUR PICKS"
+            route={`/${params.storeId}/staff-picks`}
+            header="SHOP"
           />
-        </div>
+        </div> */}
       </div>
     </>
   );

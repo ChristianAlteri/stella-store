@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import Button from "@/components/ui/button";
@@ -18,6 +18,7 @@ const ShoppingCartButton:React.FC<ShoppingCartButtonProps> = ({ size, products }
   const [cartProducts, setCartProducts] = useState<Product[]>([]);
   const router = useRouter();
   const cart = useCart();
+  const params = useParams();
 
   useEffect(() => {
     setIsMounted(true);
@@ -42,7 +43,7 @@ const ShoppingCartButton:React.FC<ShoppingCartButtonProps> = ({ size, products }
 
   return ( 
     <div className="">
-      <Button onClick={() => router.push('/cart')} className="flex flex-row items-center justify-center">
+      <Button onClick={() => router.push(`/${params.storeId}/cart`)} className="flex flex-row items-center justify-center">
         <span className="p-1 text-super-small text-green-800">
           {cartProducts.length}
         </span>

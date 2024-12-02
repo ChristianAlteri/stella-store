@@ -2,12 +2,13 @@
 
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 import toast from "react-hot-toast";
 import { TbFaceId, TbFaceIdError } from "react-icons/tb";
 import React from "react";
 import useCart from "@/hooks/use-cart";
 import useLike from "@/hooks/use-like";
+import { get } from "http";
 
 // Custom Toast Success
 const toastSuccess = (message: string) => {
@@ -38,9 +39,11 @@ const SuccessPage: React.FC<SuccessPageProps> = ({}) => {
   const [isMounted, setIsMounted] = useState(false);
   const router = useRouter();
   const searchParams = useSearchParams();
+  const params = useParams()
   const session_id = searchParams.get("session_id");
   const cart = useCart();
   const likes = useLike();
+
 
   useEffect(() => {
     setIsMounted(true);
@@ -51,10 +54,9 @@ const SuccessPage: React.FC<SuccessPageProps> = ({}) => {
       const verifyPayment = async () => {
         try {
           const response = await axios.post(
-            `${process.env.NEXT_PUBLIC_API_URL}/verify-payment?session_id=${session_id}`
+            `${process.env.NEXT_PUBLIC_API_URL}/verify-online-payment?session_id=${session_id}`
           );
           const data = response.data;
-          // console.log("data.productIds", data.productIds);
           if (data.success) {
             toastSuccess("Payment verified.");
             cart.removeAll();
@@ -67,11 +69,11 @@ const SuccessPage: React.FC<SuccessPageProps> = ({}) => {
             toastError("Payment verification failed.");
           }
           // Sending orderId to thankyou-for-your-purchase page
-          router.push(`/thankyou-for-your-purchase?orderId=${data.orderId}`);
+          router.push(`/${params.storeId}/thankyou-for-your-purchase?orderId=${data.orderId}`);
         } catch (err) {
           toastError("Error verifying payment.");
           console.error("Error verifying payment:", err);
-          router.push("/");
+          router.push(`/${params.storeId}/`);
         }
       };
       verifyPayment();

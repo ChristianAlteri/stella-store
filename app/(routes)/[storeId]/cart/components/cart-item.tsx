@@ -23,7 +23,7 @@ const CartItem: React.FC<CartItemProps> = ({ data }) => {
 
   const handleProductClick = () => {
     router.push(
-      `${params.storeId}/product/${data?.category?.id}/${data?.designer?.name}/${data?.id}/${data?.seller?.instagramHandle}`
+      `/${params.storeId}/product/${data?.category?.id}/${data?.designer?.name}/${data?.id}/${data?.seller?.instagramHandle}`
     );
   };
 
@@ -31,7 +31,9 @@ const CartItem: React.FC<CartItemProps> = ({ data }) => {
     <div className="group py-6 border-b w-full">
       <div className="flex flex-row ">
 
-        <div className="relative overflow-hidden">
+        <div className="relative overflow-hidden hover:cursor-pointer"
+        onClick={handleProductClick}
+        >
           {/* If item is marked hidden, we blur it. Used for unreleased products */}
           {data?.images[0]?.url?.match(/https:\/\/.*\.(video|mp4|MP4|mov).*/) ? (
             <video
@@ -78,11 +80,11 @@ const CartItem: React.FC<CartItemProps> = ({ data }) => {
                 >
                   {data.name}
                 </p> */}
-                <Link href={`${params.storeId}/designers/${data.designer.id}`} className="ml-4 md:text-xs text-super-small text-stone-900 hover:underline hover:cursor-pointer">
+                <Link href={`/${params.storeId}/designers/${data.designer.id}`} className="ml-4 md:text-xs text-super-small text-stone-900 hover:underline hover:cursor-pointer">
                   {data.designer.name.toUpperCase()}
                 </Link>
-                <Link href={`${params.storeId}/sellers/${data.seller.id}`} className="ml-4 md:text-xs text-super-small mt-2 text-stone-900 hover:underline hover:cursor-pointer">
-                  {data.seller.instagramHandle.toUpperCase()}
+                <Link href={`/${params.storeId}/sellers/${data.seller.id}`} className="ml-4 md:text-xs text-super-small mt-2 text-stone-900 hover:underline hover:cursor-pointer">
+                  {data.seller.storeName.toUpperCase()}
                 </Link>
               </div>
               <p className="ml-4 pl-4 md:text-sm text-super-small text-red-500">
@@ -92,7 +94,7 @@ const CartItem: React.FC<CartItemProps> = ({ data }) => {
             </div>
             <div className="flex flex-row">
               <div className="flex flex-row justify-center items-center">
-                <p className="pl-4 md:text-xs text-super-small  text-stone-500">{data.size.name.toUpperCase()}</p>
+                <p className="pl-4 md:text-xs text-super-small  text-stone-500">Size: {data.size.name.toUpperCase()}</p>
               </div>
             </div>
           </div>

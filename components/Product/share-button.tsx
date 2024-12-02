@@ -49,7 +49,7 @@ const ShareButton: React.FC<ShareButtonProps> = ({ url }) => {
       <Dialog open={open} as="div" className="relative z-50" onClose={onClose}>
         <div className="fixed inset-0 bg-black bg-opacity-45"></div>
         <div className="fixed inset-0 z-50 flex justify-center items-center">
-          <Dialog.Panel className="items-center justify-between rounded-sm flex flex-col h-1/8 w-2/6 overflow-y-auto bg-white p-1 shadow-xl">
+          <Dialog.Panel className="items-center justify-between rounded-sm flex flex-col h-1/8 w-2/3 overflow-y-auto bg-white p-1 shadow-xl">
             <div
               className="hidden md:flex w-full justify-start items-start top-0 left-0 hover:cursor-pointer"
               onClick={onClose}
@@ -58,7 +58,7 @@ const ShareButton: React.FC<ShareButtonProps> = ({ url }) => {
               
             </div>
             <h1 className="text-sm mb-3">Share this product</h1>
-            <div className="flex flex-row gap-4 mb-2 p-1 m-2">
+            <div className="flex flex-row gap-4 mb-2 p-4 m-2">
               <FacebookShareButton url={url}>
                 <SiFacebook size={25} />
               </FacebookShareButton>

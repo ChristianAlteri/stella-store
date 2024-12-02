@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import Button from "@/components/ui/button";
@@ -17,6 +17,7 @@ const HeartButton: React.FC<HeartButtonProps> = ({ products }) => {
   const [likedProducts, setLikedProducts] = useState<Product[]>([]);
   const likes = useLike();
   const router = useRouter();
+  const params = useParams();
 
   useEffect(() => {
     setIsMounted(true);
@@ -42,7 +43,7 @@ const HeartButton: React.FC<HeartButtonProps> = ({ products }) => {
   return (
     <div className="">
       <Button
-        onClick={() => router.push("/likes")}
+        onClick={() => router.push(`/${params.storeId}/likes`)}
         className="flex  flex-row items-center justify-center"
       >
         <span className="p-1 text-super-small text-green-800">

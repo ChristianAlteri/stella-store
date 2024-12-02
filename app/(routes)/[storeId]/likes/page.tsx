@@ -31,55 +31,25 @@ const CartPageServer: React.FC<TopLikesPageProps> = async ({
   searchParams,
   params,
 }) => {
-  const topLikedProducts = await getTrending({
-    categoryId: searchParams.categoryId,
-    sort: searchParams.sort,
-    sizeId: searchParams.sizeId,
-    colorId: searchParams.colorId,
-    conditionId: searchParams.conditionId,
-    materialId: searchParams.materialId,
-    genderId: searchParams.genderId,
-    subcategoryId: searchParams.subcategoryId,
-    isOnSale: searchParams.isOnSale,
-    isCharity: searchParams.isCharity,
-    isHidden: searchParams.isHidden,
-    isFeatured: searchParams.isFeatured,
-    designerId: searchParams.designerId,
-    sellerId: searchParams.sellerId,
-    minPrice: searchParams.minPrice,
-    maxPrice: searchParams.maxPrice,
-    storeIdFromOnlineStore: params.storeId,
-    isOnline: true,
-  });
-  const products = await getProducts({
-    categoryId: searchParams.categoryId,
-    sort: searchParams.sort,
-    sizeId: searchParams.sizeId,
-    colorId: searchParams.colorId,
-    conditionId: searchParams.conditionId,
-    materialId: searchParams.materialId,
-    genderId: searchParams.genderId,
-    subcategoryId: searchParams.subcategoryId,
-    isOnSale: searchParams.isOnSale,
-    isCharity: searchParams.isCharity,
-    isHidden: searchParams.isHidden,
-    isFeatured: searchParams.isFeatured,
-    designerId: searchParams.designerId,
-    sellerId: searchParams.sellerId,
-    all: true,
-    minPrice: searchParams.minPrice,
-    maxPrice: searchParams.maxPrice,
-  });
+  const products =
+    (await getProducts({
+      ...searchParams,
+      storeIdFromOnlineStore: params.storeId,
+      isOnline: true,
+      all: true,
+    })) || [];
+
+  const topLikedProducts = products
+    .sort((a, b) => (b.likes ?? 0) - (a.likes ?? 0))
+    .slice(0, 10);
 
   return (
     <div className="flex flex-col bg-white w-full justify-center items-center">
       <div className="flex w-full justify-center items-center">
-        <LikesPage 
-          products={products}
-        />
+        <LikesPage products={products} />
       </div>
       <SuggestedContainer
-        route="trending"
+        route={`${params.storeId}/trending`}
         title="MOST POPULAR PRODUCTS"
         data={topLikedProducts}
       />

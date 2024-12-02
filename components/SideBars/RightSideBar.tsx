@@ -50,7 +50,7 @@ const RightSidebar: React.FC<RightSideProps> = ({
   };
 
   return (
-    <aside className="h-full z-35 mr-5 p-1">
+    <aside className="h-full mr-5 p-1">
       <div className="grid grid-rows-4 h-full w-full justify-start items-start flex-col">
 
         <div className="row-span-3 h-full w-full justify-start items-center">

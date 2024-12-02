@@ -29,7 +29,7 @@ const SuggestedContainer: React.FC<SuggestedContainerProps> = ({
       <h1 className="text-black flex flex-row gap-1 text-xs md:text-sm items-center p-1 ">
         {header?.toUpperCase()}
         <Link
-          href={`${route}`}
+          href={`/${route}`}
           className="flex hover:underline hover:cursor-pointer text-black flex-row justify-start items-start text-xs md:text-sm"
         >
           {" "}

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import qs from "query-string"
 
-import { OrderItem } from "@/types";
+import { Order, OrderItem } from "@/types";
 
 const URL=`${process.env.NEXT_PUBLIC_API_URL}/order-details`;
 
@@ -9,7 +9,7 @@ interface Query {
   orderId?: string;
 }
 
-const getOrderDetails = async (query: Query): Promise<OrderItem[]> => {
+const getOrderDetails = async (query: Query): Promise<Order[]> => {
   try {
     const url = qs.stringifyUrl({
       url: URL,

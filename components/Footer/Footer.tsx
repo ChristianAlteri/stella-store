@@ -12,6 +12,7 @@ import getGenders from "@/actions/get-genders";
 import getSubcategories from "@/actions/get-sub-categories";
 import IconRedirectButton from "../ui/icon-redirect-button";
 import FullscreenProductFiltersFooter from "../Filters/full-screen-product-filters-footer";
+import getStore from "@/actions/get-store";
 
 interface FooterProps {
   searchParams: {
@@ -34,14 +35,14 @@ interface FooterProps {
 }
 
 // const Footer: React.FC<FooterProps> = async ({ searchParams }) => {
-  const Footer = async ({
-    searchParams,
-    params,
-  }: {
-    searchParams: FooterProps["searchParams"];
-    params: { storeId: string };
-  }) => {
-    const { storeId } = params;
+const Footer = async ({
+  searchParams,
+  params,
+}: {
+  searchParams: FooterProps["searchParams"];
+  params: { storeId: string };
+}) => {
+  const { storeId } = params;
   const productData = await getProducts({
     storeIdFromOnlineStore: storeId,
     all: true,
@@ -71,6 +72,7 @@ interface FooterProps {
   const materials = await getMaterials();
   const genders = await getGenders(storeId);
   const subcategories = await getSubcategories();
+  const store = await getStore(storeId);
   // const onSaleProducts = await getProducts({ isOnSale: true });
 
   return (
@@ -94,15 +96,18 @@ interface FooterProps {
       {/* This footer will only render on screens larger than an iPad (larger than 768px) */}
       <footer className="hidden md:block bg-white border-t bottom-0 sticky inset-x-0 lg:relative">
         <div className="mx-auto w-full justify-center items-center">
-        <div className="flex gap-3 w-full h-full flex-row items-center justify-center bottom-0 p-3 mb-4">
-          {/* TODO: Make links store specific */}
+          <div className="flex gap-3 w-full h-full flex-row items-center justify-center bottom-0 p-3 mb-4">
+            {/* TODO: Make links store specific */}
             <p className="text-center text-xs text-stone-600">
-              &copy; 2024 Aviva, Inc. All rights reserved.
+              &copy; SFTR: All rights reserved.
             </p>
-            <IconRedirectButton route="https://www.instagram.com/anon.drobe" icon="INSTAGRAM" />
-            <IconRedirectButton route="https://tiktok.com/@anondrobe" icon="TIKTOK" />
+            {/* <IconRedirectButton route="https://www.instagram.com/anon.drobe" icon="INSTAGRAM" /> */}
+            {/* <IconRedirectButton route="https://tiktok.com/@anondrobe" icon="TIKTOK" /> */}
             <IconRedirectButton route="/about-us" icon="ABOUT" />
-            <IconRedirectButton route="mailto:admin@anondrobe.com" icon="CONTACT US" />
+            <IconRedirectButton
+              route={store?.email ? `mailto:${store.email}` : ""}
+              icon="CONTACT US"
+            />
           </div>
         </div>
       </footer>

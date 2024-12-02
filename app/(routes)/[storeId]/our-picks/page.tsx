@@ -88,7 +88,7 @@ const OurPicksPage: React.FC<OurPicksPageProps> = async ({ searchParams, params 
         </div>
       <div className="justify-center items-center md:grid flex grid-cols-8 gap-4 bg-white ">
         {/* First column */}
-        <div className="col-span-1 justify-start items-start w-full hidden sticky z-50 h-full md:grid ml-4">
+        <div className="col-span-1 justify-start items-start w-full hidden sticky h-full md:grid ml-4">
           <LeftSidebar
             designers={designers}
             categories={categories}
@@ -113,7 +113,7 @@ const OurPicksPage: React.FC<OurPicksPageProps> = async ({ searchParams, params 
         </div>
 
         {/* Third column */}
-        <div className="col-span-1 justify-end items-end w-full hidden sticky z-50 h-full md:grid">
+        <div className="col-span-1 justify-end items-end w-full hidden sticky h-full md:grid">
           <RightSidebar
             colors={colors}
             sizes={sizes}

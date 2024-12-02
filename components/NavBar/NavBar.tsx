@@ -29,7 +29,6 @@ import IconRedirectButton from "../ui/icon-redirect-button";
 import { HiInformationCircle } from "react-icons/hi";
 import { useParams } from "next/navigation";
 
-
 interface NavbarProps {
   store: Store;
   sellers: Seller[];
@@ -53,14 +52,13 @@ const Navbar: React.FC<NavbarProps> = ({
   categories,
   topTen,
   billboard,
-  products
+  products,
 }) => {
   const [loggedIn, setLoggedIn] = useState(true);
-  const params = useParams()
+  const params = useParams();
 
   return (
     <>
-
       <div className="sticky bg-white w-full top-0 z-40 p-4">
         <div className="grid md:grid-rows-2 grid-rows-1 min-h-[55px] p-1">
           <div className="row-span-1 w-full">
@@ -73,43 +71,37 @@ const Navbar: React.FC<NavbarProps> = ({
                   topTen={topTen}
                 />
 
-                  <MegaSearch
-                    billboard={billboard}
-                    icon={
-                      <Input
-                        flag="navbar"
-                        className="bg-white z-40 w-full hover:cursor-pointer "
-                        placeholder="Search store..."
-                      />
-                    }
-                  />
-
+                <MegaSearch
+                  billboard={billboard}
+                  icon={
+                    <Input
+                      flag="navbar"
+                      className="bg-white z-50 w-full hover:cursor-pointer "
+                      placeholder="Search store..."
+                    />
+                  }
+                />
               </div>
 
               <div className="w-full flex flex-row justify-center items-center gap-3 ">
                 <Link href={`/${params.storeId}`} className="flex">
-                  <h1 className="font-bold text-2xl md:text-4xl">{store.name}</h1>
+                  <h1 className="font-bold text-2xl md:text-4xl">
+                    {store ? store.name : "Loading..."}
+                  </h1>
                 </Link>
               </div>
 
-              <div className="w-full flex flex-row justify-end items-center gap-4 p-2">
+              <div className="w-full flex flex-row justify-end items-center gap-4 p-2 z-40">
                 <div className="hidden md:flex flex-row gap-2">
                   {/* <IconRedirectButton 
                     route="/about-us"
                     icon="ABOUT"
                   /> */}
-                <IconRedirectButton 
-                    route="/for-you"
-                    icon="REGISTER"
-                  />
+                  <IconRedirectButton route="/for-you" icon="REGISTER" />
                 </div>
-                <HeartButton 
-                  products={products}
-                />
-                <ShoppingCartButton size="28px" 
-                  products={products}
-                />
-                {/* {loggedIn ? <ProfileButton /> : null} */} 
+                <HeartButton products={products} />
+                <ShoppingCartButton size="28px" products={products} />
+                {/* {loggedIn ? <ProfileButton /> : null} */}
                 {/* TODO: Finish sign up and sign in */}
               </div>
             </div>

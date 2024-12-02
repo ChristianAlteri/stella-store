@@ -85,16 +85,16 @@ const SalePage: React.FC<SalePageProps> = async ({ searchParams, params }) => {
             <h2 className="text-2xl font-bold text-black mt-2">
               SALE!
             </h2>
-            <p className="text-sm font-cursive text-light-font">
+            {/* <p className="text-sm font-cursive text-light-font">
               These carefully curated items are on sale just for you! We have
               handpicked the best deals to help you save big and treat
               yourself to something special.
-            </p>
+            </p> */}
           </div>
         </div>
       <div className="justify-start items-center md:grid flex grid-cols-8 gap-4 bg-white ">
         {/* First column */}
-        <div className="col-span-1 justify-start items-start w-full hidden sticky z-50 h-full md:grid ml-4">
+        <div className="col-span-1 justify-start items-start w-full hidden sticky h-full md:grid ml-4">
           <LeftSidebar
             designers={designers}
             categories={categories}
@@ -119,7 +119,7 @@ const SalePage: React.FC<SalePageProps> = async ({ searchParams, params }) => {
         </div>
 
         {/* Third column */}
-        <div className="col-span-1 justify-end items-end w-full hidden sticky z-50 h-full md:grid">
+        <div className="col-span-1 justify-end items-end w-full hidden sticky h-full md:grid">
           <RightSidebar
             colors={colors}
             sizes={sizes}

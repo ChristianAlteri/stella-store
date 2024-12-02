@@ -30,7 +30,7 @@ const LikedItem: React.FC<LikedItemProps> = ({
 
   const handleProductClick = () => {
     router.push(
-      `${params.storeId}/product/${data?.category?.id}/${data?.designer?.name}/${data?.id}/${data?.seller?.instagramHandle}`
+      `/${params.storeId}/product/${data?.category?.id}/${data?.designer?.name}/${data?.id}/${data?.seller?.instagramHandle}`
     );
   };
 
@@ -43,7 +43,9 @@ const LikedItem: React.FC<LikedItemProps> = ({
     <div className="group py-6 border-b w-full">
       <div className="flex flex-row ">
 
-        <div className="relative overflow-hidden">
+        <div className="relative overflow-hidden hover:cursor-pointer"
+        onClick={handleProductClick}
+        >
           {/* If item is marked hidden, we blur it. Used for unreleased products */}
           {data?.images[0]?.url?.match(/https:\/\/.*\.(video|mp4|MP4|mov).*/) ? (
             <video
@@ -91,11 +93,11 @@ const LikedItem: React.FC<LikedItemProps> = ({
                 >
                   {data.name.toUpperCase()}
                 </p> */}
-                <Link href={`${params.storeId}/designers/${data.designer.id}`} className="ml-4 md:text-sm text-xs text-stone-900 hover:underline hover:cursor-pointer">
+                <Link href={`/${params.storeId}/designers/${data.designer.id}`} className="ml-4 md:text-sm text-xs text-stone-900 hover:underline hover:cursor-pointer">
                   {data.designer.name.toUpperCase()}
                 </Link>
-                <Link href={`${params.storeId}/sellers/${data.seller.id}`} className="ml-4 md:text-xs text-super-small mt-2 text-stone-900 hover:underline hover:cursor-pointer">
-                  {data.seller.instagramHandle.toUpperCase()}
+                <Link href={`/${params.storeId}/sellers/${data.seller.id}`} className="ml-4 md:text-xs text-super-small mt-2 text-stone-900 hover:underline hover:cursor-pointer">
+                  {data.seller.storeName.toUpperCase()}
                 </Link>
               </div>
 
@@ -113,7 +115,7 @@ const LikedItem: React.FC<LikedItemProps> = ({
 
               <div className="flex flex-row">
                 <div className="flex flex-row justify-center items-center">
-                  <p className="pl-4 md:text-xs text-super-small text-stone-500">{data.size.name.toUpperCase()}</p>
+                  <p className="pl-4 md:text-xs text-super-small text-stone-500">Size: {data.size.name.toUpperCase()}</p>
                   <p className="p-2 md:text-xs text-super-small text-stone-900 text-red-500">
                     {" "}
                     £{data.ourPrice}{" "}

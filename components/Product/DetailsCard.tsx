@@ -34,41 +34,51 @@ const DetailsCard: React.FC<DetailsCardProps> = ({ data, products }) => {
       <div className="flex flex-col w-full border-t border-light-font mt-3 mb-1">
         <div className="mt-3 flex flex-col w-full">
           <Link
-            href={`${params.storeId}/designers/${data?.designer?.id}`}
+            href={`/${params.storeId}/designers/${data?.designer?.id}`}
             className="text-2xl font-bold hover:underline hover:cursor-pointer"
           >
             {data?.designer?.name.toUpperCase()}{" "}
           </Link>
-          <h1 className="md:text-sm text-md  font-semibold ">{data?.name.toUpperCase()}</h1>
+          <h1 className="md:text-sm text-md  font-semibold ">
+            {data?.name.toUpperCase()}
+          </h1>
           <div className=" flex flex-col w-full">
-
             <h1 className="text-xs flex flex-row text-light-font justify-start w-full">
               {data?.size?.name.toUpperCase()}
             </h1>
 
-             <div className="flex flex-col justify-end w-full gap-1 mt-4">
+            <div className="flex flex-col justify-end w-full gap-1 mt-4">
+              <div className="flex flex-row w-full justify-between">
+                <div className="flex flex-row items-center justify-start w-full gap-1 mt-4">
+                  <h1 className=" text-sm text-red-500 font-bold">
+                    £{data.ourPrice}
+                  </h1>
+                  {data.isOnSale && (
+                    <>
+                      <h6 className="text-xs">WAS</h6>
+                      <h6 className="text-xs line-through">
+                        £{data.retailPrice}
+                      </h6>
+                    </>
+                  )}
+                </div>
 
-            <div className="flex flex-row w-full justify-between">
-              <div className="flex flex-row items-center justify-start w-full gap-1 mt-4">
-                <h1 className=" text-sm text-red-500 font-bold">
-                  £{data.ourPrice}
-                </h1>
-                <h1 className=" text-sm">RRP</h1>
-                <h1 className=" text-sm line-through">£{data.retailPrice}</h1>
-              </div>
-
-              <div className="flex flex-col justify-end w-full gap-1 mt-4 mb-2">
-                {data?.likes === 1 ? (
-                    <h1 className="flex text-super-small w-full justify-end">{data?.likes} person has liked this</h1>
+                <div className="flex flex-col justify-end w-full gap-1 mt-4 mb-2">
+                  {data?.likes === 1 ? (
+                    <h1 className="flex text-super-small w-full justify-end">
+                      {data?.likes} person has liked this
+                    </h1>
                   ) : (
-                    <h1 className="flex text-super-small w-full justify-end">{data?.likes} people have liked this</h1>
+                    <h1 className="flex text-super-small w-full justify-end">
+                      {data?.likes} people have liked this
+                    </h1>
                   )}
                   <h1 className="flex flex-row text-super-small w-full justify-end">
                     {data?.clicks} have viewed this product
-                </h1>
+                  </h1>
+                </div>
               </div>
             </div>
-             </div>
           </div>
         </div>
 
@@ -79,9 +89,9 @@ const DetailsCard: React.FC<DetailsCardProps> = ({ data, products }) => {
         <div className="border-t border-light-font mt-3 mb-1">
           <div className="mt-3">
             <div className="flex flex-row gap-1 w-full justify-center items-center">
-              <h1 className="md:text-xs text-sm">SOLD BY </h1>
+              <h1 className="md:text-xs text-sm">Sold by: </h1>
               <Link
-                href={`${params.storeId}/sellers/${data?.seller?.id}`}
+                href={`/${params.storeId}/sellers/${data?.seller?.id}`}
                 className="md:text-xs font-semibold text-sm hover:underline hover:cursor-pointer underline"
               >
                 {" "}
@@ -103,15 +113,15 @@ const DetailsCard: React.FC<DetailsCardProps> = ({ data, products }) => {
 
             <div className="flex flex-row justify-between w-full gap-1 mt-2">
               <div>
-              <h1 className="md:text-xs text-sm ">DESCRIPTION: </h1>
-                <h1 className="md:text-xs text-sm ml-1">
+                <h1 className="md:text-xs text-sm">DESCRIPTION: </h1>
+                <h1 className="md:text-xs text-xs ml-1">
                   {data?.description}
                   {/* {descriptionElements} */}
                 </h1>
               </div>
 
               <div>
-                <h1 className="md:text-xs text-sm">SPECS </h1>
+                <h1 className="md:text-xs text-sm">SPECS: </h1>
                 <div className="">
                   <h1 className="md:text-xs text-sm">
                     Material: {data?.material?.name}
@@ -121,10 +131,9 @@ const DetailsCard: React.FC<DetailsCardProps> = ({ data, products }) => {
                   </h1>
                   <div className="flex flex-row gap-2">
                     <h1 className="md:text-xs text-sm">Colour: </h1>
-                    <div
-                      className="h-5 w-5 rounded-sm border border-white"
-                      style={{ backgroundColor: data?.color?.value }}
-                    ></div>
+                    <h1 className="md:text-xs text-sm">
+                      Colour: {data?.color?.name}
+                    </h1>
                   </div>
                 </div>
               </div>
@@ -135,7 +144,7 @@ const DetailsCard: React.FC<DetailsCardProps> = ({ data, products }) => {
               <h1 className="text-xs">
                 Part of the{" "}
                 <Link
-                  href={`${params.storeId}/categories/${data?.category?.id}`}
+                  href={`/${params.storeId}/categories/${data?.category?.id}`}
                   className="text-xs  hover:underline hover:cursor-pointer underline"
                 >
                   {data?.category?.name.toLowerCase()}

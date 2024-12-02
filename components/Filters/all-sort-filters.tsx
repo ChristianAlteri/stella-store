@@ -43,17 +43,17 @@ const AllSortFilters: React.FC<AllSortFiltersProps> = ({ data }) => {
   return (
     <>
       <div className="flex flex-row justify-center items-center m-2 p-1 gap-2 w-full overflow-auto">
-        <div className="flex flex-col justify-center gap-1 items-center text-center text-xs text-stone-300  hover:cursor-pointer w-full">
+        <div className="flex flex-col justify-center gap-1 items-center text-center text-xs text-stone-300  hover:cursor-pointer w-full text-muted-foreground">
           <div
             className={cn(
               isLowToHighSelected
-                ? "bg-stella-green w-full flex justify-center items-center text-white text-xs rounded-md h-full p-1 scale-110 transition-transform animate-pulse"
-                : "text-stone-300"
+              ? "underline w-full flex justify-center items-center text-black text-xs rounded-md h-full p-1 scale-110 transition-transform animate-pulse"
+              : "text-stone-300"
             )}
             onClick={() => handleClick("sort", "low-to-high")}
           >
             <div className="flex flex-col justify-center items-center">
-              <FiArrowDown size={20} /> Price
+              <FiArrowDown size={20} /> PRICE
             </div>
           </div>
         </div>
@@ -61,14 +61,14 @@ const AllSortFilters: React.FC<AllSortFiltersProps> = ({ data }) => {
           <div
             className={cn(
               isHighToLowSelected
-                ? "bg-stella-green w-full flex justify-center items-center text-white text-xs rounded-md h-full p-1 scale-110 transition-transform animate-pulse"
-                : "text-stone-300"
+              ? "underline w-full flex justify-center items-center text-black text-xs rounded-md h-full p-1 scale-110 transition-transform animate-pulse"
+              : "text-stone-300"
             )}
             onClick={() => handleClick("sort", "high-to-low")}
           >
             <div className="flex flex-col justify-center items-center">
               <FiArrowUp size={20} />
-              Price
+              PRICE
             </div>
           </div>
         </div>
@@ -77,12 +77,12 @@ const AllSortFilters: React.FC<AllSortFiltersProps> = ({ data }) => {
           <div
             className={cn(
               isFeaturedSelected
-                ? "bg-stella-green w-full flex justify-center items-center text-white text-xs rounded-md h-full p-1 scale-110 transition-transform animate-pulse"
-                : "text-stone-300 w-full flex flex-col justify-center items-center"
+              ? "underline w-full flex justify-center items-center text-black text-xs rounded-md h-full p-1 scale-110 transition-transform animate-pulse"
+              : "text-stone-300 w-full flex flex-col justify-center items-center"
             )}
             onClick={() => handleClick("isFeatured", "true")}
           >
-            <div className="flex flex-col justify-center items-center">
+            <div className="flex flex-col justify-center items-center text-green-500">
               <CiBadgeDollar size={20} />
               OUR PICKS
             </div>
@@ -93,14 +93,14 @@ const AllSortFilters: React.FC<AllSortFiltersProps> = ({ data }) => {
           <div
             className={cn(
               isOnSaleSelected
-                ? "bg-stella-green w-full flex justify-center items-center text-white text-xs rounded-md h-full p-1 scale-110 transition-transform animate-pulse"
-                : "text-stone-300 w-full flex flex-col justify-center items-center"
+              ? "underline w-full flex justify-center items-center text-black text-xs rounded-md h-full p-1 scale-110 transition-transform animate-pulse"
+              : "text-stone-300 w-full flex flex-col justify-center items-center"
             )}
             onClick={() => handleClick("isOnSale", "true")}
           >
             <div className="flex flex-col justify-center items-center text-red-500">
-              <CiCoinInsert size={20} />
-              Sale
+              <CiCoinInsert size={22} />
+              SALE
             </div>
           </div>
         </div>
@@ -109,9 +109,9 @@ const AllSortFilters: React.FC<AllSortFiltersProps> = ({ data }) => {
           <div
             className={cn(
               isHiddenSelected
-                ? "bg-stella-green w-full flex justify-center items-center text-white text-xs rounded-md h-full p-1 scale-110 transition-transform animate-pulse"
-                : "text-stone-300 flex flex-col justify-center items-center"
-            )}
+              ? "underline w-full flex justify-center items-center text-black text-xs rounded-md h-full p-1 scale-110 transition-transform animate-pulse"
+              : "text-stone-300 flex flex-col justify-center items-center"
+              )}
             onClick={() => handleClick("isHidden", "true")}
           >
             <div className="flex flex-col justify-center items-center">

@@ -17,6 +17,8 @@ import AuthForm from "@/components/LoginSignup/auth-form";
 import SuggestedContainer from "@/components/Suggested/SuggestedContainer";
 import IconRedirectButton from "@/components/ui/icon-redirect-button";
 import getBillboardByName from "@/actions/get-billboard-by-name";
+import getStore from "@/actions/get-store";
+import { Billboard } from "@/types";
 
 export const revalidate = 0;
 
@@ -68,9 +70,12 @@ const ForYouPage: React.FC<ForYouPageProps> = async ({ searchParams, params }) =
   const sellers = await getSellers();
   const categories = await getCategories();
   const materials = await getMaterials();
-  const genders = await getGenders(params.storeId);
   const subcategories = await getSubcategories();
-  const billboard = await getBillboardByName("HomePageFullScreen", "1b82eba5-33e4-42d2-9747-cee435d4c3c7");
+  const store = await getStore(params.storeId);
+  const billboard: Billboard | null = await getBillboardByName(
+    "HomePageFullScreen",
+    params.storeId
+  );
 
 
   // TODO: loggedIn = false unless logged in;
@@ -80,7 +85,7 @@ const ForYouPage: React.FC<ForYouPageProps> = async ({ searchParams, params }) =
       <div className="justify-center items-center md:grid flex grid-cols-8 gap-4 bg-white h-full">
         {/* First column */}
         <div
-          className="col-span-1 justify-start items-start w-full p-6 hidden sticky z-50 h-full md:grid"
+          className="col-span-1 justify-start items-start w-full p-6 hidden sticky h-full md:grid"
           style={{ width: "100%" }}
         >
           <LeftSidebar
@@ -130,7 +135,7 @@ const ForYouPage: React.FC<ForYouPageProps> = async ({ searchParams, params }) =
               />
               <h2 className="text-center text-sm md:text-md text-black w-full items-center justify-center row-span-1">
                 Want to sell with us? 
-                  <IconRedirectButton route="mailto:admin@anondrobe.com" icon="Send us an email" />
+                  <IconRedirectButton  route={store?.email ? `mailto:${store.email}` : ""} icon="Send us an email" />
               </h2>
             </div>
 
@@ -145,7 +150,7 @@ const ForYouPage: React.FC<ForYouPageProps> = async ({ searchParams, params }) =
         
         {/* Third column */}
         <div
-          className="col-span-1 justify-start items-start w-full p-6 hidden sticky z-50 h-full md:grid"
+          className="col-span-1 justify-start items-start w-full p-6 hidden sticky h-full md:grid"
           style={{ width: "100%" }}
         >
           <RightSidebar
