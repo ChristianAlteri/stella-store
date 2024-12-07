@@ -43,7 +43,7 @@ const HeartButton: React.FC<HeartButtonProps> = ({ products }) => {
   return (
     <div className="">
       <Button
-        onClick={() => router.push(`/${params.storeId}/likes`)}
+        onClick={() => router.push(`/${process.env.NEXT_PUBLIC_API_URL}/likes`)}
         className="flex  flex-row items-center justify-center"
       >
         <span className="p-1 text-super-small text-green-800">

@@ -68,7 +68,7 @@ const CategoryNamePage: React.FC<CategoryNamePageProps> = async ({
     sellerId: searchParams.sellerId,
     minPrice: searchParams.minPrice,
     maxPrice: searchParams.maxPrice,
-    storeIdFromOnlineStore: params.storeId,
+    storeIdFromOnlineStore: `${process.env.NEXT_PUBLIC_API_URL}`,
   });
   const categoryData = await getSingleCategory(params.categoryId);
   const featuredProducts = await getProducts({ isFeatured: true });
@@ -80,7 +80,7 @@ const CategoryNamePage: React.FC<CategoryNamePageProps> = async ({
   const sellers = await getSellers();
   const categories = await getCategories();
   const materials = await getMaterials();
-  const genders = await getGenders(params.storeId);
+  const genders = await getGenders(`${process.env.NEXT_PUBLIC_API_URL}`);
   const subcategories = await getSubcategories();
 
   return (

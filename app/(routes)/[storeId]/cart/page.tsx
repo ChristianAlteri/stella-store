@@ -10,7 +10,7 @@ interface CartPageServerProps {
 
 const CartPageServer: React.FC<CartPageServerProps> = async ({ params }) => {
   const products =
-    (await getProducts({ all: true, isArchived: false, isOnline: true, storeIdFromOnlineStore: params.storeId })) || [];
+    (await getProducts({ all: true, isArchived: false, isOnline: true, storeIdFromOnlineStore: `${process.env.NEXT_PUBLIC_API_URL}` })) || [];
   const onlySaleItems = products.filter((product) => product.isOnSale).slice(0, 7);
 
   return (
@@ -19,7 +19,7 @@ const CartPageServer: React.FC<CartPageServerProps> = async ({ params }) => {
         <CartPage products={products} />
       </div>
       <SuggestedContainer
-        route={`${params.storeId}/sale`}
+        route={`${process.env.NEXT_PUBLIC_API_URL}/sale`}
         title="SHOP OUR SALE"
         data={onlySaleItems}
       />

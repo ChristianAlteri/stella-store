@@ -9,10 +9,10 @@ const QuickLinks = () => {
   const params = useParams();
 
   const links = [
-    { href: `/${params.storeId}`, label: 'NEW ARRIVALS' },
-    { href: `/${params.storeId}/top-sellers`, label: 'TOP SELLERS' },
-    { href: `/${params.storeId}/trending?sort=most-liked`, label: 'TRENDING ITEMS' },
-    { href: `/${params.storeId}/sale`, label: 'SALE', className: 'text-red-500' },
+    { href: `/${process.env.NEXT_PUBLIC_API_URL}`, label: 'NEW ARRIVALS' },
+    { href: `/${process.env.NEXT_PUBLIC_API_URL}/top-sellers`, label: 'TOP SELLERS' },
+    { href: `/${process.env.NEXT_PUBLIC_API_URL}/trending?sort=most-liked`, label: 'TRENDING ITEMS' },
+    { href: `/${process.env.NEXT_PUBLIC_API_URL}/sale`, label: 'SALE', className: 'text-red-500' },
   ];
 
   return (
@@ -62,12 +62,12 @@ export default QuickLinks;
 //   return (
 //     <>
 //       <Link
-//         href={`/${params.storeId}`}
+//         href={`/${process.env.NEXT_PUBLIC_API_URL}`}
 //         className="flex flex-col lg:text-sm text-super-small justify-center items-center rounded-xl w-full h-full hover:underline "
 //       >
 //         <div
 //           className={cn(
-//             isRouteSelected(`/${params.storeId}`)
+//             isRouteSelected(`/${process.env.NEXT_PUBLIC_API_URL}`)
 //               ? " underline w-full flex flex-col justify-center items-center text-light-font lg:text-sm text-super-small rounded-md h-full"
 //               : "text-stone-300 flex flex-col justify-center items-center"
 //           )}
@@ -76,12 +76,12 @@ export default QuickLinks;
 //         </div>
 //       </Link>
 //       <Link
-//         href={`/${params.storeId}/top-sellers`}
+//         href={`/${process.env.NEXT_PUBLIC_API_URL}/top-sellers`}
 //         className="flex flex-col lg:text-sm text-super-small justify-center items-center rounded-xl w-full h-full hover:underline "
 //       >
 //         <div
 //           className={cn(
-//             isRouteSelected(`/${params.storeId}/top-sellers`)
+//             isRouteSelected(`/${process.env.NEXT_PUBLIC_API_URL}/top-sellers`)
 //               ? "underline w-full flex flex-col justify-center items-center text-light-font lg:text-sm text-super-small rounded-md h-full"
 //               : "text-stone-300 flex flex-col justify-center items-center w-full"
 //           )}
@@ -90,12 +90,12 @@ export default QuickLinks;
 //         </div>
 //       </Link>
 //       <Link
-//         href={`/${params.storeId}/trending?sort=most-liked`}
+//         href={`/${process.env.NEXT_PUBLIC_API_URL}/trending?sort=most-liked`}
 //         className="flex flex-col lg:text-sm text-super-small justify-center items-center rounded-xl w-full h-full hover:underline "
 //       >
 //         <div
 //           className={cn(
-//             isRouteSelected(`/${params.storeId}/trending`)
+//             isRouteSelected(`/${process.env.NEXT_PUBLIC_API_URL}/trending`)
 //               ? " underline w-full flex flex-col justify-center items-center text-light-font lg:text-sm text-super-small rounded-md h-full"
 //               : "text-stone-300 flex flex-col justify-center items-center w-full"
 //           )}
@@ -105,12 +105,12 @@ export default QuickLinks;
 //       </Link>
 
 //       <Link
-//         href={`/${params.storeId}/sale`}
+//         href={`/${process.env.NEXT_PUBLIC_API_URL}/sale`}
 //         className="flex flex-col lg:text-sm text-super-small justify-center items-center rounded-xl w-full h-full hover:underline "
 //       >
 //         <div
 //           className={cn(
-//             isRouteSelected(`/${params.storeId}/sale`)
+//             isRouteSelected(`/${process.env.NEXT_PUBLIC_API_URL}/sale`)
 //               ? " underline w-full flex flex-col justify-center items-center text-red-500 lg:text-sm text-super-small rounded-md h-full"
 //               : "text-red-500 flex flex-col justify-center items-center"
 //           )}

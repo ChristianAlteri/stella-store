@@ -35,9 +35,9 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
   const openDrawer = () => setOpen(true);
   const closeDrawer = () => setOpen(false);
 
-  const storeId = Array.isArray(params.storeId)
-    ? params.storeId[0]
-    : params.storeId;
+  const storeId = Array.isArray(process.env.NEXT_PUBLIC_API_URL)
+    ? process.env.NEXT_PUBLIC_API_URL[0]
+    : process.env.NEXT_PUBLIC_API_URL;
 
   useEffect(() => {
     const fetchStoreData = async () => {
@@ -83,7 +83,7 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
       <div className="flex flex-col items-center row-span-1 h-full overflow-y-auto bg-white">
         {items?.map((item) => (
           <Link
-            href={`/${params.storeId}/${type}/${item.id}`}
+            href={`/${process.env.NEXT_PUBLIC_API_URL}/${type}/${item.id}`}
             key={item.id}
             className={cn(
               "flex justify-center items-center text-center text-xs font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer",
@@ -286,7 +286,7 @@ export default HamburgerMenu;
 //                 <div className="flex flex-col items-center row-span-1 h-full overflow-y-auto bg-white">
 //                   {sortedSellers?.map((seller) => (
 //                     <Link
-//                       href={`/${params.storeId}/sellers/${seller.id}`}
+//                       href={`/${process.env.NEXT_PUBLIC_API_URL}/sellers/${seller.id}`}
 //                       key={seller.storeName}
 //                       className={cn(
 //                         "flex justify-center items-center text-center text-xs font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer",
@@ -305,7 +305,7 @@ export default HamburgerMenu;
 //                 <div className="flex flex-col items-center row-span-1 h-full overflow-y-auto bg-white">
 //                   {sortedDesigners?.map((designer) => (
 //                     <Link
-//                       href={`/${params.storeId}/designers/${designer.id}`}
+//                       href={`/${process.env.NEXT_PUBLIC_API_URL}/designers/${designer.id}`}
 //                       key={designer.name}
 //                       className={cn(
 //                         "flex justify-center items-center text-center text-xs font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer",
@@ -324,7 +324,7 @@ export default HamburgerMenu;
 //                 <div className="flex flex-col items-center row-span-1 h-full overflow-y-auto bg-white">
 //                   {sortedCategories?.map((category) => (
 //                     <Link
-//                       href={`/${params.storeId}/categories/${category.id}`}
+//                       href={`/${process.env.NEXT_PUBLIC_API_URL}/categories/${category.id}`}
 //                       key={category.name}
 //                       className={cn(
 //                         "flex justify-center items-center text-center text-xs font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer",

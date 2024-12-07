@@ -60,7 +60,7 @@ const ForYouPage: React.FC<ForYouPageProps> = async ({ searchParams, params }) =
     isFeatured: true,
     designerId: searchParams.designerId,
     sellerId: searchParams.sellerId,
-    storeIdFromOnlineStore: params.storeId,
+    storeIdFromOnlineStore: `${process.env.NEXT_PUBLIC_API_URL}`,
   });
 
   const sizes = await getSizes();
@@ -71,10 +71,10 @@ const ForYouPage: React.FC<ForYouPageProps> = async ({ searchParams, params }) =
   const categories = await getCategories();
   const materials = await getMaterials();
   const subcategories = await getSubcategories();
-  const store = await getStore(params.storeId);
+  const store = await getStore(`${process.env.NEXT_PUBLIC_API_URL}`);
   const billboard: Billboard | null = await getBillboardByName(
     "HomePageFullScreen",
-    params.storeId
+    `${process.env.NEXT_PUBLIC_API_URL}`
   );
 
 

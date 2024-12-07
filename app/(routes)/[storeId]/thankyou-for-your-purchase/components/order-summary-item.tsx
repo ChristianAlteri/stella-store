@@ -15,7 +15,7 @@ const OrderSummaryItem: React.FC<OrderSummaryItemProps> = ({ data }) => {
 
   const handleProductClick = () => {
     router.push(
-      `/${params.storeId}/product/${data?.category?.id}/${data?.designer?.name}/${data?.id}/${data?.seller?.instagramHandle}`
+      `/${process.env.NEXT_PUBLIC_API_URL}/product/${data?.category?.id}/${data?.designer?.name}/${data?.id}/${data?.seller?.instagramHandle}`
     );
   };
 
@@ -46,13 +46,13 @@ const OrderSummaryItem: React.FC<OrderSummaryItemProps> = ({ data }) => {
       </div>
       <div className="flex-grow">
         <Link
-          href={`/${params.storeId}/designers/${data?.designer.id}`}
+          href={`/${process.env.NEXT_PUBLIC_API_URL}/designers/${data?.designer.id}`}
           className="text-sm font-medium hover:underline"
         >
           {data?.designer.name.toUpperCase()}
         </Link>
         <Link
-          href={`/${params.storeId}/sellers/${data?.seller.id}`}
+          href={`/${process.env.NEXT_PUBLIC_API_URL}/sellers/${data?.seller.id}`}
           className="block text-xs text-gray-500 hover:underline"
         >
           {data?.seller.storeName.toUpperCase()}
@@ -85,7 +85,7 @@ export default OrderSummaryItem;
 
 //   const handleProductClick = () => {
 //     router.push(
-//       `/${params.storeId}/product/${data?.category?.id}/${data?.designer?.name}/${data?.id}/${data?.seller?.instagramHandle}`
+//       `/${process.env.NEXT_PUBLIC_API_URL}/product/${data?.category?.id}/${data?.designer?.name}/${data?.id}/${data?.seller?.instagramHandle}`
 //     );
 //   };
 
@@ -131,13 +131,13 @@ export default OrderSummaryItem;
 //         <div className="relative flex flex-1 flex-col justify-between">
 //           <div className="flex flex-col justify-start items-start text-start">
 //             <Link
-//               href={`${params.storeId}/designers/${data.designer.id}`}
+//               href={`${process.env.NEXT_PUBLIC_API_URL}/designers/${data.designer.id}`}
 //               className="ml-4 md:text-xs text-super-small hover:underline hover:cursor-pointer"
 //             >
 //               {data.designer.name.toUpperCase()}
 //             </Link>
 //             <Link
-//               href={`${params.storeId}/sellers/${data.seller.id}`}
+//               href={`${process.env.NEXT_PUBLIC_API_URL}/sellers/${data.seller.id}`}
 //               className="ml-4 md:text-xs text-super-small hover:underline hover:cursor-pointer"
 //             >
 //               {data.seller.storeName.toUpperCase()}

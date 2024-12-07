@@ -23,7 +23,7 @@ const CartItem: React.FC<CartItemProps> = ({ data }) => {
 
   const handleProductClick = () => {
     router.push(
-      `/${params.storeId}/product/${data?.category?.id}/${data?.designer?.name}/${data?.id}/${data?.seller?.instagramHandle}`
+      `/${process.env.NEXT_PUBLIC_API_URL}/product/${data?.category?.id}/${data?.designer?.name}/${data?.id}/${data?.seller?.instagramHandle}`
     );
   };
 
@@ -80,10 +80,10 @@ const CartItem: React.FC<CartItemProps> = ({ data }) => {
                 >
                   {data.name}
                 </p> */}
-                <Link href={`/${params.storeId}/designers/${data.designer.id}`} className="ml-4 md:text-xs text-super-small text-stone-900 hover:underline hover:cursor-pointer">
+                <Link href={`/${process.env.NEXT_PUBLIC_API_URL}/designers/${data.designer.id}`} className="ml-4 md:text-xs text-super-small text-stone-900 hover:underline hover:cursor-pointer">
                   {data.designer.name.toUpperCase()}
                 </Link>
-                <Link href={`/${params.storeId}/sellers/${data.seller.id}`} className="ml-4 md:text-xs text-super-small mt-2 text-stone-900 hover:underline hover:cursor-pointer">
+                <Link href={`/${process.env.NEXT_PUBLIC_API_URL}/sellers/${data.seller.id}`} className="ml-4 md:text-xs text-super-small mt-2 text-stone-900 hover:underline hover:cursor-pointer">
                   {data.seller.storeName.toUpperCase()}
                 </Link>
               </div>

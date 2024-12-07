@@ -54,7 +54,7 @@ const TopSellers: React.FC<TopSellersProps> = async ({ searchParams, params }) =
   //   isFeatured: searchParams.isFeatured,
   //   designerId: searchParams.designerId,
   //   sellerId: searchParams.sellerId,
-  //   storeIdFromOnlineStore: params.storeId,
+  //   storeIdFromOnlineStore: process.env.NEXT_PUBLIC_API_URL,
   //   isOnline: searchParams.isOnline,
   // });
 

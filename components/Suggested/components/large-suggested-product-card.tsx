@@ -17,7 +17,7 @@ const LargeSuggestedProductCard: React.FC<LargeSuggestedProductCardProps> = ({
   const params = useParams();
   const handleProductClick = () => {
     router.push(
-      `/${params.storeId}/product/${item?.category?.id}/${item?.designer?.id}/${item?.id}/${item?.seller?.id}`
+      `/${process.env.NEXT_PUBLIC_API_URL}/product/${item?.category?.id}/${item?.designer?.id}/${item?.id}/${item?.seller?.id}`
     );
   };
 
@@ -101,7 +101,7 @@ const LargeSuggestedProductCard: React.FC<LargeSuggestedProductCardProps> = ({
           <div className="absolute flex-col justify-center items-center m-5">
             <div className="flex flex-col justify-center items-center  w-full">
               <Link
-                href={`/${params.storeId}/designers/${item?.designer?.id}`}
+                href={`/${process.env.NEXT_PUBLIC_API_URL}/designers/${item?.designer?.id}`}
                 className="text-super-small hover:underline underline text-black bg-white opacity-50"
               >
                 {item.designer?.name.toUpperCase()}

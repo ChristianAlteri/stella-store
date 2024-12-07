@@ -59,7 +59,7 @@ const ThankYouForYourPurchasePage: React.FC<
           <SuggestedContainer
             data={featuredProducts}
             title="CONTINUE SHOPPING OUR PICKS"
-            route={`/${params.storeId}/staff-picks`}
+            route={`/${process.env.NEXT_PUBLIC_API_URL}/staff-picks`}
             header="SHOP"
           />
         </div> */}

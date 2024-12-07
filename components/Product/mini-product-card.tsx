@@ -94,7 +94,7 @@ const MiniProductCard: React.FC<MiniProductCardProps> = ({
 
   const handleProductClick = () => {
     router.push(
-      `${params.storeId}/product/${currentProduct?.category?.id}/${currentProduct?.designer?.id}/${currentProduct?.id}/${currentProduct?.seller?.id}`
+      `/${process.env.NEXT_PUBLIC_API_URL}/product/${currentProduct?.category?.id}/${currentProduct?.designer?.id}/${currentProduct?.id}/${currentProduct?.seller?.id}`
     );
   };
 
@@ -102,7 +102,7 @@ const MiniProductCard: React.FC<MiniProductCardProps> = ({
     <div className="flex flex-col">
       <div>
         <Link
-          href={`${params.storeId}/${miniProductRoute}` || `${params.storeId}/`}
+          href={`/${process.env.NEXT_PUBLIC_API_URL}/${miniProductRoute}` || `${process.env.NEXT_PUBLIC_API_URL}/`}
           className="flex justify-center text-sm font-medium  transition-colors border shadow-md rounded-md p-1 hover:text-stone-900 hover:underline hover:cursor-pointer"
         >
           <Tooltip
@@ -169,7 +169,7 @@ const MiniProductCard: React.FC<MiniProductCardProps> = ({
               >
                 <div className="flex flex-col justify-center items-center m-5 ">
                   <a
-                    href={`${params.storeId}/designers/${currentProduct?.designer?.id}`}
+                    href={`/${process.env.NEXT_PUBLIC_API_URL}/designers/${currentProduct?.designer?.id}`}
                     className="text-xs hover:underline underline text-black hover:text-stone-700 bg-stone-200 bg-opacity-60"
                   >
                     {currentProduct.designer?.name.toUpperCase()}

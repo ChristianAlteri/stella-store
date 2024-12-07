@@ -44,7 +44,7 @@ const Footer = async ({
 }) => {
   const { storeId } = params;
   const productData = await getProducts({
-    storeIdFromOnlineStore: storeId,
+    storeIdFromOnlineStore: `${process.env.NEXT_PUBLIC_API_URL}`,
     all: true,
     isOnline: true,
     sort: searchParams.sort,

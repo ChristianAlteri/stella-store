@@ -55,7 +55,7 @@ const Homepage = async ({
 }) => {
   const { storeId } = params;
   const products = await getProducts({
-    storeIdFromOnlineStore: storeId,
+    storeIdFromOnlineStore: `${process.env.NEXT_PUBLIC_API_URL}`,
     all: true,
     isOnline: true,
     categoryId: searchParams.categoryId,

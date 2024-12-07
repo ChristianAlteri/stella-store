@@ -23,7 +23,7 @@ const SearchProductImage: React.FC<SearchProductImageProps> = ({ product }) => {
 
   const handleProductClick = (product: Product) => {
     router.push(
-      `${params.storeId}/product/${product.category?.id}/${product.designer?.name}/${product.id}/${product.seller?.instagramHandle}`
+      `/${process.env.NEXT_PUBLIC_API_URL}/product/${product.category?.id}/${product.designer?.name}/${product.id}/${product.seller?.instagramHandle}`
     );
   };
 
@@ -36,7 +36,7 @@ const SearchProductImage: React.FC<SearchProductImageProps> = ({ product }) => {
       <CardHeader className="p-2">
         <div className="flex justify-between items-center text-super-small md:text-xs">
           <Link
-            href={`${params.storeId}/sellers/${product.seller.id}`}
+            href={`/${process.env.NEXT_PUBLIC_API_URL}/sellers/${product.seller.id}`}
             className="hover:underline"
           >
             {product.seller.storeName.toUpperCase()}
@@ -74,7 +74,7 @@ const SearchProductImage: React.FC<SearchProductImageProps> = ({ product }) => {
       </CardContent>
       <CardFooter className="p-2 flex justify-between items-center text-super-small md:text-xs">
         <Link
-          href={`${params.storeId}/designers/${product.designer?.id}`}
+          href={`/${process.env.NEXT_PUBLIC_API_URL}/designers/${product.designer?.id}`}
           className="hover:underline"
         >
           {product.designer?.name.toUpperCase()}
@@ -105,7 +105,7 @@ export default SearchProductImage;
 //   const params = useParams();
 //   const handleProductClick = (product: any) => {
 //     router.push(
-//       `${params.storeId}/product/${product?.category?.id}/${product?.designer?.name}/${product?.id}/${product?.seller?.instagramHandle}`
+//       `${process.env.NEXT_PUBLIC_API_URL}/product/${product?.category?.id}/${product?.designer?.name}/${product?.id}/${product?.seller?.instagramHandle}`
 //     );
 //   };
 
@@ -114,7 +114,7 @@ export default SearchProductImage;
 //       <div className="flex-col w-full border">
 //         <div className="flex flex-row w-full justify-center items-center p-1">
 //           <div className="flex flex-row gap-1 w-full justify-center">
-//             <Link href={`${params.storeId}/sellers/${product.seller.id}`}>
+//             <Link href={`${process.env.NEXT_PUBLIC_API_URL}/sellers/${product.seller.id}`}>
 //               <p className="w-full justify-center text-center items-center text-super-small hover:underline hover:cursor-pointer">
 //                 {product.seller.storeName.toUpperCase()}
 //               </p>
@@ -172,7 +172,7 @@ export default SearchProductImage;
 //         >
 //           <div className="flex flex-row w-full justify-between">
 //             <Link
-//               href={`${params.storeId}/designers/${product.designer?.id}`}
+//               href={`${process.env.NEXT_PUBLIC_API_URL}/designers/${product.designer?.id}`}
 //               className="w-full justify-center text-center items-center text-super-small hover:underline hover:cursor-pointer"
 //             >
 //               {product.designer?.name.toUpperCase()}

@@ -57,7 +57,7 @@ const OurPicksPage: React.FC<OurPicksPageProps> = async ({ searchParams, params 
     isFeatured: true,
     designerId: searchParams.designerId,
     sellerId: searchParams.sellerId,
-    storeIdFromOnlineStore: params.storeId,
+    storeIdFromOnlineStore: `${process.env.NEXT_PUBLIC_API_URL}`,
   });
   // const featuredProducts = await getProducts({ isFeatured: true });
 
@@ -69,7 +69,7 @@ const OurPicksPage: React.FC<OurPicksPageProps> = async ({ searchParams, params 
   const sellers = await getSellers();
   const categories = await getCategories();
   const materials = await getMaterials();
-  const genders = await getGenders(params.storeId);
+  const genders = await getGenders(`${process.env.NEXT_PUBLIC_API_URL}`);
   const subcategories = await getSubcategories();
 
   // const onlySaleItems = onSaleItems.filter(product => product.isOnSale);

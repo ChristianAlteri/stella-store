@@ -69,7 +69,7 @@ const LeftSidebar: React.FC<LeftSideProps> = ({
                 ))
               : sortedSellers?.map((seller) => (
                   <Link
-                    href={`/${params.storeId}/sellers/${seller.id}`}
+                    href={`/${process.env.NEXT_PUBLIC_API_URL}/sellers/${seller.id}`}
                     key={seller.storeName}
                   >
                     <p
@@ -100,7 +100,7 @@ const LeftSidebar: React.FC<LeftSideProps> = ({
                 ))
               : sortedDesigners?.map((designer) => (
                   <Link
-                    href={`/${params.storeId}/designers/${designer.id}`}
+                    href={`/${process.env.NEXT_PUBLIC_API_URL}/designers/${designer.id}`}
                     key={designer.name}
                   >
                     <p
@@ -131,7 +131,7 @@ const LeftSidebar: React.FC<LeftSideProps> = ({
                 ))
               : sortedCategories?.map((category) => (
                   <Link
-                    href={`/${params.storeId}/categories/${category.id}`}
+                    href={`/${process.env.NEXT_PUBLIC_API_URL}/categories/${category.id}`}
                     key={category.name}
                   >
                     <p
@@ -195,7 +195,7 @@ export default LeftSidebar;
 
 //           <ScrollArea className="h-full">
 //             {sellers?.map((seller, index) => (
-//               <Link href={`/${params.storeId}/sellers/${seller.id}`} key={seller.storeName}>
+//               <Link href={`/${process.env.NEXT_PUBLIC_API_URL}/sellers/${seller.id}`} key={seller.storeName}>
 //                 <p
 //                   className={cn(
 //                     "flex justify-start text-sm font-medium text-light-font transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer",
@@ -218,7 +218,7 @@ export default LeftSidebar;
 
 //           <ScrollArea className="h-full">
 //             {designers?.map((designer, index) => (
-//               <Link href={`/${params.storeId}/designers/${designer.id}`} key={designer.name}>
+//               <Link href={`/${process.env.NEXT_PUBLIC_API_URL}/designers/${designer.id}`} key={designer.name}>
 //                 <p
 //                   className={cn(
 //                     "flex justify-start text-sm font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer",
@@ -241,7 +241,7 @@ export default LeftSidebar;
 
 //           <ScrollArea className="h-full">
 //             {categories?.map((category, index) => (
-//               <Link href={`/${params.storeId}/categories/${category.id}`} key={category.name}>
+//               <Link href={`/${process.env.NEXT_PUBLIC_API_URL}/categories/${category.id}`} key={category.name}>
 //                 <p
 //                   className={cn(
 //                     "flex justify-start text-sm font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer",

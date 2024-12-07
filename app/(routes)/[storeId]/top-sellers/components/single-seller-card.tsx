@@ -86,7 +86,7 @@ const SellerCard: React.FC<SellerCardProps> = ({ data }) => {
         </div>
         <div className="pt-2 flex justify-between items-center">
           <Link
-            href={`/${params.storeId}/sellers/${data?.id}`}
+            href={`/${process.env.NEXT_PUBLIC_API_URL}/sellers/${data?.id}`}
             className="text-sm text-primary hover:underline"
           >
             View Profile
@@ -164,7 +164,7 @@ export default SellerCard;
 //       {/* Name */}
 //       <div className="flex flex-col justify-center items-center mt-2">
 //         <h2 className="text-sm text-black hover:cursor-pointer hover:underline">
-//           <Link href={`${params.storeId}/sellers/${data?.id}`}>
+//           <Link href={`${process.env.NEXT_PUBLIC_API_URL}/sellers/${data?.id}`}>
 //             {data?.storeName.toUpperCase()}
 //           </Link>
 //         </h2>

@@ -34,7 +34,7 @@ const CartPageServer: React.FC<TopLikesPageProps> = async ({
   const products =
     (await getProducts({
       ...searchParams,
-      storeIdFromOnlineStore: params.storeId,
+      storeIdFromOnlineStore: `${process.env.NEXT_PUBLIC_API_URL}`,
       isOnline: true,
       all: true,
     })) || [];
@@ -49,7 +49,7 @@ const CartPageServer: React.FC<TopLikesPageProps> = async ({
         <LikesPage products={products} />
       </div>
       <SuggestedContainer
-        route={`${params.storeId}/trending`}
+        route={`${process.env.NEXT_PUBLIC_API_URL}/trending`}
         title="MOST POPULAR PRODUCTS"
         data={topLikedProducts}
       />

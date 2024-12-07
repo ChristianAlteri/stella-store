@@ -60,7 +60,7 @@ const SalePage: React.FC<SalePageProps> = async ({ searchParams, params }) => {
     all: true,
     minPrice: searchParams.minPrice,
     maxPrice: searchParams.maxPrice,
-    storeIdFromOnlineStore: params.storeId,
+    storeIdFromOnlineStore: `${process.env.NEXT_PUBLIC_API_URL}`,
     isOnline: true,
   });
   // const featuredProducts = await getProducts({ isFeatured: true });
@@ -73,7 +73,7 @@ const SalePage: React.FC<SalePageProps> = async ({ searchParams, params }) => {
   const sellers = await getSellers();
   const categories = await getCategories();
   const materials = await getMaterials();
-  const genders = await getGenders(params.storeId);
+  const genders = await getGenders(`${process.env.NEXT_PUBLIC_API_URL}`);
   const subcategories = await getSubcategories();
 
   // const onlySaleItems = onSaleItems.filter(product => product.isOnSale);

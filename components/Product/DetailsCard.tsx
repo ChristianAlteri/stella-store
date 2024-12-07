@@ -34,7 +34,7 @@ const DetailsCard: React.FC<DetailsCardProps> = ({ data, products }) => {
       <div className="flex flex-col w-full border-t border-light-font mt-3 mb-1">
         <div className="mt-3 flex flex-col w-full">
           <Link
-            href={`/${params.storeId}/designers/${data?.designer?.id}`}
+            href={`/${process.env.NEXT_PUBLIC_API_URL}/designers/${data?.designer?.id}`}
             className="text-2xl font-bold hover:underline hover:cursor-pointer"
           >
             {data?.designer?.name.toUpperCase()}{" "}
@@ -91,7 +91,7 @@ const DetailsCard: React.FC<DetailsCardProps> = ({ data, products }) => {
             <div className="flex flex-row gap-1 w-full justify-center items-center">
               <h1 className="md:text-xs text-sm">Sold by: </h1>
               <Link
-                href={`/${params.storeId}/sellers/${data?.seller?.id}`}
+                href={`/${process.env.NEXT_PUBLIC_API_URL}/sellers/${data?.seller?.id}`}
                 className="md:text-xs font-semibold text-sm hover:underline hover:cursor-pointer underline"
               >
                 {" "}
@@ -144,7 +144,7 @@ const DetailsCard: React.FC<DetailsCardProps> = ({ data, products }) => {
               <h1 className="text-xs">
                 Part of the{" "}
                 <Link
-                  href={`/${params.storeId}/categories/${data?.category?.id}`}
+                  href={`/${process.env.NEXT_PUBLIC_API_URL}/categories/${data?.category?.id}`}
                   className="text-xs  hover:underline hover:cursor-pointer underline"
                 >
                   {data?.category?.name.toLowerCase()}

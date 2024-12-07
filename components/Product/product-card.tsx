@@ -77,7 +77,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
 
   const handleProductClick = () => {
     router.push(
-      `/${params.storeId}/product/${item?.category?.id}/${item?.designer?.id}/${item?.id}/${item?.seller?.id}`
+      `/${process.env.NEXT_PUBLIC_API_URL}/product/${item?.category?.id}/${item?.designer?.id}/${item?.id}/${item?.seller?.id}`
     );
   };
 
@@ -223,7 +223,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
             </div>
             <Link
               // onClick={handleProductClick}
-              href={`/${params.storeId}/designers/${item?.designer?.id}`}
+              href={`/${process.env.NEXT_PUBLIC_API_URL}/designers/${item?.designer?.id}`}
               className="text-xs font-bold hover:underline text-black hover:text-stone-700 hover:cursor-pointer"
             >
               {item.designer?.name.toUpperCase()}
@@ -233,7 +233,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
           {/* <div className="flex justify-end flex-row mt-1"> */}
           <div className="flex justify-between text-left">
             <Link
-              href={`/${params.storeId}/sellers/${item?.seller?.id}`}
+              href={`/${process.env.NEXT_PUBLIC_API_URL}/sellers/${item?.seller?.id}`}
               className="text-xs hover:underline text-black hover:text-stone-700 "
             >
               {item.seller?.storeName.toUpperCase()}
@@ -310,7 +310,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
           </div>
           <Link
             // onClick={handleProductClick}
-            href={`/${params.storeId}/designers/${item?.designer?.id}`}
+            href={`/${process.env.NEXT_PUBLIC_API_URL}/designers/${item?.designer?.id}`}
             className="text-xs hover:underline text-black hover:cursor-pointer"
           >
             {/* {item.designer?.name.charAt(0).toUpperCase() +
@@ -320,7 +320,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
           <div className="flex flex-row justify-between  w-2/3 gap-1">
             <div className="text-gray-500 hover:cursor-pointer hover:text-black text-xs ">
               <Link
-                href={`/${params.storeId}/sellers/${item?.seller?.id}`}
+                href={`/${process.env.NEXT_PUBLIC_API_URL}/sellers/${item?.seller?.id}`}
                 className="text-xs hover:underline  text-black truncate"
               >
                 {item.seller?.storeName.toUpperCase()}

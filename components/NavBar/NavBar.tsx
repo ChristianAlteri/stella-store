@@ -84,7 +84,7 @@ const Navbar: React.FC<NavbarProps> = ({
               </div>
 
               <div className="w-full flex flex-row justify-center items-center gap-3 ">
-                <Link href={`/${params.storeId}`} className="flex">
+                <Link href={`/${process.env.NEXT_PUBLIC_API_URL}`} className="flex">
                   <h1 className="font-bold text-2xl md:text-4xl">
                     {store ? store.name : "Loading..."}
                   </h1>
