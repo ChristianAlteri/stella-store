@@ -131,11 +131,11 @@ const Homepage = async ({
       <div className="justify-center items-center md:grid flex grid-cols-8 gap-4 bg-white mt-7">
         {/* First column */}
         <div className="col-span-1 justify-start items-start w-full hidden sticky h-full md:grid ml-4">
-          <LeftSidebar
+          {/* <LeftSidebar
             designers={designers}
             categories={categories}
             sellers={sellers}
-          />
+          /> */}
         </div>
 
         {/* Second column */}
@@ -155,7 +155,7 @@ const Homepage = async ({
 
         {/* Third column */}
         <div className="col-span-1 justify-end items-end w-full hidden sticky h-full md:grid">
-          <RightSidebar
+          {/* <RightSidebar
             colors={colors}
             sizes={sizes}
             conditions={conditions}
@@ -163,7 +163,7 @@ const Homepage = async ({
             subcategories={subcategories}
             // productData={featuredProducts}
             miniProductTitle="Our top picks"
-          />
+          /> */}
         </div>
       </div>
     </>
