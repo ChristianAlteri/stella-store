@@ -9,10 +9,10 @@ const QuickLinks = () => {
   const params = useParams();
 
   const links = [
-    { href: `/${process.env.NEXT_PUBLIC_API_URL}`, label: 'NEW ARRIVALS' },
-    { href: `/${process.env.NEXT_PUBLIC_API_URL}/top-sellers`, label: 'TOP SELLERS' },
-    { href: `/${process.env.NEXT_PUBLIC_API_URL}/trending?sort=most-liked`, label: 'TRENDING ITEMS' },
-    { href: `/${process.env.NEXT_PUBLIC_API_URL}/sale`, label: 'SALE', className: 'text-red-500' },
+    { href: `/${process.env.NEXT_PUBLIC_STORE_ID}`, label: 'NEW ARRIVALS' },
+    { href: `/${process.env.NEXT_PUBLIC_STORE_ID}/top-sellers`, label: 'TOP SELLERS' },
+    { href: `/${process.env.NEXT_PUBLIC_STORE_ID}/trending?sort=most-liked`, label: 'TRENDING ITEMS' },
+    { href: `/${process.env.NEXT_PUBLIC_STORE_ID}/sale`, label: 'SALE', className: 'text-red-500' },
   ];
 
   return (

@@ -48,11 +48,10 @@ const getProducts = async (query: Query): Promise<Product[]> => {
         isOnSale: query.isOnSale,
         isCharity: query.isCharity,
         isHidden: query.isHidden,
-        isOnline: query.isOnline,
+        isOnline: query.isOnline ? 'true' : 'false',
         sort: query.sort,
         minPrice: query.minPrice,
         maxPrice: query.maxPrice,
-        // isArchived: query.isArchived,
         isArchived: query.isArchived ? 'true' : 'false',
         storeIdFromOnlineStore: query.storeIdFromOnlineStore
       },

@@ -83,7 +83,7 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
       <div className="flex flex-col items-center row-span-1 h-full overflow-y-auto bg-white">
         {items?.map((item) => (
           <Link
-            href={`/${process.env.NEXT_PUBLIC_API_URL}/${type}/${item.id}`}
+            href={`/${process.env.NEXT_PUBLIC_STORE_ID}/${type}/${item.id}`}
             key={item.id}
             className={cn(
               "flex justify-center items-center text-center text-xs font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer",

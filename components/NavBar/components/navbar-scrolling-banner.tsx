@@ -20,7 +20,7 @@ const NavbarScrollingBanner: React.FC<NavbarScrollingBannerProps> = ({
      <div className="h-1/2 top-0 bg-white flex-row justify-end items-end w-full">
         <div className="animate-loop-scroll ">
         {text}{" "}
-            <Link className="underline" href={`/${process.env.NEXT_PUBLIC_API_URL}${link}`}>
+            <Link className="underline" href={`/${process.env.NEXT_PUBLIC_STORE_ID}${link}`}>
             {underlinedText}
             </Link>
         </div>

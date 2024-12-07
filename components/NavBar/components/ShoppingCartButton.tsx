@@ -43,7 +43,7 @@ const ShoppingCartButton:React.FC<ShoppingCartButtonProps> = ({ size, products }
 
   return ( 
     <div className="">
-      <Button onClick={() => router.push(`/${process.env.NEXT_PUBLIC_API_URL}/cart`)} className="flex flex-row items-center justify-center">
+      <Button onClick={() => router.push(`/${process.env.NEXT_PUBLIC_STORE_ID}/cart`)} className="flex flex-row items-center justify-center">
         <span className="p-1 text-super-small text-green-800">
           {cartProducts.length}
         </span>
