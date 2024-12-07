@@ -17,7 +17,7 @@ const LargeSuggestedProductCard: React.FC<LargeSuggestedProductCardProps> = ({
   const params = useParams();
   const handleProductClick = () => {
     router.push(
-      `${params.storeId}/product/${item?.category?.id}/${item?.designer?.id}/${item?.id}/${item?.seller?.id}`
+      `/${params.storeId}/product/${item?.category?.id}/${item?.designer?.id}/${item?.id}/${item?.seller?.id}`
     );
   };
 
@@ -34,7 +34,7 @@ const LargeSuggestedProductCard: React.FC<LargeSuggestedProductCardProps> = ({
                 loop={true}
                 playing={true}
                 muted={true}
-                alt={`${item.name} from ${item.seller?.storeName} by ${item.designer?.name} in size ${item.size?.name} for £${item.ourPrice} (RRP £${item.retailPrice})`}
+                alt={`${item.name} from ${item.seller?.storeName} by ${item.designer?.name} in size ${item.size?.name} for $${item.ourPrice} (RRP $${item.retailPrice})`}
                 className={`rounded-md transition-opacity duration-200 ease-in-out ${
                   item.isHidden ? "blur-xl" : ""
                 }`}
@@ -48,7 +48,7 @@ const LargeSuggestedProductCard: React.FC<LargeSuggestedProductCardProps> = ({
                     height={0}
                     width={200}
                     src={item!.images[0]!.url}
-                    alt={`${item.name} from ${item.seller?.storeName} by ${item.designer?.name} in size ${item.size?.name} for £${item.ourPrice} (RRP £${item.retailPrice})`}
+                    alt={`${item.name} from ${item.seller?.storeName} by ${item.designer?.name} in size ${item.size?.name} for $${item.ourPrice} (RRP $${item.retailPrice})`}
                     priority
                     className={`rounded-md transition-opacity duration-200 ease-in-out 
                     ${item.isHidden ? "blur-xl" : ""}`}
@@ -71,7 +71,7 @@ const LargeSuggestedProductCard: React.FC<LargeSuggestedProductCardProps> = ({
                   loop
                   playing
                   muted
-                  alt={`${item?.name} video from ${item?.seller?.storeName} by ${item?.designer?.name} in size ${item?.size?.name} for £${item?.ourPrice} (RRP £${item?.retailPrice})`}
+                  alt={`${item?.name} video from ${item?.seller?.storeName} by ${item?.designer?.name} in size ${item?.size?.name} for $${item?.ourPrice} (RRP $${item?.retailPrice})`}
                   className={`rounded-md transition-opacity duration-200 ease-in-out ${
                     item?.isHidden ? "blur-xl" : ""
                   }`}
@@ -85,7 +85,7 @@ const LargeSuggestedProductCard: React.FC<LargeSuggestedProductCardProps> = ({
                       height={0}
                       width={200}
                       src={item?.images?.[1]?.url}
-                      alt={`Image of ${item.name} from ${item.seller?.storeName} by ${item.designer?.name} in size ${item.size?.name} for £${item.ourPrice} (RRP £${item.retailPrice})`}
+                      alt={`Image of ${item.name} from ${item.seller?.storeName} by ${item.designer?.name} in size ${item.size?.name} for $${item.ourPrice} (RRP $${item.retailPrice})`}
                       priority
                       className={`rounded-md transition-opacity duration-200 ease-in-out ${
                         item.isHidden ? "blur-xl" : ""
@@ -101,7 +101,7 @@ const LargeSuggestedProductCard: React.FC<LargeSuggestedProductCardProps> = ({
           <div className="absolute flex-col justify-center items-center m-5">
             <div className="flex flex-col justify-center items-center  w-full">
               <Link
-                href={`${params.storeId}/designers/${item?.designer?.id}`}
+                href={`/${params.storeId}/designers/${item?.designer?.id}`}
                 className="text-super-small hover:underline underline text-black bg-white opacity-50"
               >
                 {item.designer?.name.toUpperCase()}
@@ -115,14 +115,14 @@ const LargeSuggestedProductCard: React.FC<LargeSuggestedProductCardProps> = ({
               <div className="text-xs text-black bg-light-background">{item?.size?.name}</div>
               <div className="flex flex-row gap-1 bg-light-background">
                 <h6 onClick={handleProductClick} className="text-xs text-red-500">
-                  £{item.ourPrice}
+                  ${item.ourPrice}
                 </h6>
                 <h6 className="text-xs text-stone-400">RRP</h6>
                 <h6
                   onClick={handleProductClick}
                   className="text-xs text-stone-800 line-through"
                 >
-                  £{item.retailPrice}
+                  ${item.retailPrice}
                 </h6>
               </div>
               <div className="flex flex-row justify-between items-start text-black text-super-small w-full bg-light-background">

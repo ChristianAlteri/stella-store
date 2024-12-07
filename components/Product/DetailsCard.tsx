@@ -51,13 +51,13 @@ const DetailsCard: React.FC<DetailsCardProps> = ({ data, products }) => {
               <div className="flex flex-row w-full justify-between">
                 <div className="flex flex-row items-center justify-start w-full gap-1 mt-4">
                   <h1 className=" text-sm text-red-500 font-bold">
-                    £{data.ourPrice}
+                    ${data.ourPrice}
                   </h1>
                   {data.isOnSale && (
                     <>
                       <h6 className="text-xs">WAS</h6>
                       <h6 className="text-xs line-through">
-                        £{data.retailPrice}
+                        ${data.retailPrice}
                       </h6>
                     </>
                   )}

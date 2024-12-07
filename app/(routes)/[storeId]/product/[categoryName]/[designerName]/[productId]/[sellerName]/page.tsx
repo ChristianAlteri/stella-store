@@ -46,13 +46,13 @@ const IndividualProductPage: React.FC<IndividualProductPageProps> = async ({
 
   //sorted data
   const sortedProductsBasedOnSeller = sortPriceLowToHigh(
-    suggestedProductsBasedOnSeller
+    suggestedProductsBasedOnSeller.slice(0, 7)
   );
   const sortedProductsBasedOnCategory = sortByMostViewed(
-    suggestedProductsBasedOnCategory
+    suggestedProductsBasedOnCategory.slice(0, 7)
   );
   const sortedProductsBasedOnDesigner = sortByMostLiked(
-    suggestedProductsBasedOnDesigner
+    suggestedProductsBasedOnDesigner.slice(0, 7)
   );
 
   return (

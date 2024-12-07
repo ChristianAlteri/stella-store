@@ -24,7 +24,7 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({ products }) => {
       <div className="flex justify-between items-center pt-4 border-t">
         <p className="text-lg font-semibold">Total</p>
         <div className="flex flex-col">
-        <p className="text-lg font-semibold text-red-500">£{totalPrice.toFixed(2)}</p>
+        <p className="text-lg font-semibold text-red-500">${totalPrice.toFixed(2)}</p>
         <p className="text-super-small font-semibold text-muted-foreground">exclusive of shipping costs</p>
         </div>
       </div>

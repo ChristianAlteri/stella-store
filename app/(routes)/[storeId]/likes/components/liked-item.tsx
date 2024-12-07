@@ -69,7 +69,7 @@ const LikedItem: React.FC<LikedItemProps> = ({
                   height={0}
                   width={100}
                   src={data!.images[0]!.url}
-                  alt={`${data.name} from ${data.seller?.storeName} by ${data.designer?.name} in size ${data.size?.name} for £${data.ourPrice} (RRP £${data.retailPrice})`}
+                  alt={`${data.name} from ${data.seller?.storeName} by ${data.designer?.name} in size ${data.size?.name} for $${data.ourPrice} (RRP $${data.retailPrice})`}
                   priority
                   className={`rounded-md transition-opacity duration-200 ease-in-out 
                       ${data.isHidden ? "blur-xl" : ""}`}
@@ -118,7 +118,7 @@ const LikedItem: React.FC<LikedItemProps> = ({
                   <p className="pl-4 md:text-xs text-super-small text-stone-500">Size: {data.size.name.toUpperCase()}</p>
                   <p className="p-2 md:text-xs text-super-small text-stone-900 text-red-500">
                     {" "}
-                    £{data.ourPrice}{" "}
+                    ${data.ourPrice}{" "}
                   </p>
                 </div>
               </div>

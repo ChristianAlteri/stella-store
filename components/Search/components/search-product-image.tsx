@@ -42,7 +42,7 @@ const SearchProductImage: React.FC<SearchProductImageProps> = ({ product }) => {
             {product.seller.storeName.toUpperCase()}
           </Link>
           <span className="text-red-500 font-semibold text-super-small md:text-xs">
-            £{product.ourPrice}
+            ${product.ourPrice}
           </span>
         </div>
       </CardHeader>
@@ -141,7 +141,7 @@ export default SearchProductImage;
 //               loop
 //               playing
 //               muted
-//               alt={`${product.name} video from ${product.seller?.storeName} by ${product.designer?.name} in size ${product.size?.name} for £${product.ourPrice} (RRP £${product.retailPrice})`}
+//               alt={`${product.name} video from ${product.seller?.storeName} by ${product.designer?.name} in size ${product.size?.name} for $${product.ourPrice} (RRP $${product.retailPrice})`}
 //               className={`flex h-full fle-col items-center justify-center rounded-md transition-opacity duration-200 ease-in-out ${
 //                 product.isHidden ? "blur-xl" : ""
 //               }`}
@@ -155,7 +155,7 @@ export default SearchProductImage;
 //                   height={0}
 //                   width={80}
 //                   src={product?.images?.[0]?.url}
-//                   alt={`Image of ${product.name} from ${product.seller?.storeName} by ${product.designer?.name} in size ${product.size?.name} for £${product.ourPrice} (RRP £${product.retailPrice})`}
+//                   alt={`Image of ${product.name} from ${product.seller?.storeName} by ${product.designer?.name} in size ${product.size?.name} for $${product.ourPrice} (RRP $${product.retailPrice})`}
 //                   priority
 //                   className={`rounded-md transition-opacity duration-200 ease-in-out ${
 //                     product.isHidden ? "blur-xl" : ""
@@ -178,7 +178,7 @@ export default SearchProductImage;
 //               {product.designer?.name.toUpperCase()}
 //             </Link>
 //             <p className="justify-center text-center items-center text-super-small text-red-500 w-full">
-//               £{product.ourPrice}
+//               ${product.ourPrice}
 //             </p>
 //           </div>
 //         </div>

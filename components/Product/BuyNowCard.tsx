@@ -46,10 +46,10 @@ const BuyNowCard: React.FC<BuyNowCardProps> = ({ data }) => {
     <div className="flex flex-col gap-3 w-full mt-3">
       <div className="flex flex-row gap-1 justify-start items-start text-start w-full">
         {/* <h1 className=" text-sm text-red-500 font-bold">
-          £{data.ourPrice}
+          ${data.ourPrice}
         </h1>
         <h1 className=" text-sm">RRP</h1>
-        <h1 className=" text-sm line-through">£{data.retailPrice}</h1> */}
+        <h1 className=" text-sm line-through">${data.retailPrice}</h1> */}
         {/* {data?.likes === 1 ? (
           <h1 className="flex text-super-small">{data?.likes} person has liked this</h1>
         ) : (

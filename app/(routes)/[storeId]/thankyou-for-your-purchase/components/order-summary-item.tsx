@@ -36,7 +36,7 @@ const OrderSummaryItem: React.FC<OrderSummaryItemProps> = ({ data }) => {
         ) : (
           <Image
             src={data?.images[0].url}
-            alt={`${data?.name} from ${data?.seller?.storeName} by ${data?.designer?.name} in size ${data?.size?.name} for £${data?.ourPrice} (RRP £${data?.retailPrice})`}
+            alt={`${data?.name} from ${data?.seller?.storeName} by ${data?.designer?.name} in size ${data?.size?.name} for $${data?.ourPrice} (RRP $${data?.retailPrice})`}
             layout="fill"
             objectFit="cover"
             className={`rounded-md ${data?.isHidden ? "blur-xl" : ""}`}
@@ -57,7 +57,7 @@ const OrderSummaryItem: React.FC<OrderSummaryItemProps> = ({ data }) => {
         >
           {data?.seller.storeName.toUpperCase()}
         </Link>
-        <p className="text-sm font-semibold text-red-500">£{data?.ourPrice}</p>
+        <p className="text-sm font-semibold text-red-500">${data?.ourPrice}</p>
         <p className="text-xs text-gray-500">Size: {data?.size.name}</p>
       </div>
     </div>
@@ -118,7 +118,7 @@ export default OrderSummaryItem;
 //                   height={0}
 //                   width={100}
 //                   src={data!.images[0]!.url}
-//                   alt={`${data.name} from ${data.seller?.storeName} by ${data.designer?.name} in size ${data.size?.name} for £${data.ourPrice} (RRP £${data.retailPrice})`}
+//                   alt={`${data.name} from ${data.seller?.storeName} by ${data.designer?.name} in size ${data.size?.name} for $${data.ourPrice} (RRP $${data.retailPrice})`}
 //                   priority
 //                   className={`rounded-md transition-opacity duration-200 ease-in-out 
 //                       ${data.isHidden ? "blur-xl" : ""}`}
@@ -144,7 +144,7 @@ export default OrderSummaryItem;
 //             </Link>
 //             <p className="ml-4 md:text-xs text-super-small hover:underline hover:cursor-pointer text-red-500">
 //               {" "}
-//               £{data.ourPrice}{" "}
+//               ${data.ourPrice}{" "}
 //             </p>
 //             <p className="ml-4 md:text-xs text-super-small hover:underline hover:cursor-pointer">
 //               {data.size.name.toUpperCase()}

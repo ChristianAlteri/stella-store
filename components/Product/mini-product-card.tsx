@@ -142,7 +142,7 @@ const MiniProductCard: React.FC<MiniProductCardProps> = ({
                   loop={true}
                   playing={true}
                   muted={true}
-                  alt={`${currentProduct.name} from ${currentProduct.seller?.storeName} by ${currentProduct.designer?.name} in size ${currentProduct.size?.name} for £${currentProduct.ourPrice} (RRP £${currentProduct.retailPrice})`}
+                  alt={`${currentProduct.name} from ${currentProduct.seller?.storeName} by ${currentProduct.designer?.name} in size ${currentProduct.size?.name} for $${currentProduct.ourPrice} (RRP $${currentProduct.retailPrice})`}
                   className={`rounded-md transition-opacity duration-200 ease-in-out ${
                     currentProduct.isHidden ? "blur-xl" : ""
                   }`}
@@ -156,7 +156,7 @@ const MiniProductCard: React.FC<MiniProductCardProps> = ({
                     width={120}
                     loading="lazy"
                     src={currentProduct!.images[0]!.url}
-                    alt={`${currentProduct.name} from ${currentProduct.seller?.storeName} by ${currentProduct.designer?.name} in size ${currentProduct.size?.name} for £${currentProduct.ourPrice} (RRP £${currentProduct.retailPrice})`}
+                    alt={`${currentProduct.name} from ${currentProduct.seller?.storeName} by ${currentProduct.designer?.name} in size ${currentProduct.size?.name} for $${currentProduct.ourPrice} (RRP $${currentProduct.retailPrice})`}
                     className={`rounded-md transition-opacity duration-200 ease-in-out 
                       ${currentProduct.isHidden ? "blur-xl" : ""}`}
                   />
@@ -185,11 +185,11 @@ const MiniProductCard: React.FC<MiniProductCardProps> = ({
                   </div>
                   <div className="flex flex-row gap-1 bg-stone-200 bg-opacity-60">
                     <h6 className="text-xs text-red-500">
-                      £{currentProduct.ourPrice}
+                      ${currentProduct.ourPrice}
                     </h6>
                     <h6 className="text-xs text-stone-400">RRP</h6>
                     <h6 className="text-xs text-stone-800 line-through">
-                      £{currentProduct.retailPrice}
+                      ${currentProduct.retailPrice}
                     </h6>
                   </div>
                 </div>

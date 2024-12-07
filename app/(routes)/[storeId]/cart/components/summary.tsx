@@ -53,15 +53,6 @@ const Summary = () => {
     return total + Number(item.ourPrice);
   }, 0);
 
-  // const onCheckout = async () => {
-  //   const response = await axios.post(
-  //     `${process.env.NEXT_PUBLIC_API_URL}/checkout`,
-  //     {
-  //       productIds: items.map((item) => item.id),
-  //     }
-  //   );
-  //   window.location = response.data.url;
-  // };
 
   const onCheckout = async () => {
     try {
@@ -92,7 +83,7 @@ const Summary = () => {
         <div className="mt-3 space-y-4">
           <div className="flex items-center justify-between border-t border-gray-200 pt-4">
             <div className="text-xs text-stone-900">Order total</div>
-            <h1 className="text-xs text-stone-900"> £{totalPrice}</h1>
+            <h1 className="text-xs text-stone-900"> ${totalPrice}</h1>
           </div>
           <div className="flex items-center justify-between border-t border-gray-200 pt-4">
             <h1 className="text-super-small text-stone-400 w-full justify-center items-center">

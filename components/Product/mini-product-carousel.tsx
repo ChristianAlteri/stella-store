@@ -50,7 +50,7 @@ const MiniProductCarousel: React.FC<MiniProductCarouselProps> = ({ data, miniPro
                   loop={true}
                   playing={true}
                   muted={true}
-                  alt={`${product.name} from ${product.seller?.storeName} by ${product.designer?.name} in size ${product.size?.name} for £${product.ourPrice} (RRP £${product.retailPrice})`}
+                  alt={`${product.name} from ${product.seller?.storeName} by ${product.designer?.name} in size ${product.size?.name} for $${product.ourPrice} (RRP $${product.retailPrice})`}
                   className={`rounded-md transition-opacity duration-200 ease-in-out ${
                     product.isHidden ? "blur-xl" : ""
                   }`}
@@ -63,7 +63,7 @@ const MiniProductCarousel: React.FC<MiniProductCarouselProps> = ({ data, miniPro
                     height={0}
                     width={120}
                     src={product!.images[0]!.url}
-                    alt={`${product.name} from ${product.seller?.storeName} by ${product.designer?.name} in size ${product.size?.name} for £${product.ourPrice} (RRP £${product.retailPrice})`}
+                    alt={`${product.name} from ${product.seller?.storeName} by ${product.designer?.name} in size ${product.size?.name} for $${product.ourPrice} (RRP $${product.retailPrice})`}
                     priority
                     className={`rounded-md transition-opacity duration-200 ease-in-out 
                       ${product.isHidden ? "blur-xl" : ""}`}
@@ -81,9 +81,9 @@ const MiniProductCarousel: React.FC<MiniProductCarouselProps> = ({ data, miniPro
                     </h3>
                     <div className="text-xs text-white bg-stone-200 bg-opacity-60">{product?.size?.name}</div>
                     <div className="flex flex-row gap-1 bg-stone-200 bg-opacity-60">
-                      <h6 className="text-xs text-red-500">£{product.ourPrice}</h6>
+                      <h6 className="text-xs text-red-500">${product.ourPrice}</h6>
                       <h6 className="text-xs text-stone-400">RRP</h6>
-                      <h6 className="text-xs text-stone-800 line-through">£{product.retailPrice}</h6>
+                      <h6 className="text-xs text-stone-800 line-through">${product.retailPrice}</h6>
                     </div>
                   </div>
                 </div>

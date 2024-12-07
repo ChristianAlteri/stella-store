@@ -101,7 +101,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
                 loop={true}
                 playing={true}
                 muted={true}
-                alt={`${item.name} from ${item.seller?.storeName} by ${item.designer?.name} in size ${item.size?.name} for £${item.ourPrice} (RRP £${item.retailPrice})`}
+                alt={`${item.name} from ${item.seller?.storeName} by ${item.designer?.name} in size ${item.size?.name} for $${item.ourPrice} (RRP $${item.retailPrice})`}
                 className={`rounded-md transition-opacity duration-200 ease-in-out ${
                   item.isHidden ? "blur-xl" : ""
                 }`}
@@ -115,7 +115,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
                     width={1080}
                     height={1350}
                     src={item!.images[0]!.url}
-                    alt={`${item.name} from ${item.seller?.storeName} by ${item.designer?.name} in size ${item.size?.name} for £${item.ourPrice} (RRP £${item.retailPrice})`}
+                    alt={`${item.name} from ${item.seller?.storeName} by ${item.designer?.name} in size ${item.size?.name} for $${item.ourPrice} (RRP $${item.retailPrice})`}
                     priority
                     className={`rounded-md transition-opacity duration-200 ease-in-out 
                     ${item.isHidden ? "blur-xl" : ""}`}
@@ -129,7 +129,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
                     width={1080}
                     height={1350}
                     src={item!.images[0]!.url}
-                    alt={`${item.name} from ${item.seller?.storeName} by ${item.designer?.name} in size ${item.size?.name} for £${item.ourPrice} (RRP £${item.retailPrice})`}
+                    alt={`${item.name} from ${item.seller?.storeName} by ${item.designer?.name} in size ${item.size?.name} for $${item.ourPrice} (RRP $${item.retailPrice})`}
                     priority
                     className={`rounded-md transition-opacity duration-200 ease-in-out 
                     ${item.isHidden ? "blur-xl" : ""}`}
@@ -153,7 +153,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
                   loop
                   playing
                   muted
-                  alt={`${item.name} video from ${item.seller?.storeName} by ${item.designer?.name} in size ${item.size?.name} for £${item.ourPrice} (RRP £${item.retailPrice})`}
+                  alt={`${item.name} video from ${item.seller?.storeName} by ${item.designer?.name} in size ${item.size?.name} for $${item.ourPrice} (RRP $${item.retailPrice})`}
                   className={`rounded-md transition-opacity duration-200 ease-in-out ${
                     item.isHidden ? "blur-xl" : ""
                   }`}
@@ -167,7 +167,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
                       width={1080}
                       height={1350}
                       src={item?.images?.[1]?.url}
-                      alt={`Image of ${item.name} from ${item.seller?.storeName} by ${item.designer?.name} in size ${item.size?.name} for £${item.ourPrice} (RRP £${item.retailPrice})`}
+                      alt={`Image of ${item.name} from ${item.seller?.storeName} by ${item.designer?.name} in size ${item.size?.name} for $${item.ourPrice} (RRP $${item.retailPrice})`}
                       priority
                       className={`rounded-md transition-opacity duration-200 ease-in-out ${
                         item.isHidden ? "blur-xl" : ""
@@ -182,7 +182,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
                       width={1080}
                       height={1350}
                       src={item?.images?.[1]?.url}
-                      alt={`Image of ${item.name} from ${item.seller?.storeName} by ${item.designer?.name} in size ${item.size?.name} for £${item.ourPrice} (RRP £${item.retailPrice})`}
+                      alt={`Image of ${item.name} from ${item.seller?.storeName} by ${item.designer?.name} in size ${item.size?.name} for $${item.ourPrice} (RRP $${item.retailPrice})`}
                       priority
                       className={`rounded-md transition-opacity duration-200 ease-in-out ${
                         item.isHidden ? "blur-xl" : ""
@@ -267,7 +267,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
             </div>
             <div className="flex flex-row gap-1 justify-end w-full ">
               <h6 onClick={handleProductClick} className="text-xs text-red-500">
-                £{item.ourPrice}
+                ${item.ourPrice}
               </h6>
               {item.isOnSale && (
                 <>
@@ -276,7 +276,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
                     onClick={handleProductClick}
                     className="text-xs line-through"
                   >
-                    £{item.retailPrice}
+                    ${item.retailPrice}
                   </h6>
                 </>
               )}
@@ -326,14 +326,14 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
                 {item.seller?.storeName.toUpperCase()}
               </Link>
             </div>
-            <h6 className="text-xs text-red-500">£{item.ourPrice}</h6>
+            <h6 className="text-xs text-red-500">${item.ourPrice}</h6>
             {item.isOnSale && (
               <>
                 <h6
                   onClick={handleProductClick}
                   className="text-xs line-through"
                 >
-                  £{item.retailPrice}
+                  ${item.retailPrice}
                 </h6>
               </>
             )}

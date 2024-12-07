@@ -57,7 +57,7 @@ const CartItem: React.FC<CartItemProps> = ({ data }) => {
                   height={0}
                   width={100}
                   src={data!.images[0]!.url}
-                  alt={`${data.name} from ${data.seller?.storeName} by ${data.designer?.name} in size ${data.size?.name} for £${data.ourPrice} (RRP £${data.retailPrice})`}
+                  alt={`${data.name} from ${data.seller?.storeName} by ${data.designer?.name} in size ${data.size?.name} for $${data.ourPrice} (RRP $${data.retailPrice})`}
                   priority
                   className={`rounded-md transition-opacity duration-200 ease-in-out 
                       ${data.isHidden ? "blur-xl" : ""}`}
@@ -89,7 +89,7 @@ const CartItem: React.FC<CartItemProps> = ({ data }) => {
               </div>
               <p className="ml-4 pl-4 md:text-sm text-super-small text-red-500">
                 {" "}
-                £{data.ourPrice}{" "}
+                ${data.ourPrice}{" "}
               </p>
             </div>
             <div className="flex flex-row">
