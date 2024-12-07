@@ -71,7 +71,7 @@ const CategoryNamePage: React.FC<CategoryNamePageProps> = async ({
     storeIdFromOnlineStore: `${process.env.NEXT_PUBLIC_STORE_ID}`,
   });
   const categoryData = await getSingleCategory(params.categoryId);
-  const featuredProducts = await getProducts({ isFeatured: true });
+  const featuredProducts = await getProducts({ all: true, isArchived: false, isOnline: true, isFeatured: true });
 
   const sizes = await getSizes();
   const colors = await getColors();

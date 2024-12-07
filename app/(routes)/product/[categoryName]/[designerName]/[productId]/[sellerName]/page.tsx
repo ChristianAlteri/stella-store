@@ -42,7 +42,7 @@ const IndividualProductPage: React.FC<IndividualProductPageProps> = async ({
     isArchived: false,
   });
   // const mostViewedProducts = await getMostViewed({all: true});
-  const featuredProducts = await getProducts({ isFeatured: true });
+  const featuredProducts = await getProducts({ all: true, isArchived: false, isOnline: true, isFeatured: true });
 
   //sorted data
   const sortedProductsBasedOnSeller = sortPriceLowToHigh(

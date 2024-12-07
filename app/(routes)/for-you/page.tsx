@@ -46,6 +46,7 @@ interface ForYouPageProps {
 
 const ForYouPage: React.FC<ForYouPageProps> = async ({ searchParams, params }) => {
   const featuredProducts = await getProducts({
+    all: true, isArchived: false, isOnline: true, isFeatured: true,
     categoryId: searchParams.categoryId,
     sort: searchParams.sort,
     sizeId: searchParams.sizeId,
@@ -57,10 +58,8 @@ const ForYouPage: React.FC<ForYouPageProps> = async ({ searchParams, params }) =
     isOnSale: searchParams.isOnSale,
     isCharity: searchParams.isCharity,
     isHidden: searchParams.isHidden,
-    isFeatured: true,
     designerId: searchParams.designerId,
     sellerId: searchParams.sellerId,
-    storeIdFromOnlineStore: `${process.env.NEXT_PUBLIC_STORE_ID}`,
   });
 
   const sizes = await getSizes();

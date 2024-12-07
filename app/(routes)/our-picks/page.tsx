@@ -43,6 +43,7 @@ interface OurPicksPageProps {
 
 const OurPicksPage: React.FC<OurPicksPageProps> = async ({ searchParams, params }) => {
   const featuredProducts = await getProducts({
+    all: true, isArchived: false, isOnline: true,
     categoryId: searchParams.categoryId,
     sort: searchParams.sort,
     sizeId: searchParams.sizeId,
@@ -57,7 +58,6 @@ const OurPicksPage: React.FC<OurPicksPageProps> = async ({ searchParams, params 
     isFeatured: true,
     designerId: searchParams.designerId,
     sellerId: searchParams.sellerId,
-    storeIdFromOnlineStore: `${process.env.NEXT_PUBLIC_STORE_ID}`,
   });
   // const featuredProducts = await getProducts({ isFeatured: true });
 

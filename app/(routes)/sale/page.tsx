@@ -43,6 +43,7 @@ interface SalePageProps {
 
 const SalePage: React.FC<SalePageProps> = async ({ searchParams, params }) => {
   const onSaleItems = await getProducts({
+    all: true, isArchived: false, isOnline: true,
     categoryId: searchParams.categoryId,
     sort: searchParams.sort,
     sizeId: searchParams.sizeId,
@@ -57,11 +58,8 @@ const SalePage: React.FC<SalePageProps> = async ({ searchParams, params }) => {
     designerId: searchParams.designerId,
     sellerId: searchParams.sellerId,
     isOnSale: true,
-    all: true,
     minPrice: searchParams.minPrice,
     maxPrice: searchParams.maxPrice,
-    storeIdFromOnlineStore: `${process.env.NEXT_PUBLIC_STORE_ID}`,
-    isOnline: true,
   });
   // const featuredProducts = await getProducts({ isFeatured: true });
 

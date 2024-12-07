@@ -10,7 +10,7 @@ interface CartPageServerProps {
 
 const CartPageServer: React.FC<CartPageServerProps> = async ({ params }) => {
   const products =
-    (await getProducts({ all: true, isArchived: false, isOnline: true, storeIdFromOnlineStore: `${process.env.NEXT_PUBLIC_STORE_ID}` })) || [];
+    (await getProducts({ all: true, isArchived: false, isOnline: true })) || [];
   const onlySaleItems = products.filter((product) => product.isOnSale).slice(0, 7);
 
   return (

@@ -54,6 +54,7 @@ const SellerNamePage: React.FC<SellerNamePageProps> = async ({
   searchParams,
 }) => {
   const productData = await getProducts({
+    all: true, isArchived: false, isOnline: true,
     sellerId: params.sellerId,
     sort: searchParams.sort,
     sizeId: searchParams.sizeId,
@@ -65,14 +66,11 @@ const SellerNamePage: React.FC<SellerNamePageProps> = async ({
     isOnSale: searchParams.isOnSale,
     isCharity: searchParams.isCharity,
     isHidden: searchParams.isHidden,
-    isOnline: true,
     isFeatured: searchParams.isFeatured,
     designerId: searchParams.designerId,
     categoryId: searchParams.categoryId,
     minPrice: searchParams.minPrice,
     maxPrice: searchParams.maxPrice,
-    isArchived: searchParams.isArchived,
-    storeIdFromOnlineStore: `${process.env.NEXT_PUBLIC_STORE_ID}`,
   });
   // const archivedProductData = await getProducts({
   //   sellerId: params.sellerId,

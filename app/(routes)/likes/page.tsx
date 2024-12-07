@@ -33,10 +33,8 @@ const CartPageServer: React.FC<TopLikesPageProps> = async ({
 }) => {
   const products =
     (await getProducts({
+      all: true, isArchived: false, isOnline: true,
       ...searchParams,
-      storeIdFromOnlineStore: `${process.env.NEXT_PUBLIC_STORE_ID}`,
-      isOnline: true,
-      all: true,
     })) || [];
 
   const topLikedProducts = products

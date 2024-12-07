@@ -69,9 +69,9 @@ const Homepage = async ({
     BillboardMobile,
   ] = await Promise.all([
     getProducts({
-      storeIdFromOnlineStore: `${process.env.NEXT_PUBLIC_STORE_ID}`,
       all: true,
       isOnline: true,
+      isArchived: false,
       categoryId: searchParams.categoryId,
       sort: searchParams.sort,
       sizeId: searchParams.sizeId,

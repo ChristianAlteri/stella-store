@@ -49,6 +49,7 @@ const DesignerNamePage: React.FC<DesignerNamePageProps> = async ({
   searchParams,
 }) => {
   const productData = await getProducts({
+    all: true, isArchived: false, isOnline: true,
     designerId: params.designerId,
     sort: searchParams.sort,
     sizeId: searchParams.sizeId,
@@ -60,16 +61,14 @@ const DesignerNamePage: React.FC<DesignerNamePageProps> = async ({
     isOnSale: searchParams.isOnSale,
     isCharity: searchParams.isCharity,
     isHidden: searchParams.isHidden,
-    isOnline: true,
     isFeatured: searchParams.isFeatured,
     categoryId: searchParams.categoryId,
     sellerId: searchParams.sellerId,
     minPrice: searchParams.minPrice,
     maxPrice: searchParams.maxPrice,
-    storeIdFromOnlineStore: `${process.env.NEXT_PUBLIC_STORE_ID}`,
   });
   const designerData = await getSingleDesigner(params.designerId);
-  const featuredProducts = await getProducts({ isFeatured: true });
+  const featuredProducts = await getProducts({ all: true, isArchived: false, isOnline: true, isFeatured: true });
 
   const sizes = await getSizes();
   const colors = await getColors();

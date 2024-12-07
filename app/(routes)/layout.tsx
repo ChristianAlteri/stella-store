@@ -62,7 +62,7 @@ export default async function SiteLayout({
     getConditions(),
     getGenders(`${process.env.NEXT_PUBLIC_STORE_ID}`),
     getSubcategories(),
-    getProducts({ all: true, isOnline: true, storeIdFromOnlineStore: `${process.env.NEXT_PUBLIC_STORE_ID}` }),
+    getProducts({ all: true, isOnline: true, isArchived: false }),
     getBillboardByName("HomePageFullScreen", `${process.env.NEXT_PUBLIC_STORE_ID}`),
   ]);
   console.debug("STORE FROM ROOT", store);

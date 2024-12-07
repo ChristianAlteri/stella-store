@@ -4,6 +4,7 @@ import qs from "query-string"
 import { Product } from "@/types";
 
 const URL=`${process.env.NEXT_PUBLIC_API_URL}/products`;
+const storeId = `${process.env.NEXT_PUBLIC_STORE_ID}`;
 
 interface Query {
   categoryId?: string;
@@ -34,6 +35,9 @@ const getProducts = async (query: Query): Promise<Product[]> => {
       url: URL,
       query: { 
         all: query.all,
+        storeIdFromOnlineStore: storeId,
+        isOnline: query.isOnline ? 'true' : 'false',
+        isArchived: query.isArchived ? 'true' : 'false',
         sellerId: query.sellerId,
         designerId: query.designerId,
         categoryId: query.categoryId,
@@ -48,12 +52,9 @@ const getProducts = async (query: Query): Promise<Product[]> => {
         isOnSale: query.isOnSale,
         isCharity: query.isCharity,
         isHidden: query.isHidden,
-        isOnline: query.isOnline ? 'true' : 'false',
         sort: query.sort,
         minPrice: query.minPrice,
         maxPrice: query.maxPrice,
-        isArchived: query.isArchived ? 'true' : 'false',
-        storeIdFromOnlineStore: query.storeIdFromOnlineStore
       },
     });
     const response = await axios.get(url);
