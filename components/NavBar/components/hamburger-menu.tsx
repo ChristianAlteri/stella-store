@@ -12,48 +12,56 @@ import IconRedirectButton from "@/components/ui/icon-redirect-button";
 import { Category, Designer, Product, Seller, Store } from "@/types";
 import { Drawer } from "@material-tailwind/react";
 import getStore from "@/actions/get-store";
+import getDesigners from "@/actions/get-designers";
+import getCategories from "@/actions/get-categories";
+import getSellers from "@/actions/get-sellers";
+import { Skeleton } from "@/components/ui/skeleton";
 
-interface HamburgerMenuProps {
-  designers?: Designer[];
-  categories?: Category[];
-  sellers?: Seller[];
-  topTen?: Product[];
-}
+interface HamburgerMenuProps {}
 
-const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
-  designers,
-  categories,
-  sellers,
-  topTen,
-}) => {
+const HamburgerMenu: React.FC<HamburgerMenuProps> = ({}) => {
   const params = useParams();
   const [open, setOpen] = useState(false);
   const [storeData, setStoreData] = useState<Store | null>(null);
+  const [storeDesigners, setStoreDesigners] = useState<Designer[] | null>(null);
+  const [storeCategories, setStoreCategories] = useState<Category[] | null>(null);
+  const [isLoadingDesigners, setIsLoadingDesigners] = useState(true);
+  const [isLoadingCategories, setIsLoadingCategories] = useState(true);
+  // const [storeSellers, setStoreSellers] = useState<Designer[] | null>(null);
   const pathname = usePathname();
   const { isSellerSelected, isDesignerSelected, isCategorySelected } =
     useParamsUtil();
   const openDrawer = () => setOpen(true);
   const closeDrawer = () => setOpen(false);
 
-  const storeId = Array.isArray(process.env.NEXT_PUBLIC_API_URL)
-    ? process.env.NEXT_PUBLIC_API_URL[0]
-    : process.env.NEXT_PUBLIC_API_URL;
 
   useEffect(() => {
     const fetchStoreData = async () => {
       try {
-        const data = await getStore(storeId);
-        setStoreData(data);
-        console.log("Store data fetched:", data);
+        const storeData = await getStore(`${process.env.NEXT_PUBLIC_STORE_ID}`);
+        setStoreData(storeData);
+
+        const fetchStoreDesigners = await getDesigners(
+          `${process.env.NEXT_PUBLIC_STORE_ID}`
+        );
+        setStoreDesigners(sortedItems(fetchStoreDesigners, "name"));
+        setIsLoadingDesigners(false);
+
+        const fetchStoreCategories = await getCategories(
+          `${process.env.NEXT_PUBLIC_STORE_ID}`
+        );
+        setStoreCategories(sortedItems(fetchStoreCategories, "name"));
+        setIsLoadingCategories(false);
       } catch (error) {
         console.error("Failed to fetch store data:", error);
+        setIsLoadingDesigners(false);
+        setIsLoadingCategories(false);
       }
     };
-
-    if (storeId) {
+    if (process.env.NEXT_PUBLIC_STORE_ID) {
       fetchStoreData();
     }
-  }, [storeId]);
+  }, []);
 
   useEffect(() => {
     closeDrawer();
@@ -63,42 +71,61 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
     setOpen(false);
   }, [pathname]);
 
-  const sortedItems = (items: any[], key: string) =>
-    items
-      ?.filter((item) =>
-        item.products?.some((product: Product) => product.isOnline)
-      )
-      .sort((a, b) => a[key].localeCompare(b[key]));
+  // const sortedItems = (items: any[], key: string) => {
+  //   // Filter items based on whether they have at least one online product
+  //   const filteredItems = items.filter(item =>
+  //     item.products?.some((product: Product) => product.isOnline)
+  //   );
+  
+  //   // Sort the filtered items by the specified key
+  //   return filteredItems.sort((a, b) => a[key].localeCompare(b[key]));
+  // };
 
-  const sortedSellers = sortedItems(sellers || [], "storeName");
-  const sortedDesigners = sortedItems(designers || [], "name");
-  const sortedCategories = sortedItems(categories || [], "name");
+  const sortedItems = (items: any[], key: string) => {
+    // Filter items based on whether they have at least one online product
+    const filteredItems = items.filter(item =>
+      item.products?.some((product: Product) => product.isOnline)
+    );
+  
+    // Sort the filtered items by the specified key
+    return filteredItems.sort((a, b) => a[key].localeCompare(b[key]));
+  };
 
   const renderLinks = (
     items: any[],
-    type: "sellers" | "designers" | "categories"
+    type: "designers" | "categories",
+    isLoading: boolean
   ) => (
     <div className="flex flex-col items-center border-r w-full p-4">
       <p className="font-bold text-sm bg-white">{type.toUpperCase()}</p>
       <div className="flex flex-col items-center row-span-1 h-full overflow-y-auto bg-white">
-        {items?.map((item) => (
-          <Link
-            href={`/${process.env.NEXT_PUBLIC_STORE_ID}/${type}/${item.id}`}
-            key={item.id}
-            className={cn(
-              "flex justify-center items-center text-center text-xs font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer",
-              {
-                sellers: isSellerSelected,
-                designers: isDesignerSelected,
-                categories: isCategorySelected,
-              }[type](item.id)
-                ? "rounded-md w-full flex text-black underline"
-                : "text-light-font"
-            )}
-          >
-            {item[type === "sellers" ? "storeName" : "name"].toUpperCase()}
-          </Link>
-        ))}
+        {isLoading
+          ? Array.from({ length: 6 }).map((_, idx) => (
+            <>
+              {/* <Skeleton
+                key={idx}
+                className="h-2 w-full"
+              /> */}
+              <div className="text-muted-foreground text-super-small">Loading...</div>
+            </>
+            ))
+          : items.map((item) => (
+              <Link
+                href={`/${type}/${item.id}`}
+                key={item.id}
+                className={cn(
+                  "flex justify-center items-center text-center text-xs font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer",
+                  {
+                    designers: isDesignerSelected,
+                    categories: isCategorySelected,
+                  }[type](item.id)
+                    ? "rounded-md w-full flex text-black underline"
+                    : "text-light-font"
+                )}
+              >
+                {item.name.toUpperCase()}
+              </Link>
+            ))}
       </div>
     </div>
   );
@@ -133,35 +160,15 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
           </div>
 
           <div className="row-span-4 p-4 overflow-y-auto">
-            <div className="grid grid-cols-3">
-              {renderLinks(sortedSellers, "sellers")}
-              {renderLinks(sortedDesigners, "designers")}
-              {renderLinks(sortedCategories, "categories")}
+            <div className="grid grid-cols-2">
+              {/* {renderLinks(storeSellers || [], "sellers")} */}
+              {renderLinks(storeDesigners || [], "designers", isLoadingDesigners)}
+              {renderLinks(storeCategories || [], "categories", isLoadingCategories)}
             </div>
           </div>
 
           <div className="row-span-3 bg-stone-200 flex items-center justify-center flex-col">
             <div className="md:hidden flex gap-2 w-full h-full flex-row justify-center items-end mb-2">
-              {/* TODO: add socials */}
-              {/* {storeData?.instagramHandle && (
-                <IconRedirectButton
-                  route={`https://instagram.com/${storeData.instagramHandle.replace(
-                    "@",
-                    ""
-                  )}`}
-                  icon="INSTAGRAM"
-                />
-              )}
-              {storeData?.tiktokHandle && (
-                <IconRedirectButton
-                  route={`https://tiktok.com/@${storeData.tiktokHandle.replace(
-                    "@",
-                    ""
-                  )}`}
-                  icon="TIKTOK"
-                />
-              )} */}
-              {/* <IconRedirectButton route="/about-us" icon="ABOUT" /> */}
               <IconRedirectButton route="/for-you" icon="REGISTER" />
               <IconRedirectButton
                 route={storeData?.email ? `mailto:${storeData.email}` : ""}

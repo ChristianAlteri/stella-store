@@ -30,7 +30,7 @@ const LikedItem: React.FC<LikedItemProps> = ({
 
   const handleProductClick = () => {
     router.push(
-      `/${process.env.NEXT_PUBLIC_STORE_ID}/product/${data?.category?.id}/${data?.designer?.name}/${data?.id}/${data?.seller?.instagramHandle}`
+      `/product/${data?.category?.id}/${data?.designer?.name}/${data?.id}/${data?.seller?.instagramHandle}`
     );
   };
 
@@ -93,10 +93,10 @@ const LikedItem: React.FC<LikedItemProps> = ({
                 >
                   {data.name.toUpperCase()}
                 </p> */}
-                <Link href={`/${process.env.NEXT_PUBLIC_STORE_ID}/designers/${data.designer.id}`} className="ml-4 md:text-sm text-xs text-stone-900 hover:underline hover:cursor-pointer">
+                <Link href={`/designers/${data.designer.id}`} className="ml-4 md:text-sm text-xs text-stone-900 hover:underline hover:cursor-pointer">
                   {data.designer.name.toUpperCase()}
                 </Link>
-                <Link href={`/${process.env.NEXT_PUBLIC_STORE_ID}/sellers/${data.seller.id}`} className="ml-4 md:text-xs text-super-small mt-2 text-stone-900 hover:underline hover:cursor-pointer">
+                <Link href={`/sellers/${data.seller.id}`} className="ml-4 md:text-xs text-super-small mt-2 text-stone-900 hover:underline hover:cursor-pointer">
                   {data.seller.storeName.toUpperCase()}
                 </Link>
               </div>

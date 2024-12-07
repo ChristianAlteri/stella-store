@@ -70,9 +70,9 @@ const TopLikesPage: React.FC<TopLikesPageProps> = async ({ searchParams, params 
   const sizes = await getSizes();
   const colors = await getColors();
   const conditions = await getConditions();
-  const designers = await getDesigners();
-  const sellers = await getSellers();
-  const categories = await getCategories();
+  const designers = await getDesigners(`${process.env.NEXT_PUBLIC_STORE_ID}`);
+  const sellers = await getSellers(`${process.env.NEXT_PUBLIC_STORE_ID}`);
+  const categories = await getCategories(`${process.env.NEXT_PUBLIC_STORE_ID}`);
   const materials = await getMaterials();
   const genders = await getGenders(`${process.env.NEXT_PUBLIC_STORE_ID}`);
   const subcategories = await getSubcategories();
@@ -112,7 +112,6 @@ const TopLikesPage: React.FC<TopLikesPageProps> = async ({ searchParams, params 
             <div className="fixed bottom-0 p-9 mb-4 w-1/3 z-50">
               <FullscreenProductFiltersFooter 
                 productData={topLikedProducts}
-                genders={genders}
               />
             </div>
         </div>

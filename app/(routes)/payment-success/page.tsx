@@ -69,11 +69,11 @@ const SuccessPage: React.FC<SuccessPageProps> = ({}) => {
             toastError("Payment verification failed.");
           }
           // Sending orderId to thankyou-for-your-purchase page
-          router.push(`/${process.env.NEXT_PUBLIC_STORE_ID}/thankyou-for-your-purchase?orderId=${data.orderId}`);
+          router.push(`/thankyou-for-your-purchase?orderId=${data.orderId}`);
         } catch (err) {
           toastError("Error verifying payment.");
           console.error("Error verifying payment:", err);
-          router.push(`/${process.env.NEXT_PUBLIC_STORE_ID}`);
+          router.push(`/`);
         }
       };
       verifyPayment();

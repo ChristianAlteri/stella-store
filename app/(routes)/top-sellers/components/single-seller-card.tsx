@@ -86,7 +86,7 @@ const SellerCard: React.FC<SellerCardProps> = ({ data }) => {
         </div>
         <div className="pt-2 flex justify-between items-center">
           <Link
-            href={`/${process.env.NEXT_PUBLIC_STORE_ID}/sellers/${data?.id}`}
+            href={`/sellers/${data?.id}`}
             className="text-sm text-primary hover:underline"
           >
             View Profile

@@ -19,7 +19,7 @@ const CartPageServer: React.FC<CartPageServerProps> = async ({ params }) => {
         <CartPage products={products} />
       </div>
       <SuggestedContainer
-        route={`/${process.env.NEXT_PUBLIC_STORE_ID}/sale`}
+        route={`/sale`}
         title="SHOP OUR SALE"
         data={onlySaleItems}
       />

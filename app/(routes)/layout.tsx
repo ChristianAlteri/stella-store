@@ -49,7 +49,7 @@ export default async function SiteLayout({
     // conditions,
     // genders,
     // subcategories,
-    // products,
+    products,
     // billboard,
   ] = await Promise.all([
     getStore(`${process.env.NEXT_PUBLIC_STORE_ID}`),
@@ -69,6 +69,20 @@ export default async function SiteLayout({
 
   return (
     <div>
+      <Navbar
+        store={store}
+        products={products}
+        // sellers={sellers}
+        // designers={designers}
+        // categories={categories}
+        // sizes={sizes}
+        // colors={colors}
+        // materials={materials}
+        // conditions={conditions}
+        // genders={genders}
+        // subcategories={subcategories}
+        // billboard={billboard}
+      />
       {/* <Navbar
         store={store}
         sellers={sellers}

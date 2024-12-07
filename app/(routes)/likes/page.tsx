@@ -47,7 +47,7 @@ const CartPageServer: React.FC<TopLikesPageProps> = async ({
         <LikesPage products={products} />
       </div>
       <SuggestedContainer
-        route={`/${process.env.NEXT_PUBLIC_STORE_ID}/trending`}
+        route={`/trending`}
         title="MOST POPULAR PRODUCTS"
         data={topLikedProducts}
       />

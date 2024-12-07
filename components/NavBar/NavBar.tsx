@@ -31,28 +31,28 @@ import { useParams } from "next/navigation";
 
 interface NavbarProps {
   store: Store;
-  sellers: Seller[];
-  designers: Designer[];
-  categories: Category[];
-  sizes: Size[];
-  colors: Color[];
-  materials: Material[];
-  conditions: Condition[];
-  genders: Gender[];
-  subcategories: Subcategory[];
   products: Product[];
-  topTen?: Product[];
-  billboard: Billboard | null;
+  // sellers: Seller[];
+  // designers: Designer[];
+  // categories: Category[];
+  // sizes: Size[];
+  // colors: Color[];
+  // materials: Material[];
+  // conditions: Condition[];
+  // genders: Gender[];
+  // subcategories: Subcategory[];
+  // topTen?: Product[];
+  // billboard: Billboard | null;
 }
 
 const Navbar: React.FC<NavbarProps> = ({
   store,
-  sellers,
-  designers,
-  categories,
-  topTen,
-  billboard,
   products,
+  // sellers,
+  // designers,
+  // categories,
+  // topTen,
+  // billboard,
 }) => {
   const [loggedIn, setLoggedIn] = useState(true);
   const params = useParams();
@@ -64,15 +64,9 @@ const Navbar: React.FC<NavbarProps> = ({
           <div className="row-span-1 w-full">
             <div className="flex flex-row w-full">
               <div className="w-full flex flex-row md:justify-start md:items-start justify-center items-center gap-3 p-2">
-                <HamburgerMenu
-                  designers={designers}
-                  categories={categories}
-                  sellers={sellers}
-                  topTen={topTen}
-                />
+                <HamburgerMenu/>
 
                 <MegaSearch
-                  billboard={billboard}
                   icon={
                     <Input
                       flag="navbar"
@@ -81,10 +75,11 @@ const Navbar: React.FC<NavbarProps> = ({
                     />
                   }
                 />
+
               </div>
 
               <div className="w-full flex flex-row justify-center items-center gap-3 ">
-                <Link href={`/${process.env.NEXT_PUBLIC_STORE_ID}`} className="flex">
+                <Link href={`/`} className="flex">
                   <h1 className="font-bold text-2xl md:text-4xl">
                     {store ? store.name : "Loading..."}
                   </h1>

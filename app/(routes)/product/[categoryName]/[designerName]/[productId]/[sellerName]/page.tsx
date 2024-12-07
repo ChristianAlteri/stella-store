@@ -82,7 +82,7 @@ const IndividualProductPage: React.FC<IndividualProductPageProps> = async ({
       
       {sortedProductsBasedOnSeller.length > 0 && ( //same seller large screen
         <SuggestedContainer
-          route={`/${process.env.NEXT_PUBLIC_STORE_ID}/sellers/${product?.seller?.id}`}
+          route={`/sellers/${product?.seller?.id}`}
           header={`MORE FROM THIS`}
           title={"SELLER"}
           data={sortedProductsBasedOnSeller}
@@ -90,7 +90,7 @@ const IndividualProductPage: React.FC<IndividualProductPageProps> = async ({
       )}
       {sortedProductsBasedOnCategory.length > 0 && ( //most clicked
         <SuggestedContainer
-          route={`/${process.env.NEXT_PUBLIC_STORE_ID}/categories/${product?.category?.id}`}
+          route={`/categories/${product?.category?.id}`}
           header="POPULAR IN"
           title={product?.category?.name}
           data={sortedProductsBasedOnCategory}
@@ -98,7 +98,7 @@ const IndividualProductPage: React.FC<IndividualProductPageProps> = async ({
       )}
       {sortedProductsBasedOnDesigner.length > 0 && ( // most liked
         <SuggestedContainer
-          route={`/${process.env.NEXT_PUBLIC_STORE_ID}/designers/${product?.designer?.id}`}
+          route={`/designers/${product?.designer?.id}`}
           header="SHOP"
           title={product?.designer?.name}
           data={sortedProductsBasedOnDesigner}

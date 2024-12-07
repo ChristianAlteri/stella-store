@@ -8,25 +8,58 @@ import { cn } from "@/lib/utils";
 import { CiCircleRemove } from "react-icons/ci";
 import { Billboard } from "@/types";
 import SearchResults from "./components/search-results";
+import getBillboardByName from "@/actions/get-billboard-by-name";
 
 interface MegaSearchProps {
   icon?: React.ReactNode;
-  billboard: Billboard | null;
 }
 
-const MegaSearch: React.FC<MegaSearchProps> = ({ icon, billboard }) => {
+const MegaSearch: React.FC<MegaSearchProps> = ({ icon }) => {
   const [open, setOpen] = useState(false);
   const [searchBy, setSearchBy] = useState("STORE");
+  const [homePageBillboard, setHomePageBillboard] = useState<
+    Billboard | Billboard[] | null
+  >(null);
   const pathname = usePathname();
-  useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
+
+  const [isMounted, setIsMounted] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const onOpen = () => setOpen(true);
   const onClose = () => setOpen(false);
 
+  useEffect(() => {
+    setOpen(false);
+    setIsMounted(true);
+  }, [pathname]);
+
+  useEffect(() => {
+    const fetchBillboard = async () => {
+      try {
+        const data = await getBillboardByName(
+          "HomePageFullScreen",
+          `${process.env.NEXT_PUBLIC_STORE_ID}`
+        );
+        setHomePageBillboard(data);
+      } catch (error) {
+        console.error("Error fetching homepage billboard:", error);
+        setHomePageBillboard(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (isMounted) {
+      fetchBillboard();
+    }
+  }, [isMounted]);
+
+  if (!isMounted) {
+    return null;
+  }
+
   // @ts-ignore
-  const imageUrl = billboard ? billboard?.imageUrl : null;
+  const imageUrl = homePageBillboard ? homePageBillboard?.imageUrl : null;
 
   return (
     <>

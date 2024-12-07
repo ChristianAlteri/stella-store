@@ -15,7 +15,7 @@ const OrderSummaryItem: React.FC<OrderSummaryItemProps> = ({ data }) => {
 
   const handleProductClick = () => {
     router.push(
-      `/${process.env.NEXT_PUBLIC_STORE_ID}/product/${data?.category?.id}/${data?.designer?.name}/${data?.id}/${data?.seller?.instagramHandle}`
+      `/product/${data?.category?.id}/${data?.designer?.name}/${data?.id}/${data?.seller?.instagramHandle}`
     );
   };
 
@@ -46,13 +46,13 @@ const OrderSummaryItem: React.FC<OrderSummaryItemProps> = ({ data }) => {
       </div>
       <div className="flex-grow">
         <Link
-          href={`/${process.env.NEXT_PUBLIC_STORE_ID}/designers/${data?.designer.id}`}
+          href={`/designers/${data?.designer.id}`}
           className="text-sm font-medium hover:underline"
         >
           {data?.designer.name.toUpperCase()}
         </Link>
         <Link
-          href={`/${process.env.NEXT_PUBLIC_STORE_ID}/sellers/${data?.seller.id}`}
+          href={`/sellers/${data?.seller.id}`}
           className="block text-xs text-gray-500 hover:underline"
         >
           {data?.seller.storeName.toUpperCase()}
@@ -85,7 +85,7 @@ export default OrderSummaryItem;
 
 //   const handleProductClick = () => {
 //     router.push(
-//       `/${process.env.NEXT_PUBLIC_STORE_ID}/product/${data?.category?.id}/${data?.designer?.name}/${data?.id}/${data?.seller?.instagramHandle}`
+//       `/product/${data?.category?.id}/${data?.designer?.name}/${data?.id}/${data?.seller?.instagramHandle}`
 //     );
 //   };
 

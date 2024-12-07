@@ -23,7 +23,7 @@ const SearchProductImage: React.FC<SearchProductImageProps> = ({ product }) => {
 
   const handleProductClick = (product: Product) => {
     router.push(
-      `/${process.env.NEXT_PUBLIC_API_URL}/product/${product.category?.id}/${product.designer?.name}/${product.id}/${product.seller?.instagramHandle}`
+      `/product/${product.category?.id}/${product.designer?.name}/${product.id}/${product.seller?.instagramHandle}`
     );
   };
 
@@ -36,7 +36,7 @@ const SearchProductImage: React.FC<SearchProductImageProps> = ({ product }) => {
       <CardHeader className="p-2">
         <div className="flex justify-between items-center text-super-small md:text-xs">
           <Link
-            href={`/${process.env.NEXT_PUBLIC_API_URL}/sellers/${product.seller.id}`}
+            href={`/sellers/${product.seller.id}`}
             className="hover:underline"
           >
             {product.seller.storeName.toUpperCase()}
@@ -74,7 +74,7 @@ const SearchProductImage: React.FC<SearchProductImageProps> = ({ product }) => {
       </CardContent>
       <CardFooter className="p-2 flex justify-between items-center text-super-small md:text-xs">
         <Link
-          href={`/${process.env.NEXT_PUBLIC_API_URL}/designers/${product.designer?.id}`}
+          href={`/designers/${product.designer?.id}`}
           className="hover:underline"
         >
           {product.designer?.name.toUpperCase()}

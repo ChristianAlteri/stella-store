@@ -1,17 +1,37 @@
 "use client";
 
 import { Gender, Product } from "@/types";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import FullScreenFooterFilter from "./full-screen-footer-filter";
+import getGenders from "@/actions/get-genders";
 
 interface FullscreenProductFiltersFooterProps {
   productData?: Product[];
-  genders?: Gender[];
 }
 
 const FullscreenProductFiltersFooter: React.FC<
   FullscreenProductFiltersFooterProps
-> = ({ productData, genders }) => {
+> = ({ productData }) => {
+  const [genders, setGenders] = useState<Gender[]>([])
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchGenders = async () => {
+      try {
+        const data = await getGenders(
+          `${process.env.NEXT_PUBLIC_STORE_ID}`
+        );
+        setGenders(data);
+      } catch (error) {
+        console.error("Error fetching homepage Genders:", error);
+        setGenders([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+      fetchGenders();
+  }, []);
 
   return (
     <div className="flex-col justify-center items-center rounded-md w-full h-13 border border-black hidden md:flex bg-transparent opacity-50 hover:opacity-100 hover:bg-white">

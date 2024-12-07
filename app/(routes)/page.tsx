@@ -17,7 +17,6 @@ import getBillboardByName from "@/actions/get-billboard-by-name";
 
 import FullscreenProductFiltersFooter from "@/components/Filters/full-screen-product-filters-footer";
 import HomepageBillboard from "@/components/Billboard/HomepageBillboard";
-import HomepageBillboardMobile from "@/components/Billboard/HomepageBillboardMobile";
 import { Billboard } from "@/types";
 
 export const revalidate = 0;
@@ -47,26 +46,21 @@ interface HomepageProps {
 
 const Homepage = async ({
   searchParams,
-
 }: {
   searchParams: HomepageProps["searchParams"];
-
 }) => {
-
   // Fetch data in parallel using Promise.all
   const [
     products,
-    sizes,
-    colors,
-    conditions,
-    designers,
-    sellers,
-    categories,
-    materials,
-    genders,
-    subcategories,
-    Billboard,
-    BillboardMobile,
+    // sizes,
+    // colors,
+    // conditions,
+    // designers,
+    // sellers,
+    // categories,
+    // materials,
+    // subcategories,
+    // genders,
   ] = await Promise.all([
     getProducts({
       all: true,
@@ -89,35 +83,27 @@ const Homepage = async ({
       minPrice: searchParams.minPrice,
       maxPrice: searchParams.maxPrice,
     }),
-    getSizes(),
-    getColors(),
-    getConditions(),
-    getDesigners(),
-    getSellers(),
-    getCategories(),
-    getMaterials(),
-    getGenders(`${process.env.NEXT_PUBLIC_STORE_ID}`),
-    getSubcategories(),
-    getBillboardByName("HomePageFullScreen", `${process.env.NEXT_PUBLIC_STORE_ID}`),
-    getBillboardByName("HomePageMobile", `${process.env.NEXT_PUBLIC_STORE_ID}`),
+    // getSizes(),
+    // getColors(),
+    // getConditions(),
+    // getDesigners(),
+    // getSellers(),
+    // getCategories(),
+    // getMaterials(),
+    // getSubcategories(),
+    // getGenders(`${process.env.NEXT_PUBLIC_STORE_ID}`),
   ]);
 
   return (
     <>
       {/* Large screen Billboard */}
-        <div className="flex-row pl-7 pr-7 h-full lg:flex hidden">
-          <HomepageBillboard
-            // @ts-ignore
-            data={Billboard}
-          />
-        </div>
+      <div className="flex-row pl-7 pr-7 h-full lg:flex hidden">
+        <HomepageBillboard billboardName="HomePageFullScreen" />
+      </div>
       {/* Mobile screen Billboard */}
-        <div className="flex-row pl-7 pr-7 h-2/3 flex lg:hidden">
-          <HomepageBillboardMobile
-            // @ts-ignore
-            data={BillboardMobile}
-          />
-        </div>
+      <div className="flex-row pl-7 pr-7 h-2/3 flex lg:hidden">
+        <HomepageBillboard billboardName="HomePageMobile" />
+      </div>
 
       <div className="flex flex-row w-full justify-center items-center text-center mt-7">
         <div className="w-full justify-center text-center">
@@ -148,7 +134,6 @@ const Homepage = async ({
           <div className="fixed bottom-0 p-9 mb-4 w-1/3 z-50">
             <FullscreenProductFiltersFooter
               productData={products}
-              genders={genders}
             />
           </div>
         </div>

@@ -65,9 +65,9 @@ const ForYouPage: React.FC<ForYouPageProps> = async ({ searchParams, params }) =
   const sizes = await getSizes();
   const colors = await getColors();
   const conditions = await getConditions();
-  const designers = await getDesigners();
-  const sellers = await getSellers();
-  const categories = await getCategories();
+  const designers = await getDesigners(`${process.env.NEXT_PUBLIC_STORE_ID}`);
+  const sellers = await getSellers(`${process.env.NEXT_PUBLIC_STORE_ID}`);
+  const categories = await getCategories(`${process.env.NEXT_PUBLIC_STORE_ID}`);
   const materials = await getMaterials();
   const subcategories = await getSubcategories();
   const store = await getStore(`${process.env.NEXT_PUBLIC_STORE_ID}`);

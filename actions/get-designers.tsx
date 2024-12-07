@@ -3,14 +3,17 @@ import { Designer } from "@/types";
 
 const URL=`${process.env.NEXT_PUBLIC_API_URL}/designers`;
 
-const getDesigners = async (): Promise<Designer[]> => {
+const getDesigners = async (storeId: string, name?: string): Promise<Designer[]> => {
   try {
-    const response = await axios.get(URL);
-    // console.log("response from get-designers", response.data);
-
+    const response = await axios.get(URL, {
+      params: {
+        storeId, 
+        isArchived: false, 
+        // name,    
+      },
+    });
     return response.data;
   } catch (error) {
-
     console.error("Error fetching designers:", error);
     throw error;
   }
