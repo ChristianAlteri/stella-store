@@ -40,36 +40,36 @@ export default async function SiteLayout({
    // Fetch all data concurrently
    const [
     store,
-    sellers,
-    designers,
-    categories,
-    sizes,
-    colors,
-    materials,
-    conditions,
-    genders,
-    subcategories,
-    products,
-    billboard,
+    // sellers,
+    // designers,
+    // categories,
+    // sizes,
+    // colors,
+    // materials,
+    // conditions,
+    // genders,
+    // subcategories,
+    // products,
+    // billboard,
   ] = await Promise.all([
     getStore(`${process.env.NEXT_PUBLIC_STORE_ID}`),
-    getSellers(),
-    getDesigners(),
-    getCategories(),
-    getSizes(),
-    getColors(),
-    getMaterials(),
-    getConditions(),
-    getGenders(`${process.env.NEXT_PUBLIC_STORE_ID}`),
-    getSubcategories(),
+    // getSellers(),
+    // getDesigners(),
+    // getCategories(),
+    // getSizes(),
+    // getColors(),
+    // getMaterials(),
+    // getConditions(),
+    // getGenders(`${process.env.NEXT_PUBLIC_STORE_ID}`),
+    // getSubcategories(),
     getProducts({ all: true, isOnline: true, isArchived: false }),
-    getBillboardByName("HomePageFullScreen", `${process.env.NEXT_PUBLIC_STORE_ID}`),
+    // getBillboardByName("HomePageFullScreen", `${process.env.NEXT_PUBLIC_STORE_ID}`),
   ]);
   console.debug("STORE FROM ROOT", store);
 
   return (
     <div>
-      <Navbar
+      {/* <Navbar
         store={store}
         sellers={sellers}
         designers={designers}
@@ -82,9 +82,9 @@ export default async function SiteLayout({
         subcategories={subcategories}
         products={products}
         billboard={billboard}
-      />
+      /> */}
       {children}
-      <Footer
+      {/* <Footer
         searchParams={{
           categoryId: "",
           designerId: "",
@@ -104,7 +104,7 @@ export default async function SiteLayout({
         params={{
           storeId: `${process.env.NEXT_PUBLIC_STORE_ID}`,
         }}
-      />
+      /> */}
     </div>
   );
 }
