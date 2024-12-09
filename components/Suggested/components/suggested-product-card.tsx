@@ -32,7 +32,7 @@ const SuggestedProductCard: React.FC<SuggestedProductCardProps> = ({
               loop={true}
               playing={true}
               muted={true}
-              alt={`${item?.name} from ${item?.seller?.storeName} by ${item?.designer?.name} in size ${item?.size?.name} for $${item?.ourPrice} (RRP $${item?.retailPrice})`}
+              alt={`${item?.name} by ${item?.designer?.name} in size ${item?.size?.name} for $${item?.ourPrice} (RRP $${item?.retailPrice})`}
               className={`rounded-md transition-opacity duration-200 ease-in-out ${
                 item?.isHidden ? "blur-xl" : ""
               }`}
@@ -46,7 +46,7 @@ const SuggestedProductCard: React.FC<SuggestedProductCardProps> = ({
                   height={0}
                   width={150}
                   src={item!.images[0]!.url}
-                  alt={`${item?.name} from ${item?.seller?.storeName} by ${item?.designer?.name} in size ${item?.size?.name} for $${item?.ourPrice} (RRP $${item?.retailPrice})`}
+                  alt={`${item?.name} by ${item?.designer?.name} in size ${item?.size?.name} for $${item?.ourPrice} (RRP $${item?.retailPrice})`}
                   priority
                   className={`rounded-md transition-opacity duration-200 ease-in-out 
                     ${item?.isHidden ? "blur-xl" : ""}`}

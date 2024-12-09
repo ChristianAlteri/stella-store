@@ -35,12 +35,12 @@ const SearchProductImage: React.FC<SearchProductImageProps> = ({ product }) => {
     <Card className="w-full overflow-hidden hover:shadow-lg transition-shadow duration-300">
       <CardHeader className="p-2">
         <div className="flex justify-between items-center text-super-small md:text-xs">
-          <Link
+          {/* <Link
             href={`/sellers/${product.seller.id}`}
             className="hover:underline"
           >
             {product.seller.storeName.toUpperCase()}
-          </Link>
+          </Link> */}
           <span className="text-red-500 font-semibold text-super-small md:text-xs">
             ${product.ourPrice}
           </span>

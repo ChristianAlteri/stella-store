@@ -34,7 +34,7 @@ const LargeSuggestedProductCard: React.FC<LargeSuggestedProductCardProps> = ({
                 loop={true}
                 playing={true}
                 muted={true}
-                alt={`${item.name} from ${item.seller?.storeName} by ${item.designer?.name} in size ${item.size?.name} for $${item.ourPrice} (RRP $${item.retailPrice})`}
+                alt={`${item.name} by ${item.designer?.name} in size ${item.size?.name} for $${item.ourPrice} (RRP $${item.retailPrice})`}
                 className={`rounded-md transition-opacity duration-200 ease-in-out ${
                   item.isHidden ? "blur-xl" : ""
                 }`}
@@ -48,7 +48,7 @@ const LargeSuggestedProductCard: React.FC<LargeSuggestedProductCardProps> = ({
                     height={0}
                     width={200}
                     src={item!.images[0]!.url}
-                    alt={`${item.name} from ${item.seller?.storeName} by ${item.designer?.name} in size ${item.size?.name} for $${item.ourPrice} (RRP $${item.retailPrice})`}
+                    alt={`${item.name} by ${item.designer?.name} in size ${item.size?.name} for $${item.ourPrice} (RRP $${item.retailPrice})`}
                     priority
                     className={`rounded-md transition-opacity duration-200 ease-in-out 
                     ${item.isHidden ? "blur-xl" : ""}`}
@@ -71,7 +71,7 @@ const LargeSuggestedProductCard: React.FC<LargeSuggestedProductCardProps> = ({
                   loop
                   playing
                   muted
-                  alt={`${item?.name} video from ${item?.seller?.storeName} by ${item?.designer?.name} in size ${item?.size?.name} for $${item?.ourPrice} (RRP $${item?.retailPrice})`}
+                  alt={`${item?.name} video by ${item?.designer?.name} in size ${item?.size?.name} for $${item?.ourPrice} (RRP $${item?.retailPrice})`}
                   className={`rounded-md transition-opacity duration-200 ease-in-out ${
                     item?.isHidden ? "blur-xl" : ""
                   }`}
@@ -85,7 +85,7 @@ const LargeSuggestedProductCard: React.FC<LargeSuggestedProductCardProps> = ({
                       height={0}
                       width={200}
                       src={item?.images?.[1]?.url}
-                      alt={`Image of ${item.name} from ${item.seller?.storeName} by ${item.designer?.name} in size ${item.size?.name} for $${item.ourPrice} (RRP $${item.retailPrice})`}
+                      alt={`Image of ${item.name} by ${item.designer?.name} in size ${item.size?.name} for $${item.ourPrice} (RRP $${item.retailPrice})`}
                       priority
                       className={`rounded-md transition-opacity duration-200 ease-in-out ${
                         item.isHidden ? "blur-xl" : ""

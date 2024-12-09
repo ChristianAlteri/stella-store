@@ -69,7 +69,7 @@ const LikedItem: React.FC<LikedItemProps> = ({
                   height={0}
                   width={100}
                   src={data!.images[0]!.url}
-                  alt={`${data.name} from ${data.seller?.storeName} by ${data.designer?.name} in size ${data.size?.name} for $${data.ourPrice} (RRP $${data.retailPrice})`}
+                  alt={`${data.name} by ${data.designer?.name} in size ${data.size?.name} for $${data.ourPrice} (RRP $${data.retailPrice})`}
                   priority
                   className={`rounded-md transition-opacity duration-200 ease-in-out 
                       ${data.isHidden ? "blur-xl" : ""}`}
@@ -96,9 +96,9 @@ const LikedItem: React.FC<LikedItemProps> = ({
                 <Link href={`/designers/${data.designer.id}`} className="ml-4 md:text-sm text-xs text-stone-900 hover:underline hover:cursor-pointer">
                   {data.designer.name.toUpperCase()}
                 </Link>
-                <Link href={`/sellers/${data.seller.id}`} className="ml-4 md:text-xs text-super-small mt-2 text-stone-900 hover:underline hover:cursor-pointer">
+                {/* <Link href={`/sellers/${data.seller.id}`} className="ml-4 md:text-xs text-super-small mt-2 text-stone-900 hover:underline hover:cursor-pointer">
                   {data.seller.storeName.toUpperCase()}
-                </Link>
+                </Link> */}
               </div>
 
 

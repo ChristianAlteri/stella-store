@@ -101,7 +101,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
                 loop={true}
                 playing={true}
                 muted={true}
-                alt={`${item.name} from ${item.seller?.storeName} by ${item.designer?.name} in size ${item.size?.name} for $${item.ourPrice} (RRP $${item.retailPrice})`}
+                alt={`${item.name} by ${item.designer?.name} in size ${item.size?.name} for $${item.ourPrice} (RRP $${item.retailPrice})`}
                 className={`rounded-md transition-opacity duration-200 ease-in-out ${
                   item.isHidden ? "blur-xl" : ""
                 }`}
@@ -115,7 +115,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
                     width={1080}
                     height={1350}
                     src={item!.images[0]!.url}
-                    alt={`${item.name} from ${item.seller?.storeName} by ${item.designer?.name} in size ${item.size?.name} for $${item.ourPrice} (RRP $${item.retailPrice})`}
+                    alt={`${item.name} by ${item.designer?.name} in size ${item.size?.name} for $${item.ourPrice} (RRP $${item.retailPrice})`}
                     priority
                     className={`rounded-md transition-opacity duration-200 ease-in-out 
                     ${item.isHidden ? "blur-xl" : ""}`}
@@ -129,7 +129,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
                     width={1080}
                     height={1350}
                     src={item!.images[0]!.url}
-                    alt={`${item.name} from ${item.seller?.storeName} by ${item.designer?.name} in size ${item.size?.name} for $${item.ourPrice} (RRP $${item.retailPrice})`}
+                    alt={`${item.name} by ${item.designer?.name} in size ${item.size?.name} for $${item.ourPrice} (RRP $${item.retailPrice})`}
                     priority
                     className={`rounded-md transition-opacity duration-200 ease-in-out 
                     ${item.isHidden ? "blur-xl" : ""}`}
@@ -153,7 +153,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
                   loop
                   playing
                   muted
-                  alt={`${item.name} video from ${item.seller?.storeName} by ${item.designer?.name} in size ${item.size?.name} for $${item.ourPrice} (RRP $${item.retailPrice})`}
+                  alt={`${item.name} video by ${item.designer?.name} in size ${item.size?.name} for $${item.ourPrice} (RRP $${item.retailPrice})`}
                   className={`rounded-md transition-opacity duration-200 ease-in-out ${
                     item.isHidden ? "blur-xl" : ""
                   }`}
@@ -167,7 +167,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
                       width={1080}
                       height={1350}
                       src={item?.images?.[1]?.url}
-                      alt={`Image of ${item.name} from ${item.seller?.storeName} by ${item.designer?.name} in size ${item.size?.name} for $${item.ourPrice} (RRP $${item.retailPrice})`}
+                      alt={`Image of ${item.name} by ${item.designer?.name} in size ${item.size?.name} for $${item.ourPrice} (RRP $${item.retailPrice})`}
                       priority
                       className={`rounded-md transition-opacity duration-200 ease-in-out ${
                         item.isHidden ? "blur-xl" : ""
@@ -182,7 +182,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
                       width={1080}
                       height={1350}
                       src={item?.images?.[1]?.url}
-                      alt={`Image of ${item.name} from ${item.seller?.storeName} by ${item.designer?.name} in size ${item.size?.name} for $${item.ourPrice} (RRP $${item.retailPrice})`}
+                      alt={`Image of ${item.name} by ${item.designer?.name} in size ${item.size?.name} for $${item.ourPrice} (RRP $${item.retailPrice})`}
                       priority
                       className={`rounded-md transition-opacity duration-200 ease-in-out ${
                         item.isHidden ? "blur-xl" : ""
@@ -232,12 +232,12 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
 
           {/* <div className="flex justify-end flex-row mt-1"> */}
           <div className="flex justify-between text-left">
-            <Link
+            {/* <Link
               href={`/sellers/${item?.seller?.id}`}
               className="text-xs hover:underline text-black hover:text-stone-700 "
             >
               {item.seller?.storeName.toUpperCase()}
-            </Link>
+            </Link> */}
             <div className="text-xs text-stone-300 hover:text-stone-700 ">
               Size: {item?.size?.name}
             </div>
@@ -265,7 +265,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
                 />
               </div>
             </div>
-            <div className="flex flex-row gap-1 justify-end w-full ">
+            <div className="flex flex-row gap-1 justify-end w-full">
               <h6 onClick={handleProductClick} className="text-xs text-red-500">
                 ${item.ourPrice}
               </h6>
@@ -317,15 +317,15 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
               item.designer?.name.slice(1)} */}
             {item.designer?.name.toUpperCase()}
           </Link>
-          <div className="flex flex-row justify-between  w-2/3 gap-1">
-            <div className="text-gray-500 hover:cursor-pointer hover:text-black text-xs ">
+          <div className="flex flex-row justify-end w-full gap-1">
+            {/* <div className="text-gray-500 hover:cursor-pointer hover:text-black text-xs ">
               <Link
                 href={`/sellers/${item?.seller?.id}`}
                 className="text-xs hover:underline  text-black truncate"
               >
                 {item.seller?.storeName.toUpperCase()}
               </Link>
-            </div>
+            </div> */}
             <h6 className="text-xs text-red-500">${item.ourPrice}</h6>
             {item.isOnSale && (
               <>

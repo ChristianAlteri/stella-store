@@ -89,14 +89,14 @@ const DetailsCard: React.FC<DetailsCardProps> = ({ data, products }) => {
         <div className="border-t border-light-font mt-3 mb-1">
           <div className="mt-3">
             <div className="flex flex-row gap-1 w-full justify-center items-center">
-              <h1 className="md:text-xs text-sm">Sold by: </h1>
+              {/* <h1 className="md:text-xs text-sm">Sold by: </h1>
               <Link
                 href={`/sellers/${data?.seller?.id}`}
                 className="md:text-xs font-semibold text-sm hover:underline hover:cursor-pointer underline"
               >
                 {" "}
                 {data?.seller?.storeName.toUpperCase()}
-              </Link>
+              </Link> */}
             </div>
             {/* {data?.isCharity && (
               <>

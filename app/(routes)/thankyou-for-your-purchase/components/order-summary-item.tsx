@@ -36,7 +36,7 @@ const OrderSummaryItem: React.FC<OrderSummaryItemProps> = ({ data }) => {
         ) : (
           <Image
             src={data?.images[0].url}
-            alt={`${data?.name} from ${data?.seller?.storeName} by ${data?.designer?.name} in size ${data?.size?.name} for $${data?.ourPrice} (RRP $${data?.retailPrice})`}
+            alt={`${data?.name} by ${data?.designer?.name} in size ${data?.size?.name} for $${data?.ourPrice} (RRP $${data?.retailPrice})`}
             layout="fill"
             objectFit="cover"
             className={`rounded-md ${data?.isHidden ? "blur-xl" : ""}`}
@@ -51,12 +51,12 @@ const OrderSummaryItem: React.FC<OrderSummaryItemProps> = ({ data }) => {
         >
           {data?.designer.name.toUpperCase()}
         </Link>
-        <Link
+        {/* <Link
           href={`/sellers/${data?.seller.id}`}
           className="block text-xs text-gray-500 hover:underline"
         >
           {data?.seller.storeName.toUpperCase()}
-        </Link>
+        </Link> */}
         <p className="text-sm font-semibold text-red-500">${data?.ourPrice}</p>
         <p className="text-xs text-gray-500">Size: {data?.size.name}</p>
       </div>

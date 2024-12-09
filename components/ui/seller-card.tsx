@@ -26,7 +26,7 @@ const SellerCard: React.FC<SellerCardProps> = ({ data, route }) => {
           //   alt={data?.name}
           //   className="rounded-md w-full h-full object-cover"
           // />
-          <div>TODO:</div>
+          <div></div>
         )}
         {data?.billboard?.imageUrl.match(/https:\/\/.*\/video.*/) && (
           <video
