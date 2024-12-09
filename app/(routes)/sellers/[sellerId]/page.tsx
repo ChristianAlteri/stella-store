@@ -42,7 +42,9 @@ const SellerNamePage: React.FC<SellerNamePageProps> = async ({
   searchParams,
 }) => {
   const productData = await getProducts({
-    all: true, isArchived: false, isOnline: true,
+    all: true,
+    isArchived: false,
+    isOnline: true,
     sellerId: params.sellerId,
     sort: searchParams.sort,
     sizeId: searchParams.sizeId,
@@ -66,42 +68,6 @@ const SellerNamePage: React.FC<SellerNamePageProps> = async ({
   return (
     <>
       <div className="flex flex-col p-7 w-full justify-center items-center text-center mb-2">
-        <Link
-          href={`https://instagram.com/${sellerData?.instagramHandle.replace(
-            "@",
-            ""
-          )}`}
-          className="text-lg text-black"
-          target="_blank"
-        >
-          <div className="flex flex-col p-7 w-full justify-center items-center text-center mb-2">
-            <div className="flex flex-col justify-center items-center overflow-hidden h-1/2 w-full gap-2">
-              {/* <ProfileBillboard data={sellerData?.billboard} /> */}
-              <Avatar className="w-24 h-24">
-                <AvatarImage
-                  src={
-                    sellerData?.billboard?.imageUrl ?? "/default-profile.png"
-                  }
-                  alt={`${sellerData.storeName}`}
-                />
-                <AvatarFallback>
-                  {sellerData.storeName[0].toUpperCase()}
-                  {sellerData.storeName[1].toUpperCase()}
-                </AvatarFallback>
-              </Avatar>
-              <div className="w-full justify-center text-center">
-                <h2 className="text-xs text-black mt-2">
-                  {sellerData?.description}
-                </h2>
-              </div>
-            </div>
-            <div className="w-full justify-center text-center">
-              <h2 className="text-2xl font-bold text-black mt-2">
-                {sellerData?.storeName?.toUpperCase() || "Seller Name"}
-              </h2>
-            </div>
-          </div>
-        </Link>
         {/* <div className="toggle-container">
           <ToggleButton currentIsArchived={!!searchParams.isArchived} />
         </div> */}
@@ -110,7 +76,7 @@ const SellerNamePage: React.FC<SellerNamePageProps> = async ({
       <div className="justify-center items-center md:grid flex grid-cols-8 gap-4 bg-white">
         {/* First column */}
         <div className="col-span-1 justify-start items-start w-full hidden sticky h-full md:grid ml-4">
-          <LeftSidebar/>
+          <LeftSidebar />
         </div>
 
         {/* Second column */}
@@ -134,15 +100,13 @@ const SellerNamePage: React.FC<SellerNamePageProps> = async ({
           </ProductGrid>
 
           <div className="fixed bottom-0 p-9 mb-4 w-1/3 z-50">
-            <FullscreenProductFiltersFooter
-              productData={productData}
-            />
+            <FullscreenProductFiltersFooter productData={productData} />
           </div>
         </div>
 
         {/* Third column */}
         <div className="col-span-1 justify-end items-end w-full hidden sticky h-full md:grid">
-          <RightSidebar/>
+          <RightSidebar />
         </div>
       </div>
     </>
@@ -150,3 +114,43 @@ const SellerNamePage: React.FC<SellerNamePageProps> = async ({
 };
 
 export default SellerNamePage;
+
+// return (
+//   <>
+//   <Link
+//           href={`https://instagram.com/${sellerData?.instagramHandle.replace(
+//             "@",
+//             ""
+//           )}`}
+//           className="text-lg text-black"
+//           target="_blank"
+//         >
+//           <div className="flex flex-col p-7 w-full justify-center items-center text-center mb-2">
+//             <div className="flex flex-col justify-center items-center overflow-hidden h-1/2 w-full gap-2">
+//               {/* <ProfileBillboard data={sellerData?.billboard} /> */}
+//               <Avatar className="w-24 h-24">
+//                 <AvatarImage
+//                   src={
+//                     sellerData?.billboard?.imageUrl ?? "/default-profile.png"
+//                   }
+//                   alt={`${sellerData.storeName}`}
+//                 />
+//                 <AvatarFallback>
+//                   {sellerData.storeName[0].toUpperCase()}
+//                   {sellerData.storeName[1].toUpperCase()}
+//                 </AvatarFallback>
+//               </Avatar>
+//               <div className="w-full justify-center text-center">
+//                 <h2 className="text-xs text-black mt-2">
+//                   {sellerData?.description}
+//                 </h2>
+//               </div>
+//             </div>
+//             <div className="w-full justify-center text-center">
+//               <h2 className="text-2xl font-bold text-black mt-2">
+//                 {sellerData?.storeName?.toUpperCase() || "Seller Name"}
+//               </h2>
+//             </div>
+//           </div>
+//         </Link></>
+// )
