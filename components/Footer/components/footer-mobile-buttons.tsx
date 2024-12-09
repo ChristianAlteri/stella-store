@@ -40,7 +40,7 @@ const FooterMobileButtons: React.FC<FooterMobileButtonsProps> = ({
         setGenders(genderData);
         setIsLoadingGenders(false);
       } catch (error) {
-        console.error("Failed to fetch gender data:", error);
+        console.error("Failed to fetch footer gender data:", error);
         setIsLoadingGenders(false);
       }
     };
