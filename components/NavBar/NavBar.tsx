@@ -65,7 +65,7 @@ const Navbar: React.FC<NavbarProps> = ({
             <div className="flex flex-row w-full">
               <div className="w-full flex flex-row md:justify-start md:items-start justify-center items-center gap-3 p-2">
                 <HamburgerMenu/>
-
+{/* cmon */}
                 <MegaSearch
                   icon={
                     <Input
