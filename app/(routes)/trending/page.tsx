@@ -64,9 +64,10 @@ const TopLikesPage: React.FC<TopLikesPageProps> = async ({ searchParams }) => {
           </div>
         </div>
       </div>
+
       <div className="justify-center items-center md:grid flex grid-cols-8 gap-4 bg-white ">
         {/* First column */}
-        <div className="col-span-1 justify-start items-start w-full hi h-full md:grid ml-4">
+        <div className="col-span-1 justify-start items-start w-full hidden sticky h-full md:grid ml-4">
           <LeftSidebar />
         </div>
 
