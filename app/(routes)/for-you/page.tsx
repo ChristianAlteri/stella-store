@@ -119,7 +119,7 @@ const ForYouPage: React.FC<ForYouPageProps> = async ({ searchParams, params }) =
             {/* <br className="p-5"/> */}
 
             <div className="flex p-2 row-span-1 mt-4">
-              <SuggestedContainer data={featuredProducts.slice(0, 7)} route="trending" title="FEATURED PRODUCTS"/>
+              <SuggestedContainer data={featuredProducts.slice(0, 7)} route="/trending" title="FEATURED PRODUCTS"/>
             </div>
           </div>
           {/* )} */}
