@@ -31,22 +31,6 @@ interface ThankYouForYourPurchasePageProps {
 const ThankYouForYourPurchasePage: React.FC<
   ThankYouForYourPurchasePageProps
 > = async ({ searchParams, params }) => {
-  // const featuredProducts = await getProducts({
-  //   categoryId: searchParams.categoryId,
-  //   sort: searchParams.sort,
-  //   sizeId: searchParams.sizeId,
-  //   colorId: searchParams.colorId,
-  //   conditionId: searchParams.conditionId,
-  //   materialId: searchParams.materialId,
-  //   genderId: searchParams.genderId,
-  //   subcategoryId: searchParams.subcategoryId,
-  //   isOnSale: searchParams.isOnSale,
-  //   isCharity: searchParams.isCharity,
-  //   isHidden: searchParams.isHidden,
-  //   isFeatured: true,
-  //   designerId: searchParams.designerId,
-  //   sellerId: searchParams.sellerId,
-  // });
 
   return (
     <>
@@ -54,15 +38,6 @@ const ThankYouForYourPurchasePage: React.FC<
         <div className="flex overflow-auto w-full justify-center">
           <ThankYouOrderDetails />
         </div>
-
-        {/* <div className="flex w-full justify-center items-center">
-          <SuggestedContainer
-            data={featuredProducts}
-            title="CONTINUE SHOPPING OUR PICKS"
-            route={`/${process.env.NEXT_PUBLIC_API_URL}/staff-picks`}
-            header="SHOP"
-          />
-        </div> */}
       </div>
     </>
   );

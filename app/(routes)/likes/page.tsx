@@ -1,6 +1,5 @@
 import SuggestedContainer from "@/components/Suggested/SuggestedContainer";
 import LikesPage from "./components/likes-page";
-import getTrending from "@/actions/get-trending";
 import getProducts from "@/actions/get-products";
 
 interface TopLikesPageProps {
@@ -29,7 +28,6 @@ interface TopLikesPageProps {
 
 const CartPageServer: React.FC<TopLikesPageProps> = async ({
   searchParams,
-  params,
 }) => {
   const products =
     (await getProducts({

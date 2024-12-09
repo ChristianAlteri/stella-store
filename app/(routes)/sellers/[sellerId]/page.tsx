@@ -2,22 +2,10 @@ import ProductGrid from "@/components/Home/ProductGrid";
 import ProductCard from "@/components/Product/product-card";
 import RightSidebar from "@/components/SideBars/RightSideBar";
 import LeftSidebar from "@/components/SideBars/LeftSideBar";
-
-import getDesigners from "@/actions/get-designers";
-import getCategories from "@/actions/get-categories";
 import getProducts from "@/actions/get-products";
-import getSellers from "@/actions/get-sellers";
-import getColors from "@/actions/get-colors";
-import getSizes from "@/actions/get-sizes";
-import getConditions from "@/actions/get-conditions";
-import getMaterials from "@/actions/get-materials";
 import getSingleSeller from "@/actions/get-single-seller";
-import getGenders from "@/actions/get-genders";
-import getSubcategories from "@/actions/get-sub-categories";
 import FullscreenProductFiltersFooter from "@/components/Filters/full-screen-product-filters-footer";
-import ProfileBillboard from "@/components/Billboard/ProfileBillboard";
 import Link from "next/link";
-import ToggleButton from "./toggle-button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export const revalidate = 0;
@@ -72,38 +60,8 @@ const SellerNamePage: React.FC<SellerNamePageProps> = async ({
     minPrice: searchParams.minPrice,
     maxPrice: searchParams.maxPrice,
   });
-  // const archivedProductData = await getProducts({
-  //   sellerId: params.sellerId,
-  //   sort: searchParams.sort,
-  //   sizeId: searchParams.sizeId,
-  //   colorId: searchParams.colorId,
-  //   conditionId: searchParams.conditionId,
-  //   materialId: searchParams.materialId,
-  //   genderId: searchParams.genderId,
-  //   subcategoryId: searchParams.subcategoryId,
-  //   isOnSale: searchParams.isOnSale,
-  //   isCharity: searchParams.isCharity,
-  //   isHidden: searchParams.isHidden,
-  //   isOnline: searchParams.isOnline,
-  //   isFeatured: searchParams.isFeatured,
-  //   designerId: searchParams.designerId,
-  //   categoryId: searchParams.categoryId,
-  //   minPrice: searchParams.minPrice,
-  //   maxPrice: searchParams.maxPrice,
-  //   isArchived: true,
-  //   storeIdFromOnlineStore: process.env.NEXT_PUBLIC_API_URL,
-  // });
-  const sellerData = await getSingleSeller(params.sellerId);
 
-  const sizes = await getSizes(`${process.env.NEXT_PUBLIC_STORE_ID}`);;
-  const colors = await getColors(`${process.env.NEXT_PUBLIC_STORE_ID}`);
-  const conditions = await getConditions();
-  const designers = await getDesigners(`${process.env.NEXT_PUBLIC_STORE_ID}`);
-  const sellers = await getSellers(`${process.env.NEXT_PUBLIC_STORE_ID}`);
-  const categories = await getCategories(`${process.env.NEXT_PUBLIC_STORE_ID}`);
-  const materials = await getMaterials(`${process.env.NEXT_PUBLIC_STORE_ID}`);
-  const genders = await getGenders(`${process.env.NEXT_PUBLIC_STORE_ID}`);
-  const subcategories = await getSubcategories(`${process.env.NEXT_PUBLIC_STORE_ID}`);
+  const sellerData = await getSingleSeller(params.sellerId);
 
   return (
     <>

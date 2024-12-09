@@ -3,16 +3,7 @@ import ProductCard from "@/components/Product/product-card";
 import LeftSidebar from "@/components/SideBars/LeftSideBar";
 import RightSidebar from "@/components/SideBars/RightSideBar";
 
-import getDesigners from "@/actions/get-designers";
-import getCategories from "@/actions/get-categories";
 import getProducts from "@/actions/get-products";
-import getSellers from "@/actions/get-sellers";
-import getColors from "@/actions/get-colors";
-import getSizes from "@/actions/get-sizes";
-import getConditions from "@/actions/get-conditions";
-import getMaterials from "@/actions/get-materials";
-import getGenders from "@/actions/get-genders";
-import getSubcategories from "@/actions/get-sub-categories";
 import AuthForm from "@/components/LoginSignup/auth-form";
 import SuggestedContainer from "@/components/Suggested/SuggestedContainer";
 import IconRedirectButton from "@/components/ui/icon-redirect-button";
@@ -61,15 +52,6 @@ const ForYouPage: React.FC<ForYouPageProps> = async ({ searchParams, params }) =
     designerId: searchParams.designerId,
     sellerId: searchParams.sellerId,
   });
-
-  const sizes = await getSizes(`${process.env.NEXT_PUBLIC_STORE_ID}`);;
-  const colors = await getColors(`${process.env.NEXT_PUBLIC_STORE_ID}`);
-  const conditions = await getConditions();
-  const designers = await getDesigners(`${process.env.NEXT_PUBLIC_STORE_ID}`);
-  const sellers = await getSellers(`${process.env.NEXT_PUBLIC_STORE_ID}`);
-  const categories = await getCategories(`${process.env.NEXT_PUBLIC_STORE_ID}`);
-  const materials = await getMaterials(`${process.env.NEXT_PUBLIC_STORE_ID}`);
-  const subcategories = await getSubcategories(`${process.env.NEXT_PUBLIC_STORE_ID}`);
   const store = await getStore(`${process.env.NEXT_PUBLIC_STORE_ID}`);
   const billboard: Billboard | null = await getBillboardByName(
     "HomePageFullScreen",

@@ -3,15 +3,6 @@ import ProductCard from "@/components/Product/product-card";
 import LeftSidebar from "@/components/SideBars/LeftSideBar";
 import RightSidebar from "@/components/SideBars/RightSideBar";
 
-import getDesigners from "@/actions/get-designers";
-import getCategories from "@/actions/get-categories";
-import getSellers from "@/actions/get-sellers";
-import getColors from "@/actions/get-colors";
-import getSizes from "@/actions/get-sizes";
-import getConditions from "@/actions/get-conditions";
-import getMaterials from "@/actions/get-materials";
-import getGenders from "@/actions/get-genders";
-import getSubcategories from "@/actions/get-sub-categories";
 import getTrending from "@/actions/get-trending";
 
 import FullscreenProductFiltersFooter from "@/components/Filters/full-screen-product-filters-footer";
@@ -20,9 +11,6 @@ import ViewsLikesFilter from "./filter-views-and-likes";
 export const revalidate = 0;
 
 interface TopLikesPageProps {
-  params: {
-    storeId: string;
-  };
   searchParams: {
     sizeId: string;
     colorId: string;
@@ -44,7 +32,7 @@ interface TopLikesPageProps {
   };
 }
 
-const TopLikesPage: React.FC<TopLikesPageProps> = async ({ searchParams, params }) => {
+const TopLikesPage: React.FC<TopLikesPageProps> = async ({ searchParams }) => {
   const topLikedProducts = await getTrending({
     categoryId: searchParams.categoryId,
     sort: searchParams.sort,
@@ -65,56 +53,38 @@ const TopLikesPage: React.FC<TopLikesPageProps> = async ({ searchParams, params 
     storeIdFromOnlineStore: `${process.env.NEXT_PUBLIC_STORE_ID}`,
     isOnline: true,
   });
-  // const featuredProducts = await getProducts({ isFeatured: true });
-
-  const sizes = await getSizes(`${process.env.NEXT_PUBLIC_STORE_ID}`);;
-  const colors = await getColors(`${process.env.NEXT_PUBLIC_STORE_ID}`);
-  const conditions = await getConditions();
-  const designers = await getDesigners(`${process.env.NEXT_PUBLIC_STORE_ID}`);
-  const sellers = await getSellers(`${process.env.NEXT_PUBLIC_STORE_ID}`);
-  const categories = await getCategories(`${process.env.NEXT_PUBLIC_STORE_ID}`);
-  const materials = await getMaterials(`${process.env.NEXT_PUBLIC_STORE_ID}`);
-  const genders = await getGenders(`${process.env.NEXT_PUBLIC_STORE_ID}`);
-  const subcategories = await getSubcategories(`${process.env.NEXT_PUBLIC_STORE_ID}`);
 
   return (
     <>
       <div className="flex flex-row w-full justify-center items-center text-center">
-          <div className="w-full justify-center text-center">
-            <h2 className="text-2xl font-bold text-black mt-2">
-              TRENDING ITEMS
-            </h2>
-            <div className="flex flex-row w-full items-center justify-center">
-              <ViewsLikesFilter 
-                data={topLikedProducts}
-              />
-            </div>
+        <div className="w-full justify-center text-center">
+          <h2 className="text-2xl font-bold text-black mt-2">TRENDING ITEMS</h2>
+          <div className="flex flex-row w-full items-center justify-center">
+            <ViewsLikesFilter data={topLikedProducts} />
           </div>
         </div>
+      </div>
       <div className="justify-center items-center md:grid flex grid-cols-8 gap-4 bg-white ">
         {/* First column */}
         <div className="col-span-1 justify-start items-start w-full hi h-full md:grid ml-4">
-          <LeftSidebar/>
+          <LeftSidebar />
         </div>
 
         {/* Second column */}
         <div className="col-span-6 flex flex-col justify-center items-center w-full h-full">
-
           <ProductGrid>
             {topLikedProducts.map((item) => (
               <ProductCard key={item.id} item={item} />
             ))}
           </ProductGrid>
-            <div className="fixed bottom-0 p-9 mb-4 w-1/3 z-50">
-              <FullscreenProductFiltersFooter 
-                productData={topLikedProducts}
-              />
-            </div>
+          <div className="fixed bottom-0 p-9 mb-4 w-1/3 z-50">
+            <FullscreenProductFiltersFooter productData={topLikedProducts} />
+          </div>
         </div>
 
         {/* Third column */}
         <div className="col-span-1 justify-end items-end w-full hidden sticky h-full md:grid">
-          <RightSidebar/>
+          <RightSidebar />
         </div>
       </div>
     </>

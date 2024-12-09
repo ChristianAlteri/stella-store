@@ -62,7 +62,6 @@ const Footer = async ({
             <p className="text-center text-xs text-stone-600">
               &copy; SFTR: All rights reserved.
             </p>
-            <IconRedirectButton route="/about-us" icon="ABOUT" />
             <IconRedirectButton
               route={store?.email ? `mailto:${store.email}` : ""}
               icon="CONTACT US"

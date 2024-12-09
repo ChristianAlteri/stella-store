@@ -3,17 +3,8 @@ import ProductCard from "@/components/Product/product-card";
 import RightSidebar from "@/components/SideBars/RightSideBar";
 import LeftSidebar from "@/components/SideBars/LeftSideBar";
 
-import getDesigners from "@/actions/get-designers";
-import getCategories from "@/actions/get-categories";
 import getProducts from "@/actions/get-products";
-import getSellers from "@/actions/get-sellers";
-import getColors from "@/actions/get-colors";
-import getSizes from "@/actions/get-sizes";
-import getConditions from "@/actions/get-conditions";
-import getMaterials from "@/actions/get-materials";
 import getSingleDesigner from "@/actions/get-single-designer";
-import getGenders from "@/actions/get-genders";
-import getSubcategories from "@/actions/get-sub-categories";
 import FullscreenProductFiltersFooter from "@/components/Filters/full-screen-product-filters-footer";
 
 export const revalidate = 0;
@@ -68,25 +59,11 @@ const DesignerNamePage: React.FC<DesignerNamePageProps> = async ({
     maxPrice: searchParams.maxPrice,
   });
   const designerData = await getSingleDesigner(params.designerId);
-  const featuredProducts = await getProducts({ all: true, isArchived: false, isOnline: true, isFeatured: true });
 
-  const sizes = await getSizes(`${process.env.NEXT_PUBLIC_STORE_ID}`);;
-  const colors = await getColors(`${process.env.NEXT_PUBLIC_STORE_ID}`);
-  const conditions = await getConditions();
-  const designers = await getDesigners(`${process.env.NEXT_PUBLIC_STORE_ID}`);
-  const sellers = await getSellers(`${process.env.NEXT_PUBLIC_STORE_ID}`);
-  const categories = await getCategories(`${process.env.NEXT_PUBLIC_STORE_ID}`);
-  const materials = await getMaterials(`${process.env.NEXT_PUBLIC_STORE_ID}`);
-  const genders = await getGenders(`${process.env.NEXT_PUBLIC_STORE_ID}`);
-  const subcategories = await getSubcategories(`${process.env.NEXT_PUBLIC_STORE_ID}`);
-  // const allProducts = await getProducts({all: true});
 
   return (
     <>
         <div className="flex flex-row p-7 w-full justify-center items-center text-center mb-2">
-          {/* <div className="rounded-full">
-              <Billboard data={designerData?.billboard} />
-            </div> */}
           <div className="w-full justify-center text-center">
             <h2 className="text-2xl font-bold text-black mt-2 ">
               {designerData?.name.toUpperCase()}
@@ -102,7 +79,6 @@ const DesignerNamePage: React.FC<DesignerNamePageProps> = async ({
           
         {/* Second column */}
         <div className="col-span-6 flex flex-col justify-center items-center w-full h-full">
-        {/* <Billboard data={designerData?.billboard} /> */}
 
           <ProductGrid>
             {productData?.map((item) => (
