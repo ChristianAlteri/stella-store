@@ -13,8 +13,11 @@ import getSubcategories from "@/actions/get-sub-categories";
 import IconRedirectButton from "../ui/icon-redirect-button";
 import FullscreenProductFiltersFooter from "../Filters/full-screen-product-filters-footer";
 import getStore from "@/actions/get-store";
+import { Product, Store } from "@/types";
 
 interface FooterProps {
+  store: Store;
+  products: Product[];
   searchParams: {
     categoryId: string;
     designerId: string;
@@ -34,73 +37,43 @@ interface FooterProps {
   storeId: string;
 }
 
-// const Footer: React.FC<FooterProps> = async ({ searchParams }) => {
 const Footer = async ({
+  store,
+  products,
   searchParams,
   params,
 }: {
+  store: Store;
+  products: Product[];
   searchParams: FooterProps["searchParams"];
   params: { storeId: string };
 }) => {
   const { storeId } = params;
-  const productData = await getProducts({
-    all: true, isArchived: false, isOnline: true,
-    sort: searchParams.sort,
-    designerId: searchParams.designerId,
-    sellerId: searchParams.sellerId,
-    categoryId: searchParams.categoryId,
-    sizeId: searchParams.sizeId,
-    colorId: searchParams.colorId,
-    conditionId: searchParams.conditionId,
-    materialId: searchParams.materialId,
-    isOnSale: searchParams.isOnSale,
-    isCharity: searchParams.isCharity,
-    isHidden: searchParams.isHidden,
-    isFeatured: searchParams.isFeatured,
-    subcategoryId: searchParams.subcategoryId,
-    genderId: searchParams.genderId,
-  });
 
-  const sizes = await getSizes();
-  const colors = await getColors();
   const conditions = await getConditions();
   const designers = await getDesigners(`${process.env.NEXT_PUBLIC_STORE_ID}`);  
   const sellers = await getSellers(`${process.env.NEXT_PUBLIC_STORE_ID}`);  
   const categories = await getCategories(`${process.env.NEXT_PUBLIC_STORE_ID}`);
-  const materials = await getMaterials();
-  const genders = await getGenders(storeId);
-  const subcategories = await getSubcategories();
-  const store = await getStore(storeId);
-  // const onSaleProducts = await getProducts({ isOnSale: true });
 
   return (
     <>
       {/* This footer will only render on screens smaller than 768px */}
       <footer className="bg-white bottom-0 sticky inset-x-0 md:hidden grid grid-cols-4 justify-center text-center items-center z-50">
         <FooterMobileButtons
-          products={productData}
-          colors={colors}
-          sizes={sizes}
+          products={products}
           conditions={conditions}
           designers={designers}
           sellers={sellers}
           categories={categories}
-          materials={materials}
-          subcategories={subcategories}
-          genders={genders}
-          // onSaleProducts={onSaleProducts}
         />
       </footer>
       {/* This footer will only render on screens larger than an iPad (larger than 768px) */}
       <footer className="hidden md:block bg-white border-t bottom-0 sticky inset-x-0 lg:relative">
         <div className="mx-auto w-full justify-center items-center">
           <div className="flex gap-3 w-full h-full flex-row items-center justify-center bottom-0 p-3 mb-4">
-            {/* TODO: Make links store specific */}
             <p className="text-center text-xs text-stone-600">
               &copy; SFTR: All rights reserved.
             </p>
-            {/* <IconRedirectButton route="https://www.instagram.com/anon.drobe" icon="INSTAGRAM" /> */}
-            {/* <IconRedirectButton route="https://tiktok.com/@anondrobe" icon="TIKTOK" /> */}
             <IconRedirectButton route="/about-us" icon="ABOUT" />
             <IconRedirectButton
               route={store?.email ? `mailto:${store.email}` : ""}

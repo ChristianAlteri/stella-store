@@ -98,7 +98,9 @@ export default async function SiteLayout({
         billboard={billboard}
       /> */}
       {children}
-      {/* <Footer
+      <Footer
+        store={store}
+        products={products}
         searchParams={{
           categoryId: "",
           designerId: "",
@@ -118,7 +120,7 @@ export default async function SiteLayout({
         params={{
           storeId: `${process.env.NEXT_PUBLIC_STORE_ID}`,
         }}
-      /> */}
+      />
     </div>
   );
 }

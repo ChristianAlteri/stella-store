@@ -3,9 +3,11 @@ import { Color } from "@/types";
 
 const URL=`${process.env.NEXT_PUBLIC_API_URL}/colors`;
 
-const getColors = async (): Promise<Color[]> => {
+const getColors = async (storeId: string): Promise<Color[]> => {
   try {
-    const response = await axios.get(URL);
+    const response = await axios.get(URL, {
+      params: { storeId },
+    });
     // console.log("response from get-categories", response.data);
 
     return response.data;
