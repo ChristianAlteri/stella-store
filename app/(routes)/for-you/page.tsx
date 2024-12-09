@@ -62,14 +62,14 @@ const ForYouPage: React.FC<ForYouPageProps> = async ({ searchParams, params }) =
     sellerId: searchParams.sellerId,
   });
 
-  const sizes = await getSizes();
-  const colors = await getColors();
+  const sizes = await getSizes(`${process.env.NEXT_PUBLIC_STORE_ID}`);;
+  const colors = await getColors(`${process.env.NEXT_PUBLIC_STORE_ID}`);
   const conditions = await getConditions();
   const designers = await getDesigners(`${process.env.NEXT_PUBLIC_STORE_ID}`);
   const sellers = await getSellers(`${process.env.NEXT_PUBLIC_STORE_ID}`);
   const categories = await getCategories(`${process.env.NEXT_PUBLIC_STORE_ID}`);
-  const materials = await getMaterials();
-  const subcategories = await getSubcategories();
+  const materials = await getMaterials(`${process.env.NEXT_PUBLIC_STORE_ID}`);
+  const subcategories = await getSubcategories(`${process.env.NEXT_PUBLIC_STORE_ID}`);
   const store = await getStore(`${process.env.NEXT_PUBLIC_STORE_ID}`);
   const billboard: Billboard | null = await getBillboardByName(
     "HomePageFullScreen",

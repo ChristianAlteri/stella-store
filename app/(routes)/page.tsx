@@ -83,7 +83,7 @@ const Homepage = async ({
       minPrice: searchParams.minPrice,
       maxPrice: searchParams.maxPrice,
     }),
-    // getSizes(),
+    // getSizes(`${process.env.NEXT_PUBLIC_STORE_ID}`);,
     // getColors(),
     // getConditions(),
     // getDesigners(),

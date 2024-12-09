@@ -95,15 +95,15 @@ const SellerNamePage: React.FC<SellerNamePageProps> = async ({
   // });
   const sellerData = await getSingleSeller(params.sellerId);
 
-  const sizes = await getSizes();
-  const colors = await getColors();
+  const sizes = await getSizes(`${process.env.NEXT_PUBLIC_STORE_ID}`);;
+  const colors = await getColors(`${process.env.NEXT_PUBLIC_STORE_ID}`);
   const conditions = await getConditions();
   const designers = await getDesigners(`${process.env.NEXT_PUBLIC_STORE_ID}`);
   const sellers = await getSellers(`${process.env.NEXT_PUBLIC_STORE_ID}`);
   const categories = await getCategories(`${process.env.NEXT_PUBLIC_STORE_ID}`);
-  const materials = await getMaterials();
+  const materials = await getMaterials(`${process.env.NEXT_PUBLIC_STORE_ID}`);
   const genders = await getGenders(`${process.env.NEXT_PUBLIC_STORE_ID}`);
-  const subcategories = await getSubcategories();
+  const subcategories = await getSubcategories(`${process.env.NEXT_PUBLIC_STORE_ID}`);
 
   return (
     <>
