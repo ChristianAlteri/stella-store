@@ -67,7 +67,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({ label }) => {
           {loading ? (
             // Display skeletons while loading
             <div className="grid bg-white rounded-md p-4">
-              <div className="grid md:grid-cols-3 grid-cols-2 bg-white rounded-md mt-3 gap-4">
+              <div className="grid md:grid-cols-3 grid-cols-1 bg-white rounded-md mt-3 gap-4">
                 {[...Array(6)].map((_, index) => (
                   <div key={index} className="w-full h-full p-1">
                     <Skeleton className="w-full h-40 rounded-md" />
