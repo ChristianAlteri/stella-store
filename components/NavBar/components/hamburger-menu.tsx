@@ -71,16 +71,6 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({}) => {
     setOpen(false);
   }, [pathname]);
 
-  // const sortedItems = (items: any[], key: string) => {
-  //   // Filter items based on whether they have at least one online product
-  //   const filteredItems = items.filter(item =>
-  //     item.products?.some((product: Product) => product.isOnline)
-  //   );
-  
-  //   // Sort the filtered items by the specified key
-  //   return filteredItems.sort((a, b) => a[key].localeCompare(b[key]));
-  // };
-
   const sortedItems = (items: any[], key: string) => {
     // Filter items based on whether they have at least one online product
     const filteredItems = items.filter(item =>
@@ -106,7 +96,7 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({}) => {
                 key={idx}
                 className="h-2 w-full"
               /> */}
-              <div className="text-muted-foreground text-super-small">Loading...</div>
+              <div key={idx} className="text-muted-foreground text-super-small">Loading...</div>
             </>
             ))
           : items.map((item) => (

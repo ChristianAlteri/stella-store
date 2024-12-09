@@ -41,19 +41,11 @@ const Footer = async ({
   store,
   products,
   searchParams,
-  params,
 }: {
   store: Store;
   products: Product[];
   searchParams: FooterProps["searchParams"];
-  params: { storeId: string };
 }) => {
-  const { storeId } = params;
-
-  const conditions = await getConditions();
-  const designers = await getDesigners(`${process.env.NEXT_PUBLIC_STORE_ID}`);  
-  const sellers = await getSellers(`${process.env.NEXT_PUBLIC_STORE_ID}`);  
-  const categories = await getCategories(`${process.env.NEXT_PUBLIC_STORE_ID}`);
 
   return (
     <>
@@ -61,10 +53,6 @@ const Footer = async ({
       <footer className="bg-white bottom-0 sticky inset-x-0 md:hidden grid grid-cols-4 justify-center text-center items-center z-50">
         <FooterMobileButtons
           products={products}
-          conditions={conditions}
-          designers={designers}
-          sellers={sellers}
-          categories={categories}
         />
       </footer>
       {/* This footer will only render on screens larger than an iPad (larger than 768px) */}

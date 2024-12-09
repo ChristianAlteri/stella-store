@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import React from "react";
 import { useSearchParams } from "next/navigation";
@@ -47,8 +47,8 @@ const AllSortFilters: React.FC<AllSortFiltersProps> = ({ data }) => {
           <div
             className={cn(
               isLowToHighSelected
-              ? "underline w-full flex justify-center items-center text-black text-xs rounded-md h-full p-1 scale-110 transition-transform animate-pulse"
-              : "text-stone-300"
+                ? "underline w-full flex justify-center items-center text-black text-xs rounded-md h-full p-1 scale-110 transition-transform animate-pulse"
+                : "text-stone-300"
             )}
             onClick={() => handleClick("sort", "low-to-high")}
           >
@@ -61,8 +61,8 @@ const AllSortFilters: React.FC<AllSortFiltersProps> = ({ data }) => {
           <div
             className={cn(
               isHighToLowSelected
-              ? "underline w-full flex justify-center items-center text-black text-xs rounded-md h-full p-1 scale-110 transition-transform animate-pulse"
-              : "text-stone-300"
+                ? "underline w-full flex justify-center items-center text-black text-xs rounded-md h-full p-1 scale-110 transition-transform animate-pulse"
+                : "text-stone-300"
             )}
             onClick={() => handleClick("sort", "high-to-low")}
           >
@@ -77,8 +77,8 @@ const AllSortFilters: React.FC<AllSortFiltersProps> = ({ data }) => {
           <div
             className={cn(
               isFeaturedSelected
-              ? "underline w-full flex justify-center items-center text-black text-xs rounded-md h-full p-1 scale-110 transition-transform animate-pulse"
-              : "text-stone-300 w-full flex flex-col justify-center items-center"
+                ? "underline w-full flex justify-center items-center text-black text-xs rounded-md h-full p-1 scale-110 transition-transform animate-pulse"
+                : "text-stone-300 w-full flex flex-col justify-center items-center"
             )}
             onClick={() => handleClick("isFeatured", "true")}
           >
@@ -93,8 +93,8 @@ const AllSortFilters: React.FC<AllSortFiltersProps> = ({ data }) => {
           <div
             className={cn(
               isOnSaleSelected
-              ? "underline w-full flex justify-center items-center text-black text-xs rounded-md h-full p-1 scale-110 transition-transform animate-pulse"
-              : "text-stone-300 w-full flex flex-col justify-center items-center"
+                ? "underline w-full flex justify-center items-center text-black text-xs rounded-md h-full p-1 scale-110 transition-transform animate-pulse"
+                : "text-stone-300 w-full flex flex-col justify-center items-center"
             )}
             onClick={() => handleClick("isOnSale", "true")}
           >
@@ -104,7 +104,7 @@ const AllSortFilters: React.FC<AllSortFiltersProps> = ({ data }) => {
             </div>
           </div>
         </div>
-        
+
         {/* <div className="flex flex-col justify-center gap-1 items-center text-center text-xs text-stone-300 hover:cursor-pointer w-full h-full">
           <div
             className={cn(

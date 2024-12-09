@@ -24,10 +24,6 @@ import getMaterials from "@/actions/get-materials";
 import getSubcategories from "@/actions/get-sub-categories";
 
 interface FilterModalProps {
-  designers?: Designer[];
-  categories?: Category[];
-  sellers?: Seller[];
-  conditions?: Condition[];
   genders?: Gender[];
 }
 
