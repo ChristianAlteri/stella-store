@@ -148,15 +148,7 @@ const ForYouPage: React.FC<ForYouPageProps> = async ({ searchParams, params }) =
           className="col-span-1 justify-start items-start w-full p-6 hidden sticky h-full md:grid"
           style={{ width: "100%" }}
         >
-          <RightSidebar
-            colors={colors}
-            sizes={sizes}
-            conditions={conditions}
-            materials={materials}
-            subcategories={subcategories}
-            // productData={featuredProducts}
-            // miniProductTitle="Our top picks"
-          />
+          <RightSidebar/>
         </div>
 
       </div>

@@ -93,11 +93,7 @@ const TopSellers: React.FC<TopSellersProps> = async ({ searchParams, params }) =
 
         {/* Third column */}
         <div className="col-span-1 justify-end items-end w-full hidden sticky h-full md:grid p-4">
-          {/* <RightSidebar
-            colors={colors}
-            sizes={sizes}
-            conditions={conditions}
-            materials={materials}
+          {/* <RightSidebar/>
             subcategories={subcategories}
             // productData={featuredProducts}
             miniProductTitle="Our top picks"
