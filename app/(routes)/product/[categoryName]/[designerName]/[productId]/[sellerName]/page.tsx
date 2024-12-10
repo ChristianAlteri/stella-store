@@ -24,63 +24,62 @@ interface IndividualProductPageProps {
 const IndividualProductPage: React.FC<IndividualProductPageProps> = async ({
   params,
 }) => {
-  const product = await getSingleProduct(params.productId);
+  // const product = await getSingleProduct(params.productId);
 
-  const suggestedProductsBasedOnSeller = await getProducts({
-    sellerId: product?.seller?.id,
-    isOnline: true,
-    isArchived: false,
-  });
-  const suggestedProductsBasedOnCategory = await getProducts({
-    categoryId: product?.category?.id,
-    isOnline: true,
-    isArchived: false,
-  });
-  const suggestedProductsBasedOnDesigner = await getProducts({
-    designerId: product?.designer?.id,
-    isOnline: true,
-    isArchived: false,
-  });
-  // const mostViewedProducts = await getMostViewed({all: true});
-  const featuredProducts = await getProducts({ all: true, isArchived: false, isOnline: true, isFeatured: true });
+  // const suggestedProductsBasedOnSeller = await getProducts({
+  //   sellerId: product?.seller?.id,
+  //   isOnline: true,
+  //   isArchived: false,
+  // });
+  // const suggestedProductsBasedOnCategory = await getProducts({
+  //   categoryId: product?.category?.id,
+  //   isOnline: true,
+  //   isArchived: false,
+  // });
+  // const suggestedProductsBasedOnDesigner = await getProducts({
+  //   designerId: product?.designer?.id,
+  //   isOnline: true,
+  //   isArchived: false,
+  // });
+  // const featuredProducts = await getProducts({
+  //   all: true,
+  //   isArchived: false,
+  //   isOnline: true,
+  //   isFeatured: true,
+  // });
 
-  //sorted data
-  const sortedProductsBasedOnSeller = sortPriceLowToHigh(
-    suggestedProductsBasedOnSeller.slice(0, 7)
-  );
-  const sortedProductsBasedOnCategory = sortByMostViewed(
-    suggestedProductsBasedOnCategory.slice(0, 7)
-  );
-  const sortedProductsBasedOnDesigner = sortByMostLiked(
-    suggestedProductsBasedOnDesigner.slice(0, 7)
-  );
+  // //sorted data
+  // const sortedProductsBasedOnSeller = sortPriceLowToHigh(
+  //   suggestedProductsBasedOnSeller.slice(0, 7)
+  // );
+  // const sortedProductsBasedOnCategory = sortByMostViewed(
+  //   suggestedProductsBasedOnCategory.slice(0, 7)
+  // );
+  // const sortedProductsBasedOnDesigner = sortByMostLiked(
+  //   suggestedProductsBasedOnDesigner.slice(0, 7)
+  // );
 
   return (
     <>
       <div className="grid grid-cols-1 md:grid-cols-3 md:gap-3 w-full bg-white p-6 items-center justify-center">
         {/* Left */}
         <div className="col-span-2 w-full items-center justify-center">
-          <div
-            className={`flex flex-col w-full h-full items-center text-center justify-center ${
-              product.isHidden ? "blur-xl" : ""
-            }`}
-          >
-            <Gallery images={product.images} />
+          <div className="flex flex-col w-full h-full items-center text-center justify-center">
+            <Gallery productId={params.productId} />
           </div>
         </div>
 
         {/* Right */}
         <div className="flex flex-col h-full">
           <div className="flex flex-col text-left justify-center items-start">
-            <DetailsCard data={product} products={featuredProducts} />
+            <DetailsCard productId={params.productId} />
           </div>
-          <hr className="w-full" />
+          
         </div>
       </div>
 
       {/* Suggestions */}
-      
-      {sortedProductsBasedOnSeller.length > 0 && ( //same seller large screen
+      {/* {sortedProductsBasedOnSeller.length > 0 && ( //same seller large screen
         <SuggestedContainer
           route={`/sellers/${product?.seller?.id}`}
           header={`MORE FROM THIS`}
@@ -103,7 +102,7 @@ const IndividualProductPage: React.FC<IndividualProductPageProps> = async ({
           title={product?.designer?.name}
           data={sortedProductsBasedOnDesigner}
         />
-      )}
+      )} */}
     </>
   );
 };

@@ -79,7 +79,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({ label }) => {
           ) : searchResults && searchResults.length > 0 ? (
             // Display search results when not loading
             <div className="grid bg-white rounded-md p-4">
-              <div className="grid md:grid-cols-3 grid-cols-2 bg-white rounded-md mt-3">
+              <div className="grid md:grid-cols-3 grid-cols-1 bg-white rounded-md mt-3">
                 {searchResults.map((product) => (
                   <div key={product.id} className="w-full h-full p-1">
                     <SearchProductImage product={product} />
