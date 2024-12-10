@@ -63,11 +63,12 @@ const Summary = () => {
         },
         {
           params: {
-            storeId: process.env.NEXT_PUBLIC_API_URL,
+            storeId: process.env.NEXT_PUBLIC_STORE_ID,
           },
         }
       );
       window.location = response.data.url;
+      console.log("RESPONSE FROM CHECKOUT", response);
     } catch (error) {
       console.error("Checkout error:", error);
       toastError("An error occurred during checkout. Please try again.");
