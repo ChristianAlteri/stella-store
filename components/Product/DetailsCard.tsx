@@ -120,7 +120,7 @@ const DetailsCard: React.FC<DetailsCardProps> = ({ productId }) => {
                     <div className="flex flex-row gap-2">
                       <h1 className="md:text-xs text-sm">Colour: </h1>
                       <h1 className="md:text-xs text-sm">
-                        Colour: {productData?.color?.name}
+                        {productData?.color?.name}
                       </h1>
                     </div>
                   </div>

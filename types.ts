@@ -54,6 +54,7 @@ export interface Product {
   description: string;
   ourPrice: string;
   retailPrice: string;
+  originalPrice: string;
   size: Size;
   color: Color;
   condition: Condition;

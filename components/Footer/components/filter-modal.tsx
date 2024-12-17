@@ -31,7 +31,7 @@ const resourceFetchers = {
   size: getSizes,
   color: getColors,
   material: getMaterials,
-  subcategory: getSubcategories,
+  // subcategory: getSubcategories,
 };
 
 const FilterModal: React.FC<FilterModalProps> = () => {
@@ -41,7 +41,7 @@ const FilterModal: React.FC<FilterModalProps> = () => {
     size: true,
     color: true,
     material: true,
-    subcategory: true,
+    // subcategory: true,
   });
 
   const openDrawer = () => setOpen(true);
@@ -95,7 +95,7 @@ const FilterModal: React.FC<FilterModalProps> = () => {
         size={500}
       >
         <div className="grid grid-rows-10 h-full p-6">
-          {open && (
+          {/* {open && (
             <div className="row-span-1 w-full">
               <NavbarScrollingBanner
                 text="Enjoy a 20% off your first purchase by"
@@ -103,7 +103,7 @@ const FilterModal: React.FC<FilterModalProps> = () => {
                 link="/for-you"
               />
             </div>
-          )}
+          )} */}
 
           <div className="row-span-4 p-4 overflow-y-auto shadow-2xl rounded-md border">
             <div className="text-sm w-full items-center text-center p-2 mb-2">
@@ -111,7 +111,7 @@ const FilterModal: React.FC<FilterModalProps> = () => {
             </div>
 
             <div className="flex flex-col gap-2">
-              {["size", "color", "material", "subcategory"].map((key) => (
+              {["size", "color", "material"].map((key) => (
                 <div key={key}>
                   {loadingStates[key] ? (
                     <div className="w-full text-center text-super-small text-muted-foreground">
@@ -150,7 +150,7 @@ const FilterModal: React.FC<FilterModalProps> = () => {
             <MdArrowBackIos
               className="hover:cursor-pointer"
               onClick={closeDrawer}
-              size={13}
+              size={20}
             />
           </div>
         </div>

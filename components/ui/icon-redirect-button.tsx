@@ -14,7 +14,7 @@ const IconRedirectButton: React.FC<IconRedirectButtonProps> = ({
 }) => {
     const isMailto = route.startsWith("mailto:");
     const params = useParams()
-    const URL = `/${process.env.NEXT_PUBLIC_STORE_ID}${route}`
+    const URL = `${route}`
 
     return (
         <div className="text-xs hover:underline hover:cursor-pointer">

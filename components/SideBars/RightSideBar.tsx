@@ -27,7 +27,7 @@ const resourceFetchers = {
   size: getSizes,
   color: getColors,
   material: getMaterials,
-  subcategory: getSubcategories,
+  // subcategory: getSubcategories,
 };
 
 const RightSidebar: React.FC<RightSideProps> = ({}) => {
@@ -36,7 +36,7 @@ const RightSidebar: React.FC<RightSideProps> = ({}) => {
     size: true,
     color: true,
     material: true,
-    subcategory: true,
+    // subcategory: true,
   });
 
   const sortAlphabetically = (data: any[] | undefined) => {
@@ -70,7 +70,7 @@ const RightSidebar: React.FC<RightSideProps> = ({}) => {
     <aside className="h-full mr-5 p-1">
       <div className="grid grid-rows-4 h-full w-full justify-start items-start flex-col">
         <div className="row-span-3 h-full w-full justify-start items-center">
-          {["size", "color", "material", "subcategory"].map((key) => (
+          {["size", "color", "material"].map((key) => (
             <div key={key}>
               {loadingStates[key] ? (
                 <div className="w-full justify-center text-center text-super-small text-muted-foreground p-4">

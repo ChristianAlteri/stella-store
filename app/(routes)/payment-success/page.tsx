@@ -90,7 +90,7 @@ const SuccessPage: React.FC<SuccessPageProps> = ({}) => {
 
   return (
     <div className="flex flex-row w-full h-full bg-white justify-center items-center p-1">
-      Processing payment...
+      Processing payment, please do not move away from this screen...
     </div>
   );
 };

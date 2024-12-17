@@ -16,15 +16,14 @@ interface LeftSideProps {}
 const LeftSidebar: React.FC<LeftSideProps> = ({}) => {
   const sortedItems = (items: any[], key: string) => {
     // Filter items based on whether they have at least one online product
-    const filteredItems = items.filter(item =>
+    const filteredItems = items.filter((item) =>
       item.products?.some((product: Product) => product.isOnline)
     );
-  
+
     // Sort the filtered items by the specified key
     return filteredItems.sort((a, b) => a[key].localeCompare(b[key]));
   };
-  const { isDesignerSelected, isCategorySelected } =
-    useParamsUtil();
+  const { isDesignerSelected, isCategorySelected } = useParamsUtil();
   const [designers, setDesigners] = useState<Designer[] | undefined>(undefined);
   const [isLoadingDesigners, setIsLoadingDesigners] = useState(true);
 
@@ -68,42 +67,17 @@ const LeftSidebar: React.FC<LeftSideProps> = ({}) => {
     <aside className="h-full z-35">
       <div className="grid grid-rows-2 h-full justify-start items-start gap-4">
         <div className="row-span-1 h-full p-1">
-          <p className="font-bold text-lg bg-white">DESIGNERS</p>
-
-          <ScrollArea className="h-[450px]">
-            {isLoading ? (
-              Array.from({ length: 1 }).map((_, index) => (
-                // <Skeleton key={index} className="h-2 w-full mb-2 bg-gray-200" />
-                <div key={index} className="text-super-small text-muted-foreground w-full justify-center text-center">Loading...</div>
-              ))
-            ) : designers?.length ? (
-              designers.map((designer) => (
-                <Link href={`/designers/${designer.id}`} key={designer.name}>
-                  <p
-                    className={cn(
-                      "flex justify-start text-sm font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer",
-                      isDesignerSelected(designer.id)
-                        ? "rounded-md w-full flex text-black underline transition-transform animate-pulse"
-                        : "text-light-font"
-                    )}
-                  >
-                    {designer.name.toUpperCase()}
-                  </p>
-                </Link>
-              ))
-            ) : (
-              <p className="text-sm text-gray-500">No designers available.</p>
-            )}
-          </ScrollArea>
-        </div>
-
-        <div className="row-span-1 h-full p-1">
           <p className="font-bold text-lg bg-white">CATEGORIES</p>
 
           <ScrollArea className="h-[450px]">
             {isLoading ? (
               Array.from({ length: 1 }).map((_, index) => (
-                <div key={index}  className="text-super-small text-muted-foreground w-full justify-center text-center">Loading...</div>
+                <div
+                  key={index}
+                  className="text-super-small text-muted-foreground w-full justify-center text-center"
+                >
+                  Loading...
+                </div>
               ))
             ) : categories?.length ? (
               categories.map((category) => (
@@ -122,6 +96,41 @@ const LeftSidebar: React.FC<LeftSideProps> = ({}) => {
               ))
             ) : (
               <p className="text-sm text-gray-500">No categories available.</p>
+            )}
+          </ScrollArea>
+        </div>
+
+        <div className="row-span-1 h-full p-1">
+          <p className="font-bold text-lg bg-white">DESIGNERS</p>
+
+          <ScrollArea className="h-[450px]">
+            {isLoading ? (
+              Array.from({ length: 1 }).map((_, index) => (
+                // <Skeleton key={index} className="h-2 w-full mb-2 bg-gray-200" />
+                <div
+                  key={index}
+                  className="text-super-small text-muted-foreground w-full justify-center text-center"
+                >
+                  Loading...
+                </div>
+              ))
+            ) : designers?.length ? (
+              designers.map((designer) => (
+                <Link href={`/designers/${designer.id}`} key={designer.name}>
+                  <p
+                    className={cn(
+                      "flex justify-start text-sm font-medium transition-colors hover:text-stone-900 hover:underline hover:cursor-pointer",
+                      isDesignerSelected(designer.id)
+                        ? "rounded-md w-full flex text-black underline transition-transform animate-pulse"
+                        : "text-light-font"
+                    )}
+                  >
+                    {designer.name.toUpperCase()}
+                  </p>
+                </Link>
+              ))
+            ) : (
+              <p className="text-sm text-gray-500">No designers available.</p>
             )}
           </ScrollArea>
         </div>

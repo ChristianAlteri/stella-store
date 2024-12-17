@@ -16,6 +16,8 @@ const CartPage: React.FC<CartPageProps> = ({products}) => {
   const [isMounted, setIsMounted] = useState(false);
   const [cartProducts, setCartProducts] = useState<Product[]>([]);
   const cart = useCart();
+  console.log("products coming into component cart", products);
+  console.log("cartProducts from useState component cart", cartProducts);
 
   useEffect(() => {
     setIsMounted(true);
@@ -23,11 +25,11 @@ const CartPage: React.FC<CartPageProps> = ({products}) => {
 
   useEffect(() => {
     if (isMounted) {
-      const cartProductsNotArchived = products.filter(
-        (product) => !product.isArchived
-      );
+      // const cartProductsNotArchived = products.filter(
+      //   (product) => !product.isArchived
+      // );
       const cartProductIds = cart.items.map((item) => item.id);
-      const filteredCartProducts = cartProductsNotArchived.filter((product) =>
+      const filteredCartProducts = products.filter((product) =>
         cartProductIds.includes(product.id)
       );
       setCartProducts(filteredCartProducts);

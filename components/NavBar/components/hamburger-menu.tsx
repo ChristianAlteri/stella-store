@@ -159,13 +159,13 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({}) => {
 
           <div className="row-span-3 bg-stone-200 flex items-center justify-center flex-col">
             <div className="md:hidden flex gap-2 w-full h-full flex-row justify-center items-end mb-2">
-              <IconRedirectButton route="/for-you" icon="REGISTER" />
+              <IconRedirectButton route={`/for-you`} icon="REGISTER" />
               <IconRedirectButton
                 route={storeData?.email ? `mailto:${storeData.email}` : ""}
                 icon="CONTACT US"
               />
-              <div className="hover:underline hover:cursor-pointer">
-              <MdArrowForwardIos onClick={() => setOpen(false)} size={13} />
+              <div className="hover:underline hover:cursor-pointer mr-2">
+              <MdArrowForwardIos onClick={() => setOpen(false)} size={14} />
               </div>
             </div>
           </div>

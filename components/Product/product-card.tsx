@@ -101,7 +101,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
                 loop={true}
                 playing={true}
                 muted={true}
-                alt={`${item.name} by ${item.designer?.name} in size ${item.size?.name} for $${item.ourPrice} (RRP $${item.retailPrice})`}
+                alt={`${item.name} by ${item.designer?.name} in size ${item.size?.name} for $${item.ourPrice}`}
                 className={`rounded-md transition-opacity duration-200 ease-in-out ${
                   item.isHidden ? "blur-xl" : ""
                 }`}
@@ -115,7 +115,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
                     width={1080}
                     height={1350}
                     src={item!.images[0]!.url}
-                    alt={`${item.name} by ${item.designer?.name} in size ${item.size?.name} for $${item.ourPrice} (RRP $${item.retailPrice})`}
+                    alt={`${item.name} by ${item.designer?.name} in size ${item.size?.name} for $${item.ourPrice}`}
                     priority
                     className={`rounded-md transition-opacity duration-200 ease-in-out 
                     ${item.isHidden ? "blur-xl" : ""}`}
@@ -129,7 +129,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
                     width={1080}
                     height={1350}
                     src={item!.images[0]!.url}
-                    alt={`${item.name} by ${item.designer?.name} in size ${item.size?.name} for $${item.ourPrice} (RRP $${item.retailPrice})`}
+                    alt={`${item.name} by ${item.designer?.name} in size ${item.size?.name} for $${item.ourPrice}`}
                     priority
                     className={`rounded-md transition-opacity duration-200 ease-in-out 
                     ${item.isHidden ? "blur-xl" : ""}`}
@@ -153,7 +153,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
                   loop
                   playing
                   muted
-                  alt={`${item.name} video by ${item.designer?.name} in size ${item.size?.name} for $${item.ourPrice} (RRP $${item.retailPrice})`}
+                  alt={`${item.name} video by ${item.designer?.name} in size ${item.size?.name} for $${item.ourPrice}`}
                   className={`rounded-md transition-opacity duration-200 ease-in-out ${
                     item.isHidden ? "blur-xl" : ""
                   }`}
@@ -167,7 +167,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
                       width={1080}
                       height={1350}
                       src={item?.images?.[1]?.url}
-                      alt={`Image of ${item.name} by ${item.designer?.name} in size ${item.size?.name} for $${item.ourPrice} (RRP $${item.retailPrice})`}
+                      alt={`Image of ${item.name} by ${item.designer?.name} in size ${item.size?.name} for $${item.ourPrice}`}
                       priority
                       className={`rounded-md transition-opacity duration-200 ease-in-out ${
                         item.isHidden ? "blur-xl" : ""
@@ -182,7 +182,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
                       width={1080}
                       height={1350}
                       src={item?.images?.[1]?.url}
-                      alt={`Image of ${item.name} by ${item.designer?.name} in size ${item.size?.name} for $${item.ourPrice} (RRP $${item.retailPrice})`}
+                      alt={`Image of ${item.name} by ${item.designer?.name} in size ${item.size?.name} for $${item.ourPrice}`}
                       priority
                       className={`rounded-md transition-opacity duration-200 ease-in-out ${
                         item.isHidden ? "blur-xl" : ""
@@ -219,7 +219,12 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
               onClick={handleProductClick}
               className="text-xs hover:underline hover:cursor-pointer text-black"
             >
-              {item.name.charAt(0).toUpperCase() + item.name.slice(1)}
+              {/* {item.name.charAt(0).toUpperCase() + item.name.slice(1)} */}
+              {item.name
+              .split(' ') // Split the string into an array of words
+              .map(word => word.charAt(0).toUpperCase() + word.slice(1)) // Capitalize the first letter of each word
+              .join(' ')
+              }
             </div>
             <Link
               // onClick={handleProductClick}
@@ -276,7 +281,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
                     onClick={handleProductClick}
                     className="text-xs line-through"
                   >
-                    ${item.retailPrice}
+                    ${item.originalPrice}
                   </h6>
                 </>
               )}
@@ -333,7 +338,7 @@ const ProductCard: React.FC<ProductListProps> = ({ item }) => {
                   onClick={handleProductClick}
                   className="text-xs line-through"
                 >
-                  ${item.retailPrice}
+                  ${item.originalPrice}
                 </h6>
               </>
             )}
