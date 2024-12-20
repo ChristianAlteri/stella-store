@@ -27,34 +27,18 @@ interface Query {
   maxPrice?: number;
   isArchived?: boolean;
   storeIdFromOnlineStore?: string;
+  page?: number;
+  limit?: number;
 }
 
 const getProducts = async (query: Query): Promise<Product[]> => {
   try {
     const url = qs.stringifyUrl({
       url: URL,
-      query: { 
-        all: query.all,
-        storeIdFromOnlineStore: storeId,
-        isOnline: query.isOnline ? 'true' : 'false',
-        isArchived: query.isArchived ? 'true' : 'false',
-        sellerId: query.sellerId,
-        designerId: query.designerId,
-        categoryId: query.categoryId,
-        colorId: query.colorId,
-        sizeId: query.sizeId,
-        conditionId: query.conditionId,
-        categoryName: query.categoryId,
-        materialId: query.materialId,
-        genderId: query.genderId,
-        subcategoryId: query.subcategoryId,
-        isFeatured: query.isFeatured,
-        isOnSale: query.isOnSale,
-        isCharity: query.isCharity,
-        isHidden: query.isHidden,
-        sort: query.sort,
-        minPrice: query.minPrice,
-        maxPrice: query.maxPrice,
+      query: {
+        ...query,
+        page: query.page || 1, // Default to page 1
+        limit: query.limit || 4, // Default to 4 items per page
       },
     });
     const response = await axios.get(url);
