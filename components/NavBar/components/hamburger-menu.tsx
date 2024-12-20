@@ -91,13 +91,13 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({}) => {
       <div className="flex flex-col items-center row-span-1 h-full overflow-y-auto bg-white">
         {isLoading
           ? Array.from({ length: 6 }).map((_, idx) => (
-            <>
+            <div key={idx}>
               {/* <Skeleton
                 key={idx}
                 className="h-2 w-full"
               /> */}
               <div key={idx} className="text-muted-foreground text-super-small">Loading...</div>
-            </>
+            </div>
             ))
           : items.map((item) => (
               <Link

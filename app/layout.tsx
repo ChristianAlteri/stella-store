@@ -9,6 +9,7 @@ const font = Roboto({
   weight: "400",
   subsets: ["latin"],
   fallback: ["sans-serif"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {

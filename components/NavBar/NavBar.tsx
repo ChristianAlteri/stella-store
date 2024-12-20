@@ -89,8 +89,9 @@ const Navbar: React.FC<NavbarProps> = ({
                 <div className="hidden md:flex flex-row gap-2">
                   <IconRedirectButton route="/for-you" icon="REGISTER" />
                 </div>
-                <HeartButton products={products} />
-                <ShoppingCartButton size="28px" products={products} />
+                {/* TODO: can u make the like page and shopping cart call the backend when the component mounts */}
+                {/* <HeartButton products={products} /> */}
+                {/* <ShoppingCartButton size="28px" products={products} /> */}
                 {/* {loggedIn ? <ProfileButton /> : null} */}
                 {/* TODO: Finish sign up and sign in */}
               </div>

@@ -13,15 +13,15 @@ interface HomepageBillboardProps {
 const HomepageBillboard: React.FC<HomepageBillboardProps> = ({
   billboardName,
 }) => {
-  const [isMounted, setIsMounted] = useState(false);
+  // const [isMounted, setIsMounted] = useState(false);
   const [loading, setLoading] = useState(true);
   const [homePageBillboard, setHomePageBillboard] = useState<
     Billboard | Billboard[] | null
   >(null);
 
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
+  // useEffect(() => {
+  //   setIsMounted(true);
+  // }, []);
 
   useEffect(() => {
     const fetchBillboard = async () => {
@@ -39,14 +39,14 @@ const HomepageBillboard: React.FC<HomepageBillboardProps> = ({
       }
     };
 
-    if (isMounted) {
-      fetchBillboard();
-    }
-  }, [isMounted]);
 
-  if (!isMounted) {
-    return null;
-  }
+      fetchBillboard();
+
+  }, []);
+
+  // if (!isMounted) {
+  //   return null;
+  // }
 
   // if (!homePageBillboard) {
   //   return (

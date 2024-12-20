@@ -38,27 +38,27 @@ const Homepage = async ({
   searchParams: HomepageProps["searchParams"];
 }) => {
   // Fetch data in parallel using Promise.all
-  const products = await getProducts({
-    all: true,
-    isOnline: true,
-    isArchived: false,
-    categoryId: searchParams.categoryId,
-    sort: searchParams.sort,
-    sizeId: searchParams.sizeId,
-    colorId: searchParams.colorId,
-    conditionId: searchParams.conditionId,
-    materialId: searchParams.materialId,
-    genderId: searchParams.genderId,
-    subcategoryId: searchParams.subcategoryId,
-    isCharity: searchParams.isCharity,
-    isHidden: searchParams.isHidden,
-    isOnSale: searchParams.isOnSale,
-    isFeatured: searchParams.isFeatured,
-    designerId: searchParams.designerId,
-    sellerId: searchParams.sellerId,
-    minPrice: searchParams.minPrice,
-    maxPrice: searchParams.maxPrice,
-  });
+  // const products = await getProducts({
+  //   all: true,
+  //   isOnline: true,
+  //   isArchived: false,
+  //   categoryId: searchParams.categoryId,
+  //   sort: searchParams.sort,
+  //   sizeId: searchParams.sizeId,
+  //   colorId: searchParams.colorId,
+  //   conditionId: searchParams.conditionId,
+  //   materialId: searchParams.materialId,
+  //   genderId: searchParams.genderId,
+  //   subcategoryId: searchParams.subcategoryId,
+  //   isCharity: searchParams.isCharity,
+  //   isHidden: searchParams.isHidden,
+  //   isOnSale: searchParams.isOnSale,
+  //   isFeatured: searchParams.isFeatured,
+  //   designerId: searchParams.designerId,
+  //   sellerId: searchParams.sellerId,
+  //   minPrice: searchParams.minPrice,
+  //   maxPrice: searchParams.maxPrice,
+  // });
 
   return (
     <>
@@ -88,13 +88,13 @@ const Homepage = async ({
 
         {/* Second column */}
         <div className="col-span-6 flex flex-col justify-center items-center w-full h-full">
-          <ProductGrid>
+          {/* <ProductGrid>
             {products.map((item) => (
               <ProductCard key={item.id} item={item} />
             ))}
-          </ProductGrid>
+          </ProductGrid> */}
           <div className="fixed bottom-0 p-9 mb-4 w-1/3 z-50">
-            <FullscreenProductFiltersFooter productData={products} />
+            {/* <FullscreenProductFiltersFooter productData={products} /> */}
           </div>
         </div>
 

@@ -53,12 +53,43 @@ const Summary = () => {
     return total + Number(item.ourPrice);
   }, 0);
 
+  // Group products by sellerId
+  const productsWithSellerId: any = items.reduce((acc: any, product) => {
+    const {
+      id: productId,
+      name: productName,
+      ourPrice: productPrice,
+      sellerId,
+    } = product;
+
+    // Initialize the seller group if it doesn't exist
+    if (!acc[sellerId]) {
+      acc[sellerId] = {
+        productId: [],
+        productName: [],
+        productPrice: [],
+      };
+    }
+
+    // Add product details to the corresponding seller group
+    acc[sellerId].productId.push(productId);
+    acc[sellerId].productName.push(productName);
+    acc[sellerId].productPrice.push(Number(productPrice));
+
+    return acc;
+  }, {});
+
+  // Convert the grouped data to a JSON string
+  const productsWithSellerIdStringify = JSON.stringify(productsWithSellerId);
+
+  console.log("productsWithSellerIdStringify", productsWithSellerIdStringify);
 
   const onCheckout = async () => {
     try {
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}/checkout`,
         {
+          productsWithSellerIdStringify,
           productIds: items.map((item) => item.id),
         },
         {

@@ -53,7 +53,8 @@ const FooterMobileButtons: React.FC<FooterMobileButtonsProps> = ({
   return (
     <div className="flex col-span-4 flex-row w-full h-full justify-center items-center shadow-top p-1">
       <div className="flex flex-col items-center justify-center col-span-1 w-full min-h-[55px] text-xs">
-        <FooterSort products={products} />
+        {/* TODO: same here make the products call here */}
+        {/* <FooterSort products={products} /> */}
         SORT
       </div>
       {isLoadingGenders ? (

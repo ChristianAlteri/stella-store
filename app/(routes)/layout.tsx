@@ -12,10 +12,10 @@ export default async function SiteLayout({
    // Fetch all data concurrently
    const [
     store,
-    products,
+    // products,
   ] = await Promise.all([
     getStore(`${process.env.NEXT_PUBLIC_STORE_ID}`),
-    getProducts({ all: true, isOnline: true, isArchived: false }),
+    // getProducts({ all: true, isOnline: true, isArchived: false }),
   ]);
   console.debug("STORE FROM ROOT", store);
 
@@ -23,12 +23,13 @@ export default async function SiteLayout({
     <div>
       <Navbar
         store={store}
-        products={products}
+        // products={products}
+        products={[]}
       />
       {children}
       <Footer
         store={store}
-        products={products}
+        products={[]}
         searchParams={{
           categoryId: "",
           designerId: "",
