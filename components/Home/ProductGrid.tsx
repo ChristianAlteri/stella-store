@@ -64,7 +64,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({ children }) => {
 
     observer.current = new IntersectionObserver(callback, {
       root: null,
-      rootMargin: "400px", // Load more when within 800px of the bottom
+      rootMargin: "200px", // Load more when within 800px of the bottom
       threshold: 0.1,
     });
 
