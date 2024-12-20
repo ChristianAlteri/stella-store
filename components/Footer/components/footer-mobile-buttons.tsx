@@ -39,10 +39,10 @@ const FooterMobileButtons: React.FC<FooterMobileButtonsProps> = ({
 
   return (
     <div className="flex col-span-4 flex-row w-full h-full justify-center items-center shadow-top p-1">
-      <div className="flex flex-col items-center justify-center col-span-1 w-full min-h-[55px] text-xs">
+      {/* <div className="flex flex-col items-center justify-center col-span-1 w-full min-h-[55px] text-xs">
         <FooterSort />
         SORT
-      </div>
+      </div> */}
       {isLoadingGenders ? (
         <div className="w-full justify-center text-center text-super-small text-muted-foreground">
           Loading...
@@ -63,9 +63,9 @@ const FooterMobileButtons: React.FC<FooterMobileButtonsProps> = ({
           </div>
         </>
       )}
-      <div className="text-xs flex flex-col items-center justify-center col-span-1 w-full min-h-[55px]">
+      {/* <div className="text-xs flex flex-col items-center justify-center col-span-1 w-full min-h-[55px]">
         <FilterModal genders={genders || undefined} /> FILTER
-      </div>
+      </div> */}
     </div>
   );
 };

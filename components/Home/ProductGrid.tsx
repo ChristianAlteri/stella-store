@@ -3,138 +3,296 @@
 import { Product } from "@/types";
 import getProductsForProductCard from "@/actions/get-products-for-product-card";
 import ProductCard from "../Product/product-card";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
+import ProductCardSkeleton from "./product-skeleton";
 
 interface ProductGridProps {
   children?: React.ReactNode;
 }
 
-type ProductWithPagination = {
-  products: Product[];
-  total: number;
-  page: number;
-  limit: number;
-};
+const LIMIT = 8;
 
 const ProductGrid: React.FC<ProductGridProps> = ({ children }) => {
   const [products, setProducts] = useState<Product[]>([]);
-  const [isLoadingProducts, setIsLoadingProducts] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(0);
-  const limit = 4;
+  const [hasMore, setHasMore] = useState(true);
+  const observer = useRef<IntersectionObserver | null>(null);
+  const loadingTriggerRef = useRef<HTMLDivElement | null>(null);
+
+  const fetchData = useCallback(async () => {
+    if (!process.env.NEXT_PUBLIC_STORE_ID || !hasMore) return;
+
+    try {
+      setIsLoading(true);
+      const fetchedProductData = await getProductsForProductCard({
+        storeIdFromOnlineStore: process.env.NEXT_PUBLIC_STORE_ID,
+        isOnline: true,
+        page,
+        limit: LIMIT,
+      });
+
+      setProducts((prevProducts) => [
+        ...prevProducts,
+        ...fetchedProductData.products,
+      ]);
+      setTotal(fetchedProductData.total);
+      setHasMore(fetchedProductData.products.length === LIMIT);
+      setPage((prevPage) => prevPage + 1);
+    } catch (error) {
+      console.error("Failed to fetch products:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  }, [page, hasMore]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setIsLoadingProducts(true);
-        const fetchedProductData = await getProductsForProductCard({
-          storeIdFromOnlineStore: `${process.env.NEXT_PUBLIC_STORE_ID}`,
-          isOnline: true,
-          page,
-          limit,
-        });
-        console.log("fetchedProductData", fetchedProductData);
-        setProducts((prevProducts) => {
-          console.log("Previous products:", prevProducts.map(p => p.id));
-          console.log("Newly fetched products:", fetchedProductData.products.map(p => p.id));
-          const updated = [...prevProducts, ...fetchedProductData.products];
-          console.log("Updated products:", updated.map(p => p.id));
-          return updated;
-        });
-        setTotal(fetchedProductData.total);
-        setIsLoadingProducts(false);
-      } catch (error) {
-        console.error("Failed to fetch products:", error);
-        setIsLoadingProducts(false);
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    if (isLoading) return;
+
+    if (observer.current) observer.current.disconnect();
+
+    const callback = (entries: IntersectionObserverEntry[]) => {
+      if (entries[0].isIntersecting && hasMore) {
+        fetchData();
       }
     };
 
-    if (process.env.NEXT_PUBLIC_STORE_ID) {
-      fetchData();
-    }
-  }, [page]);
+    observer.current = new IntersectionObserver(callback, {
+      root: null,
+      rootMargin: "400px", // Load more when within 800px of the bottom
+      threshold: 0.1,
+    });
 
-  const loadMore = () => {
-    if (products.length < total) {
-      setPage((prev) => prev + 1);
+    if (loadingTriggerRef.current) {
+      observer.current.observe(loadingTriggerRef.current);
     }
-  };
+
+    return () => {
+      if (observer.current) observer.current.disconnect();
+    };
+  }, [isLoading, hasMore, fetchData]);
 
   return (
     <div className="col-span-6 flex flex-col justify-center items-center w-full h-full">
       <div className="w-full grid grid-cols-2 md:grid-cols-4 gap-4 items-center text-center justify-center">
-        {isLoadingProducts && page === 1 ? (
-          <p>Loading...</p>
-        ) : (
-          products.map((item) => <ProductCard key={item.id} item={item} />)
-        )}
+        {products.map((item) => (
+          <ProductCard key={item.id} item={item} />
+        ))}
         {children}
       </div>
-      {products.length < total && !isLoadingProducts && (
-        <button
-          onClick={loadMore}
-          className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-        >
-          Load More
-        </button>
+      {/* Loading trigger element */}
+      <div ref={loadingTriggerRef} className="w-full h-10" />{" "}
+      {isLoading && (
+        <div className="w-full grid grid-cols-2 md:grid-cols-4 gap-4 items-center text-center justify-center mt-4">
+          {Array.from({ length: LIMIT }).map((_, index) => (
+            <ProductCardSkeleton key={`skeleton-${index}`} />
+          ))}
+        </div>
       )}
+      {/* <FullscreenProductFiltersFooter productData={products} /> */}
+      {!hasMore && <p className="mt-4 text-gray-500">No more products...</p>}
     </div>
   );
 };
 
 export default ProductGrid;
 
-// "use client";
+// 'use client';
 
 // import { Product } from "@/types";
-// import getProducts from "@/actions/get-products";
+// import getProductsForProductCard from "@/actions/get-products-for-product-card";
 // import ProductCard from "../Product/product-card";
-// import { useEffect, useState } from "react";
+// import { useEffect, useState, useCallback, useRef } from "react";
+// import { Skeleton } from "@/components/ui/skeleton";
+// import ProductCardSkeleton from "./product-skeleton";
 
 // interface ProductGridProps {
 //   children?: React.ReactNode;
 // }
 
-// const ProductGrid: React.FC<ProductGridProps> = ({ children }) => {
-//   const [products, setProducts] = useState<Product[]>([]); // State for products
-//   const [isLoadingProducts, setIsLoadingProducts] = useState(false); // State for loading indicator
+// type ProductWithPagination = {
+//   products: Product[];
+//   total: number;
+//   page: number;
+//   limit: number;
+// };
 
-//   // Fetch the data
+// const LIMIT = 8;
+
+// const ProductGrid: React.FC<ProductGridProps> = ({ children }) => {
+//   const [products, setProducts] = useState<Product[]>([]);
+//   const [isLoading, setIsLoading] = useState(false);
+//   const [page, setPage] = useState(1);
+//   const [total, setTotal] = useState(0);
+//   const [hasMore, setHasMore] = useState(true);
+//   const observer = useRef<IntersectionObserver | null>(null);
+//   const lastProductElementRef = useRef<HTMLDivElement | null>(null);
+
+//   const fetchData = useCallback(async () => {
+//     if (!process.env.NEXT_PUBLIC_STORE_ID || !hasMore) return;
+
+//     try {
+//       setIsLoading(true);
+//       const fetchedProductData = await getProductsForProductCard({
+//         storeIdFromOnlineStore: process.env.NEXT_PUBLIC_STORE_ID,
+//         isOnline: true,
+//         page,
+//         limit: LIMIT,
+//       });
+
+//       setProducts((prevProducts) => [
+//         ...prevProducts,
+//         ...fetchedProductData.products,
+//       ]);
+//       setTotal(fetchedProductData.total);
+//       setHasMore(fetchedProductData.products.length === LIMIT);
+//       setPage((prevPage) => prevPage + 1);
+//     } catch (error) {
+//       console.error("Failed to fetch products:", error);
+//     } finally {
+//       setIsLoading(false);
+//     }
+//   }, [page, hasMore]);
+
 //   useEffect(() => {
-//     const fetchData = async () => {
-//       try {
-//         setIsLoadingProducts(true);
-//         const fetchedProducts = await getProducts({
-//           storeIdFromOnlineStore: `${process.env.NEXT_PUBLIC_STORE_ID}`,
-//           all: true,
-//           isOnline: true,
-//         });
-//         setProducts(fetchedProducts);
-//         setIsLoadingProducts(false);
-//       } catch (error) {
-//         console.error("Failed to fetch products:", error);
-//         setIsLoadingProducts(false);
+//     fetchData();
+//   }, []);
+
+//   useEffect(() => {
+//     if (isLoading) return;
+
+//     if (observer.current) observer.current.disconnect();
+
+//     const callback = (entries: IntersectionObserverEntry[]) => {
+//       if (entries[0].isIntersecting && hasMore) {
+//         fetchData();
 //       }
 //     };
 
-//     if (process.env.NEXT_PUBLIC_STORE_ID) {
-//       fetchData();
+//     observer.current = new IntersectionObserver(callback, {
+//       root: null,
+//       rootMargin: '0px',
+//       threshold: 1.0
+//     });
+
+//     if (lastProductElementRef.current) {
+//       observer.current.observe(lastProductElementRef.current);
 //     }
-//   }, []);
+
+//     return () => {
+//       if (observer.current) observer.current.disconnect();
+//     };
+//   }, [isLoading, hasMore, fetchData]);
 
 //   return (
 //     <div className="col-span-6 flex flex-col justify-center items-center w-full h-full">
 //       <div className="w-full grid grid-cols-2 md:grid-cols-4 gap-4 items-center text-center justify-center">
-//         {isLoadingProducts ? (
-//           <p>Loading...</p>
-//         ) : (
-//           products.map((item: any) => <ProductCard key={item.id} item={item} />)
-//         )}
+//         {products.map((item, index) => (
+//           <div
+//             key={item.id}
+//             ref={index === products.length - 1 ? lastProductElementRef : null}
+//           >
+//             <ProductCard item={item} />
+//           </div>
+//         ))}
+//         {isLoading &&
+//           Array.from({ length: LIMIT }).map((_, index) => (
+//             <ProductCardSkeleton key={`skeleton-${index}`} />
+//           ))}
 //         {children}
 //       </div>
-//       <div className="fixed bottom-0 p-9 mb-4 w-1/3 z-50">
-//         {/* <FullscreenProductFiltersFooter productData={products} /> */}
+//       {!hasMore && <p className="mt-4 text-gray-500">No more products to load.</p>}
+//     </div>
+//   );
+// };
+
+// export default ProductGrid;
+
+// "use client";
+
+// import { Product } from "@/types";
+// import getProductsForProductCard from "@/actions/get-products-for-product-card";
+// import ProductCard from "../Product/product-card";
+// import { useEffect, useState, useCallback } from "react";
+// import Button from "@/components/ui/button";
+// import { Skeleton } from "@/components/ui/skeleton";
+// import ProductCardSkeleton from "./product-skeleton";
+
+// interface ProductGridProps {
+//   children?: React.ReactNode;
+// }
+
+// type ProductWithPagination = {
+//   products: Product[];
+//   total: number;
+//   page: number;
+//   limit: number;
+// };
+
+// const LIMIT = 4;
+
+// const ProductGrid: React.FC<ProductGridProps> = ({ children }) => {
+//   const [products, setProducts] = useState<Product[]>([]);
+//   const [isLoading, setIsLoading] = useState(false);
+//   const [page, setPage] = useState(1);
+//   const [total, setTotal] = useState(0);
+
+//   const fetchData = useCallback(async () => {
+//     if (!process.env.NEXT_PUBLIC_STORE_ID) return;
+
+//     try {
+//       setIsLoading(true);
+//       const fetchedProductData = await getProductsForProductCard({
+//         storeIdFromOnlineStore: process.env.NEXT_PUBLIC_STORE_ID,
+//         isOnline: true,
+//         page,
+//         limit: LIMIT,
+//       });
+
+//       setProducts((prevProducts) => [
+//         ...prevProducts,
+//         ...fetchedProductData.products,
+//       ]);
+//       setTotal(fetchedProductData.total);
+//     } catch (error) {
+//       console.error("Failed to fetch products:", error);
+//     } finally {
+//       setIsLoading(false);
+//     }
+//   }, [page]);
+
+//   useEffect(() => {
+//     fetchData();
+//   }, [fetchData]);
+
+//   const loadMore = () => {
+//     if (products.length < total) {
+//       setPage((prev) => prev + 1);
+//     }
+//   };
+
+//   return (
+//     <div className="col-span-6 flex flex-col justify-center items-center w-full h-full">
+//       <div className="w-full grid grid-cols-2 md:grid-cols-4 gap-4 items-center text-center justify-center">
+//         {products.map((item) => (
+//           <ProductCard key={item.id} item={item} />
+//         ))}
+//         {isLoading &&
+//           Array.from({ length: LIMIT }).map((_, index) => (
+//             <ProductCardSkeleton key={`skeleton-${index}`} />
+//           ))}
+//         {children}
 //       </div>
+//       {products.length < total && (
+//         <Button onClick={loadMore} disabled={isLoading} className="mt-4 mb-4">
+//           {isLoading ? "Loading..." : "Load More"}
+//         </Button>
+//       )}
 //     </div>
 //   );
 // };
