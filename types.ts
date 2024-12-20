@@ -76,6 +76,7 @@ export interface Product {
   seller: Seller;
   designer: Designer;
   designerId: string;
+  sellerId: string;
 }
 
 export interface Image {

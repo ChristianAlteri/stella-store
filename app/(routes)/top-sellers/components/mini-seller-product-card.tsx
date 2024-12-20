@@ -32,7 +32,7 @@ const MiniProductSellerCard: React.FC<MiniProductSellerCardProps> = ({ data }) =
   return (
     <div className="p-4 w-full h-48 relative">
       <Image
-        src={currentProduct.images[0]?.url || "/placeholder.svg"}
+        src={currentProduct.images[0]?.url || "/placeholder.jpg"}
         alt={`${currentProduct.name} from ${currentProduct.seller?.storeName}`}
         fill
         className="object-cover rounded-md transition-opacity duration-500"

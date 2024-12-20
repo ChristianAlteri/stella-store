@@ -11,7 +11,7 @@ interface CartPageServerProps {
 const CartPageServer: React.FC<CartPageServerProps> = async ({ params }) => {
   const products =
     (await getProducts({ all: true, isArchived: false, isOnline: true })) || [];
-    console.log("Products from Cart page", products);
+    // console.log("Products from Cart page", products);
   const onlySaleItems = products.filter((product) => product.isOnSale).slice(0, 7);
 
   return (
