@@ -49,9 +49,7 @@ const FullscreenProductFilters: React.FC<FullscreenProductFiltersProps> = ({
 
         {filtersOpen && (
           <div className="flex flex-row gap-12 justify-between items-between w-full p-1">
-            <AllSortFilters
-              data={productData}
-            />
+            <AllSortFilters />
           </div>
         )}
       </div>
