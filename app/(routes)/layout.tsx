@@ -17,7 +17,7 @@ export default async function SiteLayout({
     getStore(`${process.env.NEXT_PUBLIC_STORE_ID}`),
     // getProducts({ all: true, isOnline: true, isArchived: false }),
   ]);
-  console.debug("STORE FROM ROOT", store);
+  // console.debug("STORE FROM ROOT", store);
 
   return (
     <div>
