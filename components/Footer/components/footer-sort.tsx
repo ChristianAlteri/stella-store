@@ -6,11 +6,9 @@ import { CiSliderHorizontal } from "react-icons/ci";
 import { Drawer } from "@material-tailwind/react";
 import AllSortFilters from "../../Filters/all-sort-filters";
 
-interface FooterSortProps {
-  products: Product[] | undefined;
-}
+interface FooterSortProps {}
 
-const FooterSort: React.FC<FooterSortProps> = ({ products }) => {
+const FooterSort: React.FC<FooterSortProps> = ({}) => {
   const [open, setOpen] = React.useState(false);
   const openDrawer = () => setOpen(true);
   const closeDrawer = () => setOpen(false);
@@ -37,7 +35,7 @@ const FooterSort: React.FC<FooterSortProps> = ({ products }) => {
       >
         <div className="h-full absolute text-xs flex flex-col items-center justify-center  w-full  min-h-[55px] mb-4 shadow-top bg-white">
           <div className="flex flex-row w-full justify-center items-center gap-8">
-            <AllSortFilters data={products} />
+            <AllSortFilters />
           </div>
         </div>
       </Drawer>

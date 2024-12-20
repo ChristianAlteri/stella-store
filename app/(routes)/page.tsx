@@ -87,7 +87,8 @@ const Homepage = async ({
         </div>
 
         {/* Second column */}
-        <div className="col-span-6 flex flex-col justify-center items-center w-full h-full">
+        <ProductGrid/>
+        {/* <div className="col-span-6 flex flex-col justify-center items-center w-full h-full"> */}
           {/* <ProductGrid>
             {products.map((item) => (
               <ProductCard key={item.id} item={item} />
@@ -96,7 +97,7 @@ const Homepage = async ({
           <div className="fixed bottom-0 p-9 mb-4 w-1/3 z-50">
             {/* <FullscreenProductFiltersFooter productData={products} /> */}
           </div>
-        </div>
+        {/* </div> */}
 
         {/* Third column */}
         <div className="col-span-1 justify-end items-end w-full hidden sticky h-full md:grid">

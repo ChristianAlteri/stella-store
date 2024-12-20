@@ -11,10 +11,9 @@ import { CiBadgeDollar, CiCoinInsert } from "react-icons/ci";
 import { Product } from "@/types";
 
 interface AllSortFiltersProps {
-  data: Product[] | undefined;
 }
 
-const AllSortFilters: React.FC<AllSortFiltersProps> = ({ data }) => {
+const AllSortFilters: React.FC<AllSortFiltersProps> = ({  }) => {
   const searchParams = useSearchParams();
   const router = useRouter();
 

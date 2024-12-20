@@ -9,8 +9,8 @@ export default async function SiteLayout({
 }: {
   children: React.ReactNode;
 }) {
-   // Fetch all data concurrently
-   const [
+  // Fetch all data concurrently
+  const [
     store,
     // products,
   ] = await Promise.all([
@@ -21,15 +21,10 @@ export default async function SiteLayout({
 
   return (
     <div>
-      <Navbar
-        store={store}
-        // products={products}
-        products={[]}
-      />
+      <Navbar store={store} />
       {children}
       <Footer
         store={store}
-        products={[]}
         searchParams={{
           categoryId: "",
           designerId: "",

@@ -1,31 +1,18 @@
 "use client";
 
 import {
-  Category,
-  Color,
-  Condition,
-  Designer,
   Gender,
-  Material,
-  Product,
-  Seller,
-  Size,
-  Subcategory,
 } from "@/types";
 import FooterSort from "./footer-sort";
 import FilterModal from "../components/filter-modal";
 import GenderFilter from "./gender-filter";
-import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
 import getGenders from "@/actions/get-genders";
-import { set } from "react-hook-form";
 import { useEffect, useState } from "react";
 
 interface FooterMobileButtonsProps {
-  products?: Product[];
 }
 
 const FooterMobileButtons: React.FC<FooterMobileButtonsProps> = ({
-  products,
 }) => {
   const [genders, setGenders] = useState<Gender[] | null>(null);
   const [isLoadingGenders, setIsLoadingGenders] = useState(true);
@@ -53,12 +40,13 @@ const FooterMobileButtons: React.FC<FooterMobileButtonsProps> = ({
   return (
     <div className="flex col-span-4 flex-row w-full h-full justify-center items-center shadow-top p-1">
       <div className="flex flex-col items-center justify-center col-span-1 w-full min-h-[55px] text-xs">
-        {/* TODO: same here make the products call here */}
-        {/* <FooterSort products={products} /> */}
+        <FooterSort />
         SORT
       </div>
       {isLoadingGenders ? (
-        <div className="w-full justify-center text-center text-super-small text-muted-foreground">Loading...</div>
+        <div className="w-full justify-center text-center text-super-small text-muted-foreground">
+          Loading...
+        </div>
       ) : (
         <>
           <div className="text-xs flex items-center justify-center col-span-1 w-full min-h-[55px] z-35 flex-col">
@@ -76,10 +64,7 @@ const FooterMobileButtons: React.FC<FooterMobileButtonsProps> = ({
         </>
       )}
       <div className="text-xs flex flex-col items-center justify-center col-span-1 w-full min-h-[55px]">
-        <FilterModal
-          genders={genders || undefined}
-        />{" "}
-        FILTER
+        <FilterModal genders={genders || undefined} /> FILTER
       </div>
     </div>
   );

@@ -31,28 +31,10 @@ import { useParams } from "next/navigation";
 
 interface NavbarProps {
   store: Store;
-  products: Product[];
-  // sellers: Seller[];
-  // designers: Designer[];
-  // categories: Category[];
-  // sizes: Size[];
-  // colors: Color[];
-  // materials: Material[];
-  // conditions: Condition[];
-  // genders: Gender[];
-  // subcategories: Subcategory[];
-  // topTen?: Product[];
-  // billboard: Billboard | null;
 }
 
 const Navbar: React.FC<NavbarProps> = ({
   store,
-  products,
-  // sellers,
-  // designers,
-  // categories,
-  // topTen,
-  // billboard,
 }) => {
   const [loggedIn, setLoggedIn] = useState(true);
   const params = useParams();
@@ -92,6 +74,8 @@ const Navbar: React.FC<NavbarProps> = ({
                 {/* TODO: can u make the like page and shopping cart call the backend when the component mounts */}
                 {/* <HeartButton products={products} /> */}
                 {/* <ShoppingCartButton size="28px" products={products} /> */}
+
+
                 {/* {loggedIn ? <ProfileButton /> : null} */}
                 {/* TODO: Finish sign up and sign in */}
               </div>
