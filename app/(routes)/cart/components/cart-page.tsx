@@ -5,19 +5,17 @@ import useCart from "@/hooks/use-cart";
 import Summary from "./summary";
 import CartItem from "./cart-item";
 import { Product } from "@/types";
+import getCheckoutAndLikes from "@/actions/get-checkout-likes";
 
 interface CartPageProps {
-  products: Product[];
 }
 
 export const revalidate = 0;
 
-const CartPage: React.FC<CartPageProps> = ({products}) => {
+const CartPage: React.FC<CartPageProps> = ({}) => {
   const [isMounted, setIsMounted] = useState(false);
   const [cartProducts, setCartProducts] = useState<Product[]>([]);
   const cart = useCart();
-  console.log("products coming into component cart", products);
-  console.log("cartProducts from useState component cart", cartProducts);
 
   useEffect(() => {
     setIsMounted(true);
@@ -25,16 +23,19 @@ const CartPage: React.FC<CartPageProps> = ({products}) => {
 
   useEffect(() => {
     if (isMounted) {
-      // const cartProductsNotArchived = products.filter(
-      //   (product) => !product.isArchived
-      // );
-      const cartProductIds = cart.items.map((item) => item.id);
-      const filteredCartProducts = products.filter((product) =>
-        cartProductIds.includes(product.id)
-      );
-      setCartProducts(filteredCartProducts);
+      const fetchData = async () => {
+        const cartProductIds = cart.items.map((item) => item.id);
+
+        const response = await getCheckoutAndLikes(
+          `${process.env.NEXT_PUBLIC_STORE_ID}`,
+          cartProductIds
+        );
+
+        setCartProducts(response);
+      };
+      fetchData();
     }
-  }, [isMounted]);
+  }, [isMounted, cart.items]);
 
   if (!isMounted) {
     return <div>Loading...</div>; 

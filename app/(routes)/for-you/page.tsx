@@ -35,9 +35,15 @@ interface ForYouPageProps {
   };
 }
 
-const ForYouPage: React.FC<ForYouPageProps> = async ({ searchParams, params }) => {
+const ForYouPage: React.FC<ForYouPageProps> = async ({
+  searchParams,
+  params,
+}) => {
   const featuredProducts = await getProducts({
-    all: true, isArchived: false, isOnline: true, isFeatured: true,
+    all: true,
+    isArchived: false,
+    isOnline: true,
+    isFeatured: true,
     categoryId: searchParams.categoryId,
     sort: searchParams.sort,
     sizeId: searchParams.sizeId,
@@ -58,7 +64,6 @@ const ForYouPage: React.FC<ForYouPageProps> = async ({ searchParams, params }) =
     `${process.env.NEXT_PUBLIC_STORE_ID}`
   );
 
-
   // TODO: loggedIn = false unless logged in;
 
   return (
@@ -69,7 +74,7 @@ const ForYouPage: React.FC<ForYouPageProps> = async ({ searchParams, params }) =
           className="col-span-1 justify-start items-start w-full p-6 hidden sticky h-full md:grid"
           style={{ width: "100%" }}
         >
-          <LeftSidebar/>
+          <LeftSidebar />
         </div>
 
         {/* Second column */}
@@ -102,37 +107,41 @@ const ForYouPage: React.FC<ForYouPageProps> = async ({ searchParams, params }) =
           {/* ) : ( */}
 
           <div className="flex h-full flex-col justify-center w-full md:w-1/3 grid-rows-4">
-            
             <div className="flx flex-col gap-4 items-center mb-2 justify-center row-span-2 h-2/3 mt-4">
               <h2 className="text-center text-sm md:text-md text-black w-full items-center justify-center">
                 Register and receive 10% off your first purchase
               </h2>
-              <AuthForm 
-                billboard={billboard}
-              />
+              <AuthForm billboard={billboard} />
               <h2 className="text-center text-sm md:text-md text-black w-full items-center justify-center row-span-1">
-                Want to sell with us? 
-                  <IconRedirectButton  route={store?.email ? `mailto:${store.email}` : ""} icon="Send us an email" />
+                Want to sell with us?
+                <IconRedirectButton
+                  route={store?.email ? `mailto:${store.email}` : ""}
+                  icon="Send us an email"
+                />
               </h2>
             </div>
 
             {/* <br className="p-5"/> */}
 
             <div className="flex p-2 row-span-1 mt-4">
-              <SuggestedContainer data={featuredProducts.slice(0, 7)} route="/trending" title="FEATURED PRODUCTS"/>
+              <SuggestedContainer
+                route={`/trending`}
+                title="FEATURED PRODUCTS"
+                isFeatured={undefined}
+                isOnSale={true}
+              />
             </div>
           </div>
           {/* )} */}
         </div>
-        
+
         {/* Third column */}
         <div
           className="col-span-1 justify-start items-start w-full p-6 hidden sticky h-full md:grid"
           style={{ width: "100%" }}
         >
-          <RightSidebar/>
+          <RightSidebar />
         </div>
-
       </div>
     </>
   );

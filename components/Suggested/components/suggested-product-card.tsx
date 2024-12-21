@@ -103,29 +103,6 @@ const SuggestedProductCard: React.FC<SuggestedProductCardProps> = ({
                 >
                 {item?.designer?.name.toUpperCase()}
                 </Link>
-                {/* <h3
-                onClick={handleProductClick}
-                className="text-super-small hover:underline text-light-font bg-light-background hover:cursor-pointer"
-                >
-                {item?.name}
-                </h3>
-                <div className="text-super-small text-black bg-light-background">{item?.size?.name}</div>
-                <div className="flex flex-row gap-1 bg-light-background">
-                <h6 onClick={handleProductClick} className="text-xs text-red-500">
-                    ${item?.ourPrice}
-                </h6>
-                <h6 className="text-xs text-stone-400">RRP</h6>
-                <h6
-                    onClick={handleProductClick}
-                    className="text-xs text-stone-800 line-through"
-                >
-                    ${item?.retailPrice}
-                </h6>
-                </div>
-                <div className="flex flex-row justify-between items-start text-black text-super-small w-full bg-light-background">
-                <h3>{item?.likes} likes</h3>
-                <h3>{item?.clicks} views</h3>
-                </div> */}
             </div>
             </div>
         </div>

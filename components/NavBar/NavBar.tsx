@@ -5,28 +5,16 @@ import Link from "next/link";
 import MegaSearch from "../Search/mega-search";
 import ShoppingCartButton from "./components/ShoppingCartButton";
 import HeartButton from "./components/HeartButton";
-import ProfileButton from "./components/ProfileButton";
 import HamburgerMenu from "./components/hamburger-menu";
 import { Input } from "../ui/input";
 
 import {
-  Billboard,
-  Category,
-  Color,
-  Condition,
-  Designer,
-  Gender,
-  Material,
-  Product,
-  Seller,
-  Size,
   Store,
-  Subcategory,
+
 } from "@/types";
 import QuickLinks from "./components/quick-links";
 import { useState } from "react";
 import IconRedirectButton from "../ui/icon-redirect-button";
-import { HiInformationCircle } from "react-icons/hi";
 import { useParams } from "next/navigation";
 
 interface NavbarProps {
@@ -71,9 +59,8 @@ const Navbar: React.FC<NavbarProps> = ({
                 <div className="hidden md:flex flex-row gap-2">
                   <IconRedirectButton route="/for-you" icon="REGISTER" />
                 </div>
-                {/* TODO: can u make the like page and shopping cart call the backend when the component mounts */}
-                {/* <HeartButton products={products} /> */}
-                {/* <ShoppingCartButton size="28px" products={products} /> */}
+                <HeartButton />
+                <ShoppingCartButton />
 
 
                 {/* {loggedIn ? <ProfileButton /> : null} */}

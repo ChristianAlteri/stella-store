@@ -4,15 +4,14 @@ import { Product } from "@/types";
 import Image from "next/image";
 import { Skeleton } from "@/components/ui/skeleton";
 import ProductCardButton from "./ProductCardButton";
-import { CiBadgeDollar, CiHeart, CiRead, CiShoppingCart } from "react-icons/ci";
-import { useParams, useRouter } from "next/navigation";
+import { CiHeart, CiRead, CiShoppingCart } from "react-icons/ci";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { MouseEventHandler, useEffect, useState } from "react";
+import { MouseEventHandler, useState } from "react";
 import useCart from "@/hooks/use-cart";
 import useLike from "@/hooks/use-like";
 import axios from "axios";
 import ReactPlayer from "react-player";
-import { Tooltip } from "@chakra-ui/react";
 
 interface ProductCardProps {
   item: Product;
@@ -23,11 +22,6 @@ const ProductCard: React.FC<ProductCardProps> = ({ item }) => {
   const cart = useCart();
   const likes = useLike();
   const [isLoading, setIsLoading] = useState(false);
-
-  // useEffect(() => {
-  //   const timer = setTimeout(() => setIsLoading(false), 1000); // Simulate loading
-  //   return () => clearTimeout(timer);
-  // }, []);
 
   const handleImageLoad = () => {
     setIsLoading(false);

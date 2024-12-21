@@ -7,14 +7,14 @@ import Button from "@/components/ui/button";
 import { CiHeart } from "react-icons/ci";
 import useLike from "@/hooks/use-like";
 import { Product } from "@/types";
+import getCheckoutAndLikes from "@/actions/get-checkout-likes";
 
-interface HeartButtonProps {
-  products: Product[];
-}
+interface HeartButtonProps {}
 
-const HeartButton: React.FC<HeartButtonProps> = ({ products }) => {
+const HeartButton: React.FC<HeartButtonProps> = ({}) => {
+  const [products, setProducts] = useState<Product[]>([]);
   const [isMounted, setIsMounted] = useState(false);
-  const [likedProducts, setLikedProducts] = useState<Product[]>([]);
+  const [likedProducts, setLikedProducts] = useState<Product[] | undefined>([]);
   const likes = useLike();
   const router = useRouter();
   const params = useParams();
@@ -25,14 +25,16 @@ const HeartButton: React.FC<HeartButtonProps> = ({ products }) => {
 
   useEffect(() => {
     if (isMounted) {
-      const likedProductsNotArchived = products.filter(
-        (product) => !product.isArchived
-      );
-      const likedProductIds = likes.items.map((item) => item.id);
-      const filteredLikedProducts = likedProductsNotArchived.filter((product) =>
-        likedProductIds.includes(product.id)
-      );
-      setLikedProducts(filteredLikedProducts);
+      const fetchData = async () => {
+        const likedProductIds = likes.items.map((item) => item.id);
+
+        const response = await getCheckoutAndLikes(`${process.env.NEXT_PUBLIC_STORE_ID}`,
+          likedProductIds
+        );
+
+        setLikedProducts(response);
+      };
+      fetchData()
     }
   }, [isMounted, products]);
 
@@ -47,7 +49,7 @@ const HeartButton: React.FC<HeartButtonProps> = ({ products }) => {
         className="flex  flex-row items-center justify-center"
       >
         <span className="p-1 text-super-small text-green-800">
-          {likedProducts.length}
+          {likedProducts?.length ?? 0}
         </span>
         <CiHeart
           size={"27px"}

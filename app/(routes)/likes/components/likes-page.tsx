@@ -5,14 +5,13 @@ import { useEffect, useState } from "react";
 import LikeItem from "./liked-item";
 import useLike from "@/hooks/use-like";
 import { Product } from "@/types";
+import getCheckoutAndLikes from "@/actions/get-checkout-likes";
 
-interface LikesPageProps {
-  products: Product[];
-}
+interface LikesPageProps {}
 
 export const revalidate = 0;
 
-const LikesPage: React.FC<LikesPageProps> = ({ products }) => {
+const LikesPage: React.FC<LikesPageProps> = ({}) => {
   const [isMounted, setIsMounted] = useState(false);
   const [likedProducts, setLikedProducts] = useState<Product[]>([]);
   const likes = useLike();
@@ -23,14 +22,17 @@ const LikesPage: React.FC<LikesPageProps> = ({ products }) => {
 
   useEffect(() => {
     if (isMounted) {
-      const likedProductsNotArchived = products.filter(
-        (product) => !product.isArchived
-      );
-      const likedProductIds = likes.items.map((item) => item.id);
-      const filteredLikedProducts = likedProductsNotArchived.filter((product) =>
-        likedProductIds.includes(product.id)
-      );
-      setLikedProducts(filteredLikedProducts);
+      const fetchData = async () => {
+        const likedProductIds = likes.items.map((item) => item.id);
+
+        const response = await getCheckoutAndLikes(
+          `${process.env.NEXT_PUBLIC_STORE_ID}`,
+          likedProductIds
+        );
+
+        setLikedProducts(response);
+      };
+      fetchData();
     }
   }, [isMounted]);
 
