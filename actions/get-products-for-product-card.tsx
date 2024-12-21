@@ -7,11 +7,13 @@ const URL = `${process.env.NEXT_PUBLIC_API_URL}/products/product-card`;
 const storeId = `${process.env.NEXT_PUBLIC_STORE_ID}`;
 
 interface Query {
+  storeIdFromOnlineStore?: string;
   isOnline?: boolean | undefined;
   isArchived?: boolean;
-  storeIdFromOnlineStore?: string;
+  isOnSale?: boolean | undefined;
   page?: number;
   limit?: number;
+  sort?: string;
   // categoryId?: string;
   // designerId?: string;
   // sellerId?: string;
@@ -20,7 +22,6 @@ interface Query {
   // conditionId?: string;
   // genderId?: string;
   // subcategoryId?: string;
-  // sort?: string;
   // materialId?: string;
   // isFeatured?: boolean | undefined;
   // isOnSale?: boolean | undefined;
@@ -37,7 +38,10 @@ type ProductWithPagination = {
   limit: number;
 };
 
-const getProductsForProductCard = async (query: Query): Promise<ProductWithPagination> => {
+const getProductsForProductCard = async (
+  query: Query
+): Promise<ProductWithPagination> => {
+  console.log("query", query);
   try {
     const url = qs.stringifyUrl({
       url: URL,
@@ -56,4 +60,3 @@ const getProductsForProductCard = async (query: Query): Promise<ProductWithPagin
 };
 
 export default getProductsForProductCard;
-

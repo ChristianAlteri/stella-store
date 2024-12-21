@@ -32,27 +32,6 @@ interface SalePageProps {
 }
 
 const SalePage: React.FC<SalePageProps> = async ({ searchParams, params }) => {
-  const onSaleItems = await getProducts({
-    all: true,
-    isArchived: false,
-    isOnline: true,
-    categoryId: searchParams.categoryId,
-    sort: searchParams.sort,
-    sizeId: searchParams.sizeId,
-    colorId: searchParams.colorId,
-    conditionId: searchParams.conditionId,
-    materialId: searchParams.materialId,
-    genderId: searchParams.genderId,
-    subcategoryId: searchParams.subcategoryId,
-    isCharity: searchParams.isCharity,
-    isHidden: searchParams.isHidden,
-    isFeatured: searchParams.isFeatured,
-    designerId: searchParams.designerId,
-    sellerId: searchParams.sellerId,
-    isOnSale: true,
-    minPrice: searchParams.minPrice,
-    maxPrice: searchParams.maxPrice,
-  });
 
   return (
     <>
@@ -68,16 +47,7 @@ const SalePage: React.FC<SalePageProps> = async ({ searchParams, params }) => {
         </div>
 
         {/* Second column */}
-        <div className="col-span-6 flex flex-col justify-start mt-4 items-center w-full h-full">
-          <ProductGrid>
-            {onSaleItems.map((item) => (
-              <ProductCard key={item.id} item={item} />
-            ))}
-          </ProductGrid>
-          <div className="fixed bottom-0 p-9 mb-4 w-1/3 z-50">
-            <FullscreenProductFiltersFooter productData={onSaleItems} />
-          </div>
-        </div>
+        <ProductGrid isOnSale={true} />
 
         {/* Third column */}
         <div className="col-span-1 justify-end items-end w-full hidden sticky h-full md:grid">

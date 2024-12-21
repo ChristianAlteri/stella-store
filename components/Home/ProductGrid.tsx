@@ -1,5 +1,3 @@
-
-
 "use client";
 
 import { Product } from "@/types";
@@ -8,15 +6,18 @@ import ProductCard from "../Product/product-card";
 import { useEffect, useState, useCallback, useRef } from "react";
 import ProductCardSkeleton from "./product-skeleton";
 import { throttle } from "../../utils/throttle";
+import { useSearchParams } from "next/navigation";
 
 interface ProductGridProps {
   children?: React.ReactNode;
+  isOnSale?: boolean | undefined;
 }
 
 const LIMIT = 8;
 const THROTTLE_DELAY = 1000;
 
-const ProductGrid: React.FC<ProductGridProps> = ({ children }) => {
+const ProductGrid: React.FC<ProductGridProps> = ({ children, isOnSale }) => {
+  const searchParams = useSearchParams();
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState(1);
@@ -24,6 +25,18 @@ const ProductGrid: React.FC<ProductGridProps> = ({ children }) => {
   const [hasMore, setHasMore] = useState(true);
   const observer = useRef<IntersectionObserver | null>(null);
   const loadingTriggerRef = useRef<HTMLDivElement | null>(null);
+
+  // Fetch initial data
+  // useEffect(() => {
+  //   fetchData();
+
+  // }, [searchParams, isOnSale]); 
+  useEffect(() => {
+    // When searchParams or isOnSale changes, reset pagination & product list
+    setPage(1);
+    setProducts([]);
+    setHasMore(true);
+  }, [searchParams, isOnSale]);
 
   const fetchData = useCallback(async () => {
     if (!process.env.NEXT_PUBLIC_STORE_ID || !hasMore) return;
@@ -33,6 +46,9 @@ const ProductGrid: React.FC<ProductGridProps> = ({ children }) => {
       const fetchedProductData = await getProductsForProductCard({
         storeIdFromOnlineStore: process.env.NEXT_PUBLIC_STORE_ID,
         isOnline: true,
+        isArchived: false,
+        isOnSale: isOnSale,
+        sort: searchParams.get("sort") || undefined,
         page,
         limit: LIMIT,
       });
@@ -49,7 +65,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({ children }) => {
     } finally {
       setIsLoading(false);
     }
-  }, [page, hasMore]);
+  }, [page, hasMore, searchParams]);
 
   const throttledCallback = useCallback(
     throttle((entries: IntersectionObserverEntry[]) => {
@@ -88,32 +104,30 @@ const ProductGrid: React.FC<ProductGridProps> = ({ children }) => {
     };
   }, [isLoading, throttledCallback]);
 
-  // Fetch initial data
-  useEffect(() => {
-    fetchData();
-    // Only run on mount (unless you intend to re-fetch when page or hasMore changes)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   return (
-    <div className="col-span-6 flex flex-col justify-center items-center w-full h-full">
-      <div className="w-full grid grid-cols-2 md:grid-cols-4 gap-4 items-center text-center justify-center">
-        {products.map((item) => (
-          <ProductCard key={item.id} item={item} />
-        ))}
-        {children}
-      </div>
-      {/* Loading trigger element */}
-      <div ref={loadingTriggerRef} className="w-full h-10" />{" "}
-      {isLoading && (
-        <div className="w-full grid grid-cols-2 md:grid-cols-4 gap-4 items-center text-center justify-center mt-4">
-          {Array.from({ length: LIMIT }).map((_, index) => (
-            <ProductCardSkeleton key={`skeleton-${index}`} />
+    <>
+      
+      <div className="col-span-6 flex flex-col justify-center items-center w-full h-full">
+        <div className="w-full grid grid-cols-2 md:grid-cols-4 gap-4 items-center text-center justify-center">
+          {products.map((item) => (
+            <ProductCard key={item.id} item={item} />
           ))}
+          {children}
         </div>
-      )}
-      {!hasMore && <p className="mt-4 mb-4 p-4 text-gray-500">No more products...</p>}
-    </div>
+        {/* Loading trigger element */}
+        <div ref={loadingTriggerRef} className="w-full h-10" />{" "}
+        {isLoading && (
+          <div className="w-full grid grid-cols-2 md:grid-cols-4 gap-4 items-center text-center justify-center mt-4">
+            {Array.from({ length: LIMIT }).map((_, index) => (
+              <ProductCardSkeleton key={`skeleton-${index}`} />
+            ))}
+          </div>
+        )}
+        {!hasMore && (
+          <p className="mt-4 mb-4 p-4 text-gray-500">No more products...</p>
+        )}
+      </div>
+    </>
   );
 };
 
@@ -281,9 +295,6 @@ export default ProductGrid;
 
 // export default ProductGrid;
 
-
-
-
 // "use client";
 
 // import { useEffect, useState, useCallback, useRef } from "react";
@@ -444,10 +455,6 @@ export default ProductGrid;
 // };
 
 // export default ProductGrid;
-
-
-
-
 
 // "use client";
 

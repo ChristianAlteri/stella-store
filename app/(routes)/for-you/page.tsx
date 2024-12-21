@@ -121,7 +121,7 @@ const ForYouPage: React.FC<ForYouPageProps> = async ({
               </h2>
             </div>
 
-            {/* <br className="p-5"/> */}
+
 
             <div className="flex p-2 row-span-1 mt-4">
               <SuggestedContainer
@@ -132,7 +132,7 @@ const ForYouPage: React.FC<ForYouPageProps> = async ({
               />
             </div>
           </div>
-          {/* )} */}
+
         </div>
 
         {/* Third column */}

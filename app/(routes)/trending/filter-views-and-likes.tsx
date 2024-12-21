@@ -8,10 +8,9 @@ import { Product } from "@/types";
 import { CiHeart, CiRead } from "react-icons/ci";
 
 interface ViewsLikesFilterProps {
-  data: Product[] | undefined;
 }
 
-const ViewsLikesFilter: React.FC<ViewsLikesFilterProps> = ({ data }) => {
+const ViewsLikesFilter: React.FC<ViewsLikesFilterProps> = ({ }) => {
   const searchParams = useSearchParams();
   const router = useRouter();
 

@@ -1,8 +1,6 @@
 import ProductGrid from "@/components/Home/ProductGrid";
-import ProductCard from "@/components/Product/product-card";
 import LeftSidebar from "@/components/SideBars/LeftSideBar";
 import RightSidebar from "@/components/SideBars/RightSideBar";
-import getProducts from "@/actions/get-products";
 
 import FullscreenProductFiltersFooter from "@/components/Filters/full-screen-product-filters-footer";
 import HomepageBillboard from "@/components/Billboard/HomepageBillboard";
@@ -87,16 +85,16 @@ const Homepage = async ({
         </div>
 
         {/* Second column */}
-        <ProductGrid/>
+        <ProductGrid isOnSale={undefined} />
         {/* <div className="col-span-6 flex flex-col justify-center items-center w-full h-full"> */}
-          {/* <ProductGrid>
+        {/* <ProductGrid>
             {products.map((item) => (
               <ProductCard key={item.id} item={item} />
             ))}
           </ProductGrid> */}
-          <div className="fixed bottom-0 p-9 mb-4 w-1/3 z-50">
-            {/* <FullscreenProductFiltersFooter productData={products} /> */}
-          </div>
+        <div className="fixed bottom-0 p-9 mb-4 w-1/3 z-50">
+          {/* <FullscreenProductFiltersFooter productData={products} /> */}
+        </div>
         {/* </div> */}
 
         {/* Third column */}
