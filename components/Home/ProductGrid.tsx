@@ -14,10 +14,9 @@ interface ProductGridProps {
   children?: React.ReactNode;
 }
 
-const LIMIT = 4;
+const LIMIT = 2;
 const THROTTLE_DELAY = 1000;
-const COLUMN_WIDTH = 300;
-const ROW_HEIGHT = 500;
+const COLUMN_WIDTH = 300; // Unused if you compute column width dynamically
 
 const ProductGrid: React.FC<ProductGridProps> = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -79,8 +78,9 @@ const ProductGrid: React.FC<ProductGridProps> = () => {
     };
   }) => {
     const { columnCount, products, hasMore, rowCount, isLoading } = data;
-
     const isLastRow = rowIndex === rowCount - 1;
+
+    // If we've reached the last row and there is no more data:
     if (!hasMore && isLastRow) {
       return (
         <div style={{ ...style, textAlign: "center", padding: "1rem" }}>
@@ -94,12 +94,13 @@ const ProductGrid: React.FC<ProductGridProps> = () => {
     const productIndex = rowIndex * columnCount + columnIndex;
     const product = products[productIndex];
 
+    // Show skeleton if loading / awaiting data
     if (!product) {
       return <div style={style}>{isLoading && <ProductCardSkeleton />}</div>;
     }
 
     return (
-      <div style={style}>
+      <div style={style} className="h-full">
         <ProductCard item={product} />
       </div>
     );
@@ -118,9 +119,15 @@ const ProductGrid: React.FC<ProductGridProps> = () => {
     <div className="col-span-6 w-full h-[calc(100vh-100px)]">
       <AutoSizer>
         {({ height, width }) => {
-          const isMobile = width < 768; // Assuming mobile breakpoint at 768px
+          // Simple "isMobile" check
+          const isMobile = width < 768;
           const columnCount = isMobile ? 2 : 4;
           const columnWidth = width / columnCount;
+
+          // Instead of a hardcoded 500px, let's do a different rowHeight for mobile
+          // so the product card will look more consistent.
+          const rowHeight = isMobile ? 430 : 570;
+
           const rowCount =
             Math.ceil(products.length / columnCount) + (hasMore ? 0 : 1);
 
@@ -131,7 +138,7 @@ const ProductGrid: React.FC<ProductGridProps> = () => {
               columnWidth={columnWidth}
               height={height}
               rowCount={rowCount}
-              rowHeight={ROW_HEIGHT}
+              rowHeight={rowHeight}
               width={width}
               onItemsRendered={onItemsRendered}
               itemData={{
