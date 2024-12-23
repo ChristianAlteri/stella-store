@@ -11,12 +11,14 @@ import { useSearchParams } from "next/navigation";
 interface ProductGridProps {
   children?: React.ReactNode;
   isOnSale?: boolean | undefined;
+  designerId?: string | null
+  categoryId?: string | null
 }
 
 const LIMIT = 8;
 const THROTTLE_DELAY = 1000;
 
-const ProductGrid: React.FC<ProductGridProps> = ({ children, isOnSale }) => {
+const ProductGrid: React.FC<ProductGridProps> = ({ children, isOnSale, designerId, categoryId }) => {
   const searchParams = useSearchParams();
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -26,11 +28,6 @@ const ProductGrid: React.FC<ProductGridProps> = ({ children, isOnSale }) => {
   const observer = useRef<IntersectionObserver | null>(null);
   const loadingTriggerRef = useRef<HTMLDivElement | null>(null);
 
-  // Fetch initial data
-  // useEffect(() => {
-  //   fetchData();
-
-  // }, [searchParams, isOnSale]); 
   useEffect(() => {
     // When searchParams or isOnSale changes, reset pagination & product list
     setPage(1);
@@ -49,6 +46,12 @@ const ProductGrid: React.FC<ProductGridProps> = ({ children, isOnSale }) => {
         isArchived: false,
         isOnSale: isOnSale,
         sort: searchParams.get("sort") || undefined,
+        genderId: searchParams.get("genderId") || undefined,
+        sizeId: searchParams.get("sizeId") || undefined,
+        colorId: searchParams.get("colorId") || undefined,
+        materialId: searchParams.get("materialId") || undefined,
+        designerId: designerId ?? null,
+        categoryId: categoryId ?? null,
         page,
         limit: LIMIT,
       });

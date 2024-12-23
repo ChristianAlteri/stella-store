@@ -14,51 +14,11 @@ interface CategoryNamePageProps {
     categoryId: string;
     storeId: string;
   };
-  searchParams: {
-    sizeId: string;
-    colorId: string;
-    conditionId: string;
-    materialId: string;
-    genderId: string;
-    subcategoryId: string;
-    categoryId: string;
-    designerId: string;
-    sellerId: string;
-    sort: string;
-    isFeatured: boolean;
-    isOnSale: boolean;
-    isCharity: boolean;
-    isHidden: boolean;
-    isOnline: boolean;
-    minPrice: number;
-    maxPrice: number;
-  };
 }
 
 const CategoryNamePage: React.FC<CategoryNamePageProps> = async ({
   params,
-  searchParams,
 }) => {
-  const productData = await getProducts({
-    categoryId: params.categoryId,
-    sort: searchParams.sort,
-    sizeId: searchParams.sizeId,
-    colorId: searchParams.colorId,
-    conditionId: searchParams.conditionId,
-    materialId: searchParams.materialId,
-    genderId: searchParams.genderId,
-    subcategoryId: searchParams.subcategoryId,
-    isOnSale: searchParams.isOnSale,
-    isCharity: searchParams.isCharity,
-    isHidden: searchParams.isHidden,
-    isOnline: true,
-    isFeatured: searchParams.isFeatured,
-    designerId: searchParams.designerId,
-    sellerId: searchParams.sellerId,
-    minPrice: searchParams.minPrice,
-    maxPrice: searchParams.maxPrice,
-    storeIdFromOnlineStore: `${process.env.NEXT_PUBLIC_STORE_ID}`,
-  });
   const categoryData = await getSingleCategory(params.categoryId);
 
   return (
@@ -78,16 +38,9 @@ const CategoryNamePage: React.FC<CategoryNamePageProps> = async ({
         </div>
 
         {/* Second column */}
-        <div className="col-span-6 flex flex-col justify-center items-center w-full h-full">
-          <ProductGrid>
-            {productData?.map((item) => (
-              <ProductCard key={item.id} item={item} />
-            ))}
-          </ProductGrid>
-
-          <div className="fixed bottom-0 p-9 mb-4 w-1/3 z-50">
-            <FullscreenProductFiltersFooter productData={productData} />
-          </div>
+        <ProductGrid isOnSale={undefined} categoryId={params.categoryId} />
+        <div className="fixed bottom-0 p-9 mb-4 w-1/3 z-50">
+          {/* <FullscreenProductFiltersFooter productData={products} /> */}
         </div>
 
         {/* Third column */}

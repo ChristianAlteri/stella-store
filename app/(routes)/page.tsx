@@ -7,57 +7,9 @@ import HomepageBillboard from "@/components/Billboard/HomepageBillboard";
 
 export const revalidate = 0;
 
-interface HomepageProps {
-  searchParams: {
-    storeId: string;
-    sizeId: string;
-    colorId: string;
-    conditionId: string;
-    materialId: string;
-    genderId: string;
-    subcategoryId: string;
-    categoryId: string;
-    designerId: string;
-    sellerId: string;
-    sort: string;
-    isFeatured: boolean | undefined;
-    isOnSale: boolean | undefined;
-    isCharity: boolean | undefined;
-    isHidden: boolean | undefined;
-    isOnline: boolean | undefined;
-    minPrice: number;
-    maxPrice: number;
-  };
-}
+interface HomepageProps {}
 
-const Homepage = async ({
-  searchParams,
-}: {
-  searchParams: HomepageProps["searchParams"];
-}) => {
-  // Fetch data in parallel using Promise.all
-  // const products = await getProducts({
-  //   all: true,
-  //   isOnline: true,
-  //   isArchived: false,
-  //   categoryId: searchParams.categoryId,
-  //   sort: searchParams.sort,
-  //   sizeId: searchParams.sizeId,
-  //   colorId: searchParams.colorId,
-  //   conditionId: searchParams.conditionId,
-  //   materialId: searchParams.materialId,
-  //   genderId: searchParams.genderId,
-  //   subcategoryId: searchParams.subcategoryId,
-  //   isCharity: searchParams.isCharity,
-  //   isHidden: searchParams.isHidden,
-  //   isOnSale: searchParams.isOnSale,
-  //   isFeatured: searchParams.isFeatured,
-  //   designerId: searchParams.designerId,
-  //   sellerId: searchParams.sellerId,
-  //   minPrice: searchParams.minPrice,
-  //   maxPrice: searchParams.maxPrice,
-  // });
-
+const Homepage = async ({}: {}) => {
   return (
     <>
       {/* Large screen Billboard */}
@@ -86,16 +38,9 @@ const Homepage = async ({
 
         {/* Second column */}
         <ProductGrid isOnSale={undefined} />
-        {/* <div className="col-span-6 flex flex-col justify-center items-center w-full h-full"> */}
-        {/* <ProductGrid>
-            {products.map((item) => (
-              <ProductCard key={item.id} item={item} />
-            ))}
-          </ProductGrid> */}
         <div className="fixed bottom-0 p-9 mb-4 w-1/3 z-50">
           {/* <FullscreenProductFiltersFooter productData={products} /> */}
         </div>
-        {/* </div> */}
 
         {/* Third column */}
         <div className="col-span-1 justify-end items-end w-full hidden sticky h-full md:grid">
