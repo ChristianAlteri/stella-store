@@ -22,6 +22,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ item }) => {
   const cart = useCart();
   const likes = useLike();
   const [isLoading, setIsLoading] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   const handleImageLoad = () => {
     setIsLoading(false);
@@ -76,7 +77,33 @@ const ProductCard: React.FC<ProductCardProps> = ({ item }) => {
       onClick={() => onClickButton(item)}
     >
       <div className="relative h-full w-full rounded-md flex justify-center items-center z-30 p-2">
-        <div className="inset-0 w-full h-full flex justify-center items-center hover:cursor-pointer">Image</div>
+        {/* <div className="inset-0 w-full h-full flex justify-center items-center hover:cursor-pointer">Image</div> */}
+        <div
+          className="relative aspect-[3/4] w-full"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          <Link
+            href={`/product/${item?.category?.id}/${item?.designer?.id}/${item?.id}/${item?.seller?.id}`}
+          >
+            <Image
+              src={item.images[0]?.url || "/placeholder.jpg"}
+              alt={`${item.name} by ${item.designer?.name} in size ${item.size?.name} for $${item.ourPrice} in category ${item.category?.name}`}
+              fill
+              className="object-cover rounded-md"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            />
+            {item.images[1] && isHovered && (
+              <Image
+                src={item.images[1].url}
+                alt={`${item.name} by ${item.designer?.name} in size ${item.size?.name} for $${item.ourPrice} in category ${item.category?.name}`}
+                fill
+                className="object-cover rounded-md absolute top-0 left-0 opacity-0 hover:opacity-100 transition-opacity duration-300"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              />
+            )}
+          </Link>
+        </div>
       </div>
 
       <ProductCardInfo
