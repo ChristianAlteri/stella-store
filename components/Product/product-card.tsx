@@ -76,68 +76,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ item }) => {
       onClick={() => onClickButton(item)}
     >
       <div className="relative h-full w-full rounded-md flex justify-center items-center z-30 p-2">
-        <div className="inset-0 w-full h-full flex justify-center items-center hover:cursor-pointer">
-          {item?.images[0]?.url?.match(/https:\/\/.*\.(video|mp4|MP4|mov).*/) ? (
-            <ReactPlayer
-              key={item?.images?.[0]?.id}
-              url={item?.images[0].url}
-              width={"100%"}
-              loop={true}
-              playing={true}
-              muted={true}
-              alt={`${item.name} by ${item.designer?.name} in size ${item.size?.name} for $${item.ourPrice}`}
-              className={`rounded-md transition-opacity duration-200 ease-in-out ${
-                item.isHidden ? "blur-xl" : ""
-              }`}
-            />
-          ) : (
-            <Image
-              key={item?.images?.[0]?.id}
-              onClick={handleProductClick}
-              width={1080}
-              height={1350}
-              src={item!.images[0]!.url}
-              alt={`${item.name} by ${item.designer?.name} in size ${item.size?.name} for $${item.ourPrice}`}
-              priority
-              className={`rounded-md transition-opacity duration-200 ease-in-out 
-              ${item.isHidden ? "blur-xl" : ""}`}
-              onLoad={handleImageLoad}
-            />
-          )}
-        </div>
-        {item?.images[1] && (
-          <div className="absolute inset-0 flex justify-center items-center hover:opacity-100 hover:cursor-pointer opacity-0 transition-opacity duration-200 ease-in-out">
-            {item?.images?.[1]?.url?.match(/https:\/\/.*\.(video|mp4|MP4|mov).*/) ? (
-              <ReactPlayer
-                key={item?.images?.[1]?.id}
-                onClick={handleProductClick}
-                url={item?.images?.[1]?.url}
-                width="100%"
-                loop
-                playing
-                muted
-                alt={`${item.name} video by ${item.designer?.name} in size ${item.size?.name} for $${item.ourPrice}`}
-                className={`rounded-md transition-opacity duration-200 ease-in-out ${
-                  item.isHidden ? "blur-xl" : ""
-                }`}
-              />
-            ) : (
-              <Image
-                key={item?.images?.[1]?.id}
-                onClick={handleProductClick}
-                width={1080}
-                height={1350}
-                src={item?.images?.[1]?.url}
-                alt={`Image of ${item.name} by ${item.designer?.name} in size ${item.size?.name} for $${item.ourPrice}`}
-                priority
-                className={`rounded-md transition-opacity duration-200 ease-in-out ${
-                  item.isHidden ? "blur-xl" : ""
-                }`}
-                onLoad={handleImageLoad}
-              />
-            )}
-          </div>
-        )}
+        <div className="inset-0 w-full h-full flex justify-center items-center hover:cursor-pointer">Image</div>
       </div>
 
       <ProductCardInfo
@@ -180,9 +119,9 @@ const ProductCardInfo: React.FC<{
           className="text-xs hover:underline hover:cursor-pointer text-black"
         >
           {item.name
-            .split(' ')
-            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-            .join(' ')}
+            .split(" ")
+            .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(" ")}
         </div>
         <Link
           href={`/designers/${item?.designer?.id}`}
@@ -214,10 +153,7 @@ const ProductCardInfo: React.FC<{
           {item.isOnSale && (
             <>
               <h6 className="text-xs">WAS</h6>
-              <h6
-                onClick={handleProductClick}
-                className="text-xs line-through"
-              >
+              <h6 onClick={handleProductClick} className="text-xs line-through">
                 ${item.originalPrice}
               </h6>
             </>
@@ -258,10 +194,7 @@ const ProductCardInfo: React.FC<{
       <div className="flex flex-row justify-end w-full gap-1">
         <h6 className="text-xs text-red-500">${item.ourPrice}</h6>
         {item.isOnSale && (
-          <h6
-            onClick={handleProductClick}
-            className="text-xs line-through"
-          >
+          <h6 onClick={handleProductClick} className="text-xs line-through">
             ${item.originalPrice}
           </h6>
         )}
@@ -307,8 +240,6 @@ const ProductCardSkeleton: React.FC = () => (
 );
 
 export default ProductCard;
-
-
 
 // "use client";
 
@@ -429,7 +360,7 @@ export default ProductCard;
 //                     src={item!.images[0]!.url}
 //                     alt={`${item.name} by ${item.designer?.name} in size ${item.size?.name} for $${item.ourPrice}`}
 //                     priority
-//                     className={`rounded-md transition-opacity duration-200 ease-in-out 
+//                     className={`rounded-md transition-opacity duration-200 ease-in-out
 //                     ${item.isHidden ? "blur-xl" : ""}`}
 //                     onLoad={handleImageLoad}
 //                   />
@@ -443,7 +374,7 @@ export default ProductCard;
 //                     src={item!.images[0]!.url}
 //                     alt={`${item.name} by ${item.designer?.name} in size ${item.size?.name} for $${item.ourPrice}`}
 //                     priority
-//                     className={`rounded-md transition-opacity duration-200 ease-in-out 
+//                     className={`rounded-md transition-opacity duration-200 ease-in-out
 //                     ${item.isHidden ? "blur-xl" : ""}`}
 //                     onLoad={handleImageLoad}
 //                   />
