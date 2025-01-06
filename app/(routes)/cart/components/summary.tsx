@@ -82,7 +82,6 @@ const Summary = () => {
   // Convert the grouped data to a JSON string
   const productsWithSellerIdStringify = JSON.stringify(productsWithSellerId);
 
-  console.log("productsWithSellerIdStringify", productsWithSellerIdStringify);
 
   const onCheckout = async () => {
     try {

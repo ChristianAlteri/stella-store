@@ -87,7 +87,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ item }) => {
             href={`/product/${item?.category?.id}/${item?.designer?.id}/${item?.id}/${item?.seller?.id}`}
           >
             <Image
-              src={item.images[0]?.url || "/placeholder.jpg"}
+              src={item.images[0]?.url || "/images/placeholder-no-image.jpg"}
               alt={`${item.name} by ${item.designer?.name} in size ${item.size?.name} for $${item.ourPrice} in category ${item.category?.name}`}
               fill
               className="object-cover rounded-md"

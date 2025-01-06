@@ -54,8 +54,8 @@ const LikedItem: React.FC<LikedItemProps> = ({
               muted
               autoPlay
               loop
-              key={data?.images?.[0]?.id}
-              src={data?.images[0].url}
+              key={data?.images[0]?.id}
+              src={data?.images[0]?.url}
               className={`rounded-md transition-opacity duration-200 ease-in-out ${
                 data.isHidden ? "blur-xl" : ""
               }`}
@@ -64,11 +64,11 @@ const LikedItem: React.FC<LikedItemProps> = ({
             <>
               <div className="flex">
                 <Image
-                  key={data?.images?.[0]?.id}
+                  key={data?.images[0]?.id}
                   onClick={handleProductClick}
                   height={0}
                   width={100}
-                  src={data!.images[0]!.url}
+                  src={data?.images[0]?.url}
                   alt={`${data.name} by ${data.designer?.name} in size ${data.size?.name} for $${data.ourPrice} (RRP $${data.retailPrice})`}
                   priority
                   className={`rounded-md transition-opacity duration-200 ease-in-out 
