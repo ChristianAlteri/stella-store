@@ -58,6 +58,12 @@ const FooterMobileButtons: React.FC<FooterMobileButtonsProps> = ({
           <div className="text-xs flex-col flex items-center justify-center col-span-1 w-full min-h-[55px] z-35">
             <GenderFilter
               //  icon={<BsGenderFemale size={23}/>}
+              gender={genders ? genders[2] : undefined}
+            />
+          </div>
+          <div className="text-xs flex-col flex items-center justify-center col-span-1 w-full min-h-[55px] z-35">
+            <GenderFilter
+              //  icon={<BsGenderFemale size={23}/>}
               gender={genders ? genders[1] : undefined}
             />
           </div>
