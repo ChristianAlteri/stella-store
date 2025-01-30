@@ -43,21 +43,26 @@ const Navbar: React.FC<NavbarProps> = ({ store }) => {
               </div>
 
               <div className="w-full flex flex-row justify-center items-center p-1">
-                <Link href={`/`} className="flex">
+                <a
+                  href="https://www.secondlifestores.com"
+                  className="flex"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <Image
                     src="/SLS_STORE_LOGO_BLACK.png"
                     alt="Store Logo"
-                    width={200} 
-                    height={20} 
-                    priority 
+                    width={200}
+                    height={20}
+                    priority
                   />
-                </Link>
+                </a>
               </div>
 
               <div className="w-full flex flex-row justify-end items-center gap-4 p-2 z-40">
-                <div className="hidden md:flex flex-row gap-2">
+                {/* <div className="hidden md:flex flex-row gap-2">
                   <IconRedirectButton route="/for-you" icon="REGISTER" />
-                </div>
+                </div> */}
                 <HeartButton />
                 <ShoppingCartButton />
 
